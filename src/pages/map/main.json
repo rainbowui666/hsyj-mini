@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "查看启动日志",
-  "navigationStyle": "custom",
+  "navigationBarTitleText": "红色印记",
+  "navigationBarBackgroundColor": "#cc0000",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "wux-card": "../../static/wux/card/index",
     "wux-media": "../../static/wux/media/index"
