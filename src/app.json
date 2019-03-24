@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/mall/main",
+    "pages/risk/main",
+    "pages/risk/test/main",
+    "pages/center/main",
+    "pages/webview/main",
+    "pages/insureview/main",
+    "pages/center/login/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#ff9a14",
+    "color": "#666",
+    "list": [{
+      "pagePath": "pages/index/main",
+      "iconPath": "static/images/ic_menu_choice_nor.png",
+      "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+      "text": "首页"
+    },
+    {
+      "pagePath": "pages/mall/main",
+      "iconPath": "static/images/ic_menu_shoping_nor.png",
+      "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+      "text": "商城"
+    },
+    {
+      "pagePath": "pages/risk/main",
+      "iconPath": "static/images/ic_menu_sort_nor.png",
+      "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+      "text": "风险"
+    },
+    {
+      "pagePath": "pages/center/main",
+      "iconPath": "static/images/ic_menu_me_nor.png",
+      "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+      "text": "我的"
+    }
+    ]
+  }
+}
