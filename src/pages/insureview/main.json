@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "查看启动日志",
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "wux-card": "../../static/wux/card/index",
-    "wux-media": "../../static/wux/media/index"
-  }
-}
