@@ -1,8 +1,6 @@
 <template >
   <view class='container'>
-    <wux-image
-      wux-class='image'
-      shape='rounded'
+    <image
       width='360px'
       src='https://picsum.photos/750/750/?image=413'
     />
@@ -18,31 +16,14 @@
       <view class='sight-introduction-group-item'>
         <wux-row gutter="12" v-for='(row,index) in newArr' :key='index'>
           <wux-col span='6' v-for='(item,oindex) in row' :key='oindex'>
-            <view class='icon-group'>
-              <view class='example'>
-                <wux-icon type='ios-checkmark-circle-outline' size='24' color='green'/>
-                <view>11</view>
-              </view>
-              <view class='example'>
-                <wux-icon type='ios-heart' size='24' color='red'/>
-                <view>11</view>
-              </view>
-              <view class='example'>
-                <wux-icon type='ios-chatboxes' size='24' color='green'/>
-                <view>11</view>
-              </view>
-              <view class='example'>
-                <wux-icon type='ios-share-alt' size='24' color='blue'/>
-                <view>11</view>
-              </view>
-            </view>
-            <wux-image
-              wux-class='image'
-              shape='normal'
-              width='170px'
-              height='130px'
-              :src='item.src'
-            />
+            <icon-group :list='iconArr'/>
+            <navigator url="/pages/map/sight/main">
+              <image
+                width='170px'
+                height='130px'
+                :src='item.src'
+              />
+            </navigator>
             <text
               class="sight-introduction ellipsis"
              >{{ item.desc }}</text>
@@ -54,8 +35,11 @@
 </template>
 
 <script>
-// import wx from 'wx';
+import iconGroup from '../../../components/icon-group';
 export default {
+  components: {
+    iconGroup
+  },
   data () {
     return {
       information: {
@@ -91,6 +75,32 @@ export default {
             '上海财经大学,简称“上海财大”,是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一'
         }
       ],
+      iconArr: [
+        {
+          icon: 'ios-checkmark-circle-outline',
+          size: '24',
+          color: 'green',
+          number: 11
+        },
+        {
+          icon: 'ios-heart',
+          size: '24',
+          color: 'red',
+          number: 11
+        },
+        {
+          icon: 'ios-chatboxes',
+          size: '24',
+          color: 'green',
+          number: 11
+        },
+        {
+          icon: 'ios-share-alt',
+          size: '24',
+          color: 'blue',
+          number: 11
+        }
+      ],
       ellipsis: true,
       newArr: []
     };
@@ -114,12 +124,24 @@ export default {
 </script>
 
 <style>
-.school-introduction,.sight-introduction {
+.school-introduction {
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 10px;
   font-size: 13px;
-  color: #888;
+  /* color: #888; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* 通过以上四行实现收缩功能 */
+}
+.sight-introduction {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  font-size: 13px;
+  /* color: #888; */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
@@ -156,15 +178,8 @@ export default {
   display: flex;
   justify-content: center;
 }
-.icon-group {
-  display: flex;
-  justify-content: space-between;
-  width:93%;
-  margin:auto;
-}
-.example {
-  font-size: 16px;
-  display: flex;
-  line-height: 24px;
+.sight-introduction-group-item image{
+  width:170px;
+  height: 130px;
 }
 </style>
