@@ -1,5 +1,5 @@
 <template >
-  <view class='container'>
+  <view class='sight-page'>
     <swiper class='swiper' :indicator-dots='true' :autoplay='true' interval='3000' duration='800'>
       <block v-for='(item, index) in movies' :key='index'>
         <swiper-item>
@@ -13,8 +13,35 @@
           <text>{{ information.desc }}</text>
         </view>
         <view class='sight-introduction-bar-icon' @click="toDestination">
-          <wux-icon wux-class='navigation' type='ios-send' size='34' color='white'/>
+          <wux-icon wux-class='navigation' type='ios-navigate' size='34' color='blue'/>
         </view>
+      </view>
+    </view>
+    <view class='sight-introduction-video'>
+      <view class='sight-introduction-video-inner'>
+        <view class='sight-introduction-video-image' @click="popupVideo">
+          <wux-icon wux-class='video-icon' type='ios-play' size='34' color='white'/>
+        </view>
+        <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
+           <video
+              id="myVideo"
+              src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+              enable-danmu
+              danmu-btn
+              controls
+            ></video>
+        </wux-popup>
+        <view class='sight-introduction-video-text'>
+          <text>{{ information.desc }}</text>
+        </view>
+      </view>
+      <view class='sight-introduction-video-icon' @click="toDestination">
+        <wux-icon wux-class='navigation' type='ios-navigate' size='34' color='white'/>
+      </view>
+    </view>
+    <view class='sight-introduction-icon-group'>
+      <view class='sight-introduction-icon-group-inner'>
+       <icon-group :list='iconArr'/>
       </view>
     </view>
     <!-- <view :class='ellipsis?'sight-introduction-group-show':'sight-introduction-group-hide''>
@@ -83,25 +110,33 @@ export default {
           color: 'blue',
           number: 11
         }
-      ]
+      ],
+      showPopUp: false
     };
   },
   onShow () {
     wx.setNavigationBarTitle({ title: this.information.name });
   },
-  methods: {}
+  methods: {
+    popupVideo () {
+      this.showPopUp = true;
+    },
+    onClose () {
+      this.showPopUp = false;
+    }
+  }
 };
 </script>
 
 <style>
-.swiper {
+.sight-page .swiper {
   width: 100%;
   height: 230px;
 }
-.slide-image {
+.sight-page .slide-image {
   width: 100%;
 }
-.sight-introduction-bar {
+.sight-page .sight-introduction-bar {
   width: 100%;
   height: 60px;
   margin-top: -60px;
@@ -112,27 +147,65 @@ export default {
   line-height: 60px;
   justify-content: center;
 }
-.sight-introduction-bar-inner{
+.sight-page .sight-introduction-bar-inner{
   width: 95%;
   display: flex;
   justify-content: space-between;
 }
-.sight-introduction-bar-label {
+.sight-page .sight-introduction-bar-label {
   color: #fff;
 }
-.sight-introduction-bar-label text{
+.sight-page .sight-introduction-bar-label text{
   font-size: 22px
 }
-.sight-introduction-bar-icon {
-  width: 35px;
+.sight-page .sight-introduction-bar-icon {
+  /* width: 35px;
   height: 35px;
   border-radius: 50%;
-  background-color: blue;
+  background-color: blue; */
   margin-top: auto;
   margin-bottom: auto;
 }
-.sight-introduction-bar-icon .navigation {
+.sight-page .sight-introduction-bar-icon .navigation {
   display: flex;
   justify-content: center;
 }
+.sight-page .sight-introduction-video {
+  width:90%;
+  border:1px black solid;
+  height:100px;
+  margin-top:10px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.sight-page .sight-introduction-video-inner{
+  display: flex;
+}
+.sight-page .sight-introduction-video-image{
+  background-image: url('https://picsum.photos/750/750/?image=413');
+  background-size: 100%;
+  width: 90px;
+  height: 90px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+.sight-page .sight-introduction-video-image wux-icon{
+  display: flex;
+}
+.sight-page .video-icon{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.sight-page .sight-introduction-video-text text{
+  margin-left: 10px;
+}
+.sight-page .sight-introduction-icon-group{
+  display:flex;
+  justify-content:flex-end;
+}
+.sight-page .sight-introduction-icon-group-inner{
+  width: 50%;
+}
+
 </style>

@@ -1,9 +1,11 @@
 <template >
-  <view class='container'>
-    <image
-      width='360px'
-      src='https://picsum.photos/750/750/?image=413'
-    />
+  <view class='school-page'>
+    <view class='school-introduction-image'>
+      <image
+        width='360px'
+        src='https://picsum.photos/750/750/?image=413'
+      />
+    </view>
     <view class='school-introduction-group'>
       <text
         :class="ellipsis?'school-introduction ellipsis':'school-introduction unellipsis'"
@@ -12,23 +14,25 @@
         <wux-icon :type="ellipsis?'ios-arrow-down':'ios-arrow-up'"/>
       </view>
     </view>
-    <view :class="ellipsis?'sight-introduction-group-show':'sight-introduction-group-hide'">
-      <view class='sight-introduction-group-item'>
-        <wux-row gutter="12" v-for='(row,index) in newArr' :key='index'>
-          <wux-col span='6' v-for='(item,oindex) in row' :key='oindex'>
-            <icon-group :list='iconArr'/>
-            <navigator url="/pages/map/sight/main">
-              <image
-                width='170px'
-                height='130px'
-                :src='item.src'
-              />
-            </navigator>
-            <text
-              class="sight-introduction ellipsis"
-             >{{ item.desc }}</text>
-          </wux-col>
-        </wux-row>
+    <view class='school-introduction-group-list'>
+      <view :class="ellipsis?'sight-introduction-group-show':'sight-introduction-group-hide'">
+        <view class='sight-introduction-group-item'>
+          <wux-row gutter="12" v-for='(row,index) in newArr' :key='index'>
+            <wux-col span='6' v-for='(item,oindex) in row' :key='oindex'>
+              <icon-group :list='iconArr'/>
+              <navigator url="/pages/map/sight/main">
+                <image
+                  width='170px'
+                  height='130px'
+                  :src='item.src'
+                />
+              </navigator>
+              <text
+                class="sight-introduction ellipsis"
+              >{{ item.desc }}</text>
+            </wux-col>
+          </wux-row>
+        </view>
       </view>
     </view>
   </view>
@@ -124,7 +128,7 @@ export default {
 </script>
 
 <style>
-.school-introduction {
+.school-page .school-introduction {
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 10px;
@@ -136,7 +140,11 @@ export default {
   overflow: hidden;
   /* 通过以上四行实现收缩功能 */
 }
-.sight-introduction {
+.school-page .school-introduction-image{
+  display: flex;
+  justify-content: center;
+}
+.school-page .sight-introduction {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-right: 5px;
@@ -148,37 +156,41 @@ export default {
   overflow: hidden;
   /* 通过以上四行实现收缩功能 */
 }
-.sight-introduction-group-show{
+.school-page .school-introduction-group-list{
+  display: flex;
+  justify-content: center;
+}
+.school-page .sight-introduction-group-show{
   display: block;
   width:95%;
-  margin-left: 7.06px;
+  margin-left: 11.06px;
 }
-.sight-introduction-group-hide{
+.school-page .sight-introduction-group-hide{
   display: none;
 }
-.school-introduction.ellipsis {
+.school-page .school-introduction.ellipsis {
   -webkit-line-clamp: 3;
   /* 最多显示3行 */
   opacity: 0.75;
   /* 透明度75% */
 }
 
-.sight-introduction.ellipsis{
+.school-page .sight-introduction.ellipsis{
    -webkit-line-clamp: 1;
   /* 最多显示3行 */
   opacity: 0.75;
 }
-.unellipsis {
+.school-page .unellipsis {
   -webkit-line-clamp: 0;
   /* 全部显示 */
   opacity: 1;
   /* 不透明 */
 }
-.school-introduction.icon {
+.school-page .school-introduction.icon {
   display: flex;
   justify-content: center;
 }
-.sight-introduction-group-item image{
+.school-page .sight-introduction-group-item image{
   width:170px;
   height: 130px;
 }
