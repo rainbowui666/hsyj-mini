@@ -84,25 +84,25 @@ export default {
           icon: 'ios-checkmark-circle-outline',
           size: '24',
           color: 'green',
-          number: 11
+          label: 11
         },
         {
           icon: 'ios-heart',
           size: '24',
           color: 'red',
-          number: 11
+          label: 11
         },
         {
           icon: 'ios-chatboxes',
           size: '24',
           color: 'green',
-          number: 11
+          label: 11
         },
         {
           icon: 'ios-share-alt',
           size: '24',
           color: 'blue',
-          number: 11
+          label: 11
         }
       ],
       ellipsis: true,

@@ -12,50 +12,61 @@
         <view class='sight-introduction-bar-label'>
           <text>{{ information.desc }}</text>
         </view>
-        <view class='sight-introduction-bar-icon' @click="toDestination">
+        <view class='sight-introduction-bar-icon' @click='toDestination'>
           <wux-icon wux-class='navigation' type='ios-navigate' size='34' color='blue'/>
         </view>
       </view>
     </view>
     <view class='sight-introduction-video'>
       <view class='sight-introduction-video-inner'>
-        <view class='sight-introduction-video-image' @click="popupVideo">
+        <view class='sight-introduction-video-image' @click='popupVideo'>
           <wux-icon wux-class='video-icon' type='ios-play' size='34' color='white'/>
         </view>
-        <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
-           <video
-              id="myVideo"
-              src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-              enable-danmu
-              danmu-btn
-              controls
-            ></video>
+        <wux-popup position='bottom' :visible='showPopUp' :closable='true' @close='onClose'>
+          <video
+            id='myVideo'
+            src='http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
+            enable-danmu
+            danmu-btn
+            controls
+          ></video>
         </wux-popup>
         <view class='sight-introduction-video-text'>
           <text>{{ information.desc }}</text>
         </view>
       </view>
-      <view class='sight-introduction-video-icon' @click="toDestination">
+      <view class='sight-introduction-video-icon' @click='toDestination'>
         <wux-icon wux-class='navigation' type='ios-navigate' size='34' color='white'/>
       </view>
     </view>
     <view class='sight-introduction-icon-group'>
       <view class='sight-introduction-icon-group-inner'>
-       <icon-group :list='iconArr'/>
+        <icon-group :list='iconArr'/>
       </view>
     </view>
-    <!-- <view :class='ellipsis?'sight-introduction-group-show':'sight-introduction-group-hide''>
-      <view class='sight-introduction-group-item'>
-        <wux-row gutter='12' v-for='(row,index) in newArr' :key='index'>
-          <wux-col span='6' v-for='(item,oindex) in row' :key='oindex'>
-            <icon-group :list='iconArr'/>
-            <text
-              class='sight-introduction ellipsis'
-             >{{ item.desc }}</text>
-          </wux-col>
-        </wux-row>
+    <view class='sight-introduction-text'>
+      <text>{{ information.introduction }}</text>
+    </view>
+    <view class='sight-introduction-icon-group2'>
+      <view class='sight-introduction-icon-group2-inner'>
+        <icon-group :list='iconArr2' :iconClick='onClick'/>
       </view>
-    </view>-->
+    </view>
+    <wux-popup position='bottom' :visible='showWords' :closable='true' @close='onClose'>
+      <view v-for='(item,index) in wordsList' :key='index'>
+        <view>
+          <text>{{ item.name }}</text>
+        </view>
+        <view>
+          <text>{{ item.content }}</text>
+        </view>
+      </view>
+    </wux-popup>
+    <view class='sight-introduction-icon-btn'>
+      <view class='sight-introduction-icon-btn-inner'>
+        <button type='warn' size='default' :plain='false'>第{{ count }}次签到</button>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -67,9 +78,12 @@ export default {
   },
   data () {
     return {
+      count: 1,
       information: {
         name: '黄自半身铜像',
-        desc: '黄自半身铜像'
+        desc: '黄自半身铜像',
+        introduction:
+          '位于上海音乐学院汾阳路校区，草坪西侧，为纪念上海音乐学院前教务主任、著名作曲家、音乐教育家黄自先生而建，黄自先生创作的《抗敌歌》是中国第一首以抗日救亡为主题的歌曲。'
       },
       movies: [
         {
@@ -90,28 +104,69 @@ export default {
           icon: 'ios-checkmark-circle-outline',
           size: '24',
           color: 'green',
-          number: 11
+          label: 11
         },
         {
           icon: 'ios-heart',
           size: '24',
           color: 'red',
-          number: 11
+          label: 11
         },
         {
           icon: 'ios-chatboxes',
           size: '24',
           color: 'green',
-          number: 11
+          label: 11
         },
         {
           icon: 'ios-share-alt',
           size: '24',
           color: 'blue',
-          number: 11
+          label: 11
         }
       ],
-      showPopUp: false
+      iconArr2: [
+        {
+          icon: 'ios-heart-empty',
+          size: '40',
+          color: 'red',
+          label: '想去'
+        },
+        {
+          icon: 'ios-chatboxes',
+          size: '40',
+          color: 'green',
+          label: '留言'
+        },
+        {
+          icon: 'ios-share-alt',
+          size: '40',
+          color: 'blue',
+          label: '分享',
+          isButton: true,
+          openType: 'share'
+        }
+      ],
+      wordsList: [
+        {
+          name: 'hahaha',
+          content: '1234567890qwertyuio'
+        },
+        {
+          name: 'hahaha',
+          content: '1234567890qwertyuio'
+        },
+        {
+          name: 'hahaha',
+          content: '1234567890qwertyuio'
+        },
+        {
+          name: 'hahaha',
+          content: '1234567890qwertyuio'
+        }
+      ],
+      showPopUp: false,
+      showWords: false
     };
   },
   onShow () {
@@ -123,7 +178,21 @@ export default {
     },
     onClose () {
       this.showPopUp = false;
+      this.showWords = false;
+    },
+    onClick (item, index) {
+      if (index === 0) {
+        this.iconArr2[0].icon = 'ios-heart';
+      }
+      if (index === 1) {
+        this.showWords = true;
+      }
     }
+  },
+  onShareAppMessage: function (ops) {
+    return {
+      title: '红色印记'
+    };
   }
 };
 </script>
@@ -147,7 +216,7 @@ export default {
   line-height: 60px;
   justify-content: center;
 }
-.sight-page .sight-introduction-bar-inner{
+.sight-page .sight-introduction-bar-inner {
   width: 95%;
   display: flex;
   justify-content: space-between;
@@ -155,8 +224,8 @@ export default {
 .sight-page .sight-introduction-bar-label {
   color: #fff;
 }
-.sight-page .sight-introduction-bar-label text{
-  font-size: 22px
+.sight-page .sight-introduction-bar-label text {
+  font-size: 22px;
 }
 .sight-page .sight-introduction-bar-icon {
   /* width: 35px;
@@ -171,41 +240,88 @@ export default {
   justify-content: center;
 }
 .sight-page .sight-introduction-video {
-  width:90%;
-  border:1px black solid;
-  height:100px;
-  margin-top:10px;
-  margin-left:auto;
-  margin-right:auto;
+  width: 95%;
+  border: 1px black solid;
+  height: 100px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.sight-page .sight-introduction-video-inner{
+.sight-page .sight-introduction-video-inner {
   display: flex;
 }
-.sight-page .sight-introduction-video-image{
+.sight-page .sight-introduction-video-image {
   background-image: url('https://picsum.photos/750/750/?image=413');
   background-size: 100%;
   width: 90px;
   height: 90px;
-  padding: 5px;
+  margin: 5px;
   display: flex;
   justify-content: center;
 }
-.sight-page .sight-introduction-video-image wux-icon{
+.sight-page .sight-introduction-video-image wux-icon {
   display: flex;
 }
-.sight-page .video-icon{
+.sight-page .video-icon {
   margin-top: auto;
   margin-bottom: auto;
 }
-.sight-page .sight-introduction-video-text text{
+.sight-page .sight-introduction-video-text text {
   margin-left: 10px;
 }
-.sight-page .sight-introduction-icon-group{
-  display:flex;
-  justify-content:flex-end;
+.sight-page .sight-introduction-icon-group {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
-.sight-page .sight-introduction-icon-group-inner{
+.sight-page .sight-introduction-icon-group-inner {
   width: 50%;
 }
+.sight-page .sight-introduction-text {
+  display: flex;
+  justify-content: center;
+}
 
+.sight-page .sight-introduction-text text {
+  width: 95%;
+}
+
+.sight-page .sight-introduction-icon-group2,
+.sight-page .sight-introduction-icon-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.sight-page .sight-introduction-icon-group2-inner {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+}
+
+.sight-page .sight-introduction-icon-group2-inner .icon-group-item-label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 5px;
+  line-height: 40px;
+}
+.sight-page .sight-introduction-icon-group2-inner button{
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 5px;
+  line-height: 40px;
+  padding: 0;
+  border-radius: 0px;
+  box-sizing: inherit;
+  background-color: #fff;
+  display: flex;
+}
+.sight-page .sight-introduction-icon-group2-inner button::after {
+  border: none
+}
+.sight-page .sight-introduction-icon-group2-inner .button-hover{
+  color:#000;
+}
+.sight-page .sight-introduction-icon-btn-inner {
+  width: 60%;
+}
 </style>
