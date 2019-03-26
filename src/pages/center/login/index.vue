@@ -4,17 +4,13 @@
       <img class="img" :src="header" style="height:312px">
       <view class="userinfo">
         <view class="userinfo-tel">
-          <input maxlength="11" type="number" placeholder="请输入手机号" @input="bindInput">
+          <input maxlength="11" type="number" placeholder="请输入姓名" @input="bindInput">
         </view>
-        <view class="userinfo-code">
-          <input type="number" placeholder="短信验证码" @input="bindCode">
-          <button plain="true" class="valdationBtn"
-            v-if="showtime===null&&!showSpin"
-            @click="getPhoneCode"
-            :disabled="codeDisabled"
-          >获取验证码</button>
-          <div v-if="showtime!=null" class="captcha-button">{{showtime}}</div>
-          <wux-spin  v-if="showSpin" wux-class="spin" size="default" />
+        <view class="userinfo-tel">
+          <input maxlength="11" type="number" placeholder="请输入学籍号码" @input="bindInput">
+        </view>
+        <view class="userinfo-tel">
+          <picker ></picker>
         </view>
         <view class="userinfo-confirm">
           <button

@@ -3,9 +3,9 @@
     "pages/map/main",
     "pages/activity/main",
     "pages/center/main",
-    "pages/center/login/main",
     "pages/map/schools/main",
-    "pages/map/sight/main"
+    "pages/map/sight/main",
+    "pages/center/login/main"
   ],
   "window": {
     "navigationBarTitleText": "Demo",
