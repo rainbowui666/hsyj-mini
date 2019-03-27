@@ -12,7 +12,7 @@
       show-location
       :style='winStyle'
     ></map>
-    <cover-image class='liuyan' src='/static/images/liuyan.png' @click='messageDialog'></cover-image>
+    <cover-image class='liuyan' src='/static/images/message.png' @click='messageDialog'></cover-image>
     <div v-show='showDetail' class='all-bg'>
       <cover-view class='dw-bg' @click='hidentap'></cover-view>
       <cover-image class='bg' src='/static/images/liuyan_bg.png'></cover-image>
@@ -233,7 +233,7 @@ page {
 }
 .liuyan {
   width: 55px;
-  height: 40px;
+  height: 55px;
   position: absolute;
   bottom: 3%;
   right: 5%;

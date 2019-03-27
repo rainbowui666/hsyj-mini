@@ -1,7 +1,8 @@
 <template >
   <view class="login">
     <view class="login-list">
-      <img class="img" :src="header" style="height:312px">
+      <h2 class="login_title">上海高校文化印记在线社区</h2>
+      <!-- <img class="img" :src="header" style="height:312px"> -->
       <view class="userinfo">
         <view class="userinfo-tel">
           <input maxlength="11" type="number" placeholder="请输入姓名" @input="bindInput">
@@ -10,7 +11,13 @@
           <input maxlength="11" type="number" placeholder="请输入学籍号码" @input="bindInput">
         </view>
         <view class="userinfo-tel">
-          <picker ></picker>
+          <picker @change="bindPickerChange" :value="index" :range="array">
+            <view class="picker">
+              <view class="fb-type">
+                <view class="type-label">{{array[index]}}</view>
+              </view>
+            </view>
+          </picker>
         </view>
         <view class="userinfo-confirm">
           <button
@@ -41,7 +48,9 @@ export default {
       },
       header: 'https://rainbow.ebaotech.com/static/rainbow/image/login_header.jpg',
       userInfo: {},
-      canIUse: wx.canIUse('button.open-type.getUserInfo')
+      canIUse: wx.canIUse('button.open-type.getUserInfo'),
+      array: ['上海复旦大学', '上海大学', '同济大学'],
+      index: 0
     };
   },
   onShow () {
@@ -52,6 +61,11 @@ export default {
     this.timeCounter = null;
   },
   methods: {
+    // 监听pick的修改
+    bindPickerChange (e) {
+      // console.log('监听pick变化', e);
+      this.index = e.target.value;
+    },
     countDownText (s) {
       this.showtime = `${s}s`;
       this.showSpin = false
@@ -181,7 +195,9 @@ page {
   background: #f4f4f4;
   min-height: 100%;
 }
-
+.login_title{
+  padding:20%;
+}
 .container {
   background: #f4f4f4;
   min-height: 100%;
@@ -211,6 +227,24 @@ page {
   justify-content:space-between;
   width:70%;
   padding-left:36px;
+}
+.picker{
+  line-height:48px;
+  height:48px;
+  font-size:14px;
+  justify-content:space-between;
+  width:70%;
+  padding-left:36px;
+  background: url('../../../../static/images/phone.png');
+  background-repeat: no-repeat;
+  background-size: 18%;
+  background-position: 10px;
+}
+.fb-type .type-label{
+  height: 36rpx;
+  flex: 1;
+  color: #888;
+  font-size: 28rpx;
 }
 .userinfo-tel > input
 {
@@ -260,7 +294,7 @@ width:100%;
 
 .userinfo-confirm button{
   border:none;
-  margin:40px 20px 20px 20px;
+  margin:20px;
   color:white;
   height:48px;
   line-height:48px;
