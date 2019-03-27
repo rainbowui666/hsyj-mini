@@ -12,7 +12,7 @@
       indicator-active-color="#ff9a14"
     >
       <swiper-item v-for="item of banner" :key="item.id">
-        <navigator :url="item.link">
+        <navigator url="/pages/map/schools/main">
           <img :src="item.image_url" background-size="cover">
         </navigator>
       </swiper-item>
