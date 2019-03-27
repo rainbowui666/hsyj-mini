@@ -262,7 +262,7 @@ export default {
       wx.chooseImage({
         count: 1,
         success (res) {
-          // 这里无论用户是从相册选择还是直接用相机拍摄，拍摄完成后的图片临时路径都会传递进来
+          // 这里无论用户是从相册选择还是直接用相机拍摄，拍摄完成，后的图片临时路径都会传递进来
           // app.startOperating('保存中')
           // var filePath = res.tempFilePaths[0];
           // var session_key = wx.getStorageSync('session_key');
