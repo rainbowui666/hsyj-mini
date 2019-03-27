@@ -4,6 +4,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "wux-card": "../../static/wux/card/index",
-    "wux-media": "../../static/wux/media/index"
+    "wux-media": "../../static/wux/media/index",
+    "wux-button": "../../../static/wux/button/index"
   }
 }

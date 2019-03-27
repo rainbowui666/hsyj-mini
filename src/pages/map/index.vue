@@ -12,18 +12,20 @@
       show-location
       :style='winStyle'
     ></map>
-    <!-- <cover-image class='kefu' src='/static/images/kefu.png' @click='gotoService'></cover-image>
+    <cover-image class='liuyan' src='/static/images/liuyan.png' @click='messageDialog'></cover-image>
     <div v-show='showDetail' class='all-bg'>
       <cover-view class='dw-bg' @click='hidentap'></cover-view>
-      <cover-image class='bg' src='/static/images/dw_bg.png'></cover-image>
-      <cover-image src='/static/images/dw_call.png' @click='callSomeone' class='dw_call'></cover-image>
-      <cover-image :src='service.iconPath' class='dw_head'></cover-image>
-      <cover-view class='dw-text-body'>{{service.description}}</cover-view>
-      <cover-view class='dw-text-name'>{{service.name}}</cover-view>
-      <cover-view class='dw-text-type'>{{service.type}}</cover-view>
-      <cover-view class='dw-text-location'>{{service.location}}</cover-view>
-      <cover-view class='dw-text-title'>{{service.title}}</cover-view>
-    </div> -->
+      <cover-image class='bg' src='/static/images/liuyan_bg.png'></cover-image>
+      <cover-view class='dw-text-body'>
+        <textarea placeholder="请留下你的想法" name="textarea" />
+      </cover-view>
+      <cover-view class='dw-text-cancle'>
+        <button class="button_cancle" @click='cancleDialog'>撤销</button>
+      </cover-view>
+      <cover-view class='dw-text-confirm'>
+        <button class="button_confirm" @click='confirmDialog'>发布</button>
+      </cover-view>
+    </div>
   </view>
 </template>
 
@@ -37,6 +39,7 @@ export default {
       centerY: 31.228725,
       scale: 11,
       markers: [],
+      showDetail: false,
       winStyle: 'width: 100%; height: 400px;',
       testList:
       [
@@ -90,6 +93,15 @@ export default {
       };
       return marker;
     },
+    messageDialog () {
+      this.showDetail = true;
+    },
+    cancleDialog () {
+      this.showDetail = false;
+    },
+    confirmDialog () {
+      this.showDetail = false;
+    },
     controltap (e) {
       this.moveToLocation();
     },
@@ -140,5 +152,91 @@ page {
 }
 .character-item {
   margin-top: 50px;
+}
+.all-bg {
+  width: 90%;
+  left: 5%;
+}
+.dw_msg {
+  width: 30px;
+  height: 30px;
+  bottom: 5%;
+  position: absolute;
+  left: 8%;
+}
+.dw_call {
+  width: 70px;
+  height: 30px;
+  bottom: 3%;
+  position: absolute;
+  right: 8%;
+}
+.bg {
+  width: 90%;
+  height: 40%;
+  position: absolute;
+  left: auto;
+  right: auto;
+  bottom: 30%;
+}
+.dw-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.dw-text-body {
+  width: 84%;
+  height: 20%;
+  top: 35%;
+  position: absolute;
+  font-size: 12px;
+  white-space: normal;
+  left: 8%;
+  color: #777;
+  line-height: 1.5;
+  border: 1px solid #333;
+}
+.dw-text-cancle{
+  width: 25%;
+  height:15%;
+  top: 60%;
+  position: absolute;
+  font-size: 12px;
+  white-space: normal;
+  left: 15%;
+  color: #777;
+  line-height: 1.5;
+}
+.button_cancle{
+  height:40px;
+  line-height:40px;
+}
+.dw-text-confirm{
+  width: 25%;
+  height:15%;
+  top: 60%;
+  position: absolute;
+  font-size: 12px;
+  white-space: normal;
+  left: 60%;
+  color: #777;
+  line-height: 1.5;
+}
+.button_confirm{
+  height:40px;
+  line-height:40px;
+  background-color: rgb(5, 145, 226);
+  color: #fff;
+}
+.liuyan {
+  width: 55px;
+  height: 40px;
+  position: absolute;
+  bottom: 3%;
+  right: 5%;
+  animation: twinkling 2s 3 ease-in-out;
 }
 </style>
