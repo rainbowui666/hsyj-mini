@@ -52,24 +52,31 @@
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
     </view>
-    <wux-popup position="bottom" :visible="showWords" :closable="true" @close="onClose">
-      <scroll-view class="sight-words" :scroll-y="true">
-        <view class="sight-words-item" v-for="(item,index) in wordsList" :key="index">
-          <view class="sight-words-title">
-            <text>{{ item.name }}</text>
-            <text>{{ item.time }}</text>
+    <view :class="showWords?'pop':'pop-hide'">
+      <!-- <view :class="showWords?'modal':'modal-hide'" @click="onClose"> -->
+      <view :class="showWords?'modal':'modal-hide'">
+        <scroll-view :class="showWords?'inner':'inner-hide'" :scroll-y="true">
+          <!-- <wux-popup position="bottom" :visible="showWords" :closable="true" @close="onClose"> -->
+          <view class="sight-words">
+            <view class="sight-words-item" v-for="(item,index) in wordsList" :key="index">
+              <view class="sight-words-title">
+                <text>{{ item.name }}</text>
+                <text>{{ item.time }}</text>
+              </view>
+              <view class="sight-words-content">
+                <text>&nbsp;{{ item.content }}</text>
+              </view>
+            </view>
           </view>
-          <view class="sight-words-content">
-            <text>&nbsp;{{ item.content }}</text>
+          <view class="sight-words-btn">
+            <button type="default" size="mini" :plain="false" @click="hideWords">隐藏留言</button>
+            <button type="primary" size="mini" :plain="false" @click="comment">我要留言</button>
           </view>
-        </view>
-      </scroll-view>
-      <view class="sight-words-btn">
-        <button type="default" size="mini" :plain="false" @click="hideWords">隐藏</button>
-        <button type="primary" size="mini" :plain="false" @click="comment">我要留言</button>
+          <!-- </wux-popup> -->
+        </scroll-view>
       </view>
-    </wux-popup>
-    <wux-popup position="bottom" :visible="showComment" :closable="true" @close="onClose">
+    </view>
+    <wux-popup title="我要留言" position="bottom" :visible="showComment" :closable="true" @close="onClose" :maskClosable="false">
       <view class="sight-comment">
         <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
       </view>
@@ -83,21 +90,21 @@
         <button type="warn" size="default" :plain="false" @click="onSign">第{{ count }}次签到</button>
       </view>
     </view>
-    <wux-popup position="bottom" :visible="showCamera" :closable="true" @close="onClose">
-      <view class="sight-camera">
-        <camera
-          v-if="showCamera"
-          device-position="back"
-          flash="off"
-          style="width: 100%; height: 300px;"
-        ></camera>
-        <image v-if="src!=''" mode="widthFix" :src="src"></image>
+    <view :class="showCameraPopup?'pop':'pop-hide'">
+      <view :class="showCameraPopup?'modal':'modal-hide'" @click="onClose">
+      <!-- <view :class="showCameraPopup?'modal':'modal-hide'"> -->
+        <scroll-view :class="showCameraPopup?'inner':'inner-hide'" :scroll-y="true">
+          <view class="sight-camera" v-if="showCamera">
+            <camera device-position="back" flash="off" style="width: 100%; height: 300px;"></camera>
+            <!-- <image v-if="src!=''" mode="widthFix" :src="src"></image> -->
+            <view class="sight-camera-btn">
+              <button type="default" size="mini" :plain="false" @click="takePhoto">拍照</button>
+              <button type="primary" size="mini" :plain="false" @click="comment">上传照片</button>
+            </view>
+          </view>
+        </scroll-view>
       </view>
-      <view class="sight-camera-btn">
-        <button type="default" size="mini" :plain="false" @click="takePhoto">拍照</button>
-        <button type="primary" size="mini" :plain="false" @click="comment">上传照片</button>
-      </view>
-    </wux-popup>
+    </view>
   </view>
 </template>
 
@@ -131,12 +138,12 @@ export default {
         }
       ],
       iconArr: [
-        {
-          icon: 'ios-checkmark-circle-outline',
-          size: '24',
-          color: 'green',
-          label: 11
-        },
+        // {
+        //   icon: 'ios-checkmark-circle-outline',
+        //   size: '24',
+        //   color: 'green',
+        //   label: 11
+        // },
         {
           icon: 'ios-heart',
           size: '24',
@@ -148,13 +155,13 @@ export default {
           size: '24',
           color: 'green',
           label: 11
-        },
-        {
-          icon: 'ios-share-alt',
-          size: '24',
-          color: 'blue',
-          label: 11
         }
+        // {
+        //   icon: 'ios-share-alt',
+        //   size: '24',
+        //   color: 'blue',
+        //   label: 11
+        // }
       ],
       iconArr2: [
         {
@@ -225,6 +232,7 @@ export default {
       showPopUp: false,
       showWords: false,
       showComment: false,
+      showCameraPopup: false,
       showCamera: false,
       src: ''
     };
@@ -240,7 +248,7 @@ export default {
       this.showPopUp = false;
       this.showWords = false;
       this.showComment = false;
-      this.showCamera = false;
+      this.showCameraPopup = false;
     },
     onClick (item, index) {
       if (index === 0) {
@@ -258,36 +266,37 @@ export default {
       this.showComment = true;
     },
     onSign () {
-      // this.showCamera = true;
-      wx.chooseImage({
-        count: 1,
-        success (res) {
-          // 这里无论用户是从相册选择还是直接用相机拍摄，拍摄完成，后的图片临时路径都会传递进来
-          // app.startOperating('保存中')
-          // var filePath = res.tempFilePaths[0];
-          // var session_key = wx.getStorageSync('session_key');
-          // 这里顺道展示一下如何将上传上来的文件返回给后端，就是调用wx.uploadFile函数
-        }
-      })
-    },
-    takePhoto () {
-      // const ctx = wx.createCameraContext()
-      // ctx.takePhoto({
-      //   quality: 'high',
-      //   success: (res) => {
-      //     this.src = res.tempImagePath
+      this.showCameraPopup = true;
+      this.showCamera = true;
+      // wx.chooseImage({
+      //   count: 1,
+      //   success (res) {
+      //     // 这里无论用户是从相册选择还是直接用相机拍摄，拍摄完成后的图片临时路径都会传递进来
+      //     // app.startOperating('保存中')
+      //     // var filePath = res.tempFilePaths[0];
+      //     // var session_key = wx.getStorageSync('session_key');
+      //     // 这里顺道展示一下如何将上传上来的文件返回给后端，就是调用wx.uploadFile函数
       //   }
       // })
-      wx.chooseImage({
-        count: 1,
-        success (res) {
-          // 这里无论用户是从相册选择还是直接用相机拍摄，拍摄完成后的图片临时路径都会传递进来
-          // app.startOperating('保存中')
-          // var filePath = res.tempFilePaths[0];
-          // var session_key = wx.getStorageSync('session_key');
-          // 这里顺道展示一下如何将上传上来的文件返回给后端，就是调用wx.uploadFile函数
+    },
+    takePhoto () {
+      const ctx = wx.createCameraContext();
+      ctx.takePhoto({
+        quality: 'high',
+        success: res => {
+          this.src = res.tempImagePath;
         }
-      })
+      });
+      // wx.chooseImage({
+      //   count: 1,
+      //   success (res) {
+      //     // 这里无论用户是从相册选择还是直接用相机拍摄，拍摄完成后的图片临时路径都会传递进来
+      //     // app.startOperating('保存中')
+      //     // var filePath = res.tempFilePaths[0];
+      //     // var session_key = wx.getStorageSync('session_key');
+      //     // 这里顺道展示一下如何将上传上来的文件返回给后端，就是调用wx.uploadFile函数
+      //   }
+      // })
     }
   },
   onShareAppMessage: function (ops) {
@@ -299,6 +308,7 @@ export default {
 </script>
 
 <style>
+
 .sight-page {
   height: 110vh;
 }
@@ -377,8 +387,14 @@ export default {
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
+  width:93%;
 }
 .sight-page .sight-introduction-icon-group-inner {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sight-page .sight-introduction-icon-group-inner .icon-group{
   width: 50%;
 }
 .sight-page .sight-introduction-text {
@@ -428,9 +444,6 @@ export default {
 .sight-page .sight-introduction-icon-btn-inner {
   width: 60%;
 }
-.sight-page .sight-words {
-  padding-bottom: 40px;
-}
 .sight-page .sight-words-item {
   margin-top: 10px;
   display: flex;
@@ -451,33 +464,75 @@ export default {
   margin-left: 10px;
   font-size: 16px;
 }
-.sight-page .sight-words-btn,
-.sight-page .sight-comment-btn ,.sight-page .sight-camera-btn{
+
+.sight-page .inner {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  height: calc(100% - 44px);
+  /*border-top-left-radius: 20px;*/
+  /*border-top-right-radius: 20px;*/
+  bottom: 0px;
+  z-index: 1001;
+  padding-bottom: 40px;
+  height: 60vh;
+}
+.sight-page .pop-hide,
+.sight-page .modal-hide,
+.sight-page .inner-hide {
+  display: block;
+  position: fixed;
+  width: 100vw;
+  bottom: 600vh;
+  background: #fff;
+  z-index: 1002;
+  height: calc(100% - 44px);
+  box-sizing: border-box;
+  /* border: 1px solid #eee; */
+  /*border-radius: 4px;*/
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.13);
+  transition: bottom 200ms ease-in;
+}
+.sight-page .modal {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+.sight-page .pop .modal .inner .sight-words-btn,
+.sight-page .pop .modal .inner .sight-camera-btn {
   position: fixed;
   bottom: 0;
   right: 20px;
 }
-.sight-page .sight-words-btn button:last-child {
+.sight-page .pop .modal .inner .sight-words-btn button:last-child,
+.sight-page .pop .modal .inner .sight-camera-btn button:last-child,
+.sight-page .sight-comment-btn button:last-child {
   margin-left: 20px;
+  background-color: rgb(5, 145, 226);
 }
-.sight-page .sight-comment{
-  padding-bottom: 40px;
+.sight-page .sight-comment-btn{
+  margin-top: 15px
+}
+.sight-page .sight-comment {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
 }
 .sight-page .sight-comment textarea {
+  margin-top: 15px;
   height: 60px;
   border: 1px #000 solid;
 }
- .sight-page .sight-camera{
-  padding-bottom: 40px;
+.sight-page .sight-camera {
   display: flex;
   justify-content: center;
   margin-top: 40px;
-  flex-direction: column
- }
- .sight-page .sight-camera image{
-   margin: 10px auto;
- }
+  flex-direction: column;
+}
+.sight-page .sight-camera image {
+  margin: 10px auto;
+}
 </style>

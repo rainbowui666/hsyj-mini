@@ -1,11 +1,9 @@
 {
-  "navigationBarTitleText": "保险商城",
-  "navigationStyle": "custom",
-      "usingComponents": {
-        "wux-media": "../../static/wux/media/index",
-        "wux-filterbar": "../../static/wux/filterbar/index",
-        "wux-tabs": "../../static/wux/tabs/index",
-        "wux-search-bar": "../../static/wux/search-bar/index",
-        "wux-tab": "../../static/wux/tab/index"
-      }
+  "navigationBarTitleText": "活动详情",
+  "navigationBarBackgroundColor": "#cc0000",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "wux-search-bar": "../../static/wux/search-bar/index",
+    "wux-icon": "../../../static/wux/icon/index"
+  }
 }

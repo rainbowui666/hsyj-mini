@@ -80,12 +80,12 @@ export default {
         }
       ],
       iconArr: [
-        {
-          icon: 'ios-checkmark-circle-outline',
-          size: '24',
-          color: 'green',
-          label: 11
-        },
+        // {
+        //   icon: 'ios-checkmark-circle-outline',
+        //   size: '24',
+        //   color: 'green',
+        //   label: 11
+        // },
         {
           icon: 'ios-heart',
           size: '24',
@@ -97,13 +97,13 @@ export default {
           size: '24',
           color: 'green',
           label: 11
-        },
-        {
-          icon: 'ios-share-alt',
-          size: '24',
-          color: 'blue',
-          label: 11
         }
+        // {
+        //   icon: 'ios-share-alt',
+        //   size: '24',
+        //   color: 'blue',
+        //   label: 11
+        // }
       ],
       ellipsis: true,
       newArr: []
@@ -193,5 +193,8 @@ export default {
 .school-page .sight-introduction-group-item image{
   width:170px;
   height: 130px;
+}
+.school-page .sight-introduction-group-item .icon-group{
+  width:50%
 }
 </style>
