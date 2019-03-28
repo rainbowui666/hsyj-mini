@@ -89,7 +89,7 @@ export default {
         userId: point.user_id,
         location: point.location,
         iconPath:
-          'https://api2.huanjiaohu.com/user/getAvatar?userId=' + point.user_id
+          'http://pic.58pic.com/58pic/11/57/44/73j58PICD9f.jpg'
       };
       return marker;
     },
