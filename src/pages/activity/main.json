@@ -3,7 +3,6 @@
   "navigationBarBackgroundColor": "#cc0000",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "wux-search-bar": "../../static/wux/search-bar/index",
-    "wux-icon": "../../../static/wux/icon/index"
+    "wux-icon": "../../static/wux/icon/index"
   }
 }

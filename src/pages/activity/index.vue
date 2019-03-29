@@ -7,35 +7,39 @@
         </swiper-item>
       </block>
     </swiper>
-    <view class="common-card">
+    <common-card :data="activityList" :iconClick="iconClick"/>
+    <!-- <view class="common-card">
       <view class="common-card-image">
-      <image mode="widthFix" src="https://picsum.photos/750/750/?image=413"/>
+        <image mode="widthFix" src="https://picsum.photos/750/750/?image=413"/>
       </view>
       <view class="common-card-content">
         <view class="common-card-content-title">
-        <text>上财一日游</text>
+          <text>上财一日游</text>
         </view>
         <view class="common-card-content-desc">
-        <text>主办单位：</text><view>上海财经大学</view>
-        <text>活动时间</text><view>2019年4月11日</view>
+          <text>主办单位：</text>
+          <view class="common-card-content-desc-item">上海财经大学</view>
+          <text>活动时间：</text>
+          <view>2019年4月11日</view>
         </view>
         <view class="common-card-content-icongroup">
-        <icon-group :list="iconArr"/>
+          <icon-group :list="iconArr"/>
         </view>
       </view>
       <view class="common-card-icon">
-        <wux-icon type="ios-arrow-round-forward"/>
+        <view class="common-card-icon-inner">
+          <wux-icon type="ios-arrow-round-forward"/>
+        </view>
       </view>
-    </view>
+    </view> -->
   </view>
 </template>
 
 <script>
-
-import iconGroup from '../../components/icon-group';
+import commonCard from '../../components/common-card';
 export default {
   components: {
-    iconGroup
+    commonCard
   },
   data () {
     return {
@@ -53,23 +57,186 @@ export default {
           url: 'https://picsum.photos/750/750/?image=413'
         }
       ],
-      iconArr: [
+      activityList: [
         {
-          icon: 'ios-heart',
-          size: '24',
-          color: 'red',
-          label: 11
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          activityStatus: '已报名',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
         },
         {
-          icon: 'ios-chatboxes',
-          size: '24',
-          color: 'green',
-          label: 11
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          activityStatus: '进行中',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
+        },
+        {
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
+        },
+        {
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
+        },
+        {
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
+        },
+        {
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
+        },
+        {
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
+        },
+        {
+          src: 'https://picsum.photos/750/750/?image=413',
+          activityName: '上海财大一日游',
+          activityHolder: '上海财经大学',
+          activityTime: '2019年4月11日',
+          iconType: 'ios-arrow-round-forward',
+          iconArr: [
+            {
+              icon: 'ios-heart',
+              size: '24',
+              color: 'red',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '24',
+              color: 'green',
+              label: 11
+            }
+          ]
         }
+
       ]
     };
   },
   methods: {
+    iconClick (item) {
+      console.log('item', item)
+      wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
+    }
   }
 };
 </script>
@@ -82,26 +249,5 @@ export default {
 .activity-page .slide-image {
   width: 100%;
 }
-.common-card{
-  display:flex;
-  width:100%;
-}
-.common-card-image{
-  width:20%;
-}
-.common-card-image image{
-  width:100%;
-}
-.common-card-content{
-  display: flex;
-  flex-direction: column;
-}
-.common-card-content-desc{
-  display: flex;
-  flex-direction: row;
-  font-size: 10px;
-}
-.common-card-content-icongroup{
-  width: 50%;
-}
+
 </style>
