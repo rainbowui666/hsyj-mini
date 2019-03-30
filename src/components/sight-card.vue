@@ -117,13 +117,12 @@ export default {
 .sight-card-icon-inner {
   width: 62%;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 .sight-card-icon-text {
   text-align: center;
-}
-.sight-card-icon-inner {
-  display: flex;
-  justify-content: center;
+  font-size: 13px;
 }
 span {
   height: 38px;

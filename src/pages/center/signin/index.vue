@@ -16,64 +16,64 @@ export default {
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
           activityName: '上海财大一日游',
-          iconType: 'ios-send',
-          iconColor: '#ffff',
+          iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         }
@@ -95,8 +95,4 @@ export default {
   padding-top: 25px;
   padding-left: 5px;
 }
-.activity-page .slide-image {
-  width: 100%;
-}
-
 </style>

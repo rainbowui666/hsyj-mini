@@ -1,26 +1,28 @@
 <template>
   <view>
-    <view v-for="(item,index) in data" :key="index" class="navigation-card">
-      <view class="navigation-card-image">
-        <image mode="widthFix" :src="item.src"/>
+    <!-- <navigator url="/pages/map/navigation/main?activitySight=true"> -->
+      <view v-for="(item,index) in data" :key="index" class="navigation-card">
+        <view class="navigation-card-image">
+          <image mode="widthFix" :src="item.src"/>
+        </view>
+        <view class="navigation-card-content">
+          <view class="navigation-card-content-title">
+            <text>{{ item.activityName }}</text>
+          </view>
+          <view class="navigation-card-content-icongroup">
+            <icon-group :list="item.iconArr"/>
+          </view>
+        </view>
+        <view class="navigation-card-icon">
+          <view v-if="item.isIcon" class="navigation-card-icon-inner" @click="click(item)">
+            <wux-icon :type="item.iconType" :color="item.iconColor"/>
+          </view>
+          <view class="navigation-card-icon-text">
+            <view class="on-status">{{ item.iconText }}</view>
+          </view>
+        </view>
       </view>
-      <view class="navigation-card-content">
-        <view class="navigation-card-content-title">
-          <text>{{ item.activityName }}</text>
-        </view>
-        <view class="navigation-card-content-icongroup">
-          <icon-group :list="item.iconArr"/>
-        </view>
-      </view>
-      <view class="navigation-card-icon">
-        <view v-if="item.isIcon" class="navigation-card-icon-inner" @click="click(item)">
-          <wux-icon :type="item.iconType" :color="item.iconColor"/>
-        </view>
-        <view class="navigation-card-icon-text">
-          <text>{{ item.iconText }}</text>
-        </view>
-      </view>
-    </view>
+    <!-- </navigator> -->
   </view>
 </template>
 
@@ -43,7 +45,7 @@ export default {
   methods: {
     click (item) {
       if (this.iconClick) {
-        this.iconClick(item)
+        this.iconClick(item);
       }
     }
   }
@@ -55,7 +57,7 @@ export default {
   display: flex;
   width: 100%;
   height: 85px;
-  border-bottom: 1px solid #6666;
+  border-bottom:1px solid #888;
 }
 .navigation-card-image {
   width: 20%;
@@ -67,44 +69,56 @@ export default {
 .navigation-card-content {
   display: flex;
   flex-direction: column;
+  width: 60%;
 }
 .navigation-card-content-title {
   padding-top: 5px;
   padding-left: 5px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  display: flex;
+  line-height: 40px;
+}
+.navigation-card-content-desc {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  font-size: 10px;
+}
+.navigation-card-content-desc-item {
+  margin-right: 5px;
 }
 .navigation-card-content-icongroup {
-  padding-top: 15px;
   padding-left: 5px;
   display: flex;
 }
-.navigation-card-content-icongroup .icon-group{
-  width: 100%;
+.navigation-card-content-icongroup .icon-group {
+  width: 50%;
 }
-.navigation-card-content-icongroup .on-status{
+.navigation-card-content-icongroup .on-status {
   margin-left: 20px;
   font-size: 14px;
   line-height: 27px;
-  color:rgb(223, 64, 64);
+  color: rgb(223, 64, 64);
 }
-.navigation-card-content-icongroup .sign-up-status{
+.navigation-card-content-icongroup .sign-up-status {
   margin-left: 20px;
   font-size: 14px;
   line-height: 27px;
-  color:rgb(96, 170, 231);
+  color: rgb(96, 170, 231);
 }
 .navigation-card-icon {
-  width: 10%;
-  margin-left: 50px;
+  width: 15%;
   margin: auto;
 }
 .navigation-card-icon-inner {
-  background-color: #1fabf3;
-  border-radius: 50%;
+  width: 62%;
+  margin: auto;
   display: flex;
   justify-content: center;
 }
-.navigation-card-icon-text{
-  font-size: 13px;
+.navigation-card-icon-text {
   text-align: center;
+  font-size: 13px;
 }
 </style>
