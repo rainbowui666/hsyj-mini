@@ -60,6 +60,7 @@ export default {
   display: flex;
   width: 100%;
   height: 85px;
+  border-bottom: 1px solid #6666;
 }
 .common-card-image {
   width: 20%;
