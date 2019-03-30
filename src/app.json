@@ -6,7 +6,8 @@
     "pages/center/main",
     "pages/map/schools/main",
     "pages/map/sight/main",
-    "pages/activity/activityDetail/main"
+    "pages/activity/activityDetail/main",
+    "pages/activity/activitySight/main"
   ],
   "window": {
     "navigationBarTitleText": "Demo",

@@ -1,46 +1,24 @@
 <template >
-  <view class="activity-page">
-    <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
-      <block v-for="(item, index) in movies" :key="index">
-        <swiper-item>
-          <image :src="item.url" class="slide-image"/>
-        </swiper-item>
-      </block>
-    </swiper>
-    <common-card :data="activityList" :iconClick="iconClick"/>
+  <view class="sight-page">
+    <sight-card :data="sightList" :iconClick="iconClick"/>
   </view>
 </template>
 
 <script>
-import commonCard from '../../components/common-card';
+import sightCard from '../../../components/sight-card';
 export default {
   components: {
-    commonCard
+    sightCard
   },
   data () {
     return {
-      movies: [
-        {
-          url: 'https://picsum.photos/750/750/?image=413'
-        },
-        {
-          url: 'https://picsum.photos/750/750/?image=413'
-        },
-        {
-          url: 'https://picsum.photos/750/750/?image=413'
-        },
-        {
-          url: 'https://picsum.photos/750/750/?image=413'
-        }
-      ],
-      activityList: [
+      sightList: [
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
-          activityStatus: '已报名',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-navigate',
+          sightStatus: '导航',
+          start: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -58,11 +36,9 @@ export default {
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
-          activityStatus: '进行中',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-checkmark-circle',
+          sightStatus: '已完成',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -80,10 +56,8 @@ export default {
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-navigate',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -101,10 +75,8 @@ export default {
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-navigate',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -122,10 +94,8 @@ export default {
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-navigate',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -143,10 +113,8 @@ export default {
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-navigate',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -164,10 +132,8 @@ export default {
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-navigate',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -185,10 +151,9 @@ export default {
         },
         {
           src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          sightName: '中共一大会址纪念馆',
+          iconType: 'ios-navigate',
+          end: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -204,26 +169,24 @@ export default {
             }
           ]
         }
-
       ]
     };
   },
   methods: {
     iconClick (item) {
-      console.log('item', item)
-      wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
+      console.log('item', item);
+      // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sightName })
     }
   }
 };
 </script>
 
 <style>
-.activity-page .swiper {
+.sight-page .swiper {
   width: 100%;
   height: 230px;
 }
-.activity-page .slide-image {
+.sight-page .slide-image {
   width: 100%;
 }
-
 </style>

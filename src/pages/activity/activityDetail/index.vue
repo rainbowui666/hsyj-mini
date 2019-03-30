@@ -52,6 +52,9 @@
           <text class="explain">活动说明：</text>
           <text>&nbsp;1.按时参加</text>
           <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text>
+          <navigator url="/pages/activity/activitySight/main">
+            <text>&nbsp;查看参与景点</text>
+          </navigator>
         </view>
       </view>
     </view>
@@ -285,7 +288,9 @@ export default {
   width: 95%;
 }
 
-.activity-detail-page .activity-detail-icon-group2-inner .icon-group-item-label {
+.activity-detail-page
+  .activity-detail-icon-group2-inner
+  .icon-group-item-label {
   font-size: 20px;
   font-weight: 600;
   margin-left: 5px;
@@ -348,7 +353,12 @@ export default {
   bottom: 0;
   right: 20px;
 }
-.activity-detail-page .pop .modal .inner .activity-detail-words-btn button:last-child{
+.activity-detail-page
+  .pop
+  .modal
+  .inner
+  .activity-detail-words-btn
+  button:last-child {
   margin-left: 20px;
   background-color: rgb(5, 145, 226);
 }
@@ -377,18 +387,23 @@ export default {
   bottom: 0;
   background: rgba(0, 0, 0, 0.2);
 }
-.activity-detail-page .pop .modal .inner .activity-detail-words-btn{
+.activity-detail-page .pop .modal .inner .activity-detail-words-btn {
   position: fixed;
   bottom: 0;
   right: 20px;
 }
-.activity-detail-page .pop .modal .inner .activity-detail-words-btn button:last-child,
+.activity-detail-page
+  .pop
+  .modal
+  .inner
+  .activity-detail-words-btn
+  button:last-child,
 .activity-detail-page .activity-detail-comment-btn button:last-child {
   margin-left: 20px;
   background-color: rgb(5, 145, 226);
 }
-.activity-detail-page .activity-detail-comment-btn{
-  margin-top: 15px
+.activity-detail-page .activity-detail-comment-btn {
+  margin-top: 15px;
 }
 .activity-detail-page .activity-detail-comment {
   display: flex;
