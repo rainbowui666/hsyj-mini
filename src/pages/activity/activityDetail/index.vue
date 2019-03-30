@@ -63,6 +63,15 @@
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
     </view>
+    <view v-if="isSingle">
+      <button v-if="disApply" class="single_btn">报名</button>
+      <button v-if="isApply" class="single_btn_isApply">已报名</button>
+      <button v-if="isDoing" class="single_btn_isDoing">进入活动</button>
+    </view>
+    <!-- <view v-if="!isSingle">
+      <button>报名</button>
+      <button>已报名</button>
+    </view> -->
     <view :class="showWords?'pop':'pop-hide'">
       <!-- <view :class="showWords?'modal':'modal-hide'" @click="onClose"> -->
       <view :class="showWords?'modal':'modal-hide'">
@@ -114,6 +123,11 @@ export default {
   },
   data () {
     return {
+      isSingle: true,
+      isApply: false,
+      disApply: false,
+      isDoing: false,
+      isStatusTrue: true,
       iconArr: [
         {
           icon: 'ios-heart',
@@ -221,6 +235,12 @@ export default {
       this.showComment = false;
       this.showCameraPopup = false;
     }
+  },
+  onLoad (options) {
+    this.isSingle = options.isSingle === 'false' ? !this.isStatusTrue : true;
+    this.isDoing = options.applyStatus === '进行中' ? this.isStatusTrue : false;
+    this.isApply = options.applyStatus === '已报名' ? this.isStatusTrue : false;
+    this.disApply = (!this.isApply && !this.isDoing) ? this.isStatusTrue : false;
   },
   onShareAppMessage: function (ops) {
     return {
@@ -413,5 +433,20 @@ export default {
   margin-top: 15px;
   height: 60px;
   border: 1px #000 solid;
+}
+.single_btn{
+  width:50%;
+  background-color:#f42b0b;
+  color:#fff;
+}
+.single_btn_isApply{
+  width:50%;
+  background-color: rgb(5, 145, 226);
+  color:#fff;
+}
+.single_btn_isDoing{
+  width:50%;
+  background-color: rgb(243, 50, 2);
+  color:#fff;
 }
 </style>

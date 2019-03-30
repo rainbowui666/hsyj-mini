@@ -84,6 +84,7 @@ export default {
           activityHolder: '上海财经大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward',
+          isSingle: false,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -211,7 +212,7 @@ export default {
   methods: {
     iconClick (item) {
       console.log('item', item)
-      wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
+      wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
     }
   }
 };
