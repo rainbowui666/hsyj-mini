@@ -1,6 +1,6 @@
 <template>
   <view>
-    <navigator url="/pages/map/sight/main">
+    <navigator url="/pages/map/sight/main?activitySight=true">
       <view v-for="(item,index) in data" :key="index" class="common-card">
         <view class="common-card-image">
           <image mode="widthFix" :src="item.src"/>

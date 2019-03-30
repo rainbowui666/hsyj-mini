@@ -76,7 +76,14 @@
         </scroll-view>
       </view>
     </view>
-    <wux-popup title="我要留言" position="bottom" :visible="showComment" :closable="true" @close="onClose" :maskClosable="false">
+    <wux-popup
+      title="我要留言"
+      position="bottom"
+      :visible="showComment"
+      :closable="true"
+      @close="onClose"
+      :maskClosable="false"
+    >
       <view class="sight-comment">
         <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
       </view>
@@ -87,24 +94,49 @@
     </wux-popup>
     <view class="sight-introduction-icon-btn">
       <view class="sight-introduction-icon-btn-inner">
-        <button type="warn" size="default" :plain="false" @click="onSign">第{{ count }}次签到</button>
+        <button
+          :class="signText=='签到'?'sign':'signed'"
+          type="warn"
+          size="default"
+          :plain="false"
+          @click="onSign"
+        >{{signText}}</button>
       </view>
     </view>
     <view :class="showCameraPopup?'pop':'pop-hide'">
-      <view :class="showCameraPopup?'modal':'modal-hide'" @click="onClose">
-      <!-- <view :class="showCameraPopup?'modal':'modal-hide'"> -->
+      <view :class="showCameraPopup?'modal':'modal-hide'">
         <scroll-view :class="showCameraPopup?'inner':'inner-hide'" :scroll-y="true">
           <view class="sight-camera" v-if="showCamera">
             <camera device-position="back" flash="off" style="width: 100%; height: 300px;"></camera>
-            <!-- <image v-if="src!=''" mode="widthFix" :src="src"></image> -->
-            <view class="sight-camera-btn">
-              <button type="default" size="mini" :plain="false" @click="takePhoto">拍照</button>
-              <button type="primary" size="mini" :plain="false" @click="comment">上传照片</button>
-            </view>
+          </view>
+          <view class="sight-camera-btn">
+            <button type="primary" size="mini" :plain="false" @click="uploadPhoto">上传照片</button>
           </view>
         </scroll-view>
       </view>
     </view>
+    <wux-popup
+      position="bottom"
+      :visible="showQuestion"
+      @close="onClose"
+      :maskClosable="false"
+    >
+      <view class="sight-question">
+        <view class="sight-question-title">单选题</view>
+        <view class="sight-question-content">&nbsp;&nbsp;{{question}}</view>
+      </view>
+      <view class="sight-answer">
+        <radio-group class="radio-group" @change="radioChange">
+          <label class="radio" v-for="(item,index) in radioList" :key="index">
+            <radio :value="item.name" :checked="item.checked"/>
+            {{item.value}}
+          </label>
+        </radio-group>
+      </view>
+      <view class="sight-question-btn">
+        <button type="primary" size="mini" :plain="false" @click="commitQuestion">完成答题</button>
+      </view>
+    </wux-popup>
   </view>
 </template>
 
@@ -116,7 +148,7 @@ export default {
   },
   data () {
     return {
-      count: 1,
+      signText: '签到',
       information: {
         name: '黄自半身铜像',
         desc: '黄自半身铜像',
@@ -229,12 +261,21 @@ export default {
           content: '1234567890qwertyuio'
         }
       ],
+      radioList: [
+        { name: 'A', value: '继续前进' },
+        { name: 'B', value: '牢记使命' },
+        { name: 'C', value: '方得始终' },
+        { name: 'D', value: '砥砺前行' }
+      ],
       showPopUp: false,
       showWords: false,
       showComment: false,
       showCameraPopup: false,
       showCamera: false,
-      src: ''
+      showQuestion: false,
+      src: '',
+      question:
+        '十九大的主题是：不忘初心，________，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。'
     };
   },
   onShow () {
@@ -249,6 +290,10 @@ export default {
       this.showWords = false;
       this.showComment = false;
       this.showCameraPopup = false;
+      this.showQuestion = false;
+    },
+    onClose2 () {
+      this.showCameraPopup = true;
     },
     onClick (item, index) {
       if (index === 0) {
@@ -265,9 +310,20 @@ export default {
       this.showWords = false;
       this.showComment = true;
     },
+    uploadPhoto () {
+      console.log('111');
+      this.showCameraPopup = false;
+      this.showQuestion = true;
+    },
+    commitQuestion () {
+      this.showQuestion = false;
+    },
     onSign () {
-      this.showCameraPopup = true;
-      this.showCamera = true;
+      this.signText = '已签到';
+      if (this.$mp.query.activitySight === 'true') {
+        this.showCameraPopup = true;
+        this.showCamera = true;
+      }
       // wx.chooseImage({
       //   count: 1,
       //   success (res) {
@@ -308,7 +364,6 @@ export default {
 </script>
 
 <style>
-
 .sight-page {
   height: 110vh;
 }
@@ -387,14 +442,14 @@ export default {
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
-  width:93%;
+  width: 93%;
 }
 .sight-page .sight-introduction-icon-group-inner {
   width: 50%;
   display: flex;
   justify-content: flex-end;
 }
-.sight-page .sight-introduction-icon-group-inner .icon-group{
+.sight-page .sight-introduction-icon-group-inner .icon-group {
   width: 50%;
 }
 .sight-page .sight-introduction-text {
@@ -443,6 +498,9 @@ export default {
 }
 .sight-page .sight-introduction-icon-btn-inner {
   width: 60%;
+}
+.sight-page .sight-introduction-icon-btn-inner .signed {
+  background-color: rgb(5, 145, 226);
 }
 .sight-page .sight-words-item {
   margin-top: 10px;
@@ -510,12 +568,13 @@ export default {
 }
 .sight-page .pop .modal .inner .sight-words-btn button:last-child,
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
+.sight-page .sight-question-btn button:last-child,
 .sight-page .sight-comment-btn button:last-child {
   margin-left: 20px;
   background-color: rgb(5, 145, 226);
 }
-.sight-page .sight-comment-btn{
-  margin-top: 15px
+.sight-page .sight-comment-btn {
+  margin-top: 15px;
 }
 .sight-page .sight-comment {
   display: flex;
@@ -534,5 +593,30 @@ export default {
 }
 .sight-page .sight-camera image {
   margin: 10px auto;
+}
+.sight-page .sight-question {
+  display: flex;
+  flex-direction: column;
+}
+.sight-page .sight-answer {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.sight-page .sight-answer radio-group {
+  display: flex;
+  flex-direction: column;
+}
+.sight-page .sight-answer radio-group label{
+  padding: 5px;
+}
+.sight-page .sight-question-title {
+  display: flex;
+  margin-left: 20px;
+}
+.sight-page .sight-question-content {
+  display: flex;
+  margin-left: 20px;
+  text-align: initial;
 }
 </style>
