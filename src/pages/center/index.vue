@@ -1,9 +1,9 @@
 <template >
     <view class="container">
         <wux-cell-group class="mySelf_group">
-            <wux-cell thumb="/static/images/my_policy.png" title="我的签到" is-link></wux-cell>
-            <wux-cell thumb="/static/images/my_claims.png" title="参加过的活动" is-link></wux-cell>
-            <wux-cell thumb="/static/images/Quit.png" title="我的积分" is-link @click="gotoIntegral"></wux-cell>
+            <wux-cell title="我的签到" is-link extra="2次"></wux-cell>
+            <wux-cell title="参加过的活动" is-link extra="12次"></wux-cell>
+            <wux-cell title="我的积分" is-link extra="10分" @click="gotoIntegral"></wux-cell>
         </wux-cell-group>
     </view>
 </template>
