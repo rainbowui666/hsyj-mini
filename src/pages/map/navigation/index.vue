@@ -1,5 +1,5 @@
 <template >
-  <view class="signin-page">
+  <view class="navigation-page">
     <navigation-card :data="activityList" :iconClick="iconClick"/>
   </view>
 </template>
@@ -19,6 +19,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -40,6 +41,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -61,6 +63,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -82,6 +85,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -103,6 +107,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -124,6 +129,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -145,6 +151,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -166,6 +173,7 @@ export default {
           iconType: 'ios-send',
           iconColor: '#ffff',
           iconText: '导航',
+          isIcon: true,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -195,8 +203,4 @@ export default {
 </script>
 
 <style>
-.activity-page .slide-image {
-  width: 100%;
-}
-
 </style>

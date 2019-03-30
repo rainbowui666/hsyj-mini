@@ -13,7 +13,7 @@
         </view>
       </view>
       <view class="navigation-card-icon">
-        <view class="navigation-card-icon-inner" @click="click(item)">
+        <view v-if="item.isIcon" class="navigation-card-icon-inner" @click="click(item)">
           <wux-icon :type="item.iconType" :color="item.iconColor"/>
         </view>
         <view class="navigation-card-icon-text">
