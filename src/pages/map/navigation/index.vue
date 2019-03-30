@@ -1,5 +1,6 @@
 <template >
   <view class="navigation-page">
+    <wux-search-bar />
     <navigation-card :data="activityList" :iconClick="iconClick"/>
   </view>
 </template>

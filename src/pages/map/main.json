@@ -5,6 +5,7 @@
   "usingComponents": {
     "wux-card": "../../static/wux/card/index",
     "wux-media": "../../static/wux/media/index",
-    "wux-button": "../../../static/wux/button/index"
+    "wux-button": "../../../static/wux/button/index",
+    "wux-search-bar": "../../../static/wux/search-bar/index"
   }
 }

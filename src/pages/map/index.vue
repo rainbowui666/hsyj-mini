@@ -12,6 +12,7 @@
       show-location
       :style='winStyle'
     ></map>
+    <cover-image class='search_bar' src='/static/images/search_bar.png' @click='gotoNavigation'></cover-image>
     <cover-image class='liuyan' src='/static/images/message.png' @click='messageDialog'></cover-image>
     <div v-show='showDetail' class='all-bg'>
       <cover-view class='dw-bg' @click='hidentap'></cover-view>
@@ -101,6 +102,9 @@ export default {
     },
     confirmDialog () {
       this.showDetail = false;
+    },
+    gotoNavigation () {
+      wx.navigateTo({url: '/pages/map/navigation/main'})
     },
     controltap (e) {
       this.moveToLocation();
@@ -238,5 +242,11 @@ page {
   bottom: 3%;
   right: 5%;
   animation: twinkling 2s 3 ease-in-out;
+}
+.search_bar{
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  height:45px;
 }
 </style>
