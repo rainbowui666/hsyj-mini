@@ -8,7 +8,8 @@
     "pages/map/sight/main",
     "pages/activity/activityDetail/main",
     "pages/activity/activitySight/main",
-    "pages/center/signin/main"
+    "pages/center/signin/main",
+    "pages/map/navigation/main"
   ],
   "window": {
     "navigationBarTitleText": "Demo",

@@ -72,21 +72,13 @@ export default {
   padding-top: 5px;
   padding-left: 5px;
 }
-.navigation-card-content-desc {
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
-  font-size: 10px;
-}
-.navigation-card-content-desc-item {
-  margin-right: 5px;
-}
 .navigation-card-content-icongroup {
+  padding-top: 15px;
   padding-left: 5px;
   display: flex;
 }
 .navigation-card-content-icongroup .icon-group{
-  width: 50%;
+  width: 100%;
 }
 .navigation-card-content-icongroup .on-status{
   margin-left: 20px;
