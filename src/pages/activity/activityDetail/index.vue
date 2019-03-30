@@ -144,7 +144,7 @@ export default {
         {
           icon: 'ios-share-alt',
           size: '40',
-          color: 'blue',
+          color: '#007fff',
           label: '分享',
           isButton: true,
           openType: 'share'

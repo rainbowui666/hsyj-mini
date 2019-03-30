@@ -101,7 +101,7 @@ export default {
         // {
         //   icon: 'ios-share-alt',
         //   size: '24',
-        //   color: 'blue',
+        //   color: '#007fff',
         //   label: 11
         // }
       ],

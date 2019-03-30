@@ -13,7 +13,7 @@
           <text>{{ information.desc }}</text>
         </view>
         <view class="sight-introduction-bar-icon" @click="toDestination">
-          <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="blue"/>
+          <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="#007fff"/>
         </view>
       </view>
     </view>
@@ -191,7 +191,7 @@ export default {
         // {
         //   icon: 'ios-share-alt',
         //   size: '24',
-        //   color: 'blue',
+        //   color: '#007fff',
         //   label: 11
         // }
       ],
@@ -211,7 +211,7 @@ export default {
         {
           icon: 'ios-share-alt',
           size: '40',
-          color: 'blue',
+          color: '#007fff',
           label: '分享',
           isButton: true,
           openType: 'share'
