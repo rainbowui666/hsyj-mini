@@ -9,7 +9,8 @@
     "pages/activity/activityDetail/main",
     "pages/activity/activitySight/main",
     "pages/center/signin/main",
-    "pages/map/navigation/main"
+    "pages/map/navigation/main",
+    "pages/center/message/main"
   ],
   "window": {
     "navigationBarTitleText": "Demo",
