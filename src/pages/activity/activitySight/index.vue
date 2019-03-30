@@ -18,6 +18,7 @@ export default {
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
           sightStatus: '导航',
+          iconColor: '#007fff',
           start: true,
           iconArr: [
             {
@@ -39,6 +40,7 @@ export default {
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-checkmark-circle',
           sightStatus: '已完成',
+          iconColor: 'red',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -58,6 +60,7 @@ export default {
           src: 'https://picsum.photos/750/750/?image=413',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -77,6 +80,7 @@ export default {
           src: 'https://picsum.photos/750/750/?image=413',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -96,6 +100,7 @@ export default {
           src: 'https://picsum.photos/750/750/?image=413',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -115,6 +120,7 @@ export default {
           src: 'https://picsum.photos/750/750/?image=413',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -134,6 +140,7 @@ export default {
           src: 'https://picsum.photos/750/750/?image=413',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
+          iconColor: '#007fff',
           iconArr: [
             {
               icon: 'ios-heart',
@@ -153,6 +160,7 @@ export default {
           src: 'https://picsum.photos/750/750/?image=413',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
+          iconColor: '#007fff',
           end: true,
           iconArr: [
             {

@@ -1,25 +1,25 @@
 <template>
   <view>
     <navigator url="/pages/map/sight/main?activitySight=true">
-      <view v-for="(item,index) in data" :key="index" class="common-card">
-        <view class="common-card-image">
+      <view v-for="(item,index) in data" :key="index" class="sight-card">
+        <view class="sight-card-image">
           <image mode="widthFix" :src="item.src"/>
         </view>
-        <view class="common-card-content">
-          <view class="common-card-content-title">
+        <view class="sight-card-content">
+          <view class="sight-card-content-title">
             <span v-if="item.start" class="drip-start"/>
             <span v-if="item.end" class="drip-end"/>
             <text>{{ item.sightName }}</text>
           </view>
-          <view class="common-card-content-icongroup">
+          <view class="sight-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
           </view>
         </view>
-        <view class="common-card-icon">
-          <view class="common-card-icon-inner" @click="click(item)">
-            <wux-icon :type="item.iconType"/>
+        <view class="sight-card-icon">
+          <view class="sight-card-icon-inner" @click="click(item)">
+            <wux-icon :type="item.iconType" :color="item.iconColor"/>
           </view>
-          <view class="common-card-icon-text">
+          <view class="sight-card-icon-text">
             <view v-if="item.sightStatus=='导航'" class="on-status">{{ item.sightStatus }}</view>
             <view v-if="item.sightStatus=='已完成'" class="sign-up-status">{{ item.sightStatus }}</view>
           </view>
@@ -56,25 +56,25 @@ export default {
 </script>
 
 <style>
-.common-card {
+.sight-card {
   display: flex;
   width: 100%;
   height: 85px;
   border-bottom:1px solid #888;
 }
-.common-card-image {
+.sight-card-image {
   width: 20%;
   padding: 5px;
 }
-.common-card-image image {
+.sight-card-image image {
   width: 100%;
 }
-.common-card-content {
+.sight-card-content {
   display: flex;
   flex-direction: column;
   width: 60%;
 }
-.common-card-content-title {
+.sight-card-content-title {
   padding-top: 5px;
   padding-left: 5px;
   padding-bottom: 5px;
@@ -82,46 +82,46 @@ export default {
   display: flex;
   line-height: 40px;
 }
-.common-card-content-desc {
+.sight-card-content-desc {
   display: flex;
   flex-direction: row;
   padding: 5px;
   font-size: 10px;
 }
-.common-card-content-desc-item {
+.sight-card-content-desc-item {
   margin-right: 5px;
 }
-.common-card-content-icongroup {
+.sight-card-content-icongroup {
   padding-left: 5px;
   display: flex;
 }
-.common-card-content-icongroup .icon-group {
+.sight-card-content-icongroup .icon-group {
   width: 50%;
 }
-.common-card-content-icongroup .on-status {
+.sight-card-content-icongroup .on-status {
   margin-left: 20px;
   font-size: 14px;
   line-height: 27px;
   color: rgb(223, 64, 64);
 }
-.common-card-content-icongroup .sign-up-status {
+.sight-card-content-icongroup .sign-up-status {
   margin-left: 20px;
   font-size: 14px;
   line-height: 27px;
   color: rgb(96, 170, 231);
 }
-.common-card-icon {
+.sight-card-icon {
   width: 15%;
   margin: auto;
 }
-.common-card-icon-inner {
+.sight-card-icon-inner {
   width: 62%;
   margin: auto;
 }
-.common-card-icon-text {
+.sight-card-icon-text {
   text-align: center;
 }
-.common-card-icon-inner {
+.sight-card-icon-inner {
   display: flex;
   justify-content: center;
 }
