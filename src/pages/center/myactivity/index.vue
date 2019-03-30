@@ -78,7 +78,7 @@ export default {
   methods: {
     iconClick (item) {
       console.log('item', item)
-      wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
+      wx.navigateTo({ url: '/pages/activity/activityDetail/main?name=' + item.activityName })
     }
   }
 };

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "我的积分",
-  "navigationStyle": "custom",
+  "navigationBarBackgroundColor": "#cc0000",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "wux-cell-group": "../../../static/wux/cell-group/index",
     "wux-cell": "../../../static/wux/cell/index"

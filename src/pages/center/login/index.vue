@@ -21,12 +21,7 @@
         </view>
         <view class="userinfo-confirm">
           <button
-            v-if="canIUse"
-            plain="true"
-            :disabled="userInfo2.disabled"
-            open-type="getUserInfo"
-            @getuserinfo="onConfirm"
-            @class="goLoginBtn"
+            @click="goInHsyj"
           >进入小程序</button>
         </view>
       </view>
@@ -35,7 +30,6 @@
 </template>
 
 <script>
-import api from '@/utils/api';
 export default {
   data () {
     return {
@@ -53,138 +47,11 @@ export default {
       index: 0
     };
   },
-  onShow () {
-    this.userInfo = wx.getStorageSync('userInfo');
-    this.userInfo2.disabled = true;
-    this.userInfo2.phone = null;
-    this.showtime = null;
-    this.timeCounter = null;
-  },
   methods: {
-    // 监听pick的修改
-    bindPickerChange (e) {
-      // console.log('监听pick变化', e);
-      this.index = e.target.value;
-    },
-    countDownText (s) {
-      this.showtime = `${s}s`;
-      this.showSpin = false
-    },
-    // 倒计时 60秒 不需要很精准
-    countDown (times) {
-      const self = this;
-      // 时间间隔 1秒
-      const interval = 1000;
-      let count = 0;
-      self.timeCounter = setTimeout(countDownStart, interval);
-      function countDownStart () {
-        if (self.timeCounter == null) {
-          return false;
-        }
-        count++;
-        self.countDownText(times - count + 1);
-        if (count > times) {
-          clearTimeout(self.timeCounter);
-          self.showtime = null;
-        } else {
-          self.timeCounter = setTimeout(countDownStart, interval);
-        }
-      }
-    },
-    async onConfirm (event) {
-      if (wx.canIUse('button.open-type.getUserInfo')) {
-      } else {
-        wx.showToast({
-          title: '请升级微信版本',
-          icon: 'none',
-          duration: 2000,
-          mask: true
-        });
-      }
-      this.userInfo = event.mp.detail.userInfo;
-
-      if (event.mp.detail.rawData) {
-        wx.login({
-          success: async res => {
-            this.userInfo.code = res.code;
-            this.userInfo.phone = this.userInfo2.phone;
-            const userInfoObj = await api.login(this.userInfo);
-            wx.setStorageSync('token', userInfoObj.auth.token);
-            wx.setStorageSync('userInfo', userInfoObj.user);
-            wx.switchTab({
-              url: '/pages/center/main'
-            });
-          }
-        });
-      } else {
-        wx.showModal({
-          title: '提示',
-          content: '授权后才能进行后续操作',
-          success: function (res) {
-            if (res.confirm) {
-              console.log('用户点击确定');
-            } else {
-              console.log('用户点击取消');
-            }
-          }
-        });
-        this.userInfo2 = {};
-      }
-    },
-    // 点击登陆
-    goLogin (event) {
-      this.userInfo = event.mp.detail.userInfo;
-    },
-    bindInput (e) {
-      this.userInfo2.phone = e.mp.detail.value;
-    },
-    bindCode (e) {
-      this.userInfo2.code = e.mp.detail.value;
-      if (this.userInfo2.code.length === 6) {
-        this.checkCode();
-      }
-    },
-    async checkCode () {
-      const res = await api.validateVerification({
-        phoneNumber: '+86' + this.userInfo2.phone,
-        code: this.userInfo2.code
+    goInHsyj () {
+      wx.switchTab({
+        url: '/pages/map/main'
       });
-      if (res.verified) {
-        this.userInfo2.disabled = false;
-      } else {
-        wx.showToast({
-          title: '验证码错误',
-          icon: 'none',
-          duration: 1000,
-          mask: true
-        });
-      }
-    },
-    async getPhoneCode () {
-      if (!this.userInfo2.phone) {
-        wx.showToast({
-          title: '请填写手机号',
-          icon: 'none',
-          duration: 1000,
-          mask: true
-        });
-      } else {
-        this.showSpin = true
-        this.countDown(59);
-        const res = await api.getVerification({
-          phoneNumber: '+86' + this.userInfo2.phone
-        });
-        if (res.successful) {
-          wx.setStorageSync('token', res.token);
-        } else {
-          wx.showToast({
-            title: '验证码发送失败',
-            icon: 'none',
-            duration: 1000,
-            mask: true
-          });
-        }
-      }
     }
   }
 };

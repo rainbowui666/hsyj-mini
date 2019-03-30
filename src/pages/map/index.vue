@@ -106,14 +106,14 @@ export default {
       this.moveToLocation();
     },
     markertap (e) {
-      this.showDetail = true;
-      let maker = null;
-      for (let item of this.markers) {
-        if (item.id === e.mp.markerId) {
-          maker = item;
-        }
-      }
-      this.service = maker;
+      // let maker = null;
+      // for (let item of this.markers) {
+      //   if (item.id === e.mp.markerId) {
+      //     maker = item;
+      //   }
+      // }
+      // this.service = maker;
+      wx.navigateTo({url: '/pages/map/schools/main'})
     },
     regionchange (e) {
       if (e.type === 'end') {
