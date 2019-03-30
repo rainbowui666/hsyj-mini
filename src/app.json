@@ -10,7 +10,8 @@
     "pages/activity/activitySight/main",
     "pages/center/signin/main",
     "pages/map/navigation/main",
-    "pages/center/message/main"
+    "pages/center/message/main",
+    "pages/center/myactivity/main"
   ],
   "window": {
     "navigationBarTitleText": "Demo",
