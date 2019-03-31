@@ -158,16 +158,16 @@ export default {
       },
       movies: [
         {
-          url: 'https://picsum.photos/750/750/?image=413'
+          url: '../../../static/images/hz.jpg'
         },
         {
-          url: 'https://picsum.photos/750/750/?image=413'
+          url: '../../../static/images/hz.jpg'
         },
         {
-          url: 'https://picsum.photos/750/750/?image=413'
+          url: '../../../static/images/hz.jpg'
         },
         {
-          url: 'https://picsum.photos/750/750/?image=413'
+          url: '../../../static/images/hz.jpg'
         }
       ],
       iconArr: [
