@@ -19,13 +19,13 @@
         <view class='sight-introduction-group-item'>
           <wux-row gutter="12" v-for='(row,index) in newArr' :key='index'>
             <wux-col span='6' v-for='(item,oindex) in row' :key='oindex'>
-              <icon-group :list='iconArr'/>
               <navigator url="/pages/map/sight/main">
                 <image
                   width='170px'
                   height='130px'
                   :src='item.src'
                 />
+              <icon-group :list='iconArr'/>
               </navigator>
               <text
                 class="sight-introduction ellipsis"
@@ -88,14 +88,14 @@ export default {
         // },
         {
           icon: 'ios-heart',
-          size: '24',
-          color: 'red',
+          size: '16',
+          color: 'white',
           label: 11
         },
         {
           icon: 'ios-chatboxes',
-          size: '24',
-          color: 'green',
+          size: '16',
+          color: 'white',
           label: 11
         }
         // {
@@ -194,7 +194,20 @@ export default {
   width:170px;
   height: 130px;
 }
-.school-page .sight-introduction-group-item .icon-group{
-  width:50%
+
+.school-page .icon-group {
+  /* width: 170px !important; */
+  height: 24px;
+  margin-top: -27px;
+  z-index: 999;
+  background: #000;
+  opacity: 0.5;
+  display: flex;
+  line-height: 24px;
+  justify-content: flex-end;
+  color:#fff;
+}
+.school-page .icon-group-item{
+  margin-right: 10px;
 }
 </style>

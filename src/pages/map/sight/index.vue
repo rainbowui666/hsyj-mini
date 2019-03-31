@@ -12,9 +12,12 @@
         <view class="sight-introduction-bar-label">
           <text>{{ information.desc }}</text>
         </view>
-        <view class="sight-introduction-bar-icon" @click="toDestination">
-          <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="#007fff"/>
+        <view class="sight-introduction-icon-group">
+          <icon-group :list="iconArr"/>
         </view>
+        <!-- <view class="sight-introduction-bar-icon" @click="toDestination">
+          <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="#007fff"/>
+        </view>-->
       </view>
     </view>
     <view class="sight-introduction-video">
@@ -39,11 +42,11 @@
         <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="white"/>
       </view>
     </view>
-    <view class="sight-introduction-icon-group">
+    <!-- <view class="sight-introduction-icon-group">
       <view class="sight-introduction-icon-group-inner">
         <icon-group :list="iconArr"/>
       </view>
-    </view>
+    </view>-->
     <view class="sight-introduction-text">
       <text>{{ information.introduction }}</text>
     </view>
@@ -115,12 +118,7 @@
         </scroll-view>
       </view>
     </view>
-    <wux-popup
-      position="bottom"
-      :visible="showQuestion"
-      @close="onClose"
-      :maskClosable="false"
-    >
+    <wux-popup position="bottom" :visible="showQuestion" @close="onClose" :maskClosable="false">
       <view class="sight-question">
         <view class="sight-question-title">单选题</view>
         <view class="sight-question-content">&nbsp;&nbsp;{{question}}</view>
@@ -178,14 +176,14 @@ export default {
         // },
         {
           icon: 'ios-heart',
-          size: '24',
-          color: 'red',
+          size: '25',
+          color: '#fff',
           label: 11
         },
         {
           icon: 'ios-chatboxes',
-          size: '24',
-          color: 'green',
+          size: '25',
+          color: '#fff',
           label: 11
         }
         // {
@@ -198,23 +196,31 @@ export default {
       iconArr2: [
         {
           icon: 'ios-heart-empty',
-          size: '40',
+          size: '30',
           color: 'red',
           label: '想去'
         },
         {
           icon: 'ios-chatboxes',
-          size: '40',
+          size: '30',
           color: 'green',
           label: '留言'
         },
         {
           icon: 'ios-share-alt',
-          size: '40',
+          size: '30',
           color: '#007fff',
           label: '分享',
           isButton: true,
           openType: 'share'
+        },
+        {
+          icon: 'ios-navigate',
+          size: '30',
+          color: '#007fff',
+          label: '导航',
+          isButton: true,
+          openType: null
         }
       ],
       wordsList: [
@@ -296,6 +302,7 @@ export default {
       this.showCameraPopup = true;
     },
     onClick (item, index) {
+      console.log('1111')
       if (index === 0) {
         this.iconArr2[0].icon = 'ios-heart';
       }
@@ -410,9 +417,9 @@ export default {
 }
 .sight-page .sight-introduction-video {
   width: 95%;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   height: 100px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -439,10 +446,12 @@ export default {
   margin-left: 10px;
 }
 .sight-page .sight-introduction-icon-group {
-  margin-top: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
   display: flex;
   justify-content: flex-end;
-  width: 93%;
+  width: 30%;
+  color: #fff;
 }
 .sight-page .sight-introduction-icon-group-inner {
   width: 50%;
@@ -474,10 +483,10 @@ export default {
 }
 
 .sight-page .sight-introduction-icon-group2-inner .icon-group-item-label {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   margin-left: 5px;
-  line-height: 40px;
+  line-height: 30px;
 }
 .sight-page .sight-introduction-icon-group2-inner button {
   font-size: 20px;
@@ -607,7 +616,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.sight-page .sight-answer radio-group label{
+.sight-page .sight-answer radio-group label {
   padding: 5px;
 }
 .sight-page .sight-question-title {
