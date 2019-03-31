@@ -1,6 +1,12 @@
 <template >
   <view class="sight-page">
+    <view class="tip">
+      <view>共计4个学校，9个景点</view>
+      <view>已完成2个学校，4个景点</view>
+    </view>
+    <view class="activity-sight-list">
     <sight-card :data="sightList" :iconClick="iconClick"/>
+    </view>
   </view>
 </template>
 
@@ -190,11 +196,15 @@ export default {
 </script>
 
 <style>
-.sight-page .swiper {
+.sight-page .tip {
   width: 100%;
-  height: 230px;
+  height: 50px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  padding-left: 10px;
 }
-.sight-page .slide-image {
-  width: 100%;
+.sight-page .activity-sight-list{
+  margin-top: 54px;
 }
 </style>
