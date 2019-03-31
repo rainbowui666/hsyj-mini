@@ -5,7 +5,7 @@
       <wux-icon :type='item.icon' :size='item.size' :color='item.color' @click="click(item,index)"/>
       <view class='icon-group-item-label' @click="click(item,index)">{{ item.label }}</view>
       </view>
-      <button v-else size='default' :open-type="item.openType">
+      <button v-else size='default' :open-type="item.openType" @click="click(item,index)">
         <wux-icon :type='item.icon' :size='item.size' :color='item.color'/>
         <view class='icon-group-item-label'>{{ item.label }}</view>
       </button> 
@@ -49,5 +49,8 @@ export default {
 }
 .icon-group-item-inner{
   display: flex;
+}
+.icon-group-item-label{
+  margin-left: 4px;
 }
 </style>

@@ -24,25 +24,25 @@
   "tabBar": {
     "backgroundColor": "#fafafa",
     "borderStyle": "white",
-    "selectedColor": "#ff9a14",
+    "selectedColor": "#cc0000",
     "color": "#666",
     "list": [
       {
         "pagePath": "pages/map/main",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "iconPath": "static/images/map.png",
+        "selectedIconPath": "static/images/map1.png",
         "text": "地图"
       },
       {
         "pagePath": "pages/activity/main",
-        "iconPath": "static/images/ic_menu_shoping_nor.png",
-        "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+        "iconPath": "static/images/activity.png",
+        "selectedIconPath": "static/images/activity1.png",
         "text": "活动"
       },
       {
         "pagePath": "pages/center/main",
-        "iconPath": "static/images/ic_menu_me_nor.png",
-        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "iconPath": "static/images/user.png",
+        "selectedIconPath": "static/images/user1.png",
         "text": "我的"
       }
     ]
