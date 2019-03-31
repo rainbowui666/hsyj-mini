@@ -89,8 +89,10 @@ export default {
   padding-top: 5px;
   padding-left: 5px;
   padding-bottom: 5px;
+  margin: auto 0;
   font-size: 18px;
   display: flex;
+  flex-direction: column;
   line-height: 40px;
 }
 .sight-card-content-desc {

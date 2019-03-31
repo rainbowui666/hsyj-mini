@@ -198,6 +198,6 @@ export default {
 <style>
 
 .sight-page .activity-sight-list{
-  margin-top: 54px;
+  /* margin-top: 54px; */
 }
 </style>
