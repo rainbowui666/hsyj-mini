@@ -3,6 +3,9 @@
     <view v-for="(item,index) in data" :key="index" class="common-card">
       <view class="common-card-image">
         <image mode="widthFix" :src="item.src"/>
+        <view class="common-card-content-icongroup">
+          <icon-group :list="item.iconArr"/>
+        </view>
       </view>
       <view class="common-card-content">
         <view class="common-card-content-title">
@@ -14,11 +17,11 @@
           <text>活动时间：</text>
           <view>{{ item.activityTime }}</view>
         </view>
-        <view class="common-card-content-icongroup">
+        <!-- <view class="common-card-content-icongroup">
           <icon-group :list="item.iconArr"/>
         <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
         <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>
-        </view>
+        </view> -->
       </view>
       <view class="common-card-icon">
         <view class="common-card-icon-inner" @click="click(item)">
@@ -87,8 +90,17 @@ export default {
   margin-right: 5px;
 }
 .common-card-content-icongroup {
-  padding-left: 5px;
+  /* padding-left: 5px; */
+  width: 100%;
+  height: 26px;
+  margin-top: -29px;
+  z-index: 999;
+  background: #000;
+  opacity: 0.6;
   display: flex;
+  color:#fff;
+  line-height: 26px;
+  /* justify-content: center; */
 }
 .common-card-content-icongroup .icon-group{
   width: 50%;

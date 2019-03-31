@@ -4,15 +4,15 @@
       <view v-for="(item,index) in data" :key="index" class="sight-card">
         <view class="sight-card-image">
           <image mode="widthFix" :src="item.src"/>
+          <view class="sight-card-content-icongroup">
+            <icon-group :list="item.iconArr"/>
+          </view>
         </view>
         <view class="sight-card-content">
           <view class="sight-card-content-title">
             <span v-if="item.start" class="drip-start"/>
             <span v-if="item.end" class="drip-end"/>
             <text>{{ item.sightName }}</text>
-          </view>
-          <view class="sight-card-content-icongroup">
-            <icon-group :list="item.iconArr"/>
           </view>
         </view>
         <view class="sight-card-icon">
@@ -60,11 +60,22 @@ export default {
   display: flex;
   width: 100%;
   height: 85px;
-  border-bottom:1px solid #888;
+  border-bottom: 1px solid #888;
 }
 .sight-card-image {
   width: 20%;
   padding: 5px;
+}
+.sight-card .sight-card-content-icongroup {
+  width: 100%;
+  height: 60px;
+  margin-top: -60px;
+  z-index: 999;
+  background: #000;
+  opacity: 0.6;
+  display: flex;
+  line-height: 60px;
+  justify-content: center;
 }
 .sight-card-image image {
   width: 100%;

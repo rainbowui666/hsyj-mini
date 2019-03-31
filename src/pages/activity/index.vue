@@ -44,14 +44,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -66,14 +66,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -88,14 +88,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -109,14 +109,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -130,14 +130,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -151,14 +151,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -172,14 +172,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -193,14 +193,14 @@ export default {
           iconArr: [
             {
               icon: 'ios-heart',
-              size: '24',
-              color: 'red',
+              size: '16',
+              color: '#FFF',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
-              size: '24',
-              color: 'green',
+              size: '16',
+              color: '#FFF',
               label: 11
             }
           ]
@@ -226,5 +226,7 @@ export default {
 .activity-page .slide-image {
   width: 100%;
 }
-
+.activity-page .common-card-content-icongroup .icon-group {
+  width: 95%;
+}
 </style>

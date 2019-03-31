@@ -63,11 +63,16 @@
           <view class="sight-words">
             <view class="sight-words-item" v-for="(item,index) in wordsList" :key="index">
               <view class="sight-words-title">
-                <text>{{ item.name }}</text>
-                <text>{{ item.time }}</text>
+                <!-- <text>{{ item.name }}</text>
+                <text>{{ item.time }}</text>-->
+                <wux-cell
+                  thumb="https://wux.cdn.cloverstd.com/logo.png"
+                  :title="item.name"
+                  :extra="item.time"
+                ></wux-cell>
               </view>
               <view class="sight-words-content">
-                <text>&nbsp;{{ item.content }}</text>
+                <view>&nbsp;{{ item.content }}</view>
               </view>
             </view>
           </view>
@@ -80,10 +85,8 @@
       </view>
     </view>
     <wux-popup
-      title="我要留言"
       position="bottom"
       :visible="showComment"
-      :closable="true"
       @close="onClose"
       :maskClosable="false"
     >
@@ -91,8 +94,8 @@
         <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
       </view>
       <view class="sight-comment-btn">
-        <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button>
-        <button type="primary" size="mini" :plain="false" @click="comment">确定</button>
+        <!-- <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button> -->
+        <button type="primary" size="mini" :plain="false" @click="wordsCommit">确定</button>
       </view>
     </wux-popup>
     <view class="sight-introduction-icon-btn">
@@ -225,44 +228,44 @@ export default {
       ],
       wordsList: [
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content:
             '1234567890qwertyuiodbhjsbjbsjncjknskjdnskjnjs111111gdfbchsjdcjdnnsk'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content: '1234567890qwertyuio'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content: '1234567890qwertyuio'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content: '1234567890qwertyuio'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content:
             '1234567890qwertyuiodbhjsbjbsjncjknskjdnskjnjs111111gdfbchsjdcjdnnsk'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content: '1234567890qwertyuio'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content: '1234567890qwertyuio'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content: '1234567890qwertyuio'
         }
@@ -302,13 +305,16 @@ export default {
       this.showCameraPopup = true;
     },
     onClick (item, index) {
-      console.log('1111')
+      console.log('1111');
       if (index === 0) {
         this.iconArr2[0].icon = 'ios-heart';
       }
       if (index === 1) {
         this.showWords = true;
       }
+    },
+    wordsCommit () {
+      this.showComment = false;
     },
     hideWords () {
       this.showWords = false;
@@ -470,11 +476,21 @@ export default {
   width: 95%;
 }
 
-.sight-page .sight-introduction-icon-group2,
-.sight-page .sight-introduction-icon-btn {
+.sight-page .sight-introduction-icon-group2 {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  padding-bottom: 30px;
+}
+.sight-page .sight-introduction-icon-btn {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+.sight-page .sight-introduction-icon-btn button {
+  width: 100%;
 }
 .sight-page .sight-introduction-icon-group2-inner {
   display: flex;
@@ -506,7 +522,7 @@ export default {
   color: #000;
 }
 .sight-page .sight-introduction-icon-btn-inner {
-  width: 60%;
+  width: 100%;
 }
 .sight-page .sight-introduction-icon-btn-inner .signed {
   background-color: rgb(5, 145, 226);
@@ -522,14 +538,21 @@ export default {
   min-height: 30px;
   text-align: left;
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 16px;
 }
-.sight-page .sight-words-content,
-.sight-page .sight-words-title > text:last-child {
-  min-height: 30px;
+.sight-page .sight-words-title .wux-cell:after{
+  border-bottom: none;
+}
+.sight-page .sight-words-content {
+  /* min-height: 30px; */
   text-align: left;
   margin-left: 10px;
   font-size: 16px;
+  width: 100%;
+  display: block;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #eee;
 }
 
 .sight-page .inner {
@@ -577,13 +600,14 @@ export default {
 }
 .sight-page .pop .modal .inner .sight-words-btn button:last-child,
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
-.sight-page .sight-question-btn button:last-child,
-.sight-page .sight-comment-btn button:last-child {
+.sight-page .sight-question-btn button:last-child {
   margin-left: 20px;
   background-color: rgb(5, 145, 226);
 }
-.sight-page .sight-comment-btn {
+.sight-page .sight-comment-btn button:last-child {
   margin-top: 15px;
+  background-color: rgb(5, 145, 226);
+  margin-left:70%;
 }
 .sight-page .sight-comment {
   display: flex;
