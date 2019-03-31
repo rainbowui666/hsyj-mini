@@ -18,43 +18,43 @@ export default {
       valueData: '累计留言：50条  审核通过：40条  未审核：5条',
       activityList: [
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '待审核'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '通过'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '通过'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '通过'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '通过'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '未通过'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '通过'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconText: '通过'
         }
 

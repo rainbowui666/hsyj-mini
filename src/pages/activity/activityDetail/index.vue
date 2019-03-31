@@ -1,52 +1,17 @@
 <template >
   <view class="activity-detail-page">
     <view class="activity-detail-image">
-      <image src="https://picsum.photos/750/750/?image=413"/>
-    </view>
-    <view class="activity-detail-icon-group">
-      <view class="activity-detail-icon-group-inner">
+      <image src="../../../static/images/fudan1.jpg"/>
+      <view class="activity-detail-icon-group">
         <icon-group :list="iconArr"/>
       </view>
     </view>
     <view class="activity-detail-desc">
-      <view class="activity-detail-desc-row">
-        <view class="activity-detail-desc-row-inner">
-          <wux-row>
-            <wux-col span="5.5">
-              <text>主办单位：</text>
-              <text>上海财经大学</text>
-            </wux-col>
-            <wux-col span="5.5" offset="1">
-              <text>协办单位：</text>
-              <text>杨浦区教育局、邯郸路街道</text>
-            </wux-col>
-          </wux-row>
-        </view>
-      </view>
-      <view class="activity-detail-desc-row">
-        <view class="activity-detail-desc-row-inner">
-          <wux-row>
-            <wux-col span="5.5">
-              <text>活动开始时间：</text>
-              <text>2019年4月11日10:00</text>
-            </wux-col>
-            <wux-col span="5.5" offset="1">
-              <text>活动结束时间：</text>
-              <text>2019年4月11日18:00</text>
-            </wux-col>
-          </wux-row>
-        </view>
-      </view>
-      <view class="activity-detail-desc-row">
-        <view class="activity-detail-desc-row-inner">
-          <wux-row>
-            <wux-col span="12">
-              <text>出发地点：</text>
-              <text>五角场大转盘地下广场</text>
-            </wux-col>
-          </wux-row>
-        </view>
-      </view>
+      <wux-cell title="主办单位：" extra="复旦大学"></wux-cell>
+      <wux-cell title="协办单位：" extra="杨浦区教育局、邯郸路街道"></wux-cell>
+      <wux-cell title="活动开始时间：" extra="2019年4月11日10:00"></wux-cell>
+      <wux-cell title="活动结束时间：" extra="2019年4月11日18:00"></wux-cell>
+      <wux-cell title="出发地点：" extra="五角场大转盘地下广场"></wux-cell>
       <view class="activity-detail-desc-rows">
         <view class="activity-detail-desc-rows-inner">
           <text class="explain">活动说明：</text>
@@ -78,7 +43,7 @@
       <!-- <view v-if="isCreat" class="group_btn_creat">
         <input maxlength="11" type="text" placeholder="请输入姓名" @input="bindInput">
         <button>确定</button>
-      </view> -->
+      </view>-->
       <view class="group_btn_apply">
         <button @click="onInviteBtn">扫码加入团队</button>
       </view>
@@ -91,7 +56,9 @@
       :maskClosable="false"
     >
       <view class="activity-detail-comment">
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554023021200&di=5b6f6be7d8681bbae3b2113193a5aa52&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201701%2F28%2F20170128085020_jfRhX.jpeg"/>
+        <img
+          src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554023021200&di=5b6f6be7d8681bbae3b2113193a5aa52&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201701%2F28%2F20170128085020_jfRhX.jpeg"
+        >
       </view>
     </wux-popup>
     <wux-popup
@@ -103,7 +70,7 @@
       :maskClosable="false"
     >
       <view class="activity-detail-comment">
-        <input placeholder="请输入团队名称"/>
+        <input placeholder="请输入团队名称">
       </view>
       <view class="activity-detail-comment-btn">
         <button type="default" size="mini" :plain="false" @click="onCreatClose">取消</button>
@@ -118,8 +85,11 @@
           <view class="activity-detail-words">
             <view class="activity-detail-words-item" v-for="(item,index) in wordsList" :key="index">
               <view class="activity-detail-words-title">
-                <text>{{ item.name }}</text>
-                <text>{{ item.time }}</text>
+                  <wux-cell
+                  thumb="https://wux.cdn.cloverstd.com/logo.png"
+                  :title="item.name"
+                  :extra="item.time"
+                ></wux-cell>
               </view>
               <view class="activity-detail-words-content">
                 <text>&nbsp;{{ item.content }}</text>
@@ -135,10 +105,8 @@
       </view>
     </view>
     <wux-popup
-      title="我要留言"
       position="bottom"
       :visible="showComment"
-      :closable="true"
       @close="onClose"
       :maskClosable="false"
     >
@@ -146,8 +114,8 @@
         <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
       </view>
       <view class="activity-detail-comment-btn">
-        <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button>
-        <button type="primary" size="mini" :plain="false" @click="comment">确定</button>
+        <!-- <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button> -->
+        <button type="primary" size="mini" :plain="false" @click="hideComment">确定</button>
       </view>
     </wux-popup>
   </view>
@@ -173,13 +141,13 @@ export default {
         {
           icon: 'ios-heart',
           size: '24',
-          color: 'red',
+          color: '#fff',
           label: 11
         },
         {
           icon: 'ios-chatboxes',
           size: '24',
-          color: 'green',
+          color: '#fff',
           label: 11
         }
       ],
@@ -207,46 +175,46 @@ export default {
       ],
       wordsList: [
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content:
-            '1234567890qwertyuiodbhjsbjbsjncjknskjdnskjnjs111111gdfbchsjdcjdnnsk'
+            '用户的留言'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
           content:
-            '1234567890qwertyuiodbhjsbjbsjncjknskjdnskjnjs111111gdfbchsjdcjdnnsk'
+            '用户的留言'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
-          name: 'hahaha',
+          name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         }
       ],
       showComment: false,
@@ -274,6 +242,9 @@ export default {
     hideWords () {
       this.showWords = false;
     },
+    hideComment () {
+      this.showComment = false;
+    },
     onClick (item, index) {
       if (index === 0) {
         this.iconArr2[0].icon = 'ios-heart';
@@ -297,7 +268,7 @@ export default {
     this.isSingle = options.isSingle === 'false' ? !this.isStatusTrue : true;
     this.isDoing = options.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply = options.applyStatus === '已报名' ? this.isStatusTrue : false;
-    this.disApply = (!this.isApply && !this.isDoing) ? this.isStatusTrue : false;
+    this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
   },
   onShareAppMessage: function (ops) {
     return {
@@ -316,17 +287,9 @@ export default {
 }
 .activity-detail-page .activity-detail-desc {
   width: 95%;
-  margin: 0 auto;
+  margin: 10px auto;
   border: 1px solid #eee;
   font-size: 14px;
-}
-.activity-detail-page .activity-detail-desc-row-inner {
-  width: 100%;
-  margin-left: 15px;
-}
-.activity-detail-page .activity-detail-desc-row {
-  padding: 5px 0;
-  border-bottom: 1px solid #eee;
 }
 .activity-detail-page .activity-detail-desc-rows {
   padding: 5px 0;
@@ -340,18 +303,32 @@ export default {
 }
 
 .activity-detail-page .activity-detail-icon-group {
-  margin-top: 10px;
-  display: flex;
+  /* margin-top: 10px; */
+  /* display: flex; */
   justify-content: flex-end;
   width: 93%;
+  width: 100%;
+  height: 30px;
+  margin-top: -33px;
+  z-index: 999;
+  background: #000;
+  opacity: 0.6;
+  display: flex;
+  line-height: 30px;
+  color: #fff;
+  /* justify-content: center; */
 }
-.activity-detail-page .activity-detail-icon-group-inner {
+/* .activity-detail-page .activity-detail-icon-group-inner {
   width: 50%;
   display: flex;
   justify-content: flex-end;
+} */
+.activity-detail-page .activity-detail-icon-group .icon-group {
+  width: 30%;
+  margin-right: 10px;
 }
-.activity-detail-page .activity-detail-icon-group-inner .icon-group {
-  width: 50%;
+.activity-detail-page .activity-detail-icon-group2-inner {
+  width: 80%;
 }
 .activity-detail-page .activity-detail-icon-group2,
 .activity-detail-page .activity-detail-icon-btn {
@@ -359,11 +336,11 @@ export default {
   justify-content: center;
   margin-top: 10px;
 }
-.activity-detail-page .activity-detail-icon-group2-inner {
+/* .activity-detail-page .activity-detail-icon-group2-inner {
   display: flex;
   justify-content: center;
   width: 95%;
-}
+} */
 
 .activity-detail-page
   .activity-detail-icon-group2-inner
@@ -404,14 +381,25 @@ export default {
   min-height: 30px;
   text-align: left;
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 16px;
 }
-.activity-detail-page .activity-detail-words-content,
-.activity-detail-page .activity-detail-words-title > text:last-child {
-  min-height: 30px;
+.activity-detail-page .activity-detail-words-title .wux-cell:after{
+  border-bottom: none;
+}
+.activity-detail-page .activity-detail-words-content {
   text-align: left;
   margin-left: 10px;
   font-size: 16px;
+  width: 100%;
+  display: block;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #eee;
+}
+.activity-detail-page .activity-detail-comment-btn button:last-child {
+  margin-top: 15px;
+  background-color: rgb(5, 145, 226);
+  margin-left:70%;
 }
 .activity-detail-page .inner {
   position: fixed;
@@ -474,8 +462,7 @@ export default {
   .modal
   .inner
   .activity-detail-words-btn
-  button:last-child,
-.activity-detail-page .activity-detail-comment-btn button:last-child {
+  button:last-child {
   margin-left: 20px;
   background-color: rgb(5, 145, 226);
 }
@@ -495,41 +482,41 @@ export default {
   margin-top: 15px;
   border: 1px #000 solid;
 }
-.single_btn{
-  width:50%;
-  background-color:#ed4014;
-  color:#fff;
-}
-.single_btn_isApply{
-  width:50%;
-  background-color: #2d8cf0;
-  color:#fff;
-}
-.single_btn_isDoing{
-  width:50%;
+.single_btn {
+  width: 50%;
   background-color: #ed4014;
-  color:#fff;
+  color: #fff;
 }
-.group_btn{
+.single_btn_isApply {
+  width: 50%;
+  background-color: #2d8cf0;
+  color: #fff;
+}
+.single_btn_isDoing {
+  width: 50%;
+  background-color: #ed4014;
+  color: #fff;
+}
+.group_btn {
   display: flex;
   width: 100%;
   justify-content: space-between;
   position: fixed;
   bottom: 5px;
 }
-.group_btn_disApply{
+.group_btn_disApply {
   margin-left: 5%;
   width: 40%;
 }
-.group_btn_disApply button{
+.group_btn_disApply button {
   background-color: #ed4014;
-  color:#fff;
+  color: #fff;
 }
-.group_btn_apply button{
+.group_btn_apply button {
   background-color: #2d8cf0;
-  color:#fff;
+  color: #fff;
 }
-.group_btn_apply{
+.group_btn_apply {
   margin-right: 5%;
   width: 40%;
 }
