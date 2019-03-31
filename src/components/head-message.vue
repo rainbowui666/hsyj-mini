@@ -19,7 +19,7 @@ export default {
 
 <style>
 .head_message{
-  background-color: #cc0000;
+  background-color: #fff;
   height: 40px;
 }
 .head_message input{

@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "红色印记",
-  "navigationBarBackgroundColor": "#cc0000",
-  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "wux-card": "../../static/wux/card/index",
     "wux-media": "../../static/wux/media/index",

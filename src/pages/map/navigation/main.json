@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "景点列表",
-  "navigationBarBackgroundColor": "#cc0000",
-  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "wux-row": "../../../static/wux/row/index",
     "wux-col": "../../../static/wux/col/index",

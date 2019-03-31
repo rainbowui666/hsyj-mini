@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "登陆",
-  "navigationBarBackgroundColor": "#cc0000",
-  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "wux-spin": "../../../../static/wux/spin/index"
   }

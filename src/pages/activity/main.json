@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "活动详情",
-  "navigationBarBackgroundColor": "#cc0000",
-  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "wux-icon": "../../static/wux/icon/index"
   }

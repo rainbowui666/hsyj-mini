@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "上财一日游",
-  "navigationBarBackgroundColor": "#cc0000",
-  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "wux-row": "../../../static/wux/row/index",
     "wux-col": "../../../static/wux/col/index",
