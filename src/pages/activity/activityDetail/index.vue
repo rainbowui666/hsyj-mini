@@ -330,11 +330,17 @@ export default {
 .activity-detail-page .activity-detail-icon-group2-inner {
   width: 80%;
 }
-.activity-detail-page .activity-detail-icon-group2,
+
 .activity-detail-page .activity-detail-icon-btn {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+.activity-detail-page .activity-detail-icon-group2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding-bottom: 60px;
 }
 /* .activity-detail-page .activity-detail-icon-group2-inner {
   display: flex;

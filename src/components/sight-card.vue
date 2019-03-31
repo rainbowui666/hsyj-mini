@@ -10,8 +10,8 @@
         </view>
         <view class="sight-card-content">
           <view class="sight-card-content-title">
-            <span v-if="item.start" class="drip-start"/>
-            <span v-if="item.end" class="drip-end"/>
+            <wux-tag v-if="item.start" color="red">起点</wux-tag>
+            <wux-tag v-if="item.end" color="red">终点</wux-tag>
             <text>{{ item.sightName }}</text>
           </view>
         </view>
@@ -68,14 +68,14 @@ export default {
 }
 .sight-card .sight-card-content-icongroup {
   width: 100%;
-  height: 60px;
-  margin-top: -60px;
+  height: 26px;
+  margin-top: -29px;
   z-index: 999;
   background: #000;
   opacity: 0.6;
   display: flex;
-  line-height: 60px;
-  justify-content: center;
+  color:#fff;
+  line-height: 26px;
 }
 .sight-card-image image {
   width: 100%;
@@ -105,9 +105,6 @@ export default {
 .sight-card-content-icongroup {
   padding-left: 5px;
   display: flex;
-}
-.sight-card-content-icongroup .icon-group {
-  width: 50%;
 }
 .sight-card-content-icongroup .on-status {
   margin-left: 20px;
