@@ -1,17 +1,21 @@
 <template >
   <view class="message-page">
+    <head-message :valueData="valueData"> </head-message>
     <navigation-card :data="activityList" :iconClick="iconClick"/>
   </view>
 </template>
 
 <script>
 import navigationCard from '../../../components/navigation-card';
+import headMessage from '../../../components/head-message';
 export default {
   components: {
-    navigationCard
+    navigationCard,
+    headMessage
   },
   data () {
     return {
+      valueData: '累计留言：50条  审核通过：40条  未审核：5条',
       activityList: [
         {
           src: 'https://picsum.photos/750/750/?image=413',

@@ -28,5 +28,6 @@ export default {
   background-color: rgba(211, 207, 207, 0.6);
   margin: 5px 2%;
   position: absolute;
+  font-size: 14px;
 }
 </style>
