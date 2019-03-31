@@ -8,6 +8,10 @@
         </view>
       </view>
       <view class="common-card-content">
+        <view class="common-card-content-tag">
+          <wux-tag v-if="item.activityStatus=='进行中'" color="red">进行中</wux-tag>
+          <wux-tag v-if="item.activityStatus=='已报名'" color="geekblue">已报名</wux-tag>
+        </view>
         <view class="common-card-content-title">
           <text>{{ item.activityName }}</text>
         </view>
@@ -79,12 +83,13 @@ export default {
 .common-card-content-title {
   padding-top: 5px;
   padding-left: 5px;
+  /* font-size: 16px; */
 }
 .common-card-content-desc {
   display: flex;
   flex-direction: row;
   padding: 5px;
-  font-size: 10px;
+  font-size: 11px;
 }
 .common-card-content-desc-item {
   margin-right: 5px;
@@ -122,9 +127,9 @@ export default {
   margin: auto;
 }
 .common-card-icon-inner {
-  border: 1px solid #000;
+  /* border: 1px solid #000;
   border-radius: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: center; */
 }
 </style>

@@ -18,64 +18,64 @@ export default {
       valueData: '累计签到： 28次',
       activityList: [
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',
           isIcon: true
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           iconText: '导航',

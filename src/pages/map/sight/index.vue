@@ -231,43 +231,43 @@ export default {
           name: '用户名',
           time: '2019年3月27日',
           content:
-            '1234567890qwertyuiodbhjsbjbsjncjknskjdnskjnjs111111gdfbchsjdcjdnnsk'
+            '用户的留言'
         },
         {
           name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
           name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
           name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
           name: '用户名',
           time: '2019年3月27日',
           content:
-            '1234567890qwertyuiodbhjsbjbsjncjknskjdnskjnjs111111gdfbchsjdcjdnnsk'
+            '用户的留言'
         },
         {
           name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
           name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         },
         {
           name: '用户名',
           time: '2019年3月27日',
-          content: '1234567890qwertyuio'
+          content: '用户的留言2019年3月27日'
         }
       ],
       radioList: [

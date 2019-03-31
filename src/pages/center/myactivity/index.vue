@@ -18,60 +18,60 @@ export default {
       valueData: '已报名：2次  成功活动：2次  失败活动：1次  进行中：1次',
       activityList: [
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward',
           activityStatus: '已报名'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward',
           activityStatus: '进行中'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward'
         },
         {
-          src: 'https://picsum.photos/750/750/?image=413',
-          activityName: '上海财大一日游',
-          activityHolder: '上海财经大学',
+          src: '../../../static/images/fudan.jpg',
+          activityName: '复旦一日游',
+          activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-round-forward'
         }

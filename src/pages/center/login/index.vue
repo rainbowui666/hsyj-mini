@@ -45,7 +45,7 @@ export default {
       // header: 'https://rainbow.ebaotech.com/static/rainbow/image/login_header.jpg',
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      array: ['上海复旦大学', '上海大学', '同济大学'],
+      array: ['复旦大学', '上海大学', '同济大学'],
       index: 0
     };
   },

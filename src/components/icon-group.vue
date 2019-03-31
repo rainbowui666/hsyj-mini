@@ -41,6 +41,7 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 93%;
+  margin: 0 auto;
 }
 .icon-group-item {
   font-size: 16px;
