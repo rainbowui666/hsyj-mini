@@ -1,17 +1,21 @@
 <template >
   <view class="signin-page">
+    <head-message :valueData="valueData"> </head-message>
     <navigation-card :data="activityList" :iconClick="iconClick"/>
   </view>
 </template>
 
 <script>
 import navigationCard from '../../../components/navigation-card';
+import headMessage from '../../../components/head-message';
 export default {
   components: {
-    navigationCard
+    navigationCard,
+    headMessage
   },
   data () {
     return {
+      valueData: '累计签到： 28次',
       activityList: [
         {
           src: 'https://picsum.photos/750/750/?image=413',
