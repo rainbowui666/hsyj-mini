@@ -25,13 +25,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
@@ -47,13 +47,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
@@ -69,13 +69,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
@@ -91,13 +91,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
@@ -113,13 +113,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
@@ -135,13 +135,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
@@ -157,13 +157,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
@@ -179,13 +179,13 @@ export default {
             {
               icon: 'ios-heart',
               size: '24',
-              color: 'red',
+              color: 'rgb(255, 95, 95)',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '24',
-              color: 'green',
+              color: '#888',
               label: 11
             }
           ]
