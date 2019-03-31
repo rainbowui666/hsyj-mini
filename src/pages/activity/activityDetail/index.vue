@@ -18,7 +18,7 @@
           <text>&nbsp;1.按时参加</text>
           <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text>
           <navigator url="/pages/activity/activitySight/main">
-            <text>&nbsp;查看参与景点</text>
+            <text class="view-sight">&nbsp;查看参与景点</text>
           </navigator>
         </view>
       </view>
@@ -347,7 +347,12 @@ export default {
   justify-content: center;
   width: 95%;
 } */
-
+.view-sight{
+  border:1px red solid;
+  background-color: #ee8065;
+  font-size: 16px;
+  color: #fff;
+}
 .activity-detail-page
   .activity-detail-icon-group2-inner
   .icon-group-item-label {
@@ -506,30 +511,29 @@ export default {
 .group_btn {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   position: fixed;
-  bottom: 5px;
+  bottom: 0;
 }
 .group_btn_disApply {
-  margin-left: 5%;
-  width: 40%;
+  /* border-radius: 0%; */
+  width: 50%;
 }
 .group_btn_disApply button {
   background-color: #ed4014;
   color: #fff;
+  border-radius: 0%;
 }
 .group_btn_apply button {
   background-color: #2d8cf0;
   color: #fff;
+  border-radius: 0%;
 }
 .group_btn_apply {
-  margin-right: 5%;
-  width: 40%;
+  width: 50%;
 }
 .bottom-btn button {
   position: fixed;
-  bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  width: 100%;
 }
 </style>
