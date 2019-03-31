@@ -63,7 +63,7 @@
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
     </view>
-    <view v-if="isSingle">
+    <view v-if="isSingle" class="bottom-btn">
       <button v-if="disApply" class="single_btn">报名</button>
       <button v-if="isApply" class="single_btn_isApply">已报名</button>
       <button v-if="isDoing" class="single_btn_isDoing">进入活动</button>
@@ -512,7 +512,10 @@ export default {
 }
 .group_btn{
   display: flex;
+  width: 100%;
   justify-content: space-between;
+  position: fixed;
+  bottom: 5px;
 }
 .group_btn_disApply{
   margin-left: 5%;
@@ -529,5 +532,11 @@ export default {
 .group_btn_apply{
   margin-right: 5%;
   width: 40%;
+}
+.bottom-btn button {
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>
