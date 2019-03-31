@@ -68,10 +68,48 @@
       <button v-if="isApply" class="single_btn_isApply">已报名</button>
       <button v-if="isDoing" class="single_btn_isDoing">进入活动</button>
     </view>
-    <!-- <view v-if="!isSingle">
-      <button>报名</button>
-      <button>已报名</button>
-    </view> -->
+    <view v-if="!isSingle" class="group_btn">
+      <view v-if="!isInvite" class="group_btn_disApply">
+        <button @click="changeCreatBtn">创建团队</button>
+      </view>
+      <view v-if="isInvite" class="group_btn_disApply">
+        <button @click="onInviteBtn">邀请加入团队</button>
+      </view>
+      <!-- <view v-if="isCreat" class="group_btn_creat">
+        <input maxlength="11" type="text" placeholder="请输入姓名" @input="bindInput">
+        <button>确定</button>
+      </view> -->
+      <view class="group_btn_apply">
+        <button @click="onInviteBtn">扫码加入团队</button>
+      </view>
+    </view>
+    <wux-popup
+      position="center"
+      :visible="isTwoCode"
+      :closable="true"
+      @close="onTwoCodeClose"
+      :maskClosable="false"
+    >
+      <view class="activity-detail-comment">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554023021200&di=5b6f6be7d8681bbae3b2113193a5aa52&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201701%2F28%2F20170128085020_jfRhX.jpeg"/>
+      </view>
+    </wux-popup>
+    <wux-popup
+      title="创建团队"
+      position="center"
+      :visible="isCreat"
+      :closable="true"
+      @close="onCreatClose"
+      :maskClosable="false"
+    >
+      <view class="activity-detail-comment">
+        <input placeholder="请输入团队名称"/>
+      </view>
+      <view class="activity-detail-comment-btn">
+        <button type="default" size="mini" :plain="false" @click="onCreatClose">取消</button>
+        <button type="primary" size="mini" :plain="false" @click="onCreatConfirm">确定</button>
+      </view>
+    </wux-popup>
     <view :class="showWords?'pop':'pop-hide'">
       <!-- <view :class="showWords?'modal':'modal-hide'" @click="onClose"> -->
       <view :class="showWords?'modal':'modal-hide'">
@@ -128,6 +166,9 @@ export default {
       disApply: false,
       isDoing: false,
       isStatusTrue: true,
+      isCreat: false,
+      isInvite: false,
+      isTwoCode: false,
       iconArr: [
         {
           icon: 'ios-heart',
@@ -214,6 +255,22 @@ export default {
   },
   // onShow () { wx.setNavigationBarTitle({ title: this.$mp.query.name }); },
   methods: {
+    changeCreatBtn () {
+      this.isCreat = true;
+    },
+    onInviteBtn () {
+      this.isTwoCode = true;
+    },
+    onTwoCodeClose () {
+      this.isTwoCode = false;
+    },
+    onCreatClose () {
+      this.isCreat = false;
+    },
+    onCreatConfirm () {
+      this.isCreat = false;
+      this.isInvite = true;
+    },
     hideWords () {
       this.showWords = false;
     },
@@ -434,19 +491,43 @@ export default {
   height: 60px;
   border: 1px #000 solid;
 }
+.activity-detail-page .activity-detail-comment input {
+  margin-top: 15px;
+  border: 1px #000 solid;
+}
 .single_btn{
   width:50%;
-  background-color:#f42b0b;
+  background-color:#ed4014;
   color:#fff;
 }
 .single_btn_isApply{
   width:50%;
-  background-color: rgb(5, 145, 226);
+  background-color: #2d8cf0;
   color:#fff;
 }
 .single_btn_isDoing{
   width:50%;
-  background-color: rgb(243, 50, 2);
+  background-color: #ed4014;
   color:#fff;
+}
+.group_btn{
+  display: flex;
+  justify-content: space-between;
+}
+.group_btn_disApply{
+  margin-left: 5%;
+  width: 40%;
+}
+.group_btn_disApply button{
+  background-color: #ed4014;
+  color:#fff;
+}
+.group_btn_apply button{
+  background-color: #2d8cf0;
+  color:#fff;
+}
+.group_btn_apply{
+  margin-right: 5%;
+  width: 40%;
 }
 </style>

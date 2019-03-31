@@ -5,7 +5,7 @@
       <!-- <img class="img" :src="header" style="height:312px"> -->
       <view class="userinfo">
         <view class="userinfo-tel">
-          <input maxlength="11" type="number" placeholder="请输入姓名" @input="bindInput">
+          <input maxlength="11" type="text" placeholder="请输入姓名" @input="bindInput">
         </view>
         <view class="userinfo-tel">
           <input maxlength="11" type="number" placeholder="请输入学籍号码" @input="bindInput">
