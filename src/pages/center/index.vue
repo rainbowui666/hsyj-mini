@@ -1,40 +1,40 @@
 <template >
     <view class="container">
-        <!-- <wux-cell-group class="mySelf_group">
-            <wux-cell title="我的签到" is-link extra="2次"  @click="gotoSignin"></wux-cell>
-            <wux-cell title="我的留言" is-link extra="2次"  @click="gotoMessage"></wux-cell>
-            <wux-cell title="参加过的活动" is-link extra="12次"  @click="gotoActicity"></wux-cell>
-            <wux-cell title="我的积分" is-link extra="10分" @click="gotoIntegral"></wux-cell>
-        </wux-cell-group> -->
         <view class="wrap">
           <img src="../../../static/images/center_bg.jpeg" alt="bg" class="bg-image" />
           <view class="personal-center">
-            <navigator url="/pages/center/signin/main">
+            <!-- <navigator url="/pages/center/signin/main"> -->
               <view class="item">
                 <text class="time">2次</text>
                 <text class="content">我的签到</text>
               </view>
-            </navigator>
-            <navigator url="/pages/center/message/main">
+            <!-- </navigator> -->
+            <!-- <navigator url="/pages/center/message/main"> -->
               <view class="item">
                 <text class="time">29次</text>
                 <text class="content">我的留言</text>
               </view>
-            </navigator>
-            <navigator url="/pages/center/myactivity/main">
+            <!-- </navigator> -->
+            <!-- <navigator url="/pages/center/myactivity/main"> -->
               <view class="item">
                 <text class="time">33次</text>
-                <text class="content">参加过的活动</text>
+                <text class="content">我的活动</text>
               </view>
-            </navigator>
-            <navigator url="/pages/center/integral/main">
+            <!-- </navigator> -->
+            <!-- <navigator url="/pages/center/integral/main"> -->
               <view class="item">
                 <text class="time">56次</text>
                 <text class="content">我的积分</text>
               </view>
-            </navigator>
+            <!-- </navigator> -->
           </view>
         </view>
+        <wux-cell-group class="mySelf_group">
+            <wux-cell thumb="../../../static/images/map.png" title="我的签到" is-link extra="2次"  @click="gotoSignin"></wux-cell>
+            <wux-cell thumb="../../../static/images/edit1.png" title="我的留言" is-link extra="29次"  @click="gotoMessage"></wux-cell>
+            <wux-cell thumb="../../../static/images/activity.png" title="我的活动" is-link extra="33次"  @click="gotoActicity"></wux-cell>
+            <wux-cell thumb="../../../static/images/integral.png" title="我的积分" is-link extra="56分" @click="gotoIntegral"></wux-cell>
+        </wux-cell-group>
     </view>
 </template>
 
@@ -123,5 +123,8 @@ page {
 .content {
   line-height: 50px;
 }
-
+.mySelf_group{
+  margin-top:80px;
+  width: 100%;
+}
 </style>
