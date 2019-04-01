@@ -13,7 +13,7 @@
       :style='winStyle'
     ></map>
     <cover-image class='search_bar' src='/static/images/search_bar.png' @click='gotoNavigation'></cover-image>
-    <cover-image class='liuyan' src='/static/images/message.png' @click='messageDialog'></cover-image>
+    <cover-image class='liuyan' src='/static/images/edit.png' @click='messageDialog'></cover-image>
     <div v-show='showDetail' class='all-bg'>
       <cover-view class='dw-bg' @click='hidentap'></cover-view>
       <cover-image class='bg' src='/static/images/liuyan_bg.png'></cover-image>
@@ -90,7 +90,7 @@ export default {
         userId: point.user_id,
         location: point.location,
         iconPath:
-          'http://pic.58pic.com/58pic/11/57/44/73j58PICD9f.jpg'
+          'http://118.190.96.118/hsyj/fudan.jpg'
       };
       return marker;
     },
@@ -239,8 +239,8 @@ page {
   color: #fff;
 }
 .liuyan {
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   bottom: 3%;
   right: 5%;
