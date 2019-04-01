@@ -232,10 +232,10 @@ page {
 .button_confirm{
   height:40px;
   line-height:40px;
-  background: -webkit-linear-gradient(left, rgb(76, 131, 231) , rgb(39, 94, 197));  /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(76, 131, 231) , rgb(39, 94, 197)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(76, 131, 231) , rgb(39, 94, 197)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(76, 131, 231) , rgb(39, 94, 197));  /* 标准的语法 */
+  background: -webkit-linear-gradient(left, rgb(76, 131, 231) , rgb(255, 38, 0));  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(76, 131, 231) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(76, 131, 231) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(76, 131, 231) , rgb(255, 38, 0));  /* 标准的语法 */
   color: #fff;
 }
 .liuyan {
