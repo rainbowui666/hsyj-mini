@@ -309,6 +309,7 @@ export default {
       console.log('1111');
       if (index === 0) {
         this.iconArr2[0].icon = 'ios-heart';
+        this.iconArr2[0].color = 'red';
       }
       if (index === 1) {
         this.showWords = true;
