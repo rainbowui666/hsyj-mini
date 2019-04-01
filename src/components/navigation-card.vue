@@ -91,9 +91,11 @@ export default {
 .navigation-card-content-icongroup {
   padding-left: 5px;
   display: flex;
+  width: 50%;
+
 }
 .navigation-card-content-icongroup .icon-group {
-  width: 50%;
+  width: 100%;
 }
 .navigation-card-content-icongroup .on-status {
   margin-left: 20px;
