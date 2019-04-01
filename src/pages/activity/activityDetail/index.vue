@@ -288,13 +288,17 @@ export default {
 }
 .activity-detail-page .activity-detail-desc-rows {
   padding: 5px 0;
-  height: 55px;
+  height: 65px;
 }
 .activity-detail-page .activity-detail-desc-rows-inner {
   width: 100%;
   margin-left: 15px;
   display: flex;
   flex-direction: column;
+}
+
+.activity-detail-page .activity-detail-desc-rows-inner text{
+  margin-bottom: 8px;
 }
 
 .activity-detail-page .activity-detail-icon-group {

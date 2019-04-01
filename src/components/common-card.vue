@@ -72,8 +72,9 @@ export default {
   width: 100%;
   height: 85px;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 3rpx;
   background-color: #fff;
+  padding-bottom:20rpx;
   /* border-bottom: 1px solid #6666; */
 }
 .common-card-image {

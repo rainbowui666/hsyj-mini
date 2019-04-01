@@ -12,7 +12,7 @@
           <view class="sight-card-content-title">
             <wux-tag v-if="item.start" color="red">起点</wux-tag>
             <wux-tag v-if="item.end" color="red">终点</wux-tag>
-            <text>{{ item.sightName }}</text>
+            <text style="margin-top: 4px;">{{ item.sightName }}</text>
           </view>
           <view class="sight-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
@@ -63,8 +63,9 @@ export default {
   display: flex;
   width: 100%;
   height: 85px;
-  margin-bottom: 10px;
+  margin-bottom: 3rpx;
   background-color: #fff;
+  padding-bottom: 20rpx;
   /* border-bottom: 1px solid #888; */
 }
 .sight-card-image {
@@ -112,7 +113,7 @@ export default {
 .sight-card-content-icongroup {
   padding-left: 5px;
   display: flex;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 .sight-card-content-icongroup .on-status {
   margin-left: 20px;
