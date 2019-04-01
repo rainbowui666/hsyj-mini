@@ -4,15 +4,18 @@
       <view v-for="(item,index) in data" :key="index" class="sight-card">
         <view class="sight-card-image">
           <image mode="widthFix" :src="item.src"/>
-          <view class="sight-card-content-icongroup">
+          <!-- <view class="sight-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
-          </view>
+          </view>-->
         </view>
         <view class="sight-card-content">
           <view class="sight-card-content-title">
             <wux-tag v-if="item.start" color="red">起点</wux-tag>
             <wux-tag v-if="item.end" color="red">终点</wux-tag>
             <text>{{ item.sightName }}</text>
+          </view>
+          <view class="sight-card-content-icongroup">
+            <icon-group :list="item.iconArr"/>
           </view>
         </view>
         <view class="sight-card-icon">
@@ -67,14 +70,14 @@ export default {
   padding: 5px;
 }
 .sight-card .sight-card-content-icongroup {
-  width: 100%;
+  width: 50%;
   height: 26px;
-  margin-top: -29px;
+  /* margin-top: -29px; */
   z-index: 999;
-  background: #000;
-  opacity: 0.6;
+  /* background: #000; */
+  /* opacity: 0.6; */
   display: flex;
-  color:#fff;
+  /* color: #fff; */
   line-height: 26px;
 }
 .sight-card-image image {
@@ -93,7 +96,7 @@ export default {
   font-size: 18px;
   display: flex;
   flex-direction: column;
-  line-height: 40px;
+  /* line-height: 40px; */
 }
 .sight-card-content-desc {
   display: flex;
@@ -139,69 +142,5 @@ span {
   width: 38px;
   display: block;
   position: relative;
-}
-.drip-start {
-  width: 26px;
-}
-.drip-start:before {
-  content: "起";
-  height: 26px;
-  width: 26px;
-  display: block;
-  position: absolute;
-  top: 2px;
-  left: 0px;
-  z-index: 1;
-  line-height: 26px;
-  background: #333;
-  border-radius: 40px;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-  color: #fff;
-  text-align: center;
-}
-.drip-start:after {
-  content: "";
-  height: 0px;
-  width: 0px;
-  display: block;
-  position: absolute;
-  bottom: 2px;
-  left: 3px;
-  border: 10px transparent solid;
-  border-top-color: #333;
-  border-width: 15px 10px 0px 10px;
-}
-.drip-end {
-  width: 26px;
-}
-.drip-end:before {
-  content: "终";
-  height: 26px;
-  width: 26px;
-  display: block;
-  position: absolute;
-  top: 2px;
-  left: 0px;
-  z-index: 1;
-  line-height: 26px;
-  background: #333;
-  border-radius: 40px;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-  color: #fff;
-  text-align: center;
-}
-.drip-end:after {
-  content: "";
-  height: 0px;
-  width: 0px;
-  display: block;
-  position: absolute;
-  bottom: 2px;
-  left: 3px;
-  border: 10px transparent solid;
-  border-top-color: #333;
-  border-width: 15px 10px 0px 10px;
 }
 </style>

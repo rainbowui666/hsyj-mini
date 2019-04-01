@@ -50,6 +50,7 @@ export default {
 }
 .icon-group-item-inner{
   display: flex;
+  line-height: 40px
 }
 .icon-group-item-label{
   margin-left: 4px;
