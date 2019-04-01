@@ -39,19 +39,19 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           activityStatus: '已报名',
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
@@ -61,19 +61,19 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           activityStatus: '进行中',
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
@@ -83,19 +83,19 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           isSingle: false,
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
@@ -105,18 +105,18 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
@@ -126,18 +126,18 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
@@ -147,18 +147,18 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
@@ -168,18 +168,18 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
@@ -189,18 +189,18 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-dropright-circle',
+          iconType: 'ios-arrow-forward',
           iconArr: [
             {
               icon: 'ios-heart',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             },
             {
               icon: 'ios-chatboxes',
               size: '16',
-              color: '#FFF',
+              color: '#888',
               label: 11
             }
           ]
