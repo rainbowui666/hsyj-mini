@@ -1,6 +1,6 @@
 <template >
   <view class="message-page">
-      <wux-tabs controlled :current="current" @change="onChange">
+      <wux-tabs theme="assertive" controlled :current="current" @change="onChange">
         <wux-tab key="message_tab1">
             <wux-badge count="3">累计留言</wux-badge>
         </wux-tab>
@@ -32,42 +32,42 @@ export default {
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '待审核'
+          tagText: '待审核'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '通过'
+          tagText: '通过'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '通过'
+          tagText: '通过'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '通过'
+          tagText: '通过'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '通过'
+          tagText: '通过'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '未通过'
+          tagText: '未通过'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '通过'
+          tagText: '通过'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
-          iconText: '通过'
+          tagText: '通过'
         }
 
       ]
@@ -87,14 +87,17 @@ export default {
 </script>
 
 <style>
-.message-page .navigation-card-content-title {
+.message-page{
+  background-color: #f4f4f4;
+}
+/* .message-page .navigation-card-content-title {
   padding-top: 25px;
   padding-left: 5px;
-}
-.message-page .navigation-card-icon-text {
+} */
+/* .message-page .navigation-card-icon-text {
   width: 60px;
   background-color:rgba(180, 178, 178, 0.6);
   height:50px;
   line-height:50px;
-}
+} */
 </style>

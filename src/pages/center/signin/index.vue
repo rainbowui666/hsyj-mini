@@ -1,6 +1,6 @@
 <template >
   <view class="signin-page">
-    <wux-tabs controlled :current="current" @change="onChange">
+    <wux-tabs theme="assertive" controlled :current="current" @change="onChange">
         <wux-tab key="signin_tab1">
             <wux-badge count="3">累计签到</wux-badge>
         </wux-tab>
@@ -105,6 +105,9 @@ export default {
 </script>
 
 <style>
+.signin-page{
+  background-color: #f4f4f4;
+}
 .signin-page .navigation-card-content-title {
   padding-top: 25px;
   padding-left: 5px;

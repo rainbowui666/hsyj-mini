@@ -1,6 +1,6 @@
 <template >
   <view class="myactivity-page">
-      <wux-tabs controlled :current="current" @change="onChange">
+      <wux-tabs theme="assertive" controlled :current="current" @change="onChange">
         <wux-tab key="myactivity_tab1">
             <wux-badge count="3">已报名</wux-badge>
         </wux-tab>
@@ -37,7 +37,7 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          iconType: 'ios-arrow-forward',
           activityStatus: '已报名'
         },
         {
@@ -45,7 +45,7 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward',
+          iconType: 'ios-arrow-forward',
           activityStatus: '进行中'
         },
         {
@@ -53,42 +53,42 @@ export default {
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward'
+          iconType: 'ios-arrow-forward'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward'
+          iconType: 'ios-arrow-forward'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward'
+          iconType: 'ios-arrow-forward'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward'
+          iconType: 'ios-arrow-forward'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward'
+          iconType: 'ios-arrow-forward'
         },
         {
           src: '../../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-round-forward'
+          iconType: 'ios-arrow-forward'
         }
 
       ]
@@ -108,4 +108,7 @@ export default {
 </script>
 
 <style>
+.myactivity-page{
+  background-color: #f4f4f4;
+}
 </style>
