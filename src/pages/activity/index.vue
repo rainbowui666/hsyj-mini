@@ -21,16 +21,16 @@ export default {
     return {
       movies: [
         {
-          url: '../../static/images/fudan1.jpg'
+          url: '../../static/images/fudan1.jpeg'
         },
         {
-          url: '../../static/images/fudan2.jpg'
+          url: '../../static/images/fudan2.jpeg'
         },
         {
-          url: '../../static/images/fudan1.jpg'
+          url: '../../static/images/fudan1.jpeg'
         },
         {
-          url: '../../static/images/fudan2.jpg'
+          url: '../../static/images/fudan2.jpeg'
         }
       ],
       activityList: [

@@ -1,7 +1,7 @@
 <template >
   <view class="activity-detail-page">
     <view class="activity-detail-image">
-      <image src="../../../static/images/fudan1.jpg"/>
+      <image src="../../../static/images/fudan1.jpeg"/>
       <view class="activity-detail-icon-group">
         <icon-group :list="iconArr"/>
       </view>

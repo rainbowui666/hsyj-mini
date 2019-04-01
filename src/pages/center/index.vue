@@ -7,7 +7,7 @@
             <wux-cell title="我的积分" is-link extra="10分" @click="gotoIntegral"></wux-cell>
         </wux-cell-group> -->
         <view class="wrap">
-          <img src="../../../static/images/center_bg.png" alt="bg" class="bg-image" />
+          <img src="../../../static/images/center_bg.jpeg" alt="bg" class="bg-image" />
           <view class="personal-center">
             <navigator url="/pages/center/signin/main">
               <view class="item">
