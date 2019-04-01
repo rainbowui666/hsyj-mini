@@ -219,6 +219,9 @@ export default {
 </script>
 
 <style>
+.activity-page{
+  background-color: #f4f4f4;
+}
 .activity-page .swiper {
   width: 100%;
   height: 230px;
