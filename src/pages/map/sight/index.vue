@@ -200,19 +200,20 @@ export default {
         {
           icon: 'ios-heart-empty',
           size: '30',
-          color: 'red',
+          color: '#888',
           label: '想去'
         },
         {
           icon: 'ios-chatboxes',
           size: '30',
-          color: 'green',
+          color: '#888',
           label: '留言'
         },
         {
           icon: 'ios-share-alt',
           size: '30',
-          color: '#007fff',
+          // color: '#007fff',
+          color: '#888',
           label: '分享',
           isButton: true,
           openType: 'share'
@@ -220,7 +221,7 @@ export default {
         {
           icon: 'ios-navigate',
           size: '30',
-          color: '#007fff',
+          color: '#888',
           label: '导航',
           isButton: true,
           openType: null
@@ -524,8 +525,18 @@ export default {
 .sight-page .sight-introduction-icon-btn-inner {
   width: 100%;
 }
+.sight-page .sight-introduction-icon-btn-inner .sign{
+  width: 100%;
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+}
 .sight-page .sight-introduction-icon-btn-inner .signed {
-  background-color: rgb(5, 145, 226);
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
 }
 .sight-page .sight-words-item {
   margin-top: 10px;
@@ -602,12 +613,17 @@ export default {
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
 .sight-page .sight-question-btn button:last-child {
   margin-left: 20px;
-  background-color: rgb(5, 145, 226);
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
 }
 .sight-page .sight-comment-btn button:last-child {
   margin-top: 15px;
-  background-color: rgb(5, 145, 226);
-  margin-left:70%;
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
 }
 .sight-page .sight-comment {
   display: flex;

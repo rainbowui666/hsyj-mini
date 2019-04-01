@@ -155,19 +155,19 @@ export default {
         {
           icon: 'ios-heart-empty',
           size: '40',
-          color: 'red',
+          color: '#888',
           label: '想去'
         },
         {
           icon: 'ios-chatboxes',
           size: '40',
-          color: 'green',
+          color: '#888',
           label: '留言'
         },
         {
           icon: 'ios-share-alt',
           size: '40',
-          color: '#007fff',
+          color: '#888',
           label: '分享',
           isButton: true,
           openType: 'share'
@@ -349,7 +349,10 @@ export default {
 } */
 .view-sight{
   border:1px red solid;
-  background-color: #ee8065;
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
   font-size: 16px;
   color: #fff;
 }
@@ -409,7 +412,10 @@ export default {
 }
 .activity-detail-page .activity-detail-comment-btn button:last-child {
   margin-top: 15px;
-  background-color: rgb(5, 145, 226);
+  background: -webkit-linear-gradient(left, rgb(76, 131, 231) , rgb(39, 94, 197));  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(76, 131, 231) , rgb(39, 94, 197)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(76, 131, 231) , rgb(39, 94, 197)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(76, 131, 231) , rgb(39, 94, 197));  /* 标准的语法 */
   margin-left:70%;
 }
 .activity-detail-page .inner {
@@ -436,7 +442,10 @@ export default {
   .activity-detail-words-btn
   button:last-child {
   margin-left: 20px;
-  background-color: rgb(5, 145, 226);
+  background: -webkit-linear-gradient(left, rgb(76, 131, 231) , rgb(39, 94, 197));  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(76, 131, 231) , rgb(39, 94, 197)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(76, 131, 231) , rgb(39, 94, 197)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(76, 131, 231) , rgb(39, 94, 197));  /* 标准的语法 */
 }
 .activity-detail-page .pop-hide,
 .activity-detail-page .modal-hide,
@@ -475,7 +484,10 @@ export default {
   .activity-detail-words-btn
   button:last-child {
   margin-left: 20px;
-  background-color: rgb(5, 145, 226);
+  background: -webkit-linear-gradient(left, rgb(76, 131, 231) , rgb(39, 94, 197));  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(76, 131, 231) , rgb(39, 94, 197)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(76, 131, 231) , rgb(39, 94, 197)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(76, 131, 231) , rgb(39, 94, 197));  /* 标准的语法 */
 }
 .activity-detail-page .activity-detail-comment-btn {
   margin-top: 15px;
@@ -495,17 +507,26 @@ export default {
 }
 .single_btn {
   width: 50%;
-  background-color: #ed4014;
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
   color: #fff;
 }
 .single_btn_isApply {
   width: 50%;
-  background-color: #2d8cf0;
+  background: -webkit-linear-gradient(left, rgb(76, 131, 231) , rgb(39, 94, 197));  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(76, 131, 231) , rgb(39, 94, 197)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(76, 131, 231) , rgb(39, 94, 197)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(76, 131, 231) , rgb(39, 94, 197));  /* 标准的语法 */
   color: #fff;
 }
 .single_btn_isDoing {
   width: 50%;
-  background-color: #ed4014;
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
   color: #fff;
 }
 .group_btn {
@@ -519,12 +540,18 @@ export default {
   width: 50%;
 }
 .group_btn_disApply button {
-  background-color: #ed4014;
+  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
   color: #fff;
   border-radius: 0%;
 }
 .group_btn_apply button {
-  background-color: #2d8cf0;
+  background: -webkit-linear-gradient(left, rgb(76, 131, 231) , rgb(39, 94, 197));  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, rgb(76, 131, 231) , rgb(39, 94, 197)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right,  rgb(76, 131, 231) , rgb(39, 94, 197)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, rgb(76, 131, 231) , rgb(39, 94, 197));  /* 标准的语法 */
   color: #fff;
   border-radius: 0%;
 }
