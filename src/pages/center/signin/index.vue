@@ -1,6 +1,11 @@
 <template >
   <view class="signin-page">
-    <head-message :valueData="valueData"> </head-message>
+    <wux-tabs controlled :current="current" @change="onChange">
+        <wux-tab key="signin_tab1">
+            <wux-badge count="3">累计签到</wux-badge>
+        </wux-tab>
+    </wux-tabs>
+    <!-- <head-message :valueData="valueData"> </head-message> -->
     <navigation-card :data="activityList" :iconClick="iconClick"/>
   </view>
 </template>
@@ -15,6 +20,7 @@ export default {
   },
   data () {
     return {
+      current: 'signin_tab1',
       valueData: '累计签到： 28次',
       activityList: [
         {
@@ -89,6 +95,10 @@ export default {
     iconClick (item) {
       console.log('item', item)
       wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
+    },
+    onChange (e) {
+      console.log('onChange', e)
+      this.current = e.target.key;
     }
   }
 };

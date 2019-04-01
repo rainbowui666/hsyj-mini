@@ -429,23 +429,23 @@ export default {
   margin-top: 15px;
   background: -webkit-linear-gradient(
     left,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Firefox 3.6 - 15 */
   background: linear-gradient(
     to right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* 标准的语法 */
   margin-left: 70%;
 }
@@ -475,23 +475,23 @@ export default {
   margin-left: 20px;
   background: -webkit-linear-gradient(
     left,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Firefox 3.6 - 15 */
   background: linear-gradient(
     to right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* 标准的语法 */
 }
 .activity-detail-page .pop-hide,
@@ -533,23 +533,23 @@ export default {
   margin-left: 20px;
   background: -webkit-linear-gradient(
     left,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Firefox 3.6 - 15 */
   background: linear-gradient(
     to right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* 标准的语法 */
 }
 .activity-detail-page .activity-detail-comment-btn {
@@ -596,23 +596,23 @@ export default {
   width: 50%;
   background: -webkit-linear-gradient(
     left,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* Firefox 3.6 - 15 */
   background: linear-gradient(
     to right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(241, 92, 92),
+    rgb(255, 38, 0)
   ); /* 标准的语法 */
   color: #fff;
 }
@@ -677,23 +677,23 @@ export default {
 .group_btn_apply button {
   background: -webkit-linear-gradient(
     left,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(161, 166, 175),
+    rgb(118, 123, 133)
   ); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(161, 166, 175),
+    rgb(118, 123, 133)
   ); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(
     right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(161, 166, 175),
+    rgb(118, 123, 133)
   ); /* Firefox 3.6 - 15 */
   background: linear-gradient(
     to right,
-    rgb(76, 131, 231),
-    rgb(39, 94, 197)
+    rgb(161, 166, 175),
+    rgb(118, 123, 133)
   ); /* 标准的语法 */
   color: #fff;
   border-radius: 0%;

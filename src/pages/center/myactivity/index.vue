@@ -1,6 +1,20 @@
 <template >
   <view class="myactivity-page">
-    <head-message :valueData="valueData"> </head-message>
+      <wux-tabs controlled :current="current" @change="onChange">
+        <wux-tab key="myactivity_tab1">
+            <wux-badge count="3">已报名</wux-badge>
+        </wux-tab>
+        <wux-tab key="myactivity_tab2">
+            <wux-badge count="1024">成功活动</wux-badge>
+        </wux-tab>
+        <wux-tab key="myactivity_tab3">
+            <wux-badge count="4">失败活动</wux-badge>
+        </wux-tab>
+        <wux-tab key="myactivity_tab4">
+            <wux-badge count="4">进行中</wux-badge>
+        </wux-tab>
+      </wux-tabs>
+    <!-- <head-message :valueData="valueData"> </head-message> -->
     <common-card :data="activityList" :iconClick="iconClick"/>
   </view>
 </template>
@@ -15,6 +29,7 @@ export default {
   },
   data () {
     return {
+      current: 'myactivity_tab1',
       valueData: '已报名：2次  成功活动：2次  失败活动：1次  进行中：1次',
       activityList: [
         {
@@ -83,6 +98,10 @@ export default {
     iconClick (item) {
       console.log('item', item)
       wx.navigateTo({ url: '/pages/activity/activityDetail/main?name=' + item.activityName })
+    },
+    onChange (e) {
+      console.log('onChange', e)
+      this.current = e.target.key;
     }
   }
 };
