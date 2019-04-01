@@ -197,7 +197,7 @@ export default {
 
 <style>
 
-.sight-page .activity-sight-list{
-  /* margin-top: 54px; */
+.sight-page{
+  background-color: #f4f4f4;
 }
 </style>

@@ -283,14 +283,12 @@ export default {
   width: 100%;
 }
 .activity-detail-page .activity-detail-desc {
-  width: 95%;
   margin: 10px auto;
-  border: 1px solid #eee;
   font-size: 14px;
 }
 .activity-detail-page .activity-detail-desc-rows {
   padding: 5px 0;
-  height: 100px;
+  height: 55px;
 }
 .activity-detail-page .activity-detail-desc-rows-inner {
   width: 100%;

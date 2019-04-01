@@ -63,7 +63,9 @@ export default {
   display: flex;
   width: 100%;
   height: 85px;
-  border-bottom: 1px solid #888;
+  margin-bottom: 10px;
+  background-color: #fff;
+  /* border-bottom: 1px solid #888; */
 }
 .sight-card-image {
   width: 20%;
@@ -110,6 +112,7 @@ export default {
 .sight-card-content-icongroup {
   padding-left: 5px;
   display: flex;
+  margin-bottom:10px;
 }
 .sight-card-content-icongroup .on-status {
   margin-left: 20px;
