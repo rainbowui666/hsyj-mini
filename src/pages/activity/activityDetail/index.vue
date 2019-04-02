@@ -328,6 +328,7 @@ export default {
 }
 .activity-detail-page .activity-detail-icon-group2-inner {
   width: 80%;
+  margin-top: 30px;
 }
 .activity-detail-desc-rows-icon{
   display: flex;

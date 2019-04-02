@@ -62,7 +62,7 @@ export default {
   width: 100%;
   height: 85px;
   /* border-bottom:1px solid #888; */
-  margin-bottom: 10px;
+  margin-bottom: 1px;
   background-color: #fff;
 }
 .navigation-card-image {
