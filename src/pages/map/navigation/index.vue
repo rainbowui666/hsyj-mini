@@ -204,4 +204,7 @@ export default {
 </script>
 
 <style>
+.navigation-page{
+  background-color: #f4f4f4;
+}
 </style>

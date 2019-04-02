@@ -59,6 +59,30 @@ export default {
           'latitude': 31.27184,
           'province': 'sh',
           'location': '上海市嘉定区联西路11号'
+        },
+        {
+          'id': 3,
+          'user_id': 7318,
+          'longitude': 121.565781,
+          'latitude': 31.159934,
+          'province': 'sh',
+          'location': '上海市嘉定区联西路11号'
+        },
+        {
+          'id': 4,
+          'user_id': 7318,
+          'longitude': 121.451797,
+          'latitude': 31.200468,
+          'province': 'sh',
+          'location': '上海市嘉定区联西路11号'
+        },
+        {
+          'id': 5,
+          'user_id': 7318,
+          'longitude': 121.348801,
+          'latitude': 31.154058,
+          'province': 'sh',
+          'location': '上海市嘉定区联西路11号'
         }
       ]
     };
@@ -239,7 +263,8 @@ page {
   width: 40px;
   height: 40px;
   position: absolute;
-  bottom: 3%;
+  top: 9%;
+  /* bottom: 3%; */
   right: 5%;
   animation: twinkling 2s 3 ease-in-out;
 }

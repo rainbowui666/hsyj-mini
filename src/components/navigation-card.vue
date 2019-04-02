@@ -6,6 +6,10 @@
           <image mode="widthFix" :src="item.src"/>
         </view>
         <view class="navigation-card-content">
+          <view class="common-card-content-tag">
+          <!-- <wux-tag v-if="item.activityStatus=='进行中'" color="red">进行中</wux-tag> -->
+          <wux-tag color="geekblue">{{item.tagText}}</wux-tag>
+          </view>
           <view class="navigation-card-content-title">
             <text>{{ item.activityName }}</text>
           </view>
@@ -57,7 +61,9 @@ export default {
   display: flex;
   width: 100%;
   height: 85px;
-  border-bottom:1px solid #888;
+  /* border-bottom:1px solid #888; */
+  margin-bottom: 10px;
+  background-color: #fff;
 }
 .navigation-card-image {
   width: 20%;

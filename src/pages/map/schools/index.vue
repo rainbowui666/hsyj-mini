@@ -11,7 +11,7 @@
         :class="ellipsis?'school-introduction ellipsis':'school-introduction unellipsis'"
       >&nbsp;&nbsp;{{ information.desc }}</text>
       <view class='school-introduction icon' @tap='expand'>
-        <wux-icon :type="ellipsis?'ios-arrow-down':'ios-arrow-up'"/>
+        <wux-icon :type="ellipsis?'ios-arrow-down':'ios-arrow-up'" color="#888"/>
       </view>
     </view>
     <view class='school-introduction-group-list'>
@@ -197,18 +197,20 @@ export default {
 
 .school-page .icon-group {
   /* width: 170px !important; */
-  height: 24px;
-  margin-top: -27px;
+  height: 28px;
+  margin-top: -34px;
   z-index: 999;
   background: #000;
   opacity: 0.5;
   display: flex;
-  line-height: 24px;
+  line-height: 28px;
   justify-content: flex-end;
   color:#fff;
   margin-left:0;
+  padding-bottom: 3px;
 }
 .school-page .icon-group-item{
   margin-right: 10px;
+  margin-top:-3px;
 }
 </style>
