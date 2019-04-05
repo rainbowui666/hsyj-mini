@@ -10,7 +10,7 @@
 	},
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
-	"appid": "wxfd42f5b992e42532",
+	"appid": "wx57b35c6b53e20d2d",
 	"projectname": "ebaocloud",
 	"condition": {
 		"search": {
