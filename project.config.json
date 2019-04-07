@@ -11,7 +11,7 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wx57b35c6b53e20d2d",
-	"projectname": "ebaocloud",
+	"projectname": "上海校园文化印迹",
 	"condition": {
 		"search": {
 			"current": -1,
