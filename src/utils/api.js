@@ -1,6 +1,6 @@
 import request from './request'
 
-const ApiRootUrl = 'https://rainbow.ebaotech.com/api/'
+const ApiRootUrl = 'http://hsyj.100eduonline.com/api/'
 const ApiGateWayUrl = 'https://sit.ebaocloud.com/api/'
 
 const api = {

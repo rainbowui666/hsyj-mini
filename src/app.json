@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/center/login/main",
+    "pages/center/homeflash/main",
     "pages/map/main",
     "pages/activity/main",
     "pages/center/main",
