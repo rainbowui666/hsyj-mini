@@ -1,28 +1,32 @@
 <template >
   <view class="login">
     <view class="login-list">
-      <!-- <h2 class="login_title">上海高校文化印记在线社区</h2> -->
-      <img class="img" :src="header">
-      <view class="userinfo">
+      <view class="login-bg">
+      <h2 class="login_title">仅对在校大学生开放</h2>
         <view class="userinfo-name">
-          <input maxlength="11" type="text" placeholder="请输入姓名" @input="bindInput">
-        </view>
-        <!-- <view class="userinfo-name">
-          <input maxlength="11" type="number" placeholder="请输入学籍号码" @input="bindInput">
-        </view> -->
-        <view class="userinfo-school">
-          <picker @change="bindPickerChange" :value="index" :range="array">
+          <picker @change="bindPickerChange" :value="index" :range="schoolList">
             <view class="picker">
               <view class="fb-type">
-                <view class="type-label">{{array[index]}}</view>
+                <view class="type-label">{{schoolList[index]}}</view>
               </view>
             </view>
           </picker>
         </view>
-        <view class="userinfo-confirm">
+        <view class="userinfo-name">
+          <input maxlength="11" type="number" placeholder="学号" @input="bindInput">
+        </view>
+        <view class="userinfo-name">
+          <input maxlength="11" type="text" placeholder="姓名" @input="bindInput">
+        </view>
+        <view class="userinfo-name">
+          <input maxlength="11" type="number" placeholder="手机" @input="bindInput">
+        </view>
+        <view>
+        <view class="login-btn">
           <button
             @click="goInHsyj"
-          >进入小程序</button>
+          >提交</button>
+        </view>
         </view>
       </view>
     </view>
@@ -30,22 +34,30 @@
 </template>
 
 <script>
-import headerImg from '../../../../static/images/login_bg.png'
 export default {
   data () {
     return {
-      timeCounter: null,
-      showtime: null,
-      spinning: true,
-      showSpin: false,
       userInfo2: {
         disabled: true
       },
-      header: headerImg,
       // header: 'https://rainbow.ebaotech.com/static/rainbow/image/login_header.jpg',
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      array: ['复旦大学', '上海大学', '同济大学'],
+      schoolList: ['复旦大学', '上海大学', '同济大学'],
+      // schoolList: [
+      //   {
+      //     id: 1,
+      //     schoolName: '复旦大学'
+      //   },
+      //   {
+      //     id: 2,
+      //     schoolName: '上海大学'
+      //   },
+      //   {
+      //     id: 3,
+      //     schoolName: '同济大学'
+      //   }
+      // ],
       index: 0
     };
   },
@@ -61,11 +73,20 @@ export default {
 
 <style>
 page {
-  background: #f4f4f4;
+  background: #a19f9f;
   min-height: 100%;
 }
+.login-bg{
+  padding:5%;
+  background-color: #fff;
+  margin: 5px 15px;
+  height: calc(100vh - 76px);
+  border-radius: 4px;
+}
 .login_title{
-  padding:20%;
+  padding: 3%;
+  font-size: 16px;
+  color: #8d8989;
 }
 .container {
   background: #f4f4f4;
@@ -76,61 +97,35 @@ page {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #fff;
+  background: #e7e2e2;
   border-top: 1px solid #e1e1e1;
 }
 
-.userinfo-name,
-.userinfo-school {
+.userinfo-name{
   display: flex;
   justify-content: space-between;
   margin: 20px;
   border: solid 1px #d6d6d6;
   border-radius: 4px;
 }
-.userinfo-name > input,
-.userinfo-school > input{
+.userinfo-name > input{
   line-height:48px;
   height:48px;
   font-size:14px;
   justify-content:space-between;
   width:70%;
-  padding-left:36px;
+  padding-left:26px;
 }
-.picker{
-  line-height:48px;
-  height:48px;
-  font-size:14px;
-  justify-content:space-between;
-  width:70%;
-  padding-left:36px;
-  background: url('../../../../static/images/login_school.png');
-  background-repeat: no-repeat;
-  background-size: 18%;
-  background-position: 10px;
-}
-.fb-type .type-label{
-  height: 36rpx;
-  flex: 1;
-  color: #888;
-  font-size: 28rpx;
-}
-.userinfo-name > input
+
+/* .userinfo-name > input
 {
       background: url('../../../../static/images/login_name.png');
       background-repeat: no-repeat;
       background-size: 8%;
       background-position: 10px;
-}
-.userinfo-school > input
-{
-      background: url('../../../../static/images/login_school.png');
-      background-repeat: no-repeat;
-      background-size: 8%;
-      background-position: 10px;
-}
-.userinfo-name button,
-.userinfo-school button{
+} */
+
+.userinfo-name button{
   border:none;
   color:#278cec;
   height:24px;
@@ -177,4 +172,34 @@ width:100%;
   color: #ff9a14;
 }
 
+.picker{
+  line-height:48px;
+  height:48px;
+  font-size:14px;
+  justify-content:space-between;
+  width:70%;
+  padding-left: 26px;
+  /* background: url('../../../../static/images/login_school.png');
+  background-repeat: no-repeat;
+  background-size: 18%;
+  background-position: 10px; */
+}
+
+.fb-type .type-label{
+  height: 36rpx;
+  flex: 1;
+  color: #888;
+  font-size: 28rpx;
+}
+.login-btn{
+  margin-top: 20%;
+}
+.login-btn button{
+  color: #fff;
+  background-color: rgb(228, 88, 88);
+  border-radius: 6px;
+  width:90%;
+  height:40px;
+  font-size:16px;
+}
 </style>

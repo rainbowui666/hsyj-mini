@@ -11,7 +11,8 @@
     "pages/map/navigation/main",
     "pages/center/message/main",
     "pages/center/myactivity/main",
-    "pages/center/integral/main"
+    "pages/center/integral/main",
+    "pages/center/login/main"
   ],
   "window": {
     "navigationBarTitleText": "Demo",
