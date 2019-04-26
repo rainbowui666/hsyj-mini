@@ -17,7 +17,6 @@
         <scroll-view scroll-x="true" class="scenic-spot-recommendation">
           <view class="scenic-spot-recommendation-view">
             <view
-              scroll-x="true"
               v-for="(item, index) in imgList"
               :key="index"
               class="scenic-spot-recommendation-view-inner"
@@ -27,12 +26,36 @@
           </view>
         </scroll-view>
       </view>
+      <view class="scenic-spot-message-group">
+        <view class="scenic-spot-message-text">精选评论</view>
+        <view scroll-x="true" class="scenic-spot-message">
+          <view class="scenic-spot-message-view">
+            <view
+              v-for="(item, index) in messageList"
+              :key="index"
+              class="scenic-spot-message-view-inner"
+            >
+            <!-- <view class="scenic-spot-message-view-inner"> -->
+              <image
+                src="../../static/images/fudan1.jpeg"
+                style="width:80px;height:50px"
+                class="scenic-spot-message-view-inner-image"
+              />
+              <message-card :data="item"/>
+            </view>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 </template>
 
 <script>
+import messageCard from '../../components/message-card';
 export default {
+  components: {
+    messageCard
+  },
   data () {
     return {
       movies: [
@@ -75,6 +98,40 @@ export default {
           url: '../../static/images/fudan2.jpeg'
         }
       ],
+      messageList: [
+        {
+          url: '../../static/images/fudan1.jpeg',
+          userImg: '../../static/images/fudan1.jpeg',
+          userName: '用户1',
+          label: '三天前',
+          pointsNum: '1234',
+          text: 'hahahahahahahahahah'
+        },
+        {
+          url: '../../static/images/fudan1.jpeg',
+          userImg: '../../static/images/fudan1.jpeg',
+          userName: '用户1',
+          label: '三天前',
+          pointsNum: '1234',
+          text: 'hahahahahahahahahah'
+        },
+        {
+          url: '../../static/images/fudan1.jpeg',
+          userImg: '../../static/images/fudan1.jpeg',
+          userName: '用户1',
+          label: '三天前',
+          pointsNum: '1234',
+          text: 'hahahahahahahahahah'
+        },
+        {
+          url: '../../static/images/fudan1.jpeg',
+          userImg: '../../static/images/fudan1.jpeg',
+          userName: '用户1',
+          label: '三天前',
+          pointsNum: '1234',
+          text: 'hahahahahahahahahah'
+        }
+      ],
       homeFlash: 'http://hsyj.100eduonline.com/static/images/into_flash.gif',
       showGif: true
     };
@@ -84,10 +141,47 @@ export default {
       this.showGif = false;
       wx.setNavigationBarTitle({
         title: '红色印记'
-      })
-    }, 2010)
+      });
+    }, 2010);
   },
-  methods: {}
+  methods: {},
+  onReachBottom: function () {
+    // 显示顶部刷新图标
+    console.log('11111');
+    // 显示加载图标
+    wx.showLoading({
+      title: '玩命加载中'
+    });
+    // this.messageList.push({
+    //   url: '../../static/images/fudan1.jpeg',
+    //   text: '1'
+    // });
+
+    // 页数+1
+    // page = page + 1;
+    // wx.request({
+    //   url: 'https://xxx/?page=' + page,
+    //   method: 'GET',
+    //   // 请求头部
+    //   header: {
+    //     'content-type': 'application/text'
+    //   },
+    //   success: function (res) {
+    //     // 回调函数
+    //     var moment_list = that.data.moment;
+
+    //     for (var i = 0; i < res.data.data.length; i++) {
+    //       moment_list.push(res.data.data[i]);
+    //     }
+    //     // 设置数据
+    //     that.setData({
+    //       moment: that.data.moment
+    //     })
+    // 隐藏加载框
+    wx.hideLoading();
+    // }
+    // })
+  }
 };
 </script>
 
@@ -106,12 +200,16 @@ export default {
 .activity-page .common-card-content-icongroup .icon-group {
   width: 95%;
 }
-.img_flash{
+.img_flash {
   width: 100%;
   height: 100vh;
 }
 .scenic-spot-recommendation-group {
-  height: 120px;
+  height: 140px;
+  margin-top: 15px;
+  background-color: #fff;
+}
+.scenic-spot-message-group {
   margin-top: 15px;
   background-color: #fff;
 }
@@ -124,7 +222,7 @@ export default {
   margin-left: 10px;
 }
 .scenic-spot-recommendation-view {
-  height: 85%;
+  height: 76%;
   display: flex;
   flex-direction: row;
 }
@@ -138,4 +236,23 @@ export default {
   width: 70px;
   border-radius: 15%;
 }
+.scenic-spot-message-view-inner {
+  display: flex;
+  width:95%;
+  margin: 10px auto 0 auto;
+}
+.scenic-spot-message-text-group {
+  display: flex;
+}
+.scenic-spot-message-text {
+  display: flex;
+  flex-direction: column;
+}
+.scenic-spot-message-text-label {
+  display: flex;
+}
+.scenic-spot-message-text-icon-group {
+  display: flex;
+}
 </style>
+
