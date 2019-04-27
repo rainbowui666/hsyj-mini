@@ -10,7 +10,7 @@
         <view>{{data.userName}}</view>
         <view>{{data.label}}</view>
         <view class="scenic-spot-message-text-icon-group" @click="click">
-          <icon type="success" size="20"/>
+          <wux-icon type="ios-thumbs-up" size="20"/>
           <view>{{data.pointsNum}}</view>
         </view>
       </view>

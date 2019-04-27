@@ -229,7 +229,7 @@ export default {
 .activity-page .slide-image {
   width: 100%;
 }
-.activity-page .common-card-content-icongroup .icon-group {
+/* .activity-page .common-card-content-icongroup .icon-group {
   width: 95%;
-}
+} */
 </style>

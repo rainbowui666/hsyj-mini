@@ -4,6 +4,11 @@
       <img class="img_flash" :src="homeFlash">
     </view>
     <view v-else class="activity-page">
+      <picker @change="pickerChange" :value="index" :range="array">
+      <view class="picker">
+        {{array[index]}}
+      </view>
+      </picker>
       <wux-search-bar clear show-cancel controlled placeholder="Search"/>
       <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
         <block v-for="(item, index) in movies" :key="index">
@@ -133,7 +138,9 @@ export default {
         }
       ],
       homeFlash: 'http://hsyj.100eduonline.com/static/images/into_flash.gif',
-      showGif: true
+      showGif: true,
+      array: ['上海大学', '上海复旦大学', '上海财经大学', '同济大学'],
+      index: 0
     };
   },
   mounted () {

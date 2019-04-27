@@ -1,15 +1,9 @@
 <template>
   <view>
-    <navigator url="/pages/activity/activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus">
+    <navigator
+      url="/pages/activity/activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus"
+    >
       <view v-for="(item,index) in data" :key="index" class="common-card">
-        <view class="common-card-image">
-          <image mode="widthFix" :src="item.src"/>
-          <view v-if="item.activityStatus" class="common-card-content-status">
-            <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
-            <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>
-            <!-- <icon-group :list="item.iconArr"/> -->
-          </view>
-        </view>
         <view class="common-card-content">
           <!-- <view class="common-card-content-tag">
           <wux-tag v-if="item.activityStatus=='进行中'" color="red">进行中</wux-tag>
@@ -19,20 +13,33 @@
             <text>{{ item.activityName }}</text>
           </view>
           <view class="common-card-content-desc">
-            <text>主办单位：</text>
-            <view class="common-card-content-desc-item">{{ item.activityHolder }}</view>
-            <text>活动时间：</text>
-            <view>{{ item.activityTime }}</view>
+            <view class="common-card-content-desc-item">
+              <text>主办单位：</text>
+              <view >{{ item.activityHolder }}</view>
+            </view>
+            <view class="common-card-content-desc-item">
+              <text>活动时间：</text>
+              <view>{{ item.activityTime }}</view>
+            </view>
           </view>
           <view class="common-card-content-icongroup">
+            <view class="common-card-content-icongroup-text">查看详情</view>
             <icon-group :list="item.iconArr"/>
             <!-- <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
             <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>-->
           </view>
         </view>
-        <view class="common-card-icon">
+        <!-- <view class="common-card-icon">
           <view class="common-card-icon-inner" @click="click(item)">
             <wux-icon :type="item.iconType" color="#888"/>
+          </view>
+        </view>-->
+        <view class="common-card-image">
+          <image mode="widthFix" :src="item.src"/>
+          <view v-if="item.activityStatus" class="common-card-content-status">
+            <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
+            <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>
+            <!-- <icon-group :list="item.iconArr"/> -->
           </view>
         </view>
       </view>
@@ -70,11 +77,11 @@ export default {
 .common-card {
   display: flex;
   width: 100%;
-  height: 85px;
+  /* height: 85px; */
   justify-content: space-between;
   margin-bottom: 3rpx;
   background-color: #fff;
-  padding-bottom:20rpx;
+  padding-bottom: 20rpx;
   /* border-bottom: 1px solid #6666; */
 }
 .common-card-image {
@@ -87,21 +94,24 @@ export default {
 .common-card-content {
   display: flex;
   flex-direction: column;
+  width: 65%;
   /* margin-left: 15px; */
 }
 .common-card-content-title {
   padding-top: 5px;
-  padding-left: 5px;
+  padding-left: 10px;
   /* font-size: 16px; */
 }
 .common-card-content-desc {
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: column;
   padding: 5px;
   font-size: 11px;
 }
 .common-card-content-desc-item {
-  margin-right: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
 }
 .common-card-content-status {
   padding-left: 5px;
@@ -118,20 +128,20 @@ export default {
   justify-content: center;
 }
 .common-card-content-icongroup {
-  /* padding-left: 5px; */
-  width: 50%;
+  padding-left: 10px;
+  /* width: 80%; */
   height: 26px;
   /* margin-top: -29px; */
   /* z-index: 999; */
   /* background: #000; */
   opacity: 0.6;
-  /* display: flex; */
+  display: flex;
   /* color:#fff; */
   line-height: 26px;
   /* justify-content: center; */
 }
 .common-card-content-icongroup .icon-group {
-  width: 50%;
+  width: 30%;
 }
 .common-card-content-icongroup .on-status {
   margin-left: 20px;
@@ -151,10 +161,8 @@ export default {
   display: flex;
   justify-content: center;
 }
-.common-card-icon-inner {
-  /* border: 1px solid #000;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center; */
+.common-card-content-icongroup-text {
+  width:50%;
+  font-size: 14px;
 }
 </style>
