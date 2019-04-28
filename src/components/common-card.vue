@@ -85,7 +85,7 @@ export default {
   /* border-bottom: 1px solid #6666; */
 }
 .common-card-image {
-  width: 20%;
+  width: 30%;
   padding: 5px;
 }
 .common-card-image image {

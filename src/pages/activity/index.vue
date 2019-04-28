@@ -43,7 +43,7 @@ export default {
           activityStatus: '已报名',
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
@@ -65,7 +65,7 @@ export default {
           activityStatus: '进行中',
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
@@ -87,7 +87,7 @@ export default {
           isSingle: false,
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
@@ -108,7 +108,7 @@ export default {
           iconType: 'ios-arrow-forward',
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
@@ -129,7 +129,7 @@ export default {
           iconType: 'ios-arrow-forward',
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
@@ -150,7 +150,7 @@ export default {
           iconType: 'ios-arrow-forward',
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
@@ -171,7 +171,7 @@ export default {
           iconType: 'ios-arrow-forward',
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
@@ -192,7 +192,7 @@ export default {
           iconType: 'ios-arrow-forward',
           iconArr: [
             {
-              icon: 'ios-heart',
+              icon: 'ios-thumbs-up',
               size: '16',
               color: '#888',
               label: 11
