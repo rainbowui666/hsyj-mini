@@ -33,62 +33,175 @@ export default {
       valueData: '已报名：2次  成功活动：2次  失败活动：1次  进行中：1次',
       activityList: [
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
-          activityStatus: '已报名'
+          activityStatus: '已报名',
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
-          activityStatus: '进行中'
+          activityStatus: '进行中',
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          isSingle: false,
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          iconArr: [
+            {
+              icon: 'ios-thumbs-up',
+              size: '16',
+              color: '#888',
+              label: 11
+            },
+            {
+              icon: 'ios-chatboxes',
+              size: '16',
+              color: '#888',
+              label: 11
+            }
+          ]
         }
 
       ]

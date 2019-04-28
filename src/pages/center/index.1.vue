@@ -1,10 +1,7 @@
 <template >
     <view class="container">
         <view class="wrap">
-          <view>
-          <img src="http://hsyj.100eduonline.com/static/mini-images/bg.jpg" alt="bg" class="bg-image" />
-          <img src="http://hsyj.100eduonline.com/static/mini-images/head1.jpeg" alt="head" class="head-image" />
-          <h3 class="user-name">我是皮仔呀</h3>
+          <img src="../../../static/images/center_bg.jpeg" alt="bg" class="bg-image" />
           <view class="personal-center">
             <!-- <navigator url="/pages/center/signin/main"> -->
               <view class="item">
@@ -31,20 +28,18 @@
               </view>
             <!-- </navigator> -->
           </view>
-          </view>
-          <view class="center-sub">
-            <myactivity />
-          </view>
         </view>
+        <wux-cell-group class="mySelf_group">
+            <wux-cell thumb="../../../static/images/map.png" title="我的签到" is-link extra="2次"  @click="gotoSignin"></wux-cell>
+            <wux-cell thumb="../../../static/images/edit1.png" title="我的留言" is-link extra="29次"  @click="gotoMessage"></wux-cell>
+            <wux-cell thumb="../../../static/images/activity.png" title="我的活动" is-link extra="33次"  @click="gotoActicity"></wux-cell>
+            <wux-cell thumb="../../../static/images/integral.png" title="我的积分" is-link extra="56分" @click="gotoIntegral"></wux-cell>
+        </wux-cell-group>
     </view>
 </template>
 
 <script>
-import myactivity from './myactivity/index';
 export default {
-  components: {
-    myactivity
-  },
   data () {
     return {
       userInfo: {}
@@ -84,7 +79,7 @@ page {
 .container {
   background: #ffffff;
   height: auto;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
   position: relative;
 }
@@ -94,37 +89,19 @@ page {
 }
 .bg-image {
   width: 100%;
-  height: 180px;
-}
-.head-image{
-  width: 70px;
-  height: 70px;
-  border-radius:50%;
-  position: absolute;
-  top: -5%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-}
-.user-name{
-  border-radius:50%;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  font-size: 15px;
-  color: #fff;
+  height: 200px;
 }
 .personal-center{
   width: 85%;
-  height: 96px;
+  height: 100px;
   position: absolute;
   top: 36%;
   left: 50%;
   transform: translate(-50%, 50%);
   background-color: #fff;
-  margin: 10px auto;
+  margin: 20rpx auto;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 40rpx;
   box-shadow: 3px 3px 10px #c3c3c3;
   display: flex;
   justify-content: space-around;
@@ -149,11 +126,5 @@ page {
 .mySelf_group{
   margin-top:80px;
   width: 100%;
-}
-.center-sub{
-  width: 100%;
-  border-radius:50%;
-  position: absolute;
-  margin-top:20%;
 }
 </style>

@@ -9,6 +9,9 @@
     "wux-cell-group": "../../static/wux/cell-group/index",
     "wux-cell": "../../static/wux/cell/index",
     "wux-spin": "../../static/wux/spin/index",
-    "wux-prompt": "../../static/wux/prompt/index"
+    "wux-prompt": "../../static/wux/prompt/index",
+    "wux-tabs": "../../../static/wux/tabs/index",
+    "wux-tab": "../../../static/wux/tab/index",
+    "wux-badge": "../../../static/wux/badge/index"
   }
 }
