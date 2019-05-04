@@ -79,7 +79,7 @@ export default {
   width: 100%;
   /* height: 85px; */
   justify-content: space-between;
-  margin-bottom: 3rpx;
+  margin-top: 15rpx;
   background-color: #fff;
   padding-bottom: 20rpx;
   /* border-bottom: 1px solid #6666; */

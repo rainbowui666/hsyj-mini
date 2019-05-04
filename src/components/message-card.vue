@@ -10,7 +10,8 @@
         <view>{{data.userName}}</view>
         <view>{{data.label}}</view>
         <view class="scenic-spot-message-text-icon-group" @click="click">
-          <wux-icon type="ios-thumbs-up" size="20"/>
+          <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
+          <image class="thumbsUpImg" :src="thumbsUpImg"/>
           <view>{{data.pointsNum}}</view>
         </view>
       </view>
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+import thumbsUpImg from '../../static/images/thumbsUp.png'
 export default {
   props: {
     data: {
@@ -35,6 +37,7 @@ export default {
   },
   data () {
     return {
+      thumbsUpImg
     };
   },
   methods: {
@@ -74,13 +77,21 @@ export default {
   color:#aaa;
   padding-left:20rpx;
 }
-.scenic-spot-message-text-icon-group {
+/* .scenic-spot-message-text-icon-group {
   display: flex;
   position:absolute;
   right:10rpx;
   top:10rpx;
   font-size:24rpx;
   color:#aaa;
+} */
+.thumbsUpImg{
+  position:absolute;
+  width: 12px;
+  height: 12px;
+  right:10rpx;
+  top:10rpx;
+  color:#aaa
 }
 .scenic-spot-message-text-message{
   font-size: 24rpx;

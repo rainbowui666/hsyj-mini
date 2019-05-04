@@ -9,7 +9,7 @@
           <view class="picker">{{array[index]}}</view>
         </picker>
         <span class="sanjiao"></span>
-        <wux-search-bar clear show-cancel controlled placeholder="Search"/>
+        <wux-search-bar clear controlled placeholder="想要去哪儿?"/>
       </div>
       <view class="activity-recommendation-group">
         <view class="activity-recommendation-text">活动推荐</view>
@@ -251,8 +251,8 @@ export default {
   height: calc(100% - 180rpx);
   width: 40rpx;
   position: absolute;
-  background-color: red;
-  border-radius: 10rpx;
+  background-color: #d25136;
+  border-radius: 8rpx;
   left: -20rpx;
   margin: 50rpx 0;
 }
@@ -260,8 +260,8 @@ export default {
   height: calc(100% - 180rpx);
   width: 40rpx;
   position: absolute;
-  background-color: red;
-  border-radius: 10rpx;
+  background-color: #d25136;
+  border-radius: 8rpx;
   right: -20rpx;
   margin: 50rpx 0;
 }
@@ -284,7 +284,7 @@ export default {
 .scenic-spot-recommendation-group,
 .scenic-spot-message-group {
   background-color: #fff;
-  margin-top: 10rpx;
+  margin-top: 14rpx;
   position: relative;
 }
 .activity-recommendation-group {
@@ -294,9 +294,9 @@ export default {
 .scenic-spot-recommendation-text,
 .scenic-spot-message-text {
   margin-left: 15px;
-  font-size: 16px;
+  font-size: 18px;
   padding: 6px 0;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 .scenic-spot-recommendation-group {
   height: 240rpx;
@@ -330,7 +330,7 @@ export default {
 .scenic-spot-message-view-inner > image {
   border-radius: 15%;
 }
-/* // */
+/* /searchBar/ */
 .searchBar {
   display: flex;
   background-color: #fff;
@@ -351,8 +351,10 @@ export default {
 }
 .searchBar > ._wux-search-bar {
   flex-grow: 1;
+  margin-top:-1px;
+  margin-bottom:-1px;
 }
-
+/* /swiper/ */
 .swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
   margin-bottom: 20rpx;
 }
@@ -363,7 +365,7 @@ export default {
   width: 40rpx;
   display: inline-flex;
   height: 10rpx;
-  margin-left: 20rpx;
+  margin-left: 5rpx;
   justify-content: space-between;
   position: relative;
   top: 10px;
@@ -371,11 +373,11 @@ export default {
 .swiper .wx-swiper-dot::before {
   content: "";
   flex-grow: 1;
-  background: #ddd;
+  background: #c4c1c1;
   border-radius: 8rpx;
 }
 .swiper .wx-swiper-dot-active::before {
-  background: red;
+  background: #d25136;
 }
 </style>
 

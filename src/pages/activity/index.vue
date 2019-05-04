@@ -1,12 +1,16 @@
 <template >
   <view class="activity-page">
-    <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
-      <block v-for="(item, index) in movies" :key="index">
-        <swiper-item>
-          <image :src="item.url" class="slide-image"/>
-        </swiper-item>
-      </block>
-    </swiper>
+    <div class="activity-banner-group">
+      <div class="swiperBgLeft"></div>
+      <div class="swiperBgRight"></div>
+      <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
+        <block v-for="(item, index) in movies" :key="index">
+          <swiper-item>
+            <image :src="item.url" class="slide-image"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </div>
     <common-card :data="activityList" :iconClick="iconClick"/>
   </view>
 </template>
@@ -220,16 +224,69 @@ export default {
 
 <style>
 .activity-page{
-  background-color: #f4f4f4;
+  background-color: #eeecec;
 }
-.activity-page .swiper {
-  width: 100%;
-  height: 230px;
+.activity-banner-group{
+  position: relative;
+  background-color: #fff;
+  border-top:15rpx solid #eeecec;
 }
 .activity-page .slide-image {
   width: 100%;
+  border-radius:10rpx;
 }
-/* .activity-page .common-card-content-icongroup .icon-group {
-  width: 95%;
-} */
+/* /swiper/ */
+.swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
+  margin-bottom: 20rpx;
+}
+.swiper {
+  position: relative;
+}
+.swiper .wx-swiper-dot {
+  width: 40rpx;
+  display: inline-flex;
+  height: 10rpx;
+  margin-left: 5rpx;
+  justify-content: space-between;
+  position: relative;
+  top: 10px;
+}
+.swiper .wx-swiper-dot::before {
+  content: "";
+  flex-grow: 1;
+  background: #c4c1c1;
+  border-radius: 8rpx;
+}
+.swiper .wx-swiper-dot-active::before {
+  background: #d25136;
+}
+/* // */
+.activity-page .swiper {
+  width: 92%;
+  height: 360rpx;
+  margin: 0 auto;
+  padding:26rpx 0;
+}
+.swiperBgLeft {
+  height:calc(100% - 90rpx);
+  width: 40rpx;
+  position: absolute;
+  background-color: #d25136;
+  border-radius: 8rpx;
+  left: -20rpx;
+  margin: 50rpx 0;
+}
+.swiperBgRight {
+ height:calc(100% - 90rpx);
+  width: 40rpx;
+  position: absolute;
+  background-color: #d25136;
+  border-radius: 8rpx;
+  right: -20rpx;
+  margin: 50rpx 0;
+}
+.activity-page ._swiper-item {
+  border-radius: 10rpx;
+  overflow: visible !important;
+}
 </style>
