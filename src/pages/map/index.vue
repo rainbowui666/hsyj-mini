@@ -25,6 +25,15 @@
           </swiper>
         <!-- </view> -->
       </view>
+      </picker>
+      <wux-search-bar clear show-cancel controlled placeholder="Search"/>
+      <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
+        <block v-for="(item, index) in movies" :key="index">
+          <swiper-item>
+            <image :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress" class="slide-image"/>
+          </swiper-item>
+        </block>
+      </swiper>
       <view class="scenic-spot-recommendation-group">
         <view class="scenic-spot-recommendation-text">景点推荐</view>
         <scroll-view scroll-x="true" class="scenic-spot-recommendation">
@@ -34,7 +43,7 @@
               :key="index"
               class="scenic-spot-recommendation-view-inner"
             >
-              <image :src="item.url" class="scenic-spot-recommendation-view-inner-image"/>
+              <image :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress" class="scenic-spot-recommendation-view-inner-image"/>
             </view>
           </view>
         </scroll-view>
@@ -50,8 +59,8 @@
             >
             <!-- <view class="scenic-spot-message-view-inner"> -->
               <image
-                src="../../static/images/fudan1.jpeg"
-                style="width:60px;height:50px"
+                :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                style="width:80px;height:50px"
                 class="scenic-spot-message-view-inner-image"
               />
               <message-card :data="item"/>
@@ -65,6 +74,7 @@
 
 <script>
 import messageCard from '../../components/message-card';
+import api from '@/utils/api'
 export default {
   components: {
     messageCard
@@ -148,18 +158,31 @@ export default {
       homeFlash: 'http://hsyj.100eduonline.com/static/images/into_flash.gif',
       showGif: true,
       array: ['上海大学', '上海复旦大学', '上海财经大学', '同济大学'],
-      index: 0
+      index: 0,
+      pageindex: 1,
+      pagesize: 5
     };
   },
-  mounted () {
+  async mounted () {
     setTimeout(() => {
       this.showGif = false;
       wx.setNavigationBarTitle({
         title: '红色印记'
       });
     }, 2010);
+    await this.getAllRecommendList()
   },
-  methods: {},
+  methods: {
+    async getAllRecommendList () {
+      const res1 = await api.getRecommendList();
+      console.log('分类主页,请求结果', res1);
+      this.movies = res1.data.activitydata ? res1.data.activitydata : []
+      this.imgList = res1.data.scenerydata ? res1.data.scenerydata : []
+      const res2 = await api.getRecommendMessageList({pageindex: this.pageindex, pagesize: this.pagesize});
+      this.messageList = res2.data.data ? res2.data.data : []
+      console.log('推荐留言,请求结果', res2.data.data);
+    }
+  },
   onReachBottom: function () {
     // 显示顶部刷新图标
     console.log('11111');
@@ -167,35 +190,38 @@ export default {
     wx.showLoading({
       title: '玩命加载中'
     });
-    // this.messageList.push({
-    //   url: '../../static/images/fudan1.jpeg',
-    //   text: '1'
-    // });
 
     // 页数+1
-    // page = page + 1;
-    // wx.request({
-    //   url: 'https://xxx/?page=' + page,
-    //   method: 'GET',
-    //   // 请求头部
-    //   header: {
-    //     'content-type': 'application/text'
-    //   },
-    //   success: function (res) {
-    //     // 回调函数
-    //     var moment_list = that.data.moment;
+    let that = this
+    console.log('==============', that.pageindex)
 
-    //     for (var i = 0; i < res.data.data.length; i++) {
-    //       moment_list.push(res.data.data[i]);
-    //     }
-    //     // 设置数据
-    //     that.setData({
-    //       moment: that.data.moment
-    //     })
-    // 隐藏加载框
-    wx.hideLoading();
-    // }
-    // })
+    this.pageindex = this.pageindex + 1;
+    wx.request({
+      url: 'http://hsyj.100eduonline.com/api/api/discuss/homeDiscuss?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize,
+      method: 'GET',
+      // 请求头部
+      header: {
+        'content-type': 'application/text'
+      },
+      success: (res) => {
+        console.log('推荐留言,请求结果2222', res.data.data.data);
+
+        // 回调函数
+        console.log('==============', this.messageList)
+
+        let newMessageList = res.data.data.data ? res.data.data.data : []
+        for (var i = 0; i < newMessageList.length; i++) {
+          console.log('==============', this.messageList)
+          this.messageList.push(newMessageList[i]);
+        }
+        // 设置数据
+        // that.setData({
+        //   moment: that.data.moment
+        // })
+        // 隐藏加载框
+        wx.hideLoading();
+      }
+    })
   }
 };
 </script>

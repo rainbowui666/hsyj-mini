@@ -15,6 +15,12 @@ const api = {
   // 验证码检验
   validateVerification: (paramObj) => request.post('two-factor-service/2fa/verifyCode', paramObj, {
     baseURL: ApiGateWayUrl
+  }),
+  getRecommendList: (r) => request.get('api/index/home', null, {
+    baseURL: ApiRootUrl
+  }),
+  getRecommendMessageList: (obj) => request.get('api/discuss/homeDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
+    baseURL: ApiRootUrl
   })
 }
 

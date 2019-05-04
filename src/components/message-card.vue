@@ -14,8 +14,8 @@
           <view>{{data.pointsNum}}</view>
         </view>
       </view>
-      <view class="scenic-spot-message-text-message">
-        <view>{{data.text}}</view>
+      <view>
+        <view>{{data.content}}</view>
       </view>
     </view>
   </view>
