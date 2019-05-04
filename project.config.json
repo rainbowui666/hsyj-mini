@@ -11,7 +11,9 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wx57b35c6b53e20d2d",
-	"projectname": "上海校园文化印迹",
+	"projectname": "%E4%B8%8A%E6%B5%B7%E6%A0%A1%E5%9B%AD%E6%96%87%E5%8C%96%E5%8D%B0%E8%BF%B9",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
