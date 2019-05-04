@@ -6,34 +6,35 @@
     <view v-else class="activity-page">
       <div class="searchBar">
         <picker @change="pickerChange" :value="index" :range="array">
-          <view class="picker">
-            {{array[index]}}
-          </view>
+          <view class="picker">{{array[index]}}</view>
         </picker>
         <span class="sanjiao"></span>
         <wux-search-bar clear show-cancel controlled placeholder="Search"/>
       </div>
       <view class="activity-recommendation-group">
         <view class="activity-recommendation-text">活动推荐</view>
-          <div class="swiperBgLeft"></div><div class="swiperBgRight"></div>
-          <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
-            <block v-for="(item, index) in movies" :key="index">
-              <swiper-item>
-                <image :src="item.url" class="slide-image"  mode="widthFix"/>
-              </swiper-item>
-            </block>
-          </swiper>
+        <div class="swiperBgLeft"></div>
+        <div class="swiperBgRight"></div>
+        <swiper
+          class="swiper"
+          :indicator-dots="true"
+          :autoplay="true"
+          interval="3000"
+          duration="800"
+        >
+          <block v-for="(item, index) in movies" :key="index">
+            <swiper-item>
+              <image
+                :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                class="slide-image"
+              />
+            </swiper-item>
+          </block>
+        </swiper>
         <!-- </view> -->
       </view>
-      </picker>
-      <wux-search-bar clear show-cancel controlled placeholder="Search"/>
-      <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
-        <block v-for="(item, index) in movies" :key="index">
-          <swiper-item>
-            <image :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress" class="slide-image"/>
-          </swiper-item>
-        </block>
-      </swiper>
+      <!-- <wux-search-bar clear show-cancel controlled placeholder="Search"/> -->
+
       <view class="scenic-spot-recommendation-group">
         <view class="scenic-spot-recommendation-text">景点推荐</view>
         <scroll-view scroll-x="true" class="scenic-spot-recommendation">
@@ -43,7 +44,10 @@
               :key="index"
               class="scenic-spot-recommendation-view-inner"
             >
-              <image :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress" class="scenic-spot-recommendation-view-inner-image"/>
+              <image
+                :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                class="scenic-spot-recommendation-view-inner-image"
+              />
             </view>
           </view>
         </scroll-view>
@@ -57,7 +61,7 @@
               :key="index"
               class="scenic-spot-message-view-inner"
             >
-            <!-- <view class="scenic-spot-message-view-inner"> -->
+              <!-- <view class="scenic-spot-message-view-inner"> -->
               <image
                 :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                 style="width:80px;height:50px"
@@ -74,7 +78,7 @@
 
 <script>
 import messageCard from '../../components/message-card';
-import api from '@/utils/api'
+import api from '@/utils/api';
 export default {
   components: {
     messageCard
@@ -170,16 +174,19 @@ export default {
         title: '红色印记'
       });
     }, 2010);
-    await this.getAllRecommendList()
+    await this.getAllRecommendList();
   },
   methods: {
     async getAllRecommendList () {
       const res1 = await api.getRecommendList();
       console.log('分类主页,请求结果', res1);
-      this.movies = res1.data.activitydata ? res1.data.activitydata : []
-      this.imgList = res1.data.scenerydata ? res1.data.scenerydata : []
-      const res2 = await api.getRecommendMessageList({pageindex: this.pageindex, pagesize: this.pagesize});
-      this.messageList = res2.data.data ? res2.data.data : []
+      this.movies = res1.data.activitydata ? res1.data.activitydata : [];
+      this.imgList = res1.data.scenerydata ? res1.data.scenerydata : [];
+      const res2 = await api.getRecommendMessageList({
+        pageindex: this.pageindex,
+        pagesize: this.pagesize
+      });
+      this.messageList = res2.data.data ? res2.data.data : [];
       console.log('推荐留言,请求结果', res2.data.data);
     }
   },
@@ -192,26 +199,30 @@ export default {
     });
 
     // 页数+1
-    let that = this
-    console.log('==============', that.pageindex)
+    let that = this;
+    console.log('==============', that.pageindex);
 
     this.pageindex = this.pageindex + 1;
     wx.request({
-      url: 'http://hsyj.100eduonline.com/api/api/discuss/homeDiscuss?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize,
+      url:
+        'http://hsyj.100eduonline.com/api/api/discuss/homeDiscuss?pageindex=' +
+        this.pageindex +
+        '&pagesize=' +
+        this.pagesize,
       method: 'GET',
       // 请求头部
       header: {
         'content-type': 'application/text'
       },
-      success: (res) => {
+      success: res => {
         console.log('推荐留言,请求结果2222', res.data.data.data);
 
         // 回调函数
-        console.log('==============', this.messageList)
+        console.log('==============', this.messageList);
 
-        let newMessageList = res.data.data.data ? res.data.data.data : []
+        let newMessageList = res.data.data.data ? res.data.data.data : [];
         for (var i = 0; i < newMessageList.length; i++) {
-          console.log('==============', this.messageList)
+          console.log('==============', this.messageList);
           this.messageList.push(newMessageList[i]);
         }
         // 设置数据
@@ -221,7 +232,7 @@ export default {
         // 隐藏加载框
         wx.hideLoading();
       }
-    })
+    });
   }
 };
 </script>
@@ -230,33 +241,33 @@ export default {
 .activity-page {
   background-color: #f4f4f4;
 }
-.activity-page .swiper{
-  width:92%;
-  height:360rpx;
-  margin:0 auto;
+.activity-page .swiper {
+  width: 92%;
+  height: 360rpx;
+  margin: 0 auto;
   /* padding-bottom:30rpx; */
 }
-.swiperBgLeft{
-  height:calc( 100% - 180rpx );
-  width:40rpx;
-  position:absolute;
-  background-color:red;
-  border-radius:10rpx;
-  left:-20rpx;
-  margin:50rpx 0;
-}
-.swiperBgRight{
-  height:calc( 100% - 180rpx );
-  width:40rpx;
-  position:absolute;
-  background-color:red;
-  border-radius:10rpx;
-  right:-20rpx;
-  margin:50rpx 0;
-}
-.activity-page ._swiper-item{
+.swiperBgLeft {
+  height: calc(100% - 180rpx);
+  width: 40rpx;
+  position: absolute;
+  background-color: red;
   border-radius: 10rpx;
-  overflow:visible!important
+  left: -20rpx;
+  margin: 50rpx 0;
+}
+.swiperBgRight {
+  height: calc(100% - 180rpx);
+  width: 40rpx;
+  position: absolute;
+  background-color: red;
+  border-radius: 10rpx;
+  right: -20rpx;
+  margin: 50rpx 0;
+}
+.activity-page ._swiper-item {
+  border-radius: 10rpx;
+  overflow: visible !important;
 }
 .activity-page .slide-image {
   width: 100%;
@@ -271,25 +282,25 @@ export default {
 }
 .activity-recommendation-group,
 .scenic-spot-recommendation-group,
-.scenic-spot-message-group{
+.scenic-spot-message-group {
   background-color: #fff;
-  margin-top:10rpx;
+  margin-top: 10rpx;
   position: relative;
 }
-.activity-recommendation-group{
-  padding-bottom: 30rpx
+.activity-recommendation-group {
+  padding-bottom: 30rpx;
 }
 .activity-recommendation-text,
 .scenic-spot-recommendation-text,
-.scenic-spot-message-text{
+.scenic-spot-message-text {
   margin-left: 15px;
   font-size: 16px;
   padding: 6px 0;
-  font-weight: bold
+  font-weight: bold;
 }
 .scenic-spot-recommendation-group {
   height: 240rpx;
-  padding-bottom:20rpx;
+  padding-bottom: 20rpx;
 }
 .scenic-spot-recommendation {
   display: flex;
@@ -313,58 +324,58 @@ export default {
 }
 .scenic-spot-message-view-inner {
   display: flex;
-  width:95%;
+  width: 95%;
   margin: 10px auto 0 auto;
 }
-.scenic-spot-message-view-inner > image{
-  border-radius: 15%
+.scenic-spot-message-view-inner > image {
+  border-radius: 15%;
 }
 /* // */
-.searchBar{
+.searchBar {
   display: flex;
-  background-color:#fff;
+  background-color: #fff;
 }
-.searchBar > ._picker{
-  padding:0 5px 0 15px;
+.searchBar > ._picker {
+  padding: 0 5px 0 15px;
 }
-.searchBar > ._picker ._view{
-  line-height:84rpx;
-  font-size:34rpx;
+.searchBar > ._picker ._view {
+  line-height: 84rpx;
+  font-size: 34rpx;
 }
-.sanjiao{
-  width:0;
-  border-width:8rpx;
-  border-style:solid;
-  border-color:#777 transparent transparent transparent;
-  margin-top:40rpx;
+.sanjiao {
+  width: 0;
+  border-width: 8rpx;
+  border-style: solid;
+  border-color: #777 transparent transparent transparent;
+  margin-top: 40rpx;
 }
-.searchBar > ._wux-search-bar{
-  flex-grow:1;
+.searchBar > ._wux-search-bar {
+  flex-grow: 1;
 }
 
-.swiper .wx-swiper-dots.wx-swiper-dots-horizontal{
-     margin-bottom: 20rpx;
+.swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
+  margin-bottom: 20rpx;
 }
-.swiper{
-  position: relative
+.swiper {
+  position: relative;
 }
-.swiper .wx-swiper-dot{
-    width:40rpx;
-    display: inline-flex;
-    height: 10rpx;
-    margin-left: 20rpx;
-    justify-content:space-between;
-    position: relative;
-    top: 10px;
+.swiper .wx-swiper-dot {
+  width: 40rpx;
+  display: inline-flex;
+  height: 10rpx;
+  margin-left: 20rpx;
+  justify-content: space-between;
+  position: relative;
+  top: 10px;
 }
-.swiper .wx-swiper-dot::before{
-    content: '';
-    flex-grow: 1; 
-    background: #ddd;
-    border-radius: 8rpx
+.swiper .wx-swiper-dot::before {
+  content: "";
+  flex-grow: 1;
+  background: #ddd;
+  border-radius: 8rpx;
 }
-.swiper .wx-swiper-dot-active::before{
-    background:red;   
+.swiper .wx-swiper-dot-active::before {
+  background: red;
 }
 </style>
 
