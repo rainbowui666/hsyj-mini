@@ -31,13 +31,19 @@
               </view>
             <!-- </navigator> -->
           </view>
-          </view>
           <view class="center-sub">
             <mysignin v-if="isShowSignin" />
             <myactivity v-if="isShowActivity" />
             <myintegral v-if="isShowIntegral" />
             <mymessage v-if="isShowMessage" />
           </view>
+          </view>
+          <!-- <view class="center-sub">
+            <mysignin v-if="isShowSignin" />
+            <myactivity v-if="isShowActivity" />
+            <myintegral v-if="isShowIntegral" />
+            <mymessage v-if="isShowMessage" />
+          </view> -->
         </view>
     </view>
 </template>
@@ -120,7 +126,7 @@ page {
   width: 100%;
 }
 .container {
-  background: #c2c1c1;
+  background: #ccc;
   height: auto;
   overflow: auto;
   width: 100%;
@@ -153,17 +159,17 @@ page {
   color: #fff;
 }
 .personal-center{
-  width: 85%;
-  height: 96px;
+  width: 80%;
+  /* height: 96px; */
   position: absolute;
-  top: 36%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, 50%);
   background-color: #fff;
   margin: 10px auto;
   padding: 10px 20px;
   border-radius: 8px;
-  box-shadow: 3px 3px 10px #c3c3c3;
+  /* box-shadow: 3px 3px 10px #c3c3c3; */
   display: flex;
   justify-content: space-around;
 }
@@ -175,23 +181,25 @@ page {
   width: 50px;
   text-align: center;
   margin: 0 auto;
-  color: #777;
+  color: #fff;
   line-height: 50px;
   text-align: center;
   border-radius: 50%;
-  background-color: aliceblue;
+  background-color: #888;
 }
 .content {
-  line-height: 50px;
+  line-height: 40px;
 }
 .mySelf_group{
   margin-top:80px;
   width: 100%;
 }
 .center-sub{
-  width: 100%;
+  width:90%;
   border-radius:50%;
-  position: absolute;
-  margin-top:20%;
+  position:absolute;
+  margin-top:18%;
+  left:5%;
+  margin-bottom:10px;
 }
 </style>

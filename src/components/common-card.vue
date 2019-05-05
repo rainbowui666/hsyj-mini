@@ -10,7 +10,7 @@
           <wux-tag v-if="item.activityStatus=='已报名'" color="geekblue">已报名</wux-tag>
           </view>-->
           <view class="common-card-content-title">
-            <text>{{ item.activityName }}</text>
+            <view>{{ item.activityName }}</view>
           </view>
           <view class="common-card-content-desc">
             <view class="common-card-content-desc-item">
@@ -24,7 +24,9 @@
           </view>
           <view class="common-card-content-icongroup">
             <view class="common-card-content-icongroup-text">查看详情</view>
-            <icon-group :list="item.iconArr"/>
+            <image class="thumbsUpImg" :src="thumbsupImg"/>
+            <image class="messageImg" :src="messageImg"/>
+            <!-- <icon-group :list="item.iconArr"/> -->
             <!-- <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
             <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>-->
           </view>
@@ -49,6 +51,8 @@
 
 <script>
 import iconGroup from './icon-group';
+import thumbsupImg from '../../static/images/thumbsupImg.png'
+import messageImg from '../../static/images/messageImg.png'
 export default {
   components: {
     iconGroup
@@ -62,6 +66,12 @@ export default {
       type: Function,
       default: null
     }
+  },
+  data () {
+    return {
+      thumbsupImg,
+      messageImg
+    };
   },
   methods: {
     click (item) {
@@ -85,47 +95,71 @@ export default {
   /* border-bottom: 1px solid #6666; */
 }
 .common-card-image {
-  width: 30%;
+  width: 40%;
   padding: 5px;
+  border-radius:34rpx;
+  height:110px;
+  overflow:hidden;
+  position:relative;
 }
 .common-card-image image {
   width: 100%;
+  border-radius:40rpx;
 }
 .common-card-content {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 60%;
   /* margin-left: 15px; */
 }
 .common-card-content-title {
   padding-top: 5px;
   padding-left: 10px;
   /* font-size: 16px; */
+  max-height:58px;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .common-card-content-desc {
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  font-size: 11px;
+  padding:5rpx 20rpx 10rpx 20rpx;
+  font-size:26rpx;
+  color:#777;
+  white-space: nowrap;
+  flex-grow: 1
 }
 .common-card-content-desc-item {
   display: flex;
   flex-direction: row;
-  padding: 5px;
+  white-space:no-wrap;
+  /* padding: 5px; */
+}
+.common-card-content-desc-item ._text{
+  white-space:nowrap
+}
+.common-card-content-desc-item ._view{
+  height:20px;
+  overflow:hidden;
 }
 .common-card-content-status {
-  padding-left: 5px;
+  /* padding-left: 5px; */
   width: 93%;
-  height: 26px;
+  text-align: center;
+  /* height: 26px; */
   font-size: 14px;
-  margin-top: -29px;
-  z-index: 999;
-  background: #000;
-  opacity: 0.6;
-  display: flex;
+  /* margin-top: -29px; */
+  /* z-index: 999; */
+  background: rgba(210,81,54,0.6);
+  opacity: 0.99;
+  /* display: flex; */
   color: #fff;
   line-height: 26px;
-  justify-content: center;
+  /* justify-content: center; */
+  border-bottom-right-radius:10px;
+  border-bottom-left-radius:10px;
+  position:absolute;
+  bottom:0;
 }
 .common-card-content-icongroup {
   padding-left: 10px;
@@ -163,6 +197,17 @@ export default {
 }
 .common-card-content-icongroup-text {
   width:50%;
-  font-size: 14px;
+  font-size:28rpx;
+  color:#aaa;
+}
+.thumbsUpImg{
+  height:35rpx;
+  width:35rpx;
+  padding:4px;
+}
+.messageImg{
+  height:35rpx;
+  width:35rpx;
+  padding:4px;
 }
 </style>

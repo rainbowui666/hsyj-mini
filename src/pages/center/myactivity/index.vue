@@ -223,5 +223,27 @@ export default {
 <style>
 .myactivity-page{
   background-color: #f4f4f4;
+  border-radius:16rpx;
+}
+.myactivity-page > ._view{
+  border-top:1px solid #aaa;
+}
+.myactivity-page .wux-tabs{
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+.myactivity-page .common-card{
+  margin-top:0;
+  margin:0 20rpx;
+  width:calc(100% - 40rpx);
+  border-bottom:1px solid #aaa;
+}
+.myactivity-page .common-card:last-child{
+  border-bottom:none
+}
+.myactivity-page ._navigator,
+.myactivity-page .navigator-hover{
+  background-color:#fff;
+  border-radius:16rpx;
 }
 </style>
