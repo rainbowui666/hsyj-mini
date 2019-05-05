@@ -45,6 +45,7 @@
               class="scenic-spot-recommendation-view-inner"
             >
               <image
+                v-if="item.pics[0]"
                 :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                 class="scenic-spot-recommendation-view-inner-image"
               />

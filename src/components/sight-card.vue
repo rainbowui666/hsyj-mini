@@ -17,6 +17,9 @@
           <view class="sight-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
           </view>
+          <view class="sight-card-content-detail">
+            <view>点击查看详情</view>
+          </view>
         </view>
         <view class="sight-card-icon">
           <view class="sight-card-icon-inner" @click="click(item)">
@@ -62,7 +65,7 @@ export default {
 .sight-card {
   display: flex;
   width: 100%;
-  height: 85px;
+  height: 100px;
   margin-bottom: 3rpx;
   background-color: #fff;
   padding-bottom: 20rpx;
@@ -113,7 +116,7 @@ export default {
 .sight-card-content-icongroup {
   padding-left: 5px;
   display: flex;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 .sight-card-content-icongroup .on-status {
   margin-left: 20px;
@@ -126,6 +129,9 @@ export default {
   font-size: 14px;
   line-height: 27px;
   color: rgb(96, 170, 231);
+}
+.sight-card-content-detail {
+  font-size: 14px;
 }
 .sight-card-icon {
   width: 15%;

@@ -3,34 +3,22 @@
     <view class="activity-detail-image">
       <image src="../../../static/images/fudan1.jpeg"/>
       <view class="activity-detail-icon-group">
-        <icon-group :list="iconArr"/>
-      </view>
-    </view>
-    <view class="activity-detail-desc">
-      <wux-cell title="主办单位：" extra="复旦大学"></wux-cell>
-      <wux-cell title="协办单位：" extra="杨浦区教育局、邯郸路街道"></wux-cell>
-      <wux-cell title="活动开始时间：" extra="2019年4月11日10:00"></wux-cell>
-      <wux-cell title="活动结束时间：" extra="2019年4月11日18:00"></wux-cell>
-      <wux-cell title="出发地点：" extra="五角场大转盘地下广场"></wux-cell>
-      <view class="activity-detail-desc-rows">
-        <view class="activity-detail-desc-rows-inner">
-          <text class="explain">活动说明：</text>
-          <text>&nbsp;1.按时参加</text>
-          <navigator url="/pages/activity/activitySight/main">
-            <view class="activity-detail-desc-rows-icon">
-              <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text>
-              <wux-icon type="ios-arrow-forward" color="#888" size='16'/>
-              <!-- <text class="view-sight">&nbsp;查看参与景点</text> -->
-            </view>
-          </navigator>
-        </view>
-      </view>
-    </view>
-    <view class="activity-detail-icon-group2">
-      <view class="activity-detail-icon-group2-inner">
+        <!-- <icon-group :list="iconArr"/> -->
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
     </view>
+    <view class="activity-detail-desc">
+      <wux-cell thumb="../../../static/images/user1.png" title="主办单位：" extra="复旦大学"></wux-cell>
+      <wux-cell thumb="../../../static/images/user1.png" title="协办单位：" extra="杨浦区教育局、邯郸路街道"></wux-cell>
+      <wux-cell thumb="../../../static/images/user1.png" title="活动开始时间：" extra="2019年4月11日10:00"></wux-cell>
+      <wux-cell thumb="../../../static/images/user1.png" title="活动结束时间：" extra="2019年4月11日18:00"></wux-cell>
+      <wux-cell thumb="../../../static/images/user1.png" title="出发地点：" extra="五角场大转盘地下广场"></wux-cell>
+    </view>
+    <!-- <view class="activity-detail-icon-group2">
+      <view class="activity-detail-icon-group2-inner">
+        <icon-group :list="iconArr2" :iconClick="onClick"/>
+      </view>
+    </view> -->
     <view v-if="isSingle" class="bottom-btn">
       <button v-if="disApply" class="single_btn">报名</button>
       <button v-if="isApply" class="single_btn_isApply">已报名</button>
@@ -49,6 +37,21 @@
       </view>-->
       <view class="group_btn_apply">
         <button @click="onInviteBtn">扫码加入团队</button>
+      </view>
+    </view>
+    <view>
+      <view class="activity-detail-desc-rows">
+        <view class="activity-detail-desc-rows-inner">
+          <text class="explain">活动说明：</text>
+          <text>&nbsp;1.按时参加</text>
+          <!-- <navigator url="/pages/activity/activitySight/main"> -->
+            <view class="activity-detail-desc-rows-icon">
+              <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text>
+              <!-- <wux-icon type="ios-arrow-forward" color="#888" size="16"/> -->
+              <!-- <text class="view-sight">&nbsp;查看参与景点</text> -->
+            </view>
+          <!-- </navigator> -->
+        </view>
       </view>
     </view>
     <wux-popup
@@ -287,6 +290,7 @@ export default {
   font-size: 14px;
 }
 .activity-detail-page .activity-detail-desc-rows {
+  font-size: 14px;
   padding: 5px 0;
   height: 65px;
 }
@@ -297,7 +301,7 @@ export default {
   flex-direction: column;
 }
 
-.activity-detail-page .activity-detail-desc-rows-inner text{
+.activity-detail-page .activity-detail-desc-rows-inner text {
   margin-bottom: 8px;
 }
 
@@ -323,14 +327,14 @@ export default {
   justify-content: flex-end;
 } */
 .activity-detail-page .activity-detail-icon-group .icon-group {
-  width: 30%;
+  width: 55%;
   margin-right: 10px;
 }
-.activity-detail-page .activity-detail-icon-group2-inner {
+/* .activity-detail-page .activity-detail-icon-group2-inner {
   width: 80%;
   margin-top: 30px;
-}
-.activity-detail-desc-rows-icon{
+} */
+.activity-detail-desc-rows-icon {
   display: flex;
 }
 .activity-detail-page .activity-detail-icon-btn {
@@ -338,12 +342,12 @@ export default {
   justify-content: center;
   margin-top: 10px;
 }
-.activity-detail-page .activity-detail-icon-group2 {
+/* .activity-detail-page .activity-detail-icon-group2 {
   display: flex;
   justify-content: center;
   margin-top: 10px;
   padding-bottom: 60px;
-}
+} */
 /* .activity-detail-page .activity-detail-icon-group2-inner {
   display: flex;
   justify-content: center;
@@ -374,15 +378,32 @@ export default {
   font-size: 16px;
   color: #fff;
 }
-.activity-detail-page
+/* .activity-detail-page
   .activity-detail-icon-group2-inner
   .icon-group-item-label {
   font-size: 16px;
   font-weight: 600;
   margin-left: 5px;
   line-height: 40px;
+} */
+.activity-detail-page .activity-detail-icon-group button {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 5px;
+  line-height: 40px;
+  padding: 0;
+  border-radius: 0px;
+  box-sizing: inherit;
+  background-color: #fff;
+  display: flex;
 }
-.activity-detail-page .activity-detail-icon-group2-inner button {
+.activity-detail-page .activity-detail-icon-group button::after {
+  border: none;
+}
+.activity-detail-page .activity-detail-icon-group .button-hover {
+  color: #000;
+}
+/* .activity-detail-page .activity-detail-icon-group2-inner button {
   font-size: 16px;
   font-weight: 600;
   margin-left: 5px;
@@ -398,7 +419,7 @@ export default {
 }
 .activity-detail-page .activity-detail-icon-group2-inner .button-hover {
   color: #000;
-}
+} */
 .activity-detail-page .activity-detail-icon-btn-inner {
   width: 60%;
 }
@@ -572,7 +593,7 @@ export default {
   border: 1px #000 solid;
 }
 .single_btn {
-  width: 50%;
+  width: 90%;
   background: -webkit-linear-gradient(
     left,
     rgb(241, 92, 92),
@@ -704,9 +725,9 @@ export default {
 .group_btn_apply {
   width: 50%;
 }
-.bottom-btn button {
+/* .bottom-btn button {
   position: fixed;
   bottom: 0;
   width: 100%;
-}
+} */
 </style>

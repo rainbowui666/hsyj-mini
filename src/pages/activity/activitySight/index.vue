@@ -1,11 +1,23 @@
 <template >
   <view class="sight-page">
-    <view class="tip">
+    <!-- <view class="tip">
       <wux-cell title="共计4个学校，9个景点"></wux-cell>
       <wux-cell title="已完成2个学校，4个景点"></wux-cell>
-    </view>
+    </view>-->
+    <!-- <view class="background-image">
+      <image mode="widthFix" src="../../../static/images/fudan1.jpeg"/>
+    </view>-->
     <view class="activity-sight-list">
-    <sight-card :data="sightList" :iconClick="iconClick"/>
+      <view class="activity-sight-title-group">
+        <view class="activity-sight-title-label">路线推荐</view>
+        <view class="activity-sight-title-share">
+          <button size="default" open-type="share">
+            <wux-icon type="ios-share-alt" size="30" color="#888"/>
+            <view class="icon-group-item-label">分享</view>
+          </button>
+        </view>
+      </view>
+      <sight-card :data="sightList" :iconClick="iconClick"/>
     </view>
   </view>
 </template>
@@ -191,13 +203,45 @@ export default {
       console.log('item', item);
       // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sightName })
     }
+  },
+  onShareAppMessage: function (ops) {
+    return {
+      title: '红色印记'
+    };
   }
 };
 </script>
 
 <style>
-
-.sight-page{
+.sight-page {
   background-color: #f4f4f4;
+}
+
+.background-image image {
+  width: 100%;
+}
+.activity-sight-title-group{
+  display: flex;
+  justify-content: space-between;
+}
+.activity-sight-title-share button {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 5px;
+  line-height: 40px;
+  padding: 0;
+  border-radius: 0px;
+  box-sizing: inherit;
+  background-color: #fff;
+  display: flex;
+}
+.activity-sight-title-share button::after {
+  border: none;
+}
+.activity-sight-title-share .button-hover {
+  color: #000;
+}
+.activity-sight-title-label{
+  line-height: 40px;
 }
 </style>
