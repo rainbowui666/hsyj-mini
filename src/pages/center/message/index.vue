@@ -30,42 +30,42 @@ export default {
       valueData: '累计留言：50条  审核通过：40条  未审核：5条',
       activityList: [
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '待审核'
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '通过'
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '通过'
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '通过'
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '通过'
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '未通过'
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '通过'
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           tagText: '通过'
         }

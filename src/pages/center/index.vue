@@ -7,25 +7,25 @@
           <h3 class="user-name">我是皮仔呀</h3>
           <view class="personal-center">
             <!-- <navigator url="/pages/center/signin/main"> -->
-              <view class="item">
+              <view class="item" @click="onClickSignin">
                 <text class="time">2次</text>
                 <text class="content">我的签到</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/message/main"> -->
-              <view class="item">
+              <view class="item" @click="onClickMessage">
                 <text class="time">29次</text>
                 <text class="content">我的留言</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/myactivity/main"> -->
-              <view class="item">
+              <view class="item"  @click="onClickActivity">
                 <text class="time">33次</text>
                 <text class="content">我的活动</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/integral/main"> -->
-              <view class="item">
+              <view class="item" @click="onClickIntegral">
                 <text class="time">56次</text>
                 <text class="content">我的积分</text>
               </view>
@@ -33,21 +33,35 @@
           </view>
           </view>
           <view class="center-sub">
-            <myactivity />
+            <mysignin v-if="isShowSignin" />
+            <myactivity v-if="isShowActivity" />
+            <myintegral v-if="isShowIntegral" />
+            <mymessage v-if="isShowMessage" />
           </view>
         </view>
     </view>
 </template>
 
 <script>
+import mysignin from './signin/index';
+import myintegral from './integral/index';
 import myactivity from './myactivity/index';
+import mymessage from './message/index';
+
 export default {
   components: {
-    myactivity
+    myactivity,
+    mysignin,
+    myintegral,
+    mymessage
   },
   data () {
     return {
-      userInfo: {}
+      userInfo: {},
+      isShowIntegral: false,
+      isShowMessage: false,
+      isShowActivity: false,
+      isShowSignin: true
     };
   },
   onLoad () {
@@ -59,6 +73,30 @@ export default {
   methods: {
     buttonClicked () {
       console.log('1')
+    },
+    onClickIntegral () {
+      this.isShowIntegral = true;
+      this.isShowMessage = false;
+      this.isShowActivity = false;
+      this.isShowSignin = false;
+    },
+    onClickMessage () {
+      this.isShowIntegral = false;
+      this.isShowMessage = true;
+      this.isShowActivity = false;
+      this.isShowSignin = false;
+    },
+    onClickActivity () {
+      this.isShowIntegral = false;
+      this.isShowMessage = false;
+      this.isShowActivity = true;
+      this.isShowSignin = false;
+    },
+    onClickSignin () {
+      this.isShowIntegral = false;
+      this.isShowMessage = false;
+      this.isShowActivity = false;
+      this.isShowSignin = true;
     },
     gotoSignin () {
       wx.navigateTo({url: '/pages/center/signin/main'})
@@ -82,7 +120,7 @@ page {
   width: 100%;
 }
 .container {
-  background: #ffffff;
+  background: #c2c1c1;
   height: auto;
   overflow: auto;
   width: 100%;

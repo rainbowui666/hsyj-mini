@@ -1,10 +1,10 @@
 <template >
   <view class="signin-page">
-    <wux-tabs theme="assertive" controlled :current="current" @change="onChange">
+    <!-- <wux-tabs theme="assertive" controlled :current="current" @change="onChange">
         <wux-tab key="signin_tab1">
             <wux-badge count="3">累计签到</wux-badge>
         </wux-tab>
-    </wux-tabs>
+    </wux-tabs> -->
     <!-- <head-message :valueData="valueData"> </head-message> -->
     <navigation-card :data="activityList" :iconClick="iconClick"/>
   </view>
@@ -24,7 +24,7 @@ export default {
       valueData: '累计签到： 28次',
       activityList: [
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
@@ -32,7 +32,7 @@ export default {
           isIcon: true
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
@@ -40,7 +40,7 @@ export default {
           isIcon: true
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
@@ -48,7 +48,7 @@ export default {
           isIcon: true
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
@@ -56,7 +56,7 @@ export default {
           isIcon: true
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
@@ -64,7 +64,7 @@ export default {
           isIcon: true
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
@@ -72,7 +72,7 @@ export default {
           isIcon: true
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
@@ -80,7 +80,7 @@ export default {
           isIcon: true
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
