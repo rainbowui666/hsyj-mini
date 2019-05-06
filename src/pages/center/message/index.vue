@@ -1,82 +1,89 @@
 <template >
   <view class="message-page">
-      <wux-tabs theme="assertive" controlled :current="current" @change="onChange">
-        <wux-tab key="message_tab1">
-            <wux-badge count="3">累计留言</wux-badge>
-        </wux-tab>
-        <wux-tab key="message_tab2">
-            <wux-badge count="1024">审核通过</wux-badge>
-        </wux-tab>
-        <wux-tab key="message_tab3">
-            <wux-badge count="4">未审核</wux-badge>
-        </wux-tab>
-      </wux-tabs>
-    <!-- <head-message :valueData="valueData"> </head-message> -->
-    <navigation-card :data="activityList" :iconClick="iconClick"/>
+      <scroll-view scroll-x="true" class="message-scroll">
+        <view class="message-scroll-view">
+          <view
+            v-for="(item, index) in imgList"
+            :key="index"
+            class="message-scroll-view-inner">
+            <image
+              :src="item.url"
+              class="message-scroll-view-inner-image"/>
+            <span class="message-scroll-view-inner-title">{{item.site}}</span>
+            <span class="message-scroll-view-inner-btn">写留言</span>
+          </view>
+        </view>
+      </scroll-view>
+      <mymessage-card :data="messageList"/>
   </view>
 </template>
 
 <script>
 import navigationCard from '../../../components/navigation-card';
-import headMessage from '../../../components/head-message';
+import mymessageCard from '../../../components/mymessage-card';
 export default {
   components: {
     navigationCard,
-    headMessage
+    mymessageCard
   },
   data () {
     return {
       current: 'message_tab1',
       valueData: '累计留言：50条  审核通过：40条  未审核：5条',
-      activityList: [
+      imgList: [
         {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '待审核'
+          url: '../../static/images/fudan1.jpeg',
+          site: '交通大学：石狮子景区'
         },
         {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '通过'
+          url: '../../static/images/fudan2.jpeg',
+          site: '交通大学：石狮子'
         },
         {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '通过'
+          url: '../../static/images/fudan1.jpeg',
+          site: '交通大学：石狮子'
         },
         {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '通过'
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '通过'
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '未通过'
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '通过'
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          tagText: '通过'
+          url: '../../static/images/fudan2.jpeg',
+          site: '交通大学：石狮子'
         }
-
+      ],
+      messageList: [
+        {
+          src: '../../static/images/fudan.jpg',
+          userName: '复旦一日游',
+          messageTime: '2019年4月11日',
+          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          iconType: 'ios-arrow-forward'
+        },
+        {
+          src: '../../static/images/fudan.jpg',
+          userName: '复旦一日游',
+          messageTime: '2019年4月11日',
+          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          iconType: 'ios-arrow-forward'
+        },
+        {
+          src: '../../static/images/fudan.jpg',
+          userName: '复旦一日游',
+          messageTime: '2019年4月11日',
+          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          iconType: 'ios-arrow-forward'
+        },
+        {
+          src: '../../static/images/fudan.jpg',
+          userName: '复旦一日游',
+          messageTime: '2019年4月11日',
+          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          iconType: 'ios-arrow-forward'
+        }
       ]
     };
   },
   methods: {
     iconClick (item) {
       console.log('item', item)
-      wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
+      wx.navigateTo({ url: 'activityDetail/main?name=' + item.userName })
     },
     onChange (e) {
       console.log('onChange', e)
@@ -88,16 +95,47 @@ export default {
 
 <style>
 .message-page{
-  background-color: #f4f4f4;
+  background-color: #ccc;
 }
-/* .message-page .navigation-card-content-title {
-  padding-top: 25px;
-  padding-left: 5px;
-} */
-/* .message-page .navigation-card-icon-text {
-  width: 60px;
-  background-color:rgba(180, 178, 178, 0.6);
-  height:50px;
-  line-height:50px;
-} */
+.message-scroll{
+  /* display: flex;
+  flex-direction: row;
+  height: 100%; */
+}
+.message-scroll-view{
+  border-radius: 10px;
+  height: 76%;
+  display: flex;
+  flex-direction: row;
+}
+
+.message-scroll-view-inner{
+  /* width: 200px; */
+  padding: 5px;
+  margin-left: 5px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.message-scroll-view-inner-image{
+  height: 30px;
+  width: 45px;
+  border-radius: 15%;
+}
+.message-scroll-view-inner-title{
+  font-size: 10px;
+  width: 90px;
+  align-items: center;
+  display:flex;
+  margin-left: 5px;
+}
+.message-scroll-view-inner-btn{
+  font-size: 12px;
+  color: #ce3737;
+  border: 1px solid #ce3737;
+  height:20px;
+  margin-left: 5px;
+}
 </style>
