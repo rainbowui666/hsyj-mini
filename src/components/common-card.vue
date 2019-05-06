@@ -24,8 +24,10 @@
           </view>
           <view class="common-card-content-icongroup">
             <view class="common-card-content-icongroup-text">查看详情</view>
-            <image class="thumbsUpImg" :src="thumbsupImg"/>
-            <image class="messageImg" :src="messageImg"/>
+            <image class="thumbsUpImg" :src="thumbsupImg" @click="thumbsupClick"/>
+            <view class='icon-group-item-label'>{{ item.thumbsupNum }}</view>
+            <image class="messageImg" :src="messageImg" @click="messageClick"/>
+            <view class='icon-group-item-label'>{{ item.messageNum }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
             <!-- <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
             <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>-->
@@ -65,6 +67,14 @@ export default {
     iconClick: {
       type: Function,
       default: null
+    },
+    onThumbsupClick: {
+      type: Function,
+      default: null
+    },
+    onMessageClick: {
+      type: Function,
+      default: null
     }
   },
   data () {
@@ -77,6 +87,16 @@ export default {
     click (item) {
       if (this.iconClick) {
         this.iconClick(item);
+      }
+    },
+    thumbsupClick () {
+      if (this.onThumbsupClick) {
+        this.onThumbsupClick();
+      }
+    },
+    messageClick () {
+      if (this.onMessageClick) {
+        this.onMessageClick();
       }
     }
   }

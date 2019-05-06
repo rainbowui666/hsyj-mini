@@ -11,7 +11,7 @@
         </block>
       </swiper>
     </div>
-    <common-card :data="activityList" :iconClick="iconClick"/>
+    <common-card :data="activityList" :onMessageClick="onMessageClick" :onThumbsupClick="onThumbsupClick"/>
   </view>
 </template>
 
@@ -45,6 +45,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           activityStatus: '已报名',
+          thumbsupNum: 111,
+          messageNum: 111,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -67,6 +69,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           activityStatus: '进行中',
+          thumbsupNum: 222,
+          messageNum: 222,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -89,6 +93,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           isSingle: false,
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -110,6 +116,8 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          thumbsupNum: 444,
+          messageNum: 444,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -131,6 +139,9 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -152,6 +163,9 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -173,6 +187,9 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -194,6 +211,9 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -209,14 +229,17 @@ export default {
             }
           ]
         }
-
       ]
     };
   },
   methods: {
-    iconClick (item) {
-      console.log('item', item)
-      wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
+    onMessageClick () {
+      console.log('onMessageClick')
+      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
+    },
+    onThumbsupClick () {
+      console.log('onThumbsupClick')
+      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
     }
   }
 };
