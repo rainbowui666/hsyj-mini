@@ -45,6 +45,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           activityStatus: '已报名',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111,
           iconArr: [
@@ -69,6 +71,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           activityStatus: '进行中',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 222,
           messageNum: 222,
           iconArr: [
@@ -93,6 +97,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
           messageNum: 333,
           iconArr: [
@@ -116,6 +122,8 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 444,
           messageNum: 444,
           iconArr: [
@@ -140,6 +148,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
           messageNum: 333,
           iconArr: [
@@ -164,6 +174,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
           messageNum: 333,
           iconArr: [
@@ -188,6 +200,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
           messageNum: 333,
           iconArr: [
@@ -212,6 +226,8 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
           messageNum: 333,
           iconArr: [
@@ -233,12 +249,14 @@ export default {
     };
   },
   methods: {
-    onMessageClick () {
-      console.log('onMessageClick')
+    onMessageClick (item, index) {
+      console.log('onMessageClick', item, index)
       // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
     },
-    onThumbsupClick () {
-      console.log('onThumbsupClick')
+    onThumbsupClick (item, index) {
+      console.log('onThumbsupClick', item, index)
+      this.activityList[index].thumbsupImg = '../../static/images/thumbsUp_red.png'
+
       // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
     }
   }
