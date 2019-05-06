@@ -3,5 +3,5 @@
     <block wx:else>
         <slot></slot>
     </block>
-    <view class="{{ classes.bar }}" wx:if="{{ current }}"></view>
+    <!-- <view class="{{ classes.bar }}" wx:if="{{ current }}"></view> -->
 </view>

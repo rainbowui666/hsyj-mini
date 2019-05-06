@@ -31,23 +31,26 @@ export default {
 } */
 .myintegral {
   background: #ffffff;
-  width: 95%;
+  width: 100%;
   height: 200px;
-  margin: 0 auto;
-  border-radius: 10px;
+  border-radius: 16rpx;
 }
 .myintegral .group_list{
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 .myintegral_group{
   width: 100%;
   font-size: 14px;
 }
+.myintegral .myintegral_group .wux-cell-group{
+  border-radius: 16rpx;
+}
 .myintegral .integral_btn{
-  margin: 8px auto;
-  background-color: #be2a2a;
+  margin: 36rpx auto;
+  background-color: #d25136;
   color: #fff;
   width: 80%;
-  font-size: 18px;
+  font-size: 32rpxx;
+  height: 80rpx;
 }
 </style>

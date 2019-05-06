@@ -2,17 +2,20 @@
   <view class="myactivity-page">
       <wux-tabs theme="assertive" controlled :current="current" @change="onChange">
         <wux-tab key="myactivity_tab1">
-            <wux-badge count="3">已报名</wux-badge>
+          <view class="title">已报名</view>
+            <!-- <wux-badge count="3">已报名</wux-badge> -->
         </wux-tab>
         <wux-tab key="myactivity_tab2">
-            <wux-badge count="1024">成功活动</wux-badge>
+          <view class="title">进行中</view>
+            <!-- <wux-badge count="1024">成功活动</wux-badge> -->
         </wux-tab>
         <wux-tab key="myactivity_tab3">
-            <wux-badge count="4">失败活动</wux-badge>
+          <view class="title">已完成</view>
+            <!-- <wux-badge count="4">失败活动</wux-badge> -->
         </wux-tab>
-        <wux-tab key="myactivity_tab4">
+        <!-- <wux-tab key="myactivity_tab4">
             <wux-badge count="4">进行中</wux-badge>
-        </wux-tab>
+        </wux-tab> -->
       </wux-tabs>
     <!-- <head-message :valueData="valueData"> </head-message> -->
     <common-card :data="activityList" :iconClick="iconClick"/>
@@ -245,5 +248,15 @@ export default {
 .myactivity-page .navigator-hover{
   background-color:#fff;
   border-radius:16rpx;
+}
+.myactivity-page .title{
+    border:1px solid #bbb;
+    padding:4px 10px;
+    border-radius:10rpx;
+    line-height:18px;
+}
+.myactivity-page .wux-tabs__tab--current .title{
+    color: #d25136;
+    border:1px solid #d25136;
 }
 </style>

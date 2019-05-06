@@ -8,25 +8,25 @@
           <view class="personal-center">
             <!-- <navigator url="/pages/center/signin/main"> -->
               <view class="item" @click="onClickSignin">
-                <text class="time">2次</text>
+                <text :class="state == 0 ? 'timeRed' : 'time'">2次</text>
                 <text class="content">我的签到</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/message/main"> -->
               <view class="item" @click="onClickMessage">
-                <text class="time">29次</text>
+                <text :class="state == 1 ? 'timeRed' : 'time'">29次</text>
                 <text class="content">我的留言</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/myactivity/main"> -->
               <view class="item"  @click="onClickActivity">
-                <text class="time">33次</text>
+                <text :class="state == 2 ? 'timeRed' : 'time'">33次</text>
                 <text class="content">我的活动</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/integral/main"> -->
               <view class="item" @click="onClickIntegral">
-                <text class="time">56次</text>
+                <text :class="state == 3 ? 'timeRed' : 'time'">56次</text>
                 <text class="content">我的积分</text>
               </view>
             <!-- </navigator> -->
@@ -67,7 +67,8 @@ export default {
       isShowIntegral: false,
       isShowMessage: false,
       isShowActivity: false,
-      isShowSignin: true
+      isShowSignin: true,
+      state: 0
     };
   },
   onLoad () {
@@ -85,24 +86,28 @@ export default {
       this.isShowMessage = false;
       this.isShowActivity = false;
       this.isShowSignin = false;
+      this.state = 3
     },
     onClickMessage () {
       this.isShowIntegral = false;
       this.isShowMessage = true;
       this.isShowActivity = false;
       this.isShowSignin = false;
+      this.state = 1
     },
     onClickActivity () {
       this.isShowIntegral = false;
       this.isShowMessage = false;
       this.isShowActivity = true;
       this.isShowSignin = false;
+      this.state = 2
     },
     onClickSignin () {
       this.isShowIntegral = false;
       this.isShowMessage = false;
       this.isShowActivity = false;
       this.isShowSignin = true;
+      this.state = 0
     },
     gotoSignin () {
       wx.navigateTo({url: '/pages/center/signin/main'})
@@ -167,7 +172,7 @@ page {
   transform: translate(-50%, 50%);
   background-color: #fff;
   margin: 10px auto;
-  padding: 10px 20px;
+  padding: 25rpx 40rpx 5rpx 40rpx;
   border-radius: 8px;
   /* box-shadow: 3px 3px 10px #c3c3c3; */
   display: flex;
@@ -187,6 +192,17 @@ page {
   border-radius: 50%;
   background-color: #888;
 }
+.timeRed {
+  display: block;
+  width: 50px;
+  text-align: center;
+  margin: 0 auto;
+  color: #fff;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #d25136;
+}
 .content {
   line-height: 40px;
 }
@@ -198,8 +214,20 @@ page {
   width:90%;
   border-radius:50%;
   position:absolute;
-  margin-top:18%;
+  margin-top:16%;
   left:5%;
   margin-bottom:10px;
+}
+.signin-page ._view{
+  border-radius: 16rpx;
+}
+.wux-badge{
+    border:1px solid #bbb;
+    padding:4px 10px;
+    border-radius:10rpx;
+}
+.wux-tabs__tab--current .wux-badge{
+    color: #d25136;
+    border:1px solid #d25136;
 }
 </style>
