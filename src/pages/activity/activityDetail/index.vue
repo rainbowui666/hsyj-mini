@@ -654,35 +654,37 @@ export default {
   width: 90%;
   background: -webkit-linear-gradient(
     left,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
+    #FFD766,
+    #FFD700
   ); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(
     right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
+    #FFD766,
+    #FFD700 
   ); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(
     right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
+    #FFD766,
+    #FFD700
   ); /* Firefox 3.6 - 15 */
   background: linear-gradient(
     to right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
+    #FFD766,
+    #FFD700
   ); /* 标准的语法 */
   color: #fff;
 }
 .group_btn {
   display: flex;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+  width: 90%;
+  justify-content: space-between;
+  margin: auto;
+  /* position: fixed; */
+  /* bottom: 0; */
 }
 .group_btn_disApply {
   /* border-radius: 0%; */
-  width: 50%;
+  width: 47%;
 }
 .group_btn_disApply button {
   background: -webkit-linear-gradient(
@@ -733,7 +735,7 @@ export default {
   border-radius: 0%;
 }
 .group_btn_apply {
-  width: 50%;
+  width: 47%;
 }
 /* .bottom-btn button {
   position: fixed;
