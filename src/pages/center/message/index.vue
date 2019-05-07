@@ -141,5 +141,7 @@ export default {
   border: 1px solid #ce3737;
   height:20px;
   margin-left: 5px;
+  line-height:20px;
+  text-align: center;
 }
 </style>
