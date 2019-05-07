@@ -21,7 +21,12 @@
     </view> -->
     <view v-if="isSingle" class="bottom-btn">
       <button v-if="disApply" class="single_btn">报名</button>
-      <button v-if="isApply" class="single_btn_isApply">已报名</button>
+      <button v-if="isApply" class="single_btn_isApply">
+        <view class='single_btn_isApply_group'>
+          <wux-icon type='ios-checkmark' size='36' color='#fff'/>
+          <view>已报名</view>
+        </view>
+      </button>
       <button v-if="isDoing" class="single_btn_isDoing">进入活动</button>
     </view>
     <view v-if="!isSingle" class="group_btn">
@@ -617,7 +622,8 @@ export default {
   color: #fff;
 }
 .single_btn_isApply {
-  width: 50%;
+  display: flex;
+  width: 90%;
   background: -webkit-linear-gradient(
     left,
     rgb(241, 92, 92),
@@ -640,8 +646,12 @@ export default {
   ); /* 标准的语法 */
   color: #fff;
 }
+.single_btn_isApply_group{
+  display: flex;
+  margin: auto;
+}
 .single_btn_isDoing {
-  width: 50%;
+  width: 90%;
   background: -webkit-linear-gradient(
     left,
     rgb(241, 92, 92),
