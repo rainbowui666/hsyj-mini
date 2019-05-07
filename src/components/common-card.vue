@@ -230,5 +230,13 @@ export default {
   width: 35rpx;
   padding: 4px;
 }
+.common-card ._navigator{
+  display:flex;
+  width:100%;
+}
+.common-card .icon-group-item-label{
+  font-size:14px;
+  color:#666;
+}
 </style>
 
