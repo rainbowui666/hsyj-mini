@@ -51,31 +51,35 @@ export default {
       messageList: [
         {
           src: '../../static/images/fudan.jpg',
-          userName: '复旦一日游',
+          userName: '大实践家',
           messageTime: '2019年4月11日',
-          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward'
+          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          iconType: 'ios-arrow-forward',
+          peopleNum: '266人参加'
         },
         {
           src: '../../static/images/fudan.jpg',
-          userName: '复旦一日游',
+          userName: '大实践家',
           messageTime: '2019年4月11日',
           messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          peopleNum: '266人参加'
         },
         {
           src: '../../static/images/fudan.jpg',
-          userName: '复旦一日游',
+          userName: '大实践家',
           messageTime: '2019年4月11日',
           messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          peopleNum: '266人参加'
         },
         {
           src: '../../static/images/fudan.jpg',
-          userName: '复旦一日游',
+          userName: '大实践家',
           messageTime: '2019年4月11日',
           messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward'
+          iconType: 'ios-arrow-forward',
+          peopleNum: '266人参加'
         }
       ]
     };
