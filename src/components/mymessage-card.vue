@@ -71,7 +71,6 @@ export default {
 
 <style>
 .wrap {
-  margin-top:20rpx;
   padding:0 20rpx;
   background-color:white;
   border-radius: 10rpx;

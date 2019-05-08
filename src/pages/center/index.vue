@@ -1,6 +1,6 @@
 <template >
     <view class="container">
-        <view class="wrap">
+        <view class="center-box">
           <view>
           <img src="http://hsyj.100eduonline.com/static/mini-images/bg.jpg" alt="bg" class="bg-image" />
           <img src="http://hsyj.100eduonline.com/static/mini-images/head1.jpeg" alt="head" class="head-image" />
@@ -133,11 +133,12 @@ page {
 .container {
   background: #ccc;
   height: auto;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
   position: relative;
 }
-.wrap {
+.center-box {
   width: inherit;
   position: relative;
 }
