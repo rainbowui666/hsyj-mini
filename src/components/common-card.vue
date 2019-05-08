@@ -24,9 +24,9 @@
           </view>
           <view class="common-card-content-icongroup">
             <view class="common-card-content-icongroup-text">查看详情</view>
-            <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)"/>
+            <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
             <view class="icon-group-item-label">{{ item.thumbsupNum }}</view>
-            <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)"/>
+            <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
             <view class="icon-group-item-label">{{ item.messageNum }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
             <!-- <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
@@ -182,17 +182,13 @@ export default {
   bottom: 0;
 }
 .common-card-content-icongroup {
-  padding-left: 10px;
-  /* width: 80%; */
-  height: 26px;
-  /* margin-top: -29px; */
-  /* z-index: 999; */
-  /* background: #000; */
-  opacity: 0.6;
-  display: flex;
-  /* color:#fff; */
-  line-height: 26px;
-  /* justify-content: center; */
+  padding-left:20rpx;
+  height:52rpx;
+  opacity:0.6;
+  display:flex;
+  line-height:52rpx;
+  align-items:center;
+  flex-direction:row;
 }
 .common-card-content-icongroup .icon-group {
   width: 30%;
@@ -221,22 +217,24 @@ export default {
   color: #aaa;
 }
 .thumbsUpImg {
-  height: 35rpx;
-  width: 35rpx;
+  /* height: 35rpx; */
+  width: 28rpx;
   padding: 4px;
 }
 .messageImg {
-  height: 35rpx;
-  width: 35rpx;
-  padding: 4px;
+  /* height: 35rpx; */
+  width: 32rpx;
+  padding: 4px 4px 4px 15px;
 }
 .common-card ._navigator{
   display:flex;
   width:100%;
 }
 .common-card .icon-group-item-label{
-  font-size:14px;
+  font-size:24rpx;
   color:#666;
+  align-self:flex-start;
+  margin-left: 0
 }
 </style>
 

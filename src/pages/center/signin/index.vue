@@ -16,11 +16,15 @@ export default {
     return {
       sightList: [
         {
-          src: '../../static/images/fudan.jpg',
+          src: '../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle',
+          iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -37,11 +41,15 @@ export default {
           ]
         },
         {
-          src: '../../static/images/fudan.jpg',
+          src: '../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle',
+          iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -58,11 +66,15 @@ export default {
           ]
         },
         {
-          src: '../../static/images/fudan.jpg',
+          src: '../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle',
+          iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -79,11 +91,15 @@ export default {
           ]
         },
         {
-          src: '../../static/images/fudan.jpg',
+          src: '../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle',
+          iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -100,11 +116,15 @@ export default {
           ]
         },
         {
-          src: '../../static/images/fudan.jpg',
+          src: '../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle',
+          iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111,
           iconArr: [
             {
               icon: 'ios-heart',
@@ -127,6 +147,16 @@ export default {
     iconClick (item) {
       console.log('item', item);
       // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sightName })
+    },
+    onMessageClick (item, index) {
+      console.log('onMessageClick', item, index)
+      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
+    },
+    onThumbsupClick (item, index) {
+      console.log('onThumbsupClick', item, index)
+      this.sightList[index].thumbsupImg = '../../static/images/thumbsUp_red.png'
+
+      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
     }
   },
   onShareAppMessage: function (ops) {

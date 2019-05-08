@@ -1,5 +1,5 @@
 <template>
-  <view class="wrap">
+  <view class="wrap my-message-card">
     <navigator
       url="/pages/activity/activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus">
       <view v-for="(item,index) in data" :key="index" class="mymessage-card">
@@ -7,7 +7,10 @@
           <image mode="widthFix" :src="item.src"/>
         </view>
         <view class="mymessage-card-content">
-          <view class="mymessage-card-content-username">{{item.userName}}<text class="mymessage-card-content-messageTime">{{item.messageTime}}</text></view>
+          <view class="mymessage-card-content-user">
+            <text class="mymessage-card-content-userName">{{item.userName}}</text>
+            <text class="mymessage-card-content-messageTime">{{item.messageTime}}</text>
+          </view>
           <view class="mymessage-card-content-messageInfo">{{item.messageInfo}}</view>
         </view>
         <view class="mymessage-card-content-icon-text">查看详情</view>
@@ -80,7 +83,7 @@ export default {
   width: inherit;
   /* height: 85px; */
   /* justify-content: space-between; */
-  margin-top: 15rpx;
+  /* margin-top: 15rpx; */
   background-color: #fff;
   padding: 10px 10px;
   padding-bottom:48rpx;
@@ -94,7 +97,7 @@ export default {
   border-radius:34rpx;
   overflow:hidden;
   position:relative;
-  margin-right: 10px;
+  margin-right: 2px;
 }
 .mymessage-card-image image {
   width: 100%;
@@ -108,16 +111,24 @@ export default {
   overflow: hidden;
   /* margin-left: 15px; */
 }
-.mymessage-card-content-username {
+.mymessage-card-content-user {
   font-size: 14px;
+  display: flex
 }
 .mymessage-card-content-messageInfo {
-  font-size: 12px;
-  text-overflow: ellipsis;
+  font-size:22rpx;
+  margin-top:10rpx;
+  max-height:35px;
+}
+.mymessage-card-content-userName{
+  flex-grow:1;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
 .mymessage-card-content-messageTime {
-  float: right;
-  font-size: 12px;
+  /* float: right; */
+  font-size:22rpx!important;
   color: grey;
 }
 .mymessage-card-content-icon-text {

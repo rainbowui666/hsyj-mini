@@ -270,7 +270,7 @@ export default {
 }
 .activity-page ._swiper-item {
   border-radius: 10rpx;
-  overflow: visible !important;
+  /* overflow: visible !important; */
 }
 .activity-page .slide-image {
   width: 100%;
@@ -350,7 +350,8 @@ export default {
   border-width: 8rpx;
   border-style: solid;
   border-color: #777 transparent transparent transparent;
-  margin-top: 40rpx;
+  margin-top:36rpx;
+  height:10px;
 }
 .searchBar > ._wux-search-bar {
   flex-grow: 1;

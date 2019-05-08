@@ -101,6 +101,11 @@ export default {
 .message-page{
   background-color: #ccc;
 }
+.message-page ._scroll-view{
+  position:absolute;
+  width:110%;
+  top: 0
+}
 .message-scroll{
   /* display: flex;
   flex-direction: row;
@@ -114,34 +119,42 @@ export default {
 }
 
 .message-scroll-view-inner{
-  /* width: 200px; */
-  padding: 5px;
-  margin-left: 5px;
-  background-color: #fff;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
+  padding:10rpx;
+  background-color:#fff;
+  border-radius:10rpx;
+  display:flex;
+  align-items:center;
+  margin-right:10rpx;
 }
 
 .message-scroll-view-inner-image{
-  height: 30px;
-  width: 45px;
-  border-radius: 15%;
+  height:60rpx;
+  width:120rpx;
+  border-radius:15%;
 }
 .message-scroll-view-inner-title{
   font-size: 10px;
-  width: 90px;
+  /* width: 90px; */
   align-items: center;
   display:flex;
   margin-left: 5px;
+  line-height:28rpx;
+  white-space:nowrap;
 }
 .message-scroll-view-inner-btn{
   font-size: 12px;
-  color: #ce3737;
-  border: 1px solid #ce3737;
+  color: #d25136;
+  border: 1px solid #d25136;
   height:20px;
   margin-left: 5px;
   line-height:20px;
   text-align: center;
+  white-space:nowrap;
+  padding:2px 8px;
+  border-radius:12rpx;
+}
+.message-page .my-message-card{
+  position: relative;
+  top:90rpx
 }
 </style>

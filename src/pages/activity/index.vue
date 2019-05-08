@@ -328,6 +328,6 @@ export default {
 }
 .activity-page ._swiper-item {
   border-radius: 10rpx;
-  overflow: visible !important;
+  /* overflow: visible !important; */
 }
 </style>

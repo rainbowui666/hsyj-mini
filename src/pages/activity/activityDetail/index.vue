@@ -1,18 +1,33 @@
 <template >
   <view class="activity-detail-page">
     <view class="activity-detail-image">
-      <image src="../../../static/images/fudan1.jpeg"/>
-      <view class="activity-detail-icon-group">
-        <!-- <icon-group :list="iconArr"/> -->
-        <icon-group :list="iconArr2" :iconClick="onClick"/>
-      </view>
+      <!-- 模糊背景开始 -->
+      <div class='frosted-glass-container'>  
+          <div class='frosted-glass'></div>
+      </div> 
+      <div class="float-container">
+        <div class="float-container-image">
+          <image src="../../../static/images/school.png" mode="widthFix"/>
+        </div>
+        <div class="float-container-detail">
+          <div class="title">2019复旦大学【一日】游春游活动进行中</div>
+          <div class="people">
+            <div class="num"><span>568</span>人报名</div>
+            <div class="status">报名中</div>
+          </div>
+          <view class="float-container-detail-icon-group">
+            <icon-group :list="iconArr2" :iconClick="onClick"/>
+          </view>
+        </div>
+        
+      </div> 
     </view>
     <view class="activity-detail-desc">
-      <wux-cell thumb="../../../static/images/user1.png" title="主办单位：" extra="复旦大学"></wux-cell>
-      <wux-cell thumb="../../../static/images/user1.png" title="协办单位：" extra="杨浦区教育局、邯郸路街道"></wux-cell>
-      <wux-cell thumb="../../../static/images/user1.png" title="活动开始时间：" extra="2019年4月11日10:00"></wux-cell>
-      <wux-cell thumb="../../../static/images/user1.png" title="活动结束时间：" extra="2019年4月11日18:00"></wux-cell>
-      <wux-cell thumb="../../../static/images/user1.png" title="出发地点：" extra="五角场大转盘地下广场"></wux-cell>
+      <wux-cell thumb="../../../static/images/people.png" title="主办单位：" extra="复旦大学"></wux-cell>
+      <wux-cell thumb="../../../static/images/more_people.png" title="协办单位：" extra="杨浦区教育局、邯郸路街道"></wux-cell>
+      <wux-cell thumb="../../../static/images/clock.png" title="活动开始时间：" extra="2019年4月11日10:00"></wux-cell>
+      <wux-cell thumb="../../../static/images/clock.png" title="活动结束时间：" extra="2019年4月11日18:00"></wux-cell>
+      <wux-cell thumb="../../../static/images/dida.png" title="出发地点：" extra="五角场大转盘地下广场"></wux-cell>
     </view>
     <!-- <view class="activity-detail-icon-group2">
       <view class="activity-detail-icon-group2-inner">
@@ -159,21 +174,21 @@ export default {
       ],
       iconArr2: [
         {
-          icon: 'ios-heart-empty',
-          size: '30',
-          color: '#888',
+          icon: 'ios-heart',
+          size: '26',
+          color: '#fff',
           label: '想去'
         },
         {
-          icon: 'ios-chatboxes',
-          size: '30',
-          color: '#888',
+          icon: 'ios-map',
+          size: '26',
+          color: '#fff',
           label: '留言'
         },
         {
           icon: 'ios-share-alt',
-          size: '30',
-          color: '#888',
+          size: '26',
+          color: '#fff',
           label: '分享',
           isButton: true,
           openType: 'share'
@@ -288,11 +303,12 @@ export default {
   height: 110vh;
 }
 .activity-detail-page .activity-detail-image image {
-  width: 100%;
+  /* width: 100%; */
 }
 .activity-detail-page .activity-detail-desc {
-  margin: 10px auto;
+  margin: 50rpx auto;
   font-size: 14px;
+  margin-bottom:20rpx;
 }
 .activity-detail-page .activity-detail-desc-rows {
   font-size: 14px;
@@ -308,8 +324,14 @@ export default {
 
 .activity-detail-page .activity-detail-desc-rows-inner text {
   margin-bottom: 8px;
+  line-height:30rpx;
+  color: #aaa;
 }
-
+.activity-detail-page .activity-detail-desc-rows-inner .explain{
+  color:#d25136;
+  font-size:36rpx;
+  padding-top:16rpx;
+}
 .activity-detail-page .activity-detail-icon-group {
   /* margin-top: 10px; */
   /* display: flex; */
@@ -599,51 +621,17 @@ export default {
 }
 .single_btn {
   width: 90%;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* 标准的语法 */
+  background-color: #d25136;
+  height:80rpx;
+  line-height:80rpx;
   color: #fff;
 }
 .single_btn_isApply {
   display: flex;
   width: 90%;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* 标准的语法 */
+  background-color: #d25136;
+  height:80rpx;
+  line-height:80rpx;
   color: #fff;
 }
 .single_btn_isApply_group{
@@ -652,26 +640,9 @@ export default {
 }
 .single_btn_isDoing {
   width: 90%;
-  background: -webkit-linear-gradient(
-    left,
-    #FFD766,
-    #FFD700
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    #FFD766,
-    #FFD700 
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    #FFD766,
-    #FFD700
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    #FFD766,
-    #FFD700
-  ); /* 标准的语法 */
+  background-color: yellow;
+  height:80rpx;
+  line-height:80rpx;
   color: #fff;
 }
 .group_btn {
@@ -687,59 +658,84 @@ export default {
   width: 47%;
 }
 .group_btn_disApply button {
-  background: -webkit-linear-gradient(
-    left,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* 标准的语法 */
+  background-color: #d25136;
+  height:80rpx;
+  line-height:80rpx;
   color: #fff;
   border-radius: 0%;
 }
 .group_btn_apply button {
-  background: -webkit-linear-gradient(
-    left,
-    rgb(161, 166, 175),
-    rgb(118, 123, 133)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    rgb(161, 166, 175),
-    rgb(118, 123, 133)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    rgb(161, 166, 175),
-    rgb(118, 123, 133)
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    rgb(161, 166, 175),
-    rgb(118, 123, 133)
-  ); /* 标准的语法 */
+  background-color: gray;
+  height:80rpx;
+  line-height:80rpx;
   color: #fff;
   border-radius: 0%;
 }
 .group_btn_apply {
   width: 47%;
 }
-/* .bottom-btn button {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-} */
+
+/* //////////////////////////////// */
+.frosted-glass-container{   
+  width:100%;
+  height:340rpx;   
+  background-image: url('http://hsyj.100eduonline.com/static/mini-images/school.png');   
+  background-repeat: no-repeat;   
+  background-attachment: fixed;   
+  overflow: hidden;   
+} 
+.frosted-glass{   
+  width:120%;
+  height:380rpx;  
+  background: inherit;   
+  -webkit-filter: blur(10px);   
+  -moz-filter: blur(10px);   
+  -ms-filter: blur(10px);   
+  -o-filter: blur(10px);   
+  filter: blur(10px);   
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);   
+} 
+.float-container{
+  display:flex;
+  flex-direction:row;
+  position:absolute;
+  top:100rpx;
+}
+.float-container-image{
+  width:240rpx;
+  height:280rpx;
+  border-radius:20rpx;
+  overflow:hidden;
+  margin:0 20rpx;
+}
+.float-container-detail > .title{
+  font-size:18px;
+  padding-right:24rpx;
+}
+.float-container-detail > .people{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  padding-right:30rpx;
+}
+.float-container-detail > .people > .num{
+  font-size:16px;
+  padding:8rpx 0;
+}
+.float-container-detail > .people > .num ._span{
+  color:#d25136;
+  padding-right:10rpx;
+}
+.float-container-detail > .people > .status{
+  font-size:14px;
+  border:1px solid #000;
+  line-height:22px;
+  padding:0 8px;
+  margin:4px 0;
+  border-radius:10rpx;
+}
+.float-container-detail-icon-group .icon-group{
+  margin:0;
+  margin-top:16rpx;
+}
 </style>

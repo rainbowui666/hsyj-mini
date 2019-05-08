@@ -15,7 +15,11 @@
             <text style="margin-top: 4px;">{{ item.sightName }}</text>
           </view>
           <view class="sight-card-content-icongroup">
-            <icon-group :list="item.iconArr"/>
+            <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
+            <view class="icon-group-item-label">{{ item.thumbsupNum }}</view>
+            <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
+            <view class="icon-group-item-label">{{ item.messageNum }}</view>
+            <!-- <icon-group :list="item.iconArr"/> -->
           </view>
           <view class="sight-card-content-detail">
             <view>点击查看详情</view>
@@ -49,12 +53,30 @@ export default {
     iconClick: {
       type: Function,
       default: null
+    },
+    onThumbsupClick: {
+      type: Function,
+      default: null
+    },
+    onMessageClick: {
+      type: Function,
+      default: null
     }
   },
   methods: {
     click (item) {
       if (this.iconClick) {
         this.iconClick(item);
+      }
+    },
+    thumbsupClick (item, index) {
+      if (this.onThumbsupClick) {
+        this.onThumbsupClick(item, index);
+      }
+    },
+    messageClick (item, index) {
+      if (this.onMessageClick) {
+        this.onMessageClick(item, index);
       }
     }
   }
@@ -72,8 +94,13 @@ export default {
   /* border-bottom: 1px solid #888; */
 }
 .sight-card-image {
-  width: 20%;
-  padding: 5px;
+  width:36%;
+  margin:15px;
+  overflow:hidden;
+  height:166rpx;
+  border-radius:16rpx;
+  padding:0;
+  margin-right:0;
 }
 .sight-card .sight-card-content-icongroup {
   width: 50%;
@@ -87,22 +114,26 @@ export default {
   line-height: 26px;
 }
 .sight-card-image image {
-  width: 100%;
+  width: 130%;
+  border-radius: 16rpx
 }
 .sight-card-content {
   display: flex;
   flex-direction: column;
   width: 60%;
+  justify-content:space-around;
 }
 .sight-card-content-title {
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-bottom: 5px;
-  margin: auto 0;
-  font-size: 18px;
-  display: flex;
+  padding: 18rpx 0 0 18rpx;
+  margin: 0;
+  /* font-size: 18px;
+  display: flex; */
   flex-direction: column;
   /* line-height: 40px; */
+}
+.sight-card-content-title ._text{
+  font-size:30rpx;
+  margin-top:0!important;
 }
 .sight-card-content-desc {
   display: flex;
@@ -114,7 +145,7 @@ export default {
   margin-right: 5px;
 }
 .sight-card-content-icongroup {
-  padding-left: 5px;
+  padding-left: 9px;
   display: flex;
   /* margin-bottom: 10px; */
 }
@@ -131,11 +162,15 @@ export default {
   color: rgb(96, 170, 231);
 }
 .sight-card-content-detail {
-  font-size: 14px;
+  font-size:24rpx;
+  color:#aaa;
+  padding-left:18rpx;
 }
 .sight-card-icon {
-  width: 15%;
-  margin: auto;
+  width:14%;
+  margin:auto;
+  padding:12rpx;
+  color:#d25136;
 }
 .sight-card-icon-inner {
   width: 62%;
@@ -143,14 +178,52 @@ export default {
   display: flex;
   justify-content: center;
 }
+.sight-card-icon-inner ._wux-icon{
+  color:#d25136;
+}
 .sight-card-icon-text {
   text-align: center;
   font-size: 13px;
 }
-span {
+.sight-card span {
   height: 38px;
   width: 38px;
   display: block;
   position: relative;
+}
+.sight-card-content-icongroup {
+  padding-left:20rpx;
+  height:52rpx;
+  opacity:0.6;
+  display:flex;
+  line-height:52rpx;
+  align-items:center;
+  flex-direction:row;
+}
+.common-card-content-icongroup-text {
+  width: 50%;
+  font-size: 28rpx;
+  color: #aaa;
+}
+.sight-card-content-icongroup-text {
+  width: 50%;
+  font-size: 28rpx;
+  color: #aaa;
+}
+.thumbsUpImg {
+  /* height: 35rpx; */
+  width: 28rpx;
+  padding: 4px;
+}
+.messageImg {
+  /* height: 35rpx; */
+  width: 32rpx;
+  padding: 4px 4px 4px 15px;
+}
+.sight-card .icon-group-item-label{
+  font-size:24rpx;
+  color:#666;
+  align-self:flex-start;
+  margin-left: 0
 }
 </style>

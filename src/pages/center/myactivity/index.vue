@@ -265,6 +265,7 @@ export default {
 }
 .myactivity-page > ._view{
   border-top:1px solid #aaa;
+  background-color: #fff;
 }
 .myactivity-page .wux-tabs{
   border-top-left-radius:8px;

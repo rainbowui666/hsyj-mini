@@ -31,19 +31,15 @@
               </view>
             <!-- </navigator> -->
           </view>
-          <view class="center-sub">
+          <view class="center-sub" v-if="isShowSignin || isShowActivity || isShowIntegral">
             <mysignin v-if="isShowSignin" />
             <myactivity v-if="isShowActivity" />
             <myintegral v-if="isShowIntegral" />
-            <mymessage v-if="isShowMessage" />
           </view>
           </view>
-          <!-- <view class="center-sub">
-            <mysignin v-if="isShowSignin" />
-            <myactivity v-if="isShowActivity" />
-            <myintegral v-if="isShowIntegral" />
+          <view class="center-sub-new" v-if="isShowMessage">
             <mymessage v-if="isShowMessage" />
-          </view> -->
+          </view>
         </view>
     </view>
 </template>
@@ -213,11 +209,21 @@ page {
 }
 .center-sub{
   width:90%;
-  border-radius:50%;
+  border-radius:16rpx;
   position:absolute;
   margin-top:16%;
   left:5%;
   margin-bottom:10px;
+  overflow: hidden;
+}
+.center-sub-new{
+  width:90%;
+  border-radius:16rpx;
+  position:absolute;
+  margin-top:16%;
+  left:5%;
+  margin-bottom:10px;
+  /* overflow: hidden; */
 }
 .signin-page ._view{
   border-radius: 16rpx;
