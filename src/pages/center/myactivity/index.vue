@@ -42,6 +42,10 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           activityStatus: '已报名',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -64,6 +68,10 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           activityStatus: '进行中',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 222,
+          messageNum: 222,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -86,6 +94,10 @@ export default {
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
           isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -107,6 +119,10 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 444,
+          messageNum: 444,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -128,6 +144,11 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -149,6 +170,11 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -170,6 +196,11 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -191,6 +222,11 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
+          isSingle: false,
+          thumbsupImg: '../../static/images/thumbsupImg.png',
+          messageImg: '../../static/images/messageImg.png',
+          thumbsupNum: 333,
+          messageNum: 333,
           iconArr: [
             {
               icon: 'ios-thumbs-up',
@@ -206,7 +242,6 @@ export default {
             }
           ]
         }
-
       ]
     };
   },
