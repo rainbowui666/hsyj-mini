@@ -44,11 +44,13 @@
               :key="index"
               class="scenic-spot-recommendation-view-inner"
             >
-              <image
-                v-if="item.pics[0]"
-                :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
-                class="scenic-spot-recommendation-view-inner-image"
-              />
+              <navigator url="/pages/map/sight/main">
+                <image
+                  v-if="item.pics[0]"
+                  :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                  class="scenic-spot-recommendation-view-inner-image"
+                />
+              </navigator>
             </view>
           </view>
         </scroll-view>

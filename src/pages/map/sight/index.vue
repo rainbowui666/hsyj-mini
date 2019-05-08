@@ -1,29 +1,58 @@
 <template >
   <view class="sight-page">
-    <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
-      <block v-for="(item, index) in movies" :key="index">
+    <view class='sight-audio'>
+      <audio
+        :name="name"
+        :author="author"
+        :src="audioSrc"
+        id="myAudio"
+        controls
+        loop
+      ></audio>
+    </view>
+    <swiper class="swiper" :indicator-dots="swiper.indicatorDots" :autoplay="swiper.autoplay" i:nterval="swiper.interval" :duration="swiper.duration" :current="swiper.current">
+      <block v-for="(item, index) in swiper.movies" :key="index">
         <swiper-item>
           <image :src="item.url" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>
+    <view class='ceshi_next' @click='prevImg'>
+      <text class='icon iconfont icon-you'></text>
+    </view>
+    <view class='ceshi_prew' @click='nextImg'>
+      <text class='icon iconfont icon-zuo'></text>
+    </view>
     <view class="sight-introduction-bar">
       <view class="sight-introduction-bar-inner">
         <view class="sight-introduction-bar-label">
-          <text>{{ information.desc }}</text>
+          <wux-icon type='ios-navigate' size='26' color='white'/>
+          <text>点击导航</text>
         </view>
         <view class="sight-introduction-icon-group">
-          <icon-group :list="iconArr"/>
+          <icon-group :list="iconArr2" :iconClick="onClick"/>
+          <!-- <icon-group :list="iconArr"/> -->
         </view>
         <!-- <view class="sight-introduction-bar-icon" @click="toDestination">
           <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="#007fff"/>
         </view>-->
       </view>
     </view>
+    <view class="sight-introduction-icon-btn">
+      <view class="sight-introduction-icon-btn-inner">
+        <button
+          :class="signText=='签到'?'sign':'signed'"
+          type="warn"
+          size="default"
+          :plain="false"
+          @click="onSign"
+        >{{signText}}</button>
+      </view>
+    </view>
     <view class="sight-introduction-video">
       <view class="sight-introduction-video-inner">
         <view class="sight-introduction-video-image" @click="popupVideo">
-          <wux-icon wux-class="video-icon" type="ios-play" size="34" color="white"/>
+          <wux-icon wux-class="video-icon" type="ios-play" size="34" color="red"/>
         </view>
         <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
           <video
@@ -35,12 +64,12 @@
           ></video>
         </wux-popup>
         <view class="sight-introduction-video-text">
-          <text>{{ information.desc }}</text>
+          <text>点击播放 视频讲解</text>
         </view>
       </view>
-      <view class="sight-introduction-video-icon" @click="toDestination">
+      <!-- <view @click="toDestination">
         <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="white"/>
-      </view>
+      </view> -->
     </view>
     <!-- <view class="sight-introduction-icon-group">
       <view class="sight-introduction-icon-group-inner">
@@ -50,11 +79,11 @@
     <view class="sight-introduction-text">
       <text>{{ information.introduction }}</text>
     </view>
-    <view class="sight-introduction-icon-group2">
+    <!-- <view class="sight-introduction-icon-group2">
       <view class="sight-introduction-icon-group2-inner">
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
-    </view>
+    </view> -->
     <view :class="showWords?'pop':'pop-hide'">
       <!-- <view :class="showWords?'modal':'modal-hide'" @click="onClose"> -->
       <view :class="showWords?'modal':'modal-hide'">
@@ -98,17 +127,7 @@
         <button type="primary" size="mini" :plain="false" @click="wordsCommit">确定</button>
       </view>
     </wux-popup>
-    <view class="sight-introduction-icon-btn">
-      <view class="sight-introduction-icon-btn-inner">
-        <button
-          :class="signText=='签到'?'sign':'signed'"
-          type="warn"
-          size="default"
-          :plain="false"
-          @click="onSign"
-        >{{signText}}</button>
-      </view>
-    </view>
+  
     <view :class="showCameraPopup?'pop':'pop-hide'">
       <view :class="showCameraPopup?'modal':'modal-hide'">
         <scroll-view :class="showCameraPopup?'inner':'inner-hide'" :scroll-y="true">
@@ -149,6 +168,11 @@ export default {
   },
   data () {
     return {
+      audioCtx: null,
+      poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
+      name: '此时此刻',
+      author: '许巍',
+      audioSrc: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
       signText: '签到',
       information: {
         name: '黄自半身铜像',
@@ -156,20 +180,27 @@ export default {
         introduction:
           '位于上海音乐学院汾阳路校区，草坪西侧，为纪念上海音乐学院前教务主任、著名作曲家、音乐教育家黄自先生而建，黄自先生创作的《抗敌歌》是中国第一首以抗日救亡为主题的歌曲。'
       },
-      movies: [
-        {
-          url: '../../../static/images/hz.jpg'
-        },
-        {
-          url: '../../../static/images/hz.jpg'
-        },
-        {
-          url: '../../../static/images/hz.jpg'
-        },
-        {
-          url: '../../../static/images/hz.jpg'
-        }
-      ],
+      swiper: {
+        movies: [
+          {
+            url: '../../../static/images/hz.jpg'
+          },
+          {
+            url: '../../../static/images/hz.jpg'
+          },
+          {
+            url: '../../../static/images/hz.jpg'
+          },
+          {
+            url: '../../../static/images/hz.jpg'
+          }
+        ],
+        indicatorDots: true,
+        autoplay: false,
+        interval: 5000,
+        duration: 1000,
+        current: 0
+      },
       iconArr: [
         // {
         //   icon: 'ios-checkmark-circle-outline',
@@ -208,24 +239,24 @@ export default {
           size: '30',
           color: '#888',
           label: '留言'
-        },
-        {
-          icon: 'ios-share-alt',
-          size: '30',
-          // color: '#007fff',
-          color: '#888',
-          label: '分享',
-          isButton: true,
-          openType: 'share'
-        },
-        {
-          icon: 'ios-navigate',
-          size: '30',
-          color: '#888',
-          label: '导航',
-          isButton: true,
-          openType: null
         }
+        // {
+        //   icon: 'ios-share-alt',
+        //   size: '30',
+        //   // color: '#007fff',
+        //   color: '#888',
+        //   label: '分享',
+        //   isButton: true,
+        //   openType: 'share'
+        // },
+        // {
+        //   icon: 'ios-navigate',
+        //   size: '30',
+        //   color: '#888',
+        //   label: '导航',
+        //   isButton: true,
+        //   openType: null
+        // }
       ],
       wordsList: [
         {
@@ -291,7 +322,28 @@ export default {
   onShow () {
     wx.setNavigationBarTitle({ title: this.information.name });
   },
+  onReady (e) {
+    // 使用 wx.createAudioContext 获取 audio 上下文 context
+    this.audioCtx = wx.createAudioContext('myAudio')
+  },
+
   methods: {
+    audioPlay () {
+      this.audioCtx.play()
+    },
+    prevImg () {
+      let swiper = this.swiper;
+      let current = swiper.current;
+      swiper.current = current < (swiper.movies.length - 1) ? current + 1 : 0;
+      this.swiper = swiper
+    },
+
+    nextImg () {
+      let swiper = this.swiper;
+      let current = swiper.current;
+      swiper.current = current > 0 ? current - 1 : swiper.movies.length - 1;
+      this.swiper = swiper
+    },
     popupVideo () {
       this.showPopUp = true;
     },
@@ -426,7 +478,7 @@ export default {
 .sight-page .sight-introduction-video {
   width: 95%;
   /* border: 1px black solid; */
-  height: 100px;
+  /* height: 100px; */
   margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
@@ -435,10 +487,12 @@ export default {
   display: flex;
 }
 .sight-page .sight-introduction-video-image {
-  background-image: url("https://picsum.photos/750/750/?image=413");
-  background-size: 100%;
-  width: 90px;
-  height: 90px;
+  /* background-image: url("https://picsum.photos/750/750/?image=413"); */
+  /* background-size: 100%; */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: red 1px solid;
   margin: 5px;
   display: flex;
   justify-content: center;
@@ -451,6 +505,7 @@ export default {
   margin-bottom: auto;
 }
 .sight-page .sight-introduction-video-text text {
+  line-height: 47px;
   margin-left: 10px;
 }
 .sight-page .sight-introduction-icon-group {
@@ -458,7 +513,7 @@ export default {
   margin-bottom: auto;
   display: flex;
   justify-content: flex-end;
-  width: 30%;
+  width: 40%;
   color: #fff;
 }
 .sight-page .sight-introduction-icon-group-inner {
@@ -485,12 +540,13 @@ export default {
   padding-bottom: 30px;
 }
 .sight-page .sight-introduction-icon-btn {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+  width: 98%;
+  /* position: fixed; */
+  /* bottom: 0; */
   display: flex;
+  margin: auto;
   justify-content: center;
-}
+} 
 .sight-page .sight-introduction-icon-btn button {
   width: 100%;
 }
@@ -669,4 +725,42 @@ export default {
   margin-left: 20px;
   text-align: initial;
 }
+.ceshi_prew text {
+  color: #fff;
+  font-size: 30rpx;
+  float: left;
+  margin-top: 15rpx;
+}
+
+.ceshi_next text {
+  color: #fff;
+  font-size: 30rpx;
+  display: block;
+  float: right;
+  margin-top: 15rpx;
+}
+
+.ceshi_next {
+  width: 40rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 160px;
+  right: 0rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 80rpx;
+  border-bottom-left-radius: 80rpx;
+}
+
+.ceshi_prew {
+  width: 40rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 160px;
+  left: 0rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 80rpx;
+  border-bottom-right-radius: 80rpx;
+}
+
+
 </style>

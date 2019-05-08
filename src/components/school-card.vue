@@ -1,21 +1,23 @@
 <template>
   <view>
     <view v-for="(item,index) in data" :key="index" class="school-card">
-      <view class="school-card-content">
-        <view class="school-card-content-title">
-          <text>{{ item.schoolName }}</text>
+      <navigator url="/pages/map/sight/main">
+        <view class="school-card-content">
+          <view class="school-card-content-title">
+            <text>{{ item.schoolName }}</text>
+          </view>
+          <view class="school-card-content-desc">
+            <view class="sight-introduction ellipsis">{{ item.desc }}</view>
+          </view>
+          <view class="school-card-content-icongroup">
+            <view class="school-card-content-icongroup-text">查看详情</view>
+            <icon-group :list="item.iconArr"/>
+          </view>
         </view>
-        <view class="school-card-content-desc">
-          <view class="sight-introduction ellipsis">{{ item.desc }}</view>
+        <view class="school-card-image">
+          <image mode="widthFix" :src="item.src"/>
         </view>
-        <view class="school-card-content-icongroup">
-          <view class="school-card-content-icongroup-text">查看详情</view>
-          <icon-group :list="item.iconArr"/>
-        </view>
-      </view>
-      <view class="school-card-image">
-        <image mode="widthFix" :src="item.src"/>
-      </view>
+    </navigator>
     </view>
   </view>
 </template>
