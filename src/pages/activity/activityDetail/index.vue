@@ -498,7 +498,7 @@ export default {
     rgb(241, 92, 92),
     rgb(255, 38, 0)
   ); /* 标准的语法 */
-  margin-left: 70%;
+  margin-left: 20px;
 }
 .activity-detail-page .inner {
   position: fixed;
