@@ -26,7 +26,7 @@
           <block v-for="(item, index) in movies" :key="index">
             <swiper-item>
                 <image
-                  :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                  :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                   class="slide-image"
                   @click="navigatoTo"
                 />
@@ -49,7 +49,7 @@
               <navigator class="scenic-spot-recommendation-view-inner-image" url="/pages/map/sight/main">
                 <image
                   v-if="item.pics[0]"
-                  :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                  :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                   class="scenic-spot-recommendation-view-inner-image"
                 />
               </navigator>
@@ -68,7 +68,7 @@
             >
               <!-- <view class="scenic-spot-message-view-inner"> -->
               <image
-                :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                 style="width:80px;height:50px"
                 class="scenic-spot-message-view-inner-image"
               />
@@ -164,7 +164,7 @@ export default {
           text: 'hahahahahahahahahah'
         }
       ],
-      homeFlash: 'http://hsyj.100eduonline.com/static/images/into_flash.gif',
+      homeFlash: 'https://hsyj.100eduonline.com/static/images/into_flash.gif',
       searchBarImg: '../../static/images/searchBar.png',
       showGif: true,
       array: ['上海大学', '上海复旦大学', '上海财经大学', '同济大学'],
@@ -218,7 +218,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'http://hsyj.100eduonline.com/api/api/discuss/homeDiscuss?pageindex=' +
+        'https://hsyj.100eduonline.com/api/api/discuss/homeDiscuss?pageindex=' +
         this.pageindex +
         '&pagesize=' +
         this.pagesize,

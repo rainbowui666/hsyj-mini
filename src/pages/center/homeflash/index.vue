@@ -10,7 +10,7 @@
 export default {
   data () {
     return {
-      homeFlash: 'http://hsyj.100eduonline.com/static/images/into_flash.gif'
+      homeFlash: 'https://hsyj.100eduonline.com/static/images/into_flash.gif'
     };
   },
   mounted () {

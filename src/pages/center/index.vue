@@ -2,8 +2,8 @@
     <view class="container">
         <view class="center-box">
           <view>
-          <img src="http://hsyj.100eduonline.com/static/mini-images/bg.jpg" alt="bg" class="bg-image" />
-          <img src="http://hsyj.100eduonline.com/static/mini-images/head1.jpeg" alt="head" class="head-image" />
+          <img src="https://hsyj.100eduonline.com/static/mini-images/bg.jpg" alt="bg" class="bg-image" />
+          <img src="https://hsyj.100eduonline.com/static/mini-images/head1.jpeg" alt="head" class="head-image" />
           <h3 class="user-name">我是皮仔呀</h3>
           <view class="personal-center">
             <!-- <navigator url="/pages/center/signin/main"> -->

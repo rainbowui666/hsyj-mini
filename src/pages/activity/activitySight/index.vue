@@ -158,7 +158,7 @@ export default {
 .frosted-glass-container{   
   width:100%;
   height:340rpx;   
-  background-image: url('http://hsyj.100eduonline.com/static/mini-images/school.png');   
+  background-image: url('https://hsyj.100eduonline.com/static/mini-images/school.png');   
   background-repeat: no-repeat;   
   background-attachment: fixed;   
   overflow: hidden;   
