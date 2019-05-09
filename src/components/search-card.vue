@@ -112,11 +112,11 @@ export default {
 }
 .search-card-content-desc-item ._view {
   height: 20px;
-  /* overflow: hidden; */
-  width: 70%;
   overflow:hidden;
   text-overflow:ellipsis;
-  white-space:nowrap
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
 }
 .search-card-icon {
   width: 15%;

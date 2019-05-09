@@ -9,7 +9,8 @@
           <view class="picker">{{array[index]}}</view>
         </picker>
         <span class="sanjiao"></span>
-        <wux-search-bar clear controlled placeholder="想要去哪儿?"/>
+        <img class="search_bar_img" :src="searchBarImg" @click="goToSearch">
+        <!-- <wux-search-bar clear controlled placeholder="想要去哪儿?"/> -->
       </div>
       <view class="activity-recommendation-group">
         <view class="activity-recommendation-text">活动推荐</view>
@@ -164,6 +165,7 @@ export default {
         }
       ],
       homeFlash: 'http://hsyj.100eduonline.com/static/images/into_flash.gif',
+      searchBarImg: '../../static/images/searchBar.png',
       showGif: true,
       array: ['上海大学', '上海复旦大学', '上海财经大学', '同济大学'],
       index: 0,
@@ -181,6 +183,9 @@ export default {
     await this.getAllRecommendList();
   },
   methods: {
+    goToSearch () {
+      wx.navigateTo({url: '/pages/map/navigation/main'})
+    },
     async getAllRecommendList () {
       const res1 = await api.getRecommendList();
       console.log('分类主页,请求结果', res1);
@@ -342,6 +347,7 @@ export default {
 .searchBar {
   display: flex;
   background-color: #fff;
+  position: relative;
 }
 .searchBar > ._picker {
   padding: 0 5px 0 15px;
@@ -362,6 +368,14 @@ export default {
   flex-grow: 1;
   margin-top:-1px;
   margin-bottom:-1px;
+}
+.search_bar_img{
+  width:74%;
+  height:34px;
+  position:absolute;
+  top:50%;
+  left:96px;
+  transform:translateY(-50%);
 }
 /* /swiper/ */
 .swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
