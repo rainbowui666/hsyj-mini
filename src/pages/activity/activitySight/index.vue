@@ -11,7 +11,7 @@
       <view class='frosted-glass'></view>
     </view>
     <view class="backgroubd-modal"/>
-    <scroll-view class="activity-sight-list" :scroll-x="false" :scroll-y="true">
+    <view class="activity-sight-list">
       <view class="activity-sight-title-group">
         <view class="activity-sight-title-label">路线推荐</view>
         <view class="activity-sight-title-share">
@@ -21,8 +21,11 @@
           </button>
         </view>
       </view>
+    <scroll-view class="activity-sight-card" :scroll-x="false" :scroll-y="true">
       <sight-card :data="sightList" :iconClick="iconClick"/>
     </scroll-view>
+    <view class="activity-sight-bottom"/>
+    </view>
   </scroll-view>
 </template>
 
@@ -42,20 +45,10 @@ export default {
           sightStatus: '导航',
           iconColor: '#007fff',
           start: true,
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
+          thumbsupImg: '../../../static/images/thumbsupImg.png',
+          messageImg: '../../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111
         },
         {
           src: '../../../static/images/fudan.jpg',
@@ -63,120 +56,40 @@ export default {
           iconType: 'ios-checkmark-circle',
           sightStatus: '已完成',
           iconColor: 'red',
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
+          thumbsupImg: '../../../static/images/thumbsupImg.png',
+          messageImg: '../../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111
         },
         {
           src: '../../../static/images/fudan.jpg',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
+          thumbsupImg: '../../../static/images/thumbsupImg.png',
+          messageImg: '../../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111
         },
         {
           src: '../../../static/images/fudan.jpg',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
+          thumbsupImg: '../../../static/images/thumbsupImg.png',
+          messageImg: '../../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111
         },
         {
           src: '../../../static/images/fudan.jpg',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
           iconColor: '#007fff',
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../../static/images/fudan.jpg',
-          sightName: '中共一大会址纪念馆',
-          iconType: 'ios-navigate',
-          iconColor: '#007fff',
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../../static/images/fudan.jpg',
-          sightName: '中共一大会址纪念馆',
-          iconType: 'ios-navigate',
-          iconColor: '#007fff',
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
+          thumbsupImg: '../../../static/images/thumbsupImg.png',
+          messageImg: '../../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111
         },
         {
           src: '../../../static/images/fudan.jpg',
@@ -184,20 +97,10 @@ export default {
           iconType: 'ios-navigate',
           iconColor: '#007fff',
           end: true,
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
+          thumbsupImg: '../../../static/images/thumbsupImg.png',
+          messageImg: '../../../static/images/messageImg.png',
+          thumbsupNum: 111,
+          messageNum: 111
         }
       ]
     };
@@ -286,11 +189,22 @@ export default {
 .activity-sight-list{
   flex-direction:row;
   position:absolute;
-  top:100rpx;
+  top:30rpx;
   width:92%;
   left:4%;
   z-index: 120;
-  height: 85vh-100rpx;
+  height: 82%;
+
+}
+.activity-sight-card{
+  height:100%;
+  background-color: #fff;
+}
+.activity-sight-bottom{
+  height:3%;
+  background-color: #fff;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px
 }
 .activity-sight-title-group{
   background-color: #fff;
