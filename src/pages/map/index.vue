@@ -67,11 +67,13 @@
               class="scenic-spot-message-view-inner"
             >
               <!-- <view class="scenic-spot-message-view-inner"> -->
+              <navigator class="scenic-spot-message-view-inner-image" url="/pages/activity/activityDetail/main">
               <image
                 :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                 style="width:80px;height:50px"
                 class="scenic-spot-message-view-inner-image"
               />
+              </navigator>
               <message-card :data="item"/>
             </view>
           </view>
