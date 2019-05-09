@@ -645,7 +645,7 @@ export default {
 }
 .single_btn_isDoing {
   width: 90%;
-  background-color: yellow;
+  background-color: #ffcc00;
   height:80rpx;
   line-height:80rpx;
   color: #fff;
@@ -667,14 +667,14 @@ export default {
   height:80rpx;
   line-height:80rpx;
   color: #fff;
-  border-radius: 0%;
+  border-radius: 16rpx;
 }
 .group_btn_apply button {
   background-color: gray;
   height:80rpx;
   line-height:80rpx;
   color: #fff;
-  border-radius: 0%;
+  border-radius: 16rpx;
 }
 .group_btn_apply {
   width: 47%;

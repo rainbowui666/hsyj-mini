@@ -70,7 +70,7 @@
               <navigator class="scenic-spot-message-view-inner-image" url="/pages/activity/activityDetail/main">
               <image
                 :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
-                style="width:80px;height:50px"
+                style="width:92px;height:66px"
                 class="scenic-spot-message-view-inner-image"
               />
               </navigator>
@@ -342,8 +342,14 @@ export default {
   width: 95%;
   margin: 10px auto 0 auto;
 }
-.scenic-spot-message-view-inner > image {
+.scenic-spot-message-view-inner > ._navigator{
+  height:60px;
+  overflow:hidden;
+  border-radius:16rpx;
+}
+.scenic-spot-message-view-inner > ._navigator > image {
   border-radius: 15%;
+  width:120%;
 }
 /* /searchBar/ */
 .searchBar {

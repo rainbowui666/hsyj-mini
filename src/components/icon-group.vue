@@ -64,4 +64,7 @@ export default {
   display:flex;
   line-height:50rpx;
 }
+.icon-group-item-button::after {
+  border: none;
+}
 </style>

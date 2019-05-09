@@ -16,7 +16,7 @@
         </view>
       </view>
       <view>
-        <view>{{data.content}}</view>
+        <view class="scenic-spot-message-text-message">{{data.content}}</view>
       </view>
     </view>
   </view>

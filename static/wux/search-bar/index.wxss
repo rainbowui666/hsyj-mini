@@ -63,7 +63,7 @@
 	box-sizing:border-box;
 	background:0 0;
 	position:relative;
-	left:-4rpx;
+	left:-1rpx;
 }
 .wux-search-bar__label {
 	display:-ms-flexbox;
@@ -102,7 +102,7 @@
 .wux-search-bar__search {
 	position:absolute;
 	left:20rpx;
-	top:19rpx;
+	top:17rpx;
 }
 .wux-search-bar__clear {
 	display:none;

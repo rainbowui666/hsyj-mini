@@ -1,5 +1,6 @@
 <template>
-  <view style="padding: 0 20px;">
+<view class="search-card-wrap-wrap">
+  <view class="search-card-wrap" style="padding: 0 20px;">
     <!-- <navigator url="/pages/map/navigation/main?activitySight=true"> -->
       <view v-for="(item,index) in data" :key="index" class="search-card">
         <image class="gpsImg" :src="item.gpsImg" @click="thumbsupClick(item,index)"/>
@@ -28,6 +29,7 @@
       </view>
     <!-- </navigator> -->
   </view>
+</view>
 </template>
 
 <script>
@@ -71,7 +73,7 @@ export default {
 }
 .gpsImg{
   height: 30px;
-  width: 30px;
+  width: 20px;
   margin:auto 10px;
 }
 .search-card-content{
@@ -81,17 +83,19 @@ export default {
 }
 .search-card-content-title{
   margin: 10px 5px;
-  font-size: 14px;
+  font-size: 32rpx;
   max-height: 58px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #777;
+  margin-bottom:5px;
 }
 .search-card-content-desc {
   display: flex;
   /* flex-direction: column; */
-  padding: 5rpx 20rpx 10rpx 20rpx;
-  font-size: 26rpx;
-  color: #777;
+  padding: 5rpx 20rpx 10rpx 10rpx;
+  font-size: 28rpx;
+  color: #aaa;
   /* white-space: nowrap; */
   flex-grow: 1;
   /* overflow:hidden;
@@ -131,13 +135,34 @@ export default {
 .search-card-icon-text {
   text-align: center;
   font-size: 13px;
+  color: #aaa
 }
 .navigationImg{
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position:relative;
   left:50%;
   transform:translateX(-50%);
   /* transform:rotate(45deg); */
+}
+
+.search-card-wrap-wrap{
+  background-color:#eee;
+  height:100vh;
+  padding-top:10px;
+}
+.search-card-wrap{
+  padding:10px 20px;
+  border-radius:16rpx;
+  margin:0 20px;
+  background-color:#fff;
+}
+.search-card-wrap > ._view:first-child{
+  border-top-left-radius: 16rpx;
+  border-top-right-radius: 16rpx;
+}
+.search-card-wrap > ._view:last-child{
+  border-bottom-left-radius: 16rpx;
+  border-bottom-right-radius: 16rpx;
 }
 </style>
