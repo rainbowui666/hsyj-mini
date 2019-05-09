@@ -24,10 +24,11 @@
         >
           <block v-for="(item, index) in movies" :key="index">
             <swiper-item>
-              <image
-                :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
-                class="slide-image"
-              />
+                <image
+                  :src="'http://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                  class="slide-image"
+                  @click="navigatoTo"
+                />
             </swiper-item>
           </block>
         </swiper>
@@ -191,6 +192,10 @@ export default {
       });
       this.messageList = res2.data.data ? res2.data.data : [];
       console.log('推荐留言,请求结果', res2.data.data);
+    },
+    navigatoTo () {
+      console.log('1111111')
+      wx.navigateTo({url: '/pages/activity/activityDetail/main'})
     }
   },
   onReachBottom: function () {
