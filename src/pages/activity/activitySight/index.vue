@@ -1,5 +1,6 @@
 <template >
-  <scroll-view class="sight-page" :scroll-x="false" :scroll-y="false">
+  <!-- <scroll-view class="sight-page" :scroll-x="false" :scroll-y="false"> -->
+  <view class="sight-page">
     <!-- <view class="tip">
       <wux-cell title="共计4个学校，9个景点"></wux-cell>
       <wux-cell title="已完成2个学校，4个景点"></wux-cell>
@@ -21,12 +22,9 @@
           </button>
         </view>
       </view>
-    <scroll-view class="activity-sight-card" :scroll-x="false" :scroll-y="true">
       <sight-card :data="sightList" :iconClick="iconClick"/>
-    </scroll-view>
-    <view class="activity-sight-bottom"/>
     </view>
-  </scroll-view>
+  </view>
 </template>
 
 <script>
@@ -39,11 +37,11 @@ export default {
     return {
       sightList: [
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
           sightStatus: '导航',
-          iconColor: '#007fff',
+          iconColor: '#aaa',
           start: true,
           thumbsupImg: '../../../static/images/thumbsupImg.png',
           messageImg: '../../../static/images/messageImg.png',
@@ -51,51 +49,51 @@ export default {
           messageNum: 111
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-checkmark-circle',
           sightStatus: '已完成',
-          iconColor: 'red',
+          iconColor: '#d25136',
           thumbsupImg: '../../../static/images/thumbsupImg.png',
           messageImg: '../../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
-          iconColor: '#007fff',
+          iconColor: '#aaa',
           thumbsupImg: '../../../static/images/thumbsupImg.png',
           messageImg: '../../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
-          iconColor: '#007fff',
+          iconColor: '#aaa',
           thumbsupImg: '../../../static/images/thumbsupImg.png',
           messageImg: '../../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
-          iconColor: '#007fff',
+          iconColor: '#aaa',
           thumbsupImg: '../../../static/images/thumbsupImg.png',
           messageImg: '../../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111
         },
         {
-          src: '../../../static/images/fudan.jpg',
+          src: '../../../static/images/school.png',
           sightName: '中共一大会址纪念馆',
           iconType: 'ios-navigate',
-          iconColor: '#007fff',
+          iconColor: '#aaa',
           end: true,
           thumbsupImg: '../../../static/images/thumbsupImg.png',
           messageImg: '../../../static/images/messageImg.png',
@@ -122,8 +120,8 @@ export default {
 <style>
 .sight-page {
   background-color: #f4f4f4;
-  height:100vh;
-  overflow: hidden;
+  /* height:100vh; */
+  /* overflow: hidden; */
 }
 
 .background-image image {
@@ -134,15 +132,22 @@ export default {
   justify-content: space-between;
 }
 .activity-sight-title-share button {
-  font-size: 20px;
-  font-weight: 600;
-  margin-left: 5px;
-  line-height: 40px;
-  padding: 0;
-  border-radius: 0px;
-  box-sizing: inherit;
-  background-color: #fff;
-  display: flex;
+  font-size:32rpx;
+  font-weight:light;
+  margin-left:10rpx;
+  line-height:100rpx;
+  padding:0;
+  border-radius:0;
+  box-sizing:inherit;
+  background-color:#fff;
+  display:flex;
+  height:100rpx;
+  color:#aaa;
+}
+.activity-sight-title-share button ._wux-icon{
+  position:relative;
+  top:10rpx;
+  padding-right:6rpx;
 }
 .activity-sight-title-share button::after {
   border: none;
@@ -150,23 +155,22 @@ export default {
 .activity-sight-title-share .button-hover {
   color: #000;
 }
-.activity-sight-title-label{
-  line-height: 40px;
-}
+
 
 /*模糊背景*/
 .frosted-glass-container{   
   width:100%;
-  height:340rpx;   
-  background-image: url('https://hsyj.100eduonline.com/static/mini-images/school.png');   
+  height:450rpx;   
+  background-image: url('http://hsyj.100eduonline.com/static/mini-images/school.png');   
   background-repeat: no-repeat;   
   background-attachment: fixed;   
-  overflow: hidden;   
+  overflow: hidden;  
+  position: fixed; 
 } 
 
 .frosted-glass{   
   width:120%;
-  height:380rpx;  
+  height:500rpx;  
   background: inherit;   
   -webkit-filter: blur(10px);   
   -moz-filter: blur(10px);   
@@ -177,8 +181,8 @@ export default {
 } 
 
 .backgroubd-modal{
-  position: absolute;
-  z-index: 100;
+  position: fixed;
+  /* z-index: 100; */
   top: 0;
   right: 0;
   left: 0;
@@ -188,34 +192,37 @@ export default {
 
 .activity-sight-list{
   flex-direction:row;
-  position:absolute;
-  top:30rpx;
+  /* position:absolute; */
+  top:40rpx;
   width:92%;
   left:4%;
-  z-index: 120;
-  height: 82%;
-
-}
-.activity-sight-card{
-  height:100%;
-  background-color: #fff;
-}
-.activity-sight-bottom{
-  height:3%;
-  background-color: #fff;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px
+  /* z-index: 120; */
+  /* height: 85vh-100rpx; */
+  /* margin:0 auto; */
+  position:relative;
+  margin-left:0;
+  margin-bottom: 20rpx
 }
 .activity-sight-title-group{
   background-color: #fff;
   border:1px solid #eee;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px
+  border-top-right-radius: 28rpx;
+  border-top-left-radius: 28rpx
 }
 .activity-sight-title-label{
-  margin-left: 15px;
+  margin-left:30rpx;
+  font-size:17px;
+  color:#555;
+  font-weight:light;
+  line-height:100rpx;
 }
 .activity-sight-title-share{
   margin-right: 15px;
+}
+.activity-sight-list navigator,
+.activity-sight-list .navigator-hover{
+  border-bottom-right-radius:28rpx;
+  border-bottom-left-radius:28rpx;
+  overflow: hidden;
 }
 </style>

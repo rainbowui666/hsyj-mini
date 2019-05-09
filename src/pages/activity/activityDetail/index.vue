@@ -637,6 +637,11 @@ export default {
 .single_btn_isApply_group{
   display: flex;
   margin: auto;
+  height:80rpx;
+  line-height:80rpx;
+}
+.single_btn_isApply_group ._wux-icon{
+  padding-right:20rpx;
 }
 .single_btn_isDoing {
   width: 90%;

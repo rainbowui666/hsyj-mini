@@ -30,7 +30,7 @@
             <wux-icon :type="item.iconType" :color="item.iconColor"/>
           </view>
           <view class="sight-card-icon-text">
-            <view v-if="item.sightStatus=='导航'" class="on-status">{{ item.sightStatus }}</view>
+            <view v-if="item.sightStatus=='导航'" class="on-status" :style="'color:' + item.iconColor">{{ item.sightStatus }}</view>
             <view v-if="item.sightStatus=='已完成'" class="sign-up-status">{{ item.sightStatus }}</view>
           </view>
         </view>
