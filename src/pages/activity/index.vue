@@ -11,7 +11,7 @@
         </block>
       </swiper>
     </div>
-    <common-card :data="activityList" :onMessageClick="onMessageClick" :onThumbsupClick="onThumbsupClick"/>
+    <common-card :data="activityList" :onMessageClick="onMessageClick" :onThumbsupClick="onThumbsupClick" :viewDetail="viewDetail"/>
   </view>
 </template>
 
@@ -258,6 +258,9 @@ export default {
       this.activityList[index].thumbsupImg = '../../static/images/thumbsUp_red.png'
 
       // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
+    },
+    viewDetail () {
+      wx.navigateTo({url: 'activitySight/main'})
     }
   }
 };

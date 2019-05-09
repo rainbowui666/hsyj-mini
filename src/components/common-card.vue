@@ -23,7 +23,7 @@
             </view>
           </view>
           <view class="common-card-content-icongroup">
-            <view class="common-card-content-icongroup-text">查看详情</view>
+            <view class="common-card-content-icongroup-text" @click="detailClick">查看详情</view>
             <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
             <view class="icon-group-item-label">{{ item.thumbsupNum }}</view>
             <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
@@ -75,6 +75,10 @@ export default {
     onMessageClick: {
       type: Function,
       default: null
+    },
+    viewDetail: {
+      type: Function,
+      default: null
     }
   },
   data () {
@@ -97,6 +101,11 @@ export default {
     messageClick (item, index) {
       if (this.onMessageClick) {
         this.onMessageClick(item, index);
+      }
+    },
+    detailClick () {
+      if (this.viewDetail) {
+        this.viewDetail();
       }
     }
   }

@@ -1,5 +1,5 @@
 <template >
-  <view class="sight-page">
+  <scroll-view class="sight-page" :scroll-x="false" :scroll-y="false">
     <!-- <view class="tip">
       <wux-cell title="共计4个学校，9个景点"></wux-cell>
       <wux-cell title="已完成2个学校，4个景点"></wux-cell>
@@ -7,7 +7,11 @@
     <!-- <view class="background-image">
       <image mode="widthFix" src="../../../static/images/fudan1.jpeg"/>
     </view>-->
-    <view class="activity-sight-list">
+    <view class='frosted-glass-container'>  
+      <view class='frosted-glass'></view>
+    </view>
+    <view class="backgroubd-modal"/>
+    <scroll-view class="activity-sight-list" :scroll-x="false" :scroll-y="true">
       <view class="activity-sight-title-group">
         <view class="activity-sight-title-label">路线推荐</view>
         <view class="activity-sight-title-share">
@@ -18,8 +22,8 @@
         </view>
       </view>
       <sight-card :data="sightList" :iconClick="iconClick"/>
-    </view>
-  </view>
+    </scroll-view>
+  </scroll-view>
 </template>
 
 <script>
@@ -215,6 +219,8 @@ export default {
 <style>
 .sight-page {
   background-color: #f4f4f4;
+  height:100vh;
+  overflow: hidden;
 }
 
 .background-image image {
@@ -243,5 +249,59 @@ export default {
 }
 .activity-sight-title-label{
   line-height: 40px;
+}
+
+/*模糊背景*/
+.frosted-glass-container{   
+  width:100%;
+  height:340rpx;   
+  background-image: url('http://hsyj.100eduonline.com/static/mini-images/school.png');   
+  background-repeat: no-repeat;   
+  background-attachment: fixed;   
+  overflow: hidden;   
+} 
+
+.frosted-glass{   
+  width:120%;
+  height:380rpx;  
+  background: inherit;   
+  -webkit-filter: blur(10px);   
+  -moz-filter: blur(10px);   
+  -ms-filter: blur(10px);   
+  -o-filter: blur(10px);   
+  filter: blur(10px);   
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);   
+} 
+
+.backgroubd-modal{
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.activity-sight-list{
+  flex-direction:row;
+  position:absolute;
+  top:100rpx;
+  width:92%;
+  left:4%;
+  z-index: 120;
+  height: 85vh-100rpx;
+}
+.activity-sight-title-group{
+  background-color: #fff;
+  border:1px solid #eee;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px
+}
+.activity-sight-title-label{
+  margin-left: 15px;
+}
+.activity-sight-title-share{
+  margin-right: 15px;
 }
 </style>
