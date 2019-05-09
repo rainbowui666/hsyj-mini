@@ -1,14 +1,14 @@
 <template >
   <view class="scenic-spot-message-text-group">
     <image
-      :src="data.userImg"
+      src="../../static/images/touxiang.png"
       style="width:40px;height:40px;border-radius:50%"
       class="scenic-spot-message-view-inner-image"
     />
     <view class="scenic-spot-message-text">
       <view class="scenic-spot-message-text-label">
-        <view>{{data.userName}}</view>
-        <view>{{data.label}}</view>
+        <view>大实践家</view>
+        <view>三天前</view>
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
           <image class="thumbsUpImg" :src="thumbsUpImg"/>
