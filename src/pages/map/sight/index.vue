@@ -90,19 +90,20 @@
         <scroll-view :class="showWords?'inner':'inner-hide'" :scroll-y="true">
           <!-- <wux-popup position="bottom" :visible="showWords" :closable="true" @close="onClose"> -->
           <view class="sight-words">
-            <view class="sight-words-item" v-for="(item,index) in wordsList" :key="index">
-              <view class="sight-words-title">
+            <view v-for="(item,index) in wordsList" :key="index">
+              <!-- <view class="sight-words-title"> -->
                 <!-- <text>{{ item.name }}</text>
                 <text>{{ item.time }}</text>-->
-                <wux-cell
+                <!-- <wux-cell
                   thumb="https://wux.cdn.cloverstd.com/logo.png"
                   :title="item.name"
                   :extra="item.time"
-                ></wux-cell>
-              </view>
-              <view class="sight-words-content">
+                ></wux-cell> -->
+                 <message-card :data="item"/>
+              <!-- </view> -->
+              <!-- <view class="sight-words-content">
                 <view>&nbsp;{{ item.content }}</view>
-              </view>
+              </view> -->
             </view>
           </view>
           <view class="sight-words-btn">
@@ -161,10 +162,11 @@
 </template>
 
 <script>
+import messageCard from '../../../components/message-card';
 import iconGroup from '../../../components/icon-group';
 export default {
   components: {
-    iconGroup
+    iconGroup, messageCard
   },
   data () {
     return {

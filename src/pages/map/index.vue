@@ -46,7 +46,7 @@
               :key="index"
               class="scenic-spot-recommendation-view-inner"
             >
-              <navigator class="scenic-spot-recommendation-view-inner-image" url="/pages/map/sight/main">
+              <navigator class="scenic-spot-recommendation-view-inner-image" url="/pages/map/sight/main?activitySight=true">
                 <image
                   v-if="item.pics[0]"
                   :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
