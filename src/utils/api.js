@@ -27,6 +27,10 @@ const api = {
   // 活动列表
   getActivityList: (obj) => request.get('api/activity/frontList?pageindex=1&pagesize=5&studentid=1', null, {
     baseURL: ApiRootUrl
+  }),
+  // 学校详情
+  getSchoolDetail: (obj) => request.get('api/school/detail?schoolid=' + obj.id, null, {
+    baseURL: ApiRootUrl
   })
 }
 

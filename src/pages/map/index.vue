@@ -192,7 +192,7 @@ export default {
   methods: {
     pickerChange (value) {
       console.log('pickerChange', value.mp.detail.value)
-      wx.navigateTo({url: '/pages/map/schools/main'})
+      wx.navigateTo({url: '/pages/map/schools/main?schoolId=80'})
     },
     goToSearch () {
       wx.navigateTo({url: '/pages/map/navigation/main'})

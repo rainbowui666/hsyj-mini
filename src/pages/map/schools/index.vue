@@ -49,6 +49,7 @@
 <script>
 import iconGroup from '../../../components/icon-group';
 import schoolCard from '../../../components/school-card';
+import api from '@/utils/api';
 export default {
   components: {
     iconGroup,
@@ -236,7 +237,14 @@ export default {
   //   }
   //   console.log(this.newArr);
   // },
+  mounted () {
+    this.getSchoolDetail();
+  },
   methods: {
+    async getSchoolDetail () {
+      const res1 = await api.getSchoolDetail({id: this.$mp.query.schoolId});
+      console.log('学校详情', res1);
+    },
     expand () {
       var value = !this.ellipsis;
       this.ellipsis = value;
