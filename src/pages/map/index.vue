@@ -5,8 +5,8 @@
     </view>
     <view v-else class="activity-page">
       <div class="searchBar">
-        <picker @change="pickerChange" :value="index" :range="array">
-          <view class="picker">{{array[index]}}</view>
+        <picker @change="pickerChange" :value="index"  range-key="name" :range="array">
+          <view class="picker">{{array[index].name}}</view>
         </picker>
         <span class="sanjiao"></span>
         <img class="search_bar_img" :src="searchBarImg" @click="goToSearch">
@@ -169,22 +169,31 @@ export default {
       homeFlash: 'https://hsyj.100eduonline.com/static/images/into_flash.gif',
       searchBarImg: '../../static/images/searchBar.png',
       showGif: true,
-      array: ['上海大学', '上海复旦大学', '上海财经大学', '同济大学'],
+      array: [
+        {id: 79, name: '上海大学'},
+        {id: 80, name: '上海复旦大学'},
+        {id: 82, name: '上海财经大学'},
+        {id: 83, name: '同济大学'}
+      ],
       index: 0,
       pageindex: 1,
       pagesize: 5
     };
   },
-  async mounted () {
+  mounted () {
     setTimeout(() => {
       this.showGif = false;
       wx.setNavigationBarTitle({
         title: '红色印记'
       });
     }, 2010);
-    await this.getAllRecommendList();
+    this.getAllRecommendList();
   },
   methods: {
+    pickerChange (value) {
+      console.log('pickerChange', value.mp.detail.value)
+      wx.navigateTo({url: '/pages/map/schools/main'})
+    },
     goToSearch () {
       wx.navigateTo({url: '/pages/map/navigation/main'})
     },

@@ -16,10 +16,16 @@ const api = {
   validateVerification: (paramObj) => request.post('two-factor-service/2fa/verifyCode', paramObj, {
     baseURL: ApiGateWayUrl
   }),
+  // 首页获取推荐活动和景点
   getRecommendList: (r) => request.get('api/index/home', null, {
     baseURL: ApiRootUrl
   }),
+  // 首页获取留言
   getRecommendMessageList: (obj) => request.get('api/discuss/homeDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 活动列表
+  getActivityList: (obj) => request.get('api/activity/frontList?pageindex=1&pagesize=5&studentid=1', null, {
     baseURL: ApiRootUrl
   })
 }

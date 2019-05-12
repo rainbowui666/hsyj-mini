@@ -17,6 +17,7 @@
 
 <script>
 import commonCard from '../../components/common-card';
+import api from '@/utils/api';
 export default {
   components: {
     commonCard
@@ -248,7 +249,14 @@ export default {
       ]
     };
   },
+  mounted () {
+    this.getActivityList();
+  },
   methods: {
+    async getActivityList () {
+      const res1 = await api.getActivityList();
+      console.log('分类主页,请求结果', res1);
+    },
     onMessageClick (item, index) {
       console.log('onMessageClick', item, index)
       // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
