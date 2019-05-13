@@ -52,5 +52,6 @@ export default {
   width: 80%;
   font-size: 32rpxx;
   height: 80rpx;
+  line-height: 80rpx
 }
 </style>

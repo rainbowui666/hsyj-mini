@@ -1,4 +1,9 @@
 <template >
+<view class="sight-page-wrap">
+  <view class='frosted-glass-container'>  
+    <view class='frosted-glass'></view>
+  </view>
+  <view class="backgroubd-modal"/>
   <view class="sight-page">
     <view class='sight-audio'>
       <audio
@@ -159,6 +164,7 @@
       </view>
     </wux-popup>
   </view>
+</view>
 </template>
 
 <script>
@@ -438,6 +444,8 @@ export default {
 <style>
 .sight-page {
   height: 110vh;
+  position:relative;
+  background-color:transparent;
 }
 .sight-page .swiper {
   width: 100%;
@@ -589,16 +597,10 @@ export default {
 }
 .sight-page .sight-introduction-icon-btn-inner .sign{
   width: 100%;
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  background:red
 }
 .sight-page .sight-introduction-icon-btn-inner .signed {
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  background: red
 }
 .sight-page .sight-words-item {
   margin-top: 10px;
@@ -675,17 +677,11 @@ export default {
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
 .sight-page .sight-question-btn button:last-child {
   margin-left: 20px;
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  background: red
 }
 .sight-page .sight-comment-btn button:last-child {
   margin-top: 15px;
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  background: red
 }
 .sight-page .sight-comment {
   display: flex;
@@ -766,6 +762,37 @@ export default {
   border-top-right-radius: 80rpx;
   border-bottom-right-radius: 80rpx;
 }
+/* ///// */
+.frosted-glass-container{   
+  width:100%;
+  height:450rpx;   
+  background-image: url('http://hsyj.100eduonline.com/static/mini-images/school.png');   
+  background-repeat: no-repeat;   
+  background-attachment: fixed;   
+  overflow: hidden;  
+  position: fixed; 
+} 
 
+.frosted-glass{   
+  width:120%;
+  height:500rpx;  
+  background: inherit;   
+  -webkit-filter: blur(10px);   
+  -moz-filter: blur(10px);   
+  -ms-filter: blur(10px);   
+  -o-filter: blur(10px);   
+  filter: blur(10px);   
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);   
+} 
+
+.backgroubd-modal{
+  position: fixed;
+  /* z-index: 100; */
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
 
 </style>
