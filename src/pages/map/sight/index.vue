@@ -23,15 +23,18 @@
       </block>
     </swiper>
     <view class='ceshi_next' @click='prevImg'>
-      <text class='icon iconfont icon-you'></text>
+      <wux-icon type='ios-arrow-forward' size='20' color='#fff'/>
+      <!-- <text class='icon ios-arrow-back'></text> -->
     </view>
     <view class='ceshi_prew' @click='nextImg'>
-      <text class='icon iconfont icon-zuo'></text>
+      <wux-icon type='ios-arrow-back' size='20' color='#fff'/>
+      <!-- <text class='icon ios-arrow-forward'></text> -->
     </view>
     <view class="sight-introduction-bar">
       <view class="sight-introduction-bar-inner">
         <view class="sight-introduction-bar-label">
-          <wux-icon type='ios-navigate' size='26' color='white'/>
+          <image src="../../../../static/images/dida.png" alt="" mode="widthFix"/>
+          <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
           <text>点击导航</text>
         </view>
         <view class="sight-introduction-icon-group">
@@ -43,6 +46,7 @@
         </view>-->
       </view>
     </view>
+    <view class="sight-introduction-content">
     <view class="sight-introduction-icon-btn">
       <view class="sight-introduction-icon-btn-inner">
         <button
@@ -163,6 +167,7 @@
         <button type="primary" size="mini" :plain="false" @click="commitQuestion">完成答题</button>
       </view>
     </wux-popup>
+    </view>
   </view>
 </view>
 </template>
@@ -240,15 +245,15 @@ export default {
       ],
       iconArr2: [
         {
-          icon: 'ios-heart-empty',
-          size: '30',
-          color: '#888',
+          icon: 'ios-heart',
+          size: '26',
+          color: '#fff',
           label: '想去'
         },
         {
-          icon: 'ios-chatboxes',
-          size: '30',
-          color: '#888',
+          icon: 'ios-map',
+          size: '26',
+          color: '#fff',
           label: '留言'
         }
         // {
@@ -442,10 +447,20 @@ export default {
 </script>
 
 <style>
+.sight-audio{
+  padding-top:50px;
+}
 .sight-page {
   height: 110vh;
   position:relative;
   background-color:transparent;
+  width:94%;
+  margin:0 auto;
+}
+.sight-introduction-content{
+  background-color:#fff;
+  border-bottom-right-radius:16rpx;
+  border-bottom-left-radius:16rpx;
 }
 .sight-page .swiper {
   width: 100%;
@@ -456,13 +471,13 @@ export default {
 }
 .sight-page .sight-introduction-bar {
   width: 100%;
-  height: 60px;
-  margin-top: -60px;
+  height: 60rpx;
+  margin-top: -60rpx;
   z-index: 999;
-  background: #000;
-  opacity: 0.6;
+  background: rgba(210, 81, 54, 0.6);
+  opacity: 0.99;
   display: flex;
-  line-height: 60px;
+  line-height: 60rpx;
   justify-content: center;
 }
 .sight-page .sight-introduction-bar-inner {
@@ -472,6 +487,12 @@ export default {
 }
 .sight-page .sight-introduction-bar-label {
   color: #fff;
+  height:60rpx;
+  line-height:60rpx;
+}
+.sight-page .sight-introduction-bar-label image{
+  height:20px;
+  width:20px;
 }
 .sight-page .sight-introduction-bar-label text {
   font-size: 22px;
@@ -553,7 +574,7 @@ export default {
   padding-bottom: 30px;
 }
 .sight-page .sight-introduction-icon-btn {
-  width: 98%;
+  width: 100%;
   /* position: fixed; */
   /* bottom: 0; */
   display: flex;
@@ -596,8 +617,12 @@ export default {
   width: 100%;
 }
 .sight-page .sight-introduction-icon-btn-inner .sign{
-  width: 100%;
-  background:red
+  width:calc(100% - 4px);
+  background:#d25136;
+  border-radius:0;
+  height:36px;
+  margin:2px;
+  line-height:36px;
 }
 .sight-page .sight-introduction-icon-btn-inner .signed {
   background: red
@@ -745,22 +770,22 @@ export default {
   width: 40rpx;
   height: 80rpx;
   position: absolute;
-  top: 160px;
+  top: 450rpx;
   right: 0rpx;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5);
   border-top-left-radius: 80rpx;
-  border-bottom-left-radius: 80rpx;
+  border-bottom-left-radius: 80rpx; */
 }
 
 .ceshi_prew {
   width: 40rpx;
   height: 80rpx;
   position: absolute;
-  top: 160px;
-  left: 0rpx;
-  background-color: rgba(0, 0, 0, 0.5);
+  top: 450rpx;
+  left: 10rpx;
+  /* background-color: rgba(0, 0, 0, 0.5);
   border-top-right-radius: 80rpx;
-  border-bottom-right-radius: 80rpx;
+  border-bottom-right-radius: 80rpx; */
 }
 /* ///// */
 .frosted-glass-container{   
