@@ -2,12 +2,12 @@
   <view>
     <view v-for="(item,index) in data" :key="index" class="common-card">
       <navigator
-        :url="'/pages/activity/activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus"
+        :url="'/pages/activity/activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate"
       >
         <view class="common-card-content">
           <!-- <view class="common-card-content-tag">
-          <wux-tag v-if="item.activityStatus=='进行中'" color="red">进行中</wux-tag>
-          <wux-tag v-if="item.activityStatus=='已报名'" color="geekblue">已报名</wux-tag>
+          <wux-tag v-if="item.hasjoin=='进行中'" color="red">进行中</wux-tag>
+          <wux-tag v-if="item.hasjoin=='已报名'" color="geekblue">已报名</wux-tag>
           </view>-->
           <view class="common-card-content-title">
             <view>{{ item.activityName }}</view>
@@ -15,22 +15,22 @@
           <view class="common-card-content-desc">
             <view class="common-card-content-desc-item">
               <text>主办单位：</text>
-              <view>{{ item.activityHolder }}</view>
+              <view>{{ item.sponsor }}</view>
             </view>
             <view class="common-card-content-desc-item">
               <text>活动时间：</text>
-              <view>{{ item.activityTime }}</view>
+              <view>{{ item.startDate }}</view>
             </view>
           </view>
           <view class="common-card-content-icongroup">
             <view class="common-card-content-icongroup-text" @click="detailClick">查看详情</view>
             <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
-            <view class="icon-group-item-label">{{ item.thumbsupNum }}</view>
+            <view class="icon-group-item-label">{{ item.shstate?item.shstate.wantto?item.shstate.wantto:0:0 }}</view>
             <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
-            <view class="icon-group-item-label">{{ item.messageNum }}</view>
+            <view class="icon-group-item-label">{{ item.shstate?item.shstate.disnum?item.shstate.disnum:0:0 }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
-            <!-- <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
-            <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>-->
+            <!-- <view v-if="item.hasjoin=='进行中'" class="on-status">{{ item.hasjoin }}</view>
+            <view v-if="item.hasjoin=='已报名'" class="sign-up-status">{{ item.hasjoin }}</view>-->
           </view>
         </view>
         <!-- <view class="common-card-icon">
@@ -39,10 +39,10 @@
           </view>
         </view>-->
         <view class="common-card-image">
-          <image mode="widthFix" :src="item.src"/>
-          <view v-if="item.activityStatus" class="common-card-content-status">
-            <view v-if="item.activityStatus=='进行中'" class="on-status">{{ item.activityStatus }}</view>
-            <view v-if="item.activityStatus=='已报名'" class="sign-up-status">{{ item.activityStatus }}</view>
+          <image mode="widthFix" :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:'':''"/>
+          <view v-if="item.hasjoin" class="common-card-content-status">
+            <view v-if="item.hasjoin=='进行中'" class="on-status">{{ item.hasjoin }}</view>
+            <view v-if="item.hasjoin=='已报名'" class="sign-up-status">{{ item.hasjoin }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
           </view>
         </view>

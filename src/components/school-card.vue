@@ -1,13 +1,13 @@
 <template>
   <view>
     <view v-for="(item,index) in data" :key="index" class="school-card">
-      <navigator url="/pages/map/sight/main">
+      <navigator url="/pages/map/sight/main" class="school-card-navigator">
         <view class="school-card-content">
           <view class="school-card-content-title">
-            <text>{{ item.schoolName }}</text>
+            <text>{{ item.sceneryTitle }}</text>
           </view>
           <view class="school-card-content-desc">
-            <view class="sight-introduction ellipsis">{{ item.desc }}</view>
+            <view class="sight-introduction ellipsis">{{ item.shdesc }}</view>
           </view>
           <view class="school-card-content-icongroup">
             <view class="school-card-content-icongroup-text">查看详情</view>
@@ -15,7 +15,7 @@
           </view>
         </view>
         <view class="school-card-image">
-          <image mode="widthFix" :src="item.src"/>
+          <image mode="widthFix" :src="item.pics?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:''"/>
         </view>
     </navigator>
     </view>
@@ -58,6 +58,10 @@ export default {
   background-color: #fff;
   padding-bottom: 20rpx;
   /* border-bottom: 1px solid #6666; */
+}
+.school-card-navigator{
+  width: 100%;
+  display: flex;
 }
 .school-card-image {
   width: 40%;

@@ -25,7 +25,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 活动列表
-  getActivityList: (obj) => request.get('api/activity/frontList?pageindex=1&pagesize=5&studentid=1', null, {
+  getActivityList: (obj) => request.get('api/activity/frontList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
     baseURL: ApiRootUrl
   }),
   // 学校详情

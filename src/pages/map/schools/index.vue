@@ -3,7 +3,7 @@
     <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
       <block v-for="(item, index) in movies" :key="index">
         <swiper-item>
-          <image :src="item.url" class="slide-image"/>
+          <image :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>
@@ -242,8 +242,10 @@ export default {
   },
   methods: {
     async getSchoolDetail () {
-      const res1 = await api.getSchoolDetail({id: this.$mp.query.schoolId});
-      console.log('学校详情', res1);
+      const res = await api.getSchoolDetail({id: 80});
+      this.movies = res.data ? res.data.schoolpics ? res.data.schoolpics : [] : []
+      this.sight = res.data ? res.data.scenery ? res.data.scenery : [] : []
+      console.log('学校详情', this.sight);
     },
     expand () {
       var value = !this.ellipsis;
