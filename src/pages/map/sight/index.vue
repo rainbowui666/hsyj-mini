@@ -1,4 +1,9 @@
 <template >
+<view class="sight-page-wrap">
+  <view class='frosted-glass-container'>  
+    <view class='frosted-glass'></view>
+  </view>
+  <view class="backgroubd-modal"/>
   <view class="sight-page">
     <view class='sight-audio'>
       <audio
@@ -18,15 +23,18 @@
       </block>
     </swiper>
     <view class='ceshi_next' @click='prevImg'>
-      <text class='icon iconfont icon-you'></text>
+      <wux-icon type='ios-arrow-forward' size='20' color='#fff'/>
+      <!-- <text class='icon ios-arrow-back'></text> -->
     </view>
     <view class='ceshi_prew' @click='nextImg'>
-      <text class='icon iconfont icon-zuo'></text>
+      <wux-icon type='ios-arrow-back' size='20' color='#fff'/>
+      <!-- <text class='icon ios-arrow-forward'></text> -->
     </view>
     <view class="sight-introduction-bar">
       <view class="sight-introduction-bar-inner">
         <view class="sight-introduction-bar-label">
-          <wux-icon type='ios-navigate' size='26' color='white'/>
+          <image :src="didaImg" mode="widthFix"/>
+          <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
           <text>点击导航</text>
         </view>
         <view class="sight-introduction-icon-group">
@@ -38,6 +46,7 @@
         </view>-->
       </view>
     </view>
+    <view class="sight-introduction-content">
     <view class="sight-introduction-icon-btn">
       <view class="sight-introduction-icon-btn-inner">
         <button
@@ -52,7 +61,8 @@
     <view class="sight-introduction-video">
       <view class="sight-introduction-video-inner">
         <view class="sight-introduction-video-image" @click="popupVideo">
-          <wux-icon wux-class="video-icon" type="ios-play" size="34" color="red"/>
+          <image :src="playImg" mode="widthFix"/>
+          <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="red"/> -->
         </view>
         <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
           <video
@@ -158,18 +168,24 @@
         <button type="primary" size="mini" :plain="false" @click="commitQuestion">完成答题</button>
       </view>
     </wux-popup>
+    </view>
   </view>
+</view>
 </template>
 
 <script>
 import messageCard from '../../../components/message-card';
 import iconGroup from '../../../components/icon-group';
+import didaImg from '../../../../static/images/dida_white.png';
+import playImg from '../../../../static/images/play.png';
 export default {
   components: {
     iconGroup, messageCard
   },
   data () {
     return {
+      didaImg,
+      playImg,
       audioCtx: null,
       poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
       name: '此时此刻',
@@ -234,15 +250,15 @@ export default {
       ],
       iconArr2: [
         {
-          icon: 'ios-heart-empty',
-          size: '30',
-          color: '#888',
+          icon: 'ios-heart',
+          size: '26',
+          color: '#fff',
           label: '想去'
         },
         {
-          icon: 'ios-chatboxes',
-          size: '30',
-          color: '#888',
+          icon: 'ios-map',
+          size: '26',
+          color: '#fff',
           label: '留言'
         }
         // {
@@ -436,8 +452,20 @@ export default {
 </script>
 
 <style>
+.sight-audio{
+  padding-top:50px;
+}
 .sight-page {
   height: 110vh;
+  position:relative;
+  background-color:transparent;
+  width:94%;
+  margin:0 auto;
+}
+.sight-introduction-content{
+  background-color:#fff;
+  border-bottom-right-radius:16rpx;
+  border-bottom-left-radius:16rpx;
 }
 .sight-page .swiper {
   width: 100%;
@@ -448,13 +476,13 @@ export default {
 }
 .sight-page .sight-introduction-bar {
   width: 100%;
-  height: 60px;
-  margin-top: -60px;
+  height: 60rpx;
+  margin-top: -60rpx;
   z-index: 999;
-  background: #000;
-  opacity: 0.6;
+  background: rgba(210, 81, 54, 0.6);
+  opacity: 0.99;
   display: flex;
-  line-height: 60px;
+  line-height: 60rpx;
   justify-content: center;
 }
 .sight-page .sight-introduction-bar-inner {
@@ -464,9 +492,18 @@ export default {
 }
 .sight-page .sight-introduction-bar-label {
   color: #fff;
+  height:60rpx;
+  line-height:60rpx;
+}
+.sight-page .sight-introduction-bar-label image{
+  /* height:20px; */
+  width:25rpx;
 }
 .sight-page .sight-introduction-bar-label text {
-  font-size: 22px;
+  font-size:30rpx;
+  position:relative;
+  top:-4rpx;
+  padding-left:5px;
 }
 .sight-page .sight-introduction-bar-icon {
   /* width: 35px;
@@ -495,9 +532,9 @@ export default {
   /* background-image: url("https://picsum.photos/750/750/?image=413"); */
   /* background-size: 100%; */
   width: 35px;
-  height: 35px;
+  /* height: 35px;
   border-radius: 50%;
-  border: red 1px solid;
+  border: red 1px solid; */
   margin: 5px;
   display: flex;
   justify-content: center;
@@ -510,8 +547,10 @@ export default {
   margin-bottom: auto;
 }
 .sight-page .sight-introduction-video-text text {
-  line-height: 47px;
-  margin-left: 10px;
+  line-height:94rpx;
+  margin-left:20rpx;
+  color:#d25136;
+  font-size:32rpx;
 }
 .sight-page .sight-introduction-icon-group {
   margin-top: auto;
@@ -520,6 +559,17 @@ export default {
   justify-content: flex-end;
   width: 40%;
   color: #fff;
+}
+.sight-page .sight-introduction-icon-group .icon-group-item{
+  font-size:26rpx;
+}
+.sight-page .sight-introduction-icon-group .icon-group-item .icon-group-item-inner ._wux-icon{
+  font-size:20px;
+}
+.sight-page .sight-introduction-icon-group .icon-group-item .icon-group-item-inner ._wux-icon .ion{
+  font-size:20px;
+  color:#fff;
+  padding-top:5px;
 }
 .sight-page .sight-introduction-icon-group-inner {
   width: 50%;
@@ -536,6 +586,10 @@ export default {
 
 .sight-page .sight-introduction-text text {
   width: 95%;
+  color:#aaa;
+  font-size:30rpx;
+  line-height:50rpx;
+  padding-bottom:30rpx;
 }
 
 .sight-page .sight-introduction-icon-group2 {
@@ -545,7 +599,7 @@ export default {
   padding-bottom: 30px;
 }
 .sight-page .sight-introduction-icon-btn {
-  width: 98%;
+  width: 100%;
   /* position: fixed; */
   /* bottom: 0; */
   display: flex;
@@ -588,17 +642,15 @@ export default {
   width: 100%;
 }
 .sight-page .sight-introduction-icon-btn-inner .sign{
-  width: 100%;
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  width:calc(100% - 4px);
+  background:#d25136;
+  border-radius:0;
+  height:36px;
+  margin:2px;
+  line-height:36px;
 }
 .sight-page .sight-introduction-icon-btn-inner .signed {
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  background: red
 }
 .sight-page .sight-words-item {
   margin-top: 10px;
@@ -675,17 +727,11 @@ export default {
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
 .sight-page .sight-question-btn button:last-child {
   margin-left: 20px;
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  background: red
 }
 .sight-page .sight-comment-btn button:last-child {
   margin-top: 15px;
-  background: -webkit-linear-gradient(left, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(right,  rgb(241, 92, 92) , rgb(255, 38, 0)); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, rgb(241, 92, 92) , rgb(255, 38, 0)); /* 标准的语法 */
+  background: red
 }
 .sight-page .sight-comment {
   display: flex;
@@ -749,23 +795,54 @@ export default {
   width: 40rpx;
   height: 80rpx;
   position: absolute;
-  top: 160px;
+  top: 450rpx;
   right: 0rpx;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5);
   border-top-left-radius: 80rpx;
-  border-bottom-left-radius: 80rpx;
+  border-bottom-left-radius: 80rpx; */
 }
 
 .ceshi_prew {
   width: 40rpx;
   height: 80rpx;
   position: absolute;
-  top: 160px;
-  left: 0rpx;
-  background-color: rgba(0, 0, 0, 0.5);
+  top: 450rpx;
+  left: 10rpx;
+  /* background-color: rgba(0, 0, 0, 0.5);
   border-top-right-radius: 80rpx;
-  border-bottom-right-radius: 80rpx;
+  border-bottom-right-radius: 80rpx; */
 }
+/* ///// */
+.frosted-glass-container{   
+  width:100%;
+  height:450rpx;   
+  background-image: url('http://hsyj.100eduonline.com/static/mini-images/school.png');   
+  background-repeat: no-repeat;   
+  background-attachment: fixed;   
+  overflow: hidden;  
+  position: fixed; 
+} 
 
+.frosted-glass{   
+  width:120%;
+  height:500rpx;  
+  background: inherit;   
+  -webkit-filter: blur(10px);   
+  -moz-filter: blur(10px);   
+  -ms-filter: blur(10px);   
+  -o-filter: blur(10px);   
+  filter: blur(10px);   
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);   
+} 
+
+.backgroubd-modal{
+  position: fixed;
+  /* z-index: 100; */
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
 
 </style>

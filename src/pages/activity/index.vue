@@ -11,12 +11,19 @@
         </block>
       </swiper>
     </div>
-    <common-card :data="activityList" :onMessageClick="onMessageClick" :onThumbsupClick="onThumbsupClick" :viewDetail="viewDetail"/>
+    <common-card
+      :data="activityList"
+      :onMessageClick="onMessageClick"
+      :onThumbsupClick="onThumbsupClick"
+      :viewDetail="viewDetail"
+    />
   </view>
 </template>
 
 <script>
 import commonCard from '../../components/common-card';
+import api from '@/utils/api';
+
 export default {
   components: {
     commonCard
@@ -96,7 +103,7 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
-          isSingle: false,
+          isGroup: false,
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
@@ -147,7 +154,7 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
-          isSingle: false,
+          isGroup: false,
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
@@ -173,7 +180,7 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
-          isSingle: false,
+          isGroup: false,
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
@@ -199,7 +206,7 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
-          isSingle: false,
+          isGroup: false,
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
@@ -225,7 +232,7 @@ export default {
           activityHolder: '复旦大学',
           activityTime: '2019年4月11日',
           iconType: 'ios-arrow-forward',
-          isSingle: false,
+          isGroup: false,
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 333,
@@ -245,39 +252,90 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      pageindex: 1,
+      pagesize: 5
     };
   },
+  mounted () {
+    this.getActivityList();
+  },
   methods: {
+    async getActivityList () {
+      const res = await api.getActivityList({
+        pageindex: this.pageindex,
+        pagesize: this.pagesize
+      });
+      this.activityList = res.data.data ? res.data.data : [];
+      console.log('分类主页,请求结果', res.data.data);
+    },
     onMessageClick (item, index) {
-      console.log('onMessageClick', item, index)
-      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
+      console.log('onMessageClick', item, index);
+      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.activityStatus})
     },
     onThumbsupClick (item, index) {
-      console.log('onThumbsupClick', item, index)
-      this.activityList[index].thumbsupImg = '../../static/images/thumbsUp_red.png'
+      console.log('onThumbsupClick', item, index);
+      this.activityList[index].thumbsupImg =
+        '../../static/images/thumbsUp_red.png';
 
-      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
+      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.activityStatus})
     },
     viewDetail () {
-      wx.navigateTo({url: 'activitySight/main'})
+      wx.navigateTo({ url: 'activitySight/main' });
     }
+  },
+  onReachBottom: function () {
+    // 显示加载图标
+    wx.showLoading({
+      title: '玩命加载中'
+    });
+
+    // 页数+1
+    let that = this;
+    console.log('==============', that.pageindex);
+
+    this.pageindex = this.pageindex + 1;
+    wx.request({
+      url:
+        'https://hsyj.100eduonline.com/api/api/activity/frontList?pageindex=' +
+        this.pageindex +
+        '&pagesize=' +
+        this.pagesize,
+      method: 'GET',
+      // 请求头部
+      header: {
+        'content-type': 'application/text'
+      },
+      success: res => {
+        console.log('推荐留言,请求结果2222', res.data.data.data);
+
+        // 回调函数
+        console.log('==============', this.activityList);
+
+        let newActivityList = res.data.data.data ? res.data.data.data : [];
+        for (var i = 0; i < newActivityList.length; i++) {
+          console.log('==============', this.activityList);
+          this.activityList.push(newActivityList[i]);
+        }
+        wx.hideLoading();
+      }
+    });
   }
 };
 </script>
 
 <style>
-.activity-page{
+.activity-page {
   background-color: #eeecec;
 }
-.activity-banner-group{
+.activity-banner-group {
   position: relative;
   background-color: #fff;
-  border-top:15rpx solid #eeecec;
+  border-top: 15rpx solid #eeecec;
 }
 .activity-page .slide-image {
   width: 100%;
-  border-radius:10rpx;
+  border-radius: 10rpx;
 }
 /* /swiper/ */
 .swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
@@ -309,10 +367,10 @@ export default {
   width: 92%;
   height: 360rpx;
   margin: 0 auto;
-  padding:26rpx 0;
+  padding: 26rpx 0;
 }
 .swiperBgLeft {
-  height:calc(100% - 90rpx);
+  height: calc(100% - 90rpx);
   width: 40rpx;
   position: absolute;
   background-color: #d25136;
@@ -321,7 +379,7 @@ export default {
   margin: 50rpx 0;
 }
 .swiperBgRight {
- height:calc(100% - 90rpx);
+  height: calc(100% - 90rpx);
   width: 40rpx;
   position: absolute;
   background-color: #d25136;

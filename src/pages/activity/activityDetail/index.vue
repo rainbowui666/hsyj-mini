@@ -34,7 +34,7 @@
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
     </view> -->
-    <view v-if="isSingle" class="bottom-btn">
+    <view v-if="!isGroup" class="bottom-btn">
       <button v-if="disApply" class="single_btn">报名</button>
       <button v-if="isApply" class="single_btn_isApply">
         <view class='single_btn_isApply_group'>
@@ -44,7 +44,7 @@
       </button>
       <button v-if="isDoing" class="single_btn_isDoing">进入活动</button>
     </view>
-    <view v-if="!isSingle" class="group_btn">
+    <view v-if="isGroup" class="group_btn">
       <view v-if="!isInvite" class="group_btn_disApply">
         <button @click="changeCreatBtn">创建团队</button>
       </view>
@@ -144,13 +144,15 @@
 
 <script>
 import iconGroup from '../../../components/icon-group';
+
 export default {
   components: {
     iconGroup
   },
   data () {
     return {
-      isSingle: true,
+      currentTime: null,
+      isGroup: true,
       isApply: false,
       disApply: false,
       isDoing: false,
@@ -284,10 +286,10 @@ export default {
       this.showCameraPopup = false;
     }
   },
-  onLoad (options) {
-    this.isSingle = options.isSingle === 'false' ? !this.isStatusTrue : true;
-    this.isDoing = options.applyStatus === '进行中' ? this.isStatusTrue : false;
-    this.isApply = options.applyStatus === '已报名' ? this.isStatusTrue : false;
+  onShow () {
+    this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
+    // this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
+    this.isApply = this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
     this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
   },
   onShareAppMessage: function (ops) {
