@@ -33,7 +33,7 @@
     <view class="sight-introduction-bar">
       <view class="sight-introduction-bar-inner">
         <view class="sight-introduction-bar-label">
-          <image src="../../../../static/images/dida.png" alt="" mode="widthFix"/>
+          <image :src="didaImg" mode="widthFix"/>
           <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
           <text>点击导航</text>
         </view>
@@ -61,7 +61,8 @@
     <view class="sight-introduction-video">
       <view class="sight-introduction-video-inner">
         <view class="sight-introduction-video-image" @click="popupVideo">
-          <wux-icon wux-class="video-icon" type="ios-play" size="34" color="red"/>
+          <image :src="playImg" mode="widthFix"/>
+          <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="red"/> -->
         </view>
         <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
           <video
@@ -175,12 +176,16 @@
 <script>
 import messageCard from '../../../components/message-card';
 import iconGroup from '../../../components/icon-group';
+import didaImg from '../../../../static/images/dida_white.png';
+import playImg from '../../../../static/images/play.png';
 export default {
   components: {
     iconGroup, messageCard
   },
   data () {
     return {
+      didaImg,
+      playImg,
       audioCtx: null,
       poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
       name: '此时此刻',
@@ -491,11 +496,14 @@ export default {
   line-height:60rpx;
 }
 .sight-page .sight-introduction-bar-label image{
-  height:20px;
-  width:20px;
+  /* height:20px; */
+  width:25rpx;
 }
 .sight-page .sight-introduction-bar-label text {
-  font-size: 22px;
+  font-size:30rpx;
+  position:relative;
+  top:-4rpx;
+  padding-left:5px;
 }
 .sight-page .sight-introduction-bar-icon {
   /* width: 35px;
@@ -524,9 +532,9 @@ export default {
   /* background-image: url("https://picsum.photos/750/750/?image=413"); */
   /* background-size: 100%; */
   width: 35px;
-  height: 35px;
+  /* height: 35px;
   border-radius: 50%;
-  border: red 1px solid;
+  border: red 1px solid; */
   margin: 5px;
   display: flex;
   justify-content: center;
@@ -539,8 +547,10 @@ export default {
   margin-bottom: auto;
 }
 .sight-page .sight-introduction-video-text text {
-  line-height: 47px;
-  margin-left: 10px;
+  line-height:94rpx;
+  margin-left:20rpx;
+  color:#d25136;
+  font-size:32rpx;
 }
 .sight-page .sight-introduction-icon-group {
   margin-top: auto;
@@ -549,6 +559,17 @@ export default {
   justify-content: flex-end;
   width: 40%;
   color: #fff;
+}
+.sight-page .sight-introduction-icon-group .icon-group-item{
+  font-size:26rpx;
+}
+.sight-page .sight-introduction-icon-group .icon-group-item .icon-group-item-inner ._wux-icon{
+  font-size:20px;
+}
+.sight-page .sight-introduction-icon-group .icon-group-item .icon-group-item-inner ._wux-icon .ion{
+  font-size:20px;
+  color:#fff;
+  padding-top:5px;
 }
 .sight-page .sight-introduction-icon-group-inner {
   width: 50%;
@@ -565,6 +586,10 @@ export default {
 
 .sight-page .sight-introduction-text text {
   width: 95%;
+  color:#aaa;
+  font-size:30rpx;
+  line-height:50rpx;
+  padding-bottom:30rpx;
 }
 
 .sight-page .sight-introduction-icon-group2 {
