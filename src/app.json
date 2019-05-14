@@ -1,11 +1,10 @@
 {
   "pages": [
-    "pages/map/sight/main",
     "pages/map/main",
     "pages/activity/main",
     "pages/center/main",
     "pages/map/schools/main",
-    
+    "pages/map/sight/main",
     "pages/activity/activityDetail/main",
     "pages/activity/activitySight/main",
     "pages/center/signin/main",
