@@ -21,6 +21,13 @@ const api = {
   }),
   getRecommendMessageList: (obj) => request.get('api/discuss/homeDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
     baseURL: ApiRootUrl
+  }),
+  // 首页-搜索学校或景点
+  getSearchList: (obj) => request.get('api/search/searchList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
+    baseURL: ApiRootUrl
+  }),
+  getSearchListBykeyWord: (obj) => request.get('api/search/searchList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&keyword=' + obj.keyword, null, {
+    baseURL: ApiRootUrl
   })
 }
 

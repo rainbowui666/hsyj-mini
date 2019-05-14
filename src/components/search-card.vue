@@ -3,8 +3,8 @@
   <view class="search-card-wrap" style="padding: 0 20px;">
     <!-- <navigator url="/pages/map/navigation/main?activitySight=true"> -->
       <view v-for="(item,index) in data" :key="index" class="search-card">
-        <image class="gpsImg" :src="item.gpsImg" @click="thumbsupClick(item,index)"/>
-        <view class="search-card-content">
+        <image class="gpsImg" :src="item.gpsImg"/>
+        <view class="search-card-content"  @click="goToclick(item)">
         <view class="search-card-content-title">
             <view>{{ item.activityName }}</view>
         </view>
@@ -18,7 +18,7 @@
         </view>
         </view>
         <view class="search-card-icon">
-          <image class="navigationImg" :src="item.navigationImg" @click="thumbsupClick(item,index)"/>
+          <image class="navigationImg" :src="item.navigationImg" @click="navigationClick(item,index)"/>
           <!-- <view v-if="item.isIcon" class="search-card-icon-inner" @click="click(item)">
             <wux-icon :type="item.iconType" :color="item.iconColor"/>
           </view> -->
@@ -48,11 +48,23 @@ export default {
       default: null
     }
   },
+  data () {
+    return {
+      latitude: null,
+      longitude: null
+    }
+  },
   methods: {
-    click (item) {
+    goToclick (item) {
       if (this.iconClick) {
         this.iconClick(item);
       }
+    },
+    navigationClick (item) {
+      let latitude = item.latitude;
+      let longitude = item.longitude;
+      let title = item.activityName
+      wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
     }
   }
 };
@@ -89,6 +101,9 @@ export default {
   text-overflow: ellipsis;
   color: #777;
   margin-bottom:5px;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
 }
 .search-card-content-desc {
   display: flex;
