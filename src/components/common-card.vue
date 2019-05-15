@@ -2,7 +2,7 @@
   <view>
     <view v-for="(item,index) in data" :key="index" class="common-card">
       <navigator
-        :url="'/pages/activity/activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate"
+        :url="'/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate"
       >
         <view class="common-card-content">
           <!-- <view class="common-card-content-tag">

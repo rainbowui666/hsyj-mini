@@ -38,6 +38,10 @@ const api = {
   }),
   getSearchListBykeyWord: (obj) => request.get('api/search/searchList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&keyword=' + obj.keyword, null, {
     baseURL: ApiRootUrl
+  }),
+  // 活动详情
+  getActivityDetail: (obj) => request.get('api/activity/getactivitydetail?id=' + obj.id, null, {
+    baseURL: ApiRootUrl
   })
 }
 
