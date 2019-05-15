@@ -3,7 +3,8 @@
     <navigator url="/pages/map/sight/main?activitySight=true">
       <view v-for="(item,index) in data" :key="index" class="sight-card">
         <view class="sight-card-image">
-          <image mode="widthFix" :src="item.src"/>
+          <image mode="widthFix" 
+            :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"/>
           <!-- <view class="sight-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
           </view>-->
@@ -12,7 +13,7 @@
           <view class="sight-card-content-title">
             <wux-tag v-if="item.start" color="red">起点</wux-tag>
             <wux-tag v-if="item.end" color="red">终点</wux-tag>
-            <text style="margin-top: 4px;">{{ item.sightName }}</text>
+            <text style="margin-top: 4px;">{{ item.sceneryTitle }}</text>
           </view>
           <view class="sight-card-content-icongroup">
             <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>

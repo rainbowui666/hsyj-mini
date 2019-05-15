@@ -42,6 +42,10 @@ const api = {
   getActivityDetail: (obj) => request.get('api/activity/getactivitydetail?id=' + obj.id, null, {
     baseURL: ApiRootUrl
   }),
+  // 活动路线详情
+  getActivitySceneryList: (obj) => request.get('api/activity/getActivitySceneryList?pageindex=1&pagesize=15&activityid=' + obj.id, null, {
+    baseURL: ApiRootUrl
+  }),
   indexLogin: (paramObj) => request.post('api/auth/login', paramObj, {
     baseURL: ApiRootUrl
   })
