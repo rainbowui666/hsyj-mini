@@ -1,9 +1,9 @@
 <template >
   <view>
-    <view v-if="showGif">
+    <!-- <view v-if="showGif">
       <img class="img_flash" :src="homeFlash">
-    </view>
-    <view v-else class="activity-page">
+    </view> -->
+    <view class="activity-page">
       <div class="searchBar">
         <picker @change="pickerChange" :value="index"  range-key="name" :range="array">
           <view class="picker">{{array[index].name}}</view>
@@ -181,12 +181,12 @@ export default {
     };
   },
   mounted () {
-    setTimeout(() => {
-      this.showGif = false;
-      wx.setNavigationBarTitle({
-        title: '红色印记'
-      });
-    }, 2010);
+    // setTimeout(() => {
+    //   this.showGif = false;
+    //   wx.setNavigationBarTitle({
+    //     title: '红色印记'
+    //   });
+    // }, 2010);
     this.getAllRecommendList();
   },
   methods: {
