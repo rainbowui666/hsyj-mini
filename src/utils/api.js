@@ -38,6 +38,14 @@ const api = {
   getSearchListBykeyWord: (obj) => request.get('api/search/searchList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&keyword=' + obj.keyword, null, {
     baseURL: ApiRootUrl
   }),
+  // 活动详情
+  getActivityDetail: (obj) => request.get('api/activity/getactivitydetail?id=' + obj.id, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 活动路线详情
+  getActivitySceneryList: (obj) => request.get('api/activity/getActivitySceneryList?pageindex=1&pagesize=15&activityid=' + obj.id, null, {
+    baseURL: ApiRootUrl
+  }),
   // 首页登录授权
   indexLogin: (paramObj) => request.post('api/auth/login', paramObj, {
     baseURL: ApiRootUrl

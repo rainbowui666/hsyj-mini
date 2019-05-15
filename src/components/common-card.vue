@@ -2,7 +2,7 @@
   <view>
     <view v-for="(item,index) in data" :key="index" class="common-card">
       <navigator
-        :url="'/pages/activity/activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate"
+        :url="'/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate"
       >
         <view class="common-card-content">
           <!-- <view class="common-card-content-tag">
@@ -23,7 +23,7 @@
             </view>
           </view>
           <view class="common-card-content-icongroup">
-            <view class="common-card-content-icongroup-text" @click="detailClick">查看详情</view>
+            <view class="common-card-content-icongroup-text" @click="detailClick(item)">查看详情</view>
             <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
             <view class="icon-group-item-label">{{ item.shstate?item.shstate.wantto?item.shstate.wantto:0:0 }}</view>
             <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
@@ -103,9 +103,9 @@ export default {
         this.onMessageClick(item, index);
       }
     },
-    detailClick () {
+    detailClick (item) {
       if (this.viewDetail) {
-        this.viewDetail();
+        this.viewDetail(item);
       }
     }
   }

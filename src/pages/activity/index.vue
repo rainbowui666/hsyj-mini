@@ -261,13 +261,25 @@ export default {
     this.getActivityList();
   },
   methods: {
+    formatDte (date) {
+      let time = date.substring(0, 19)
+      let time1 = time.split('T')[0] + ' ' + time.split('T')[1]
+      console.log(time1)
+      return time1
+    },
     async getActivityList () {
       const res = await api.getActivityList({
         pageindex: this.pageindex,
         pagesize: this.pagesize
       });
       this.activityList = res.data.data ? res.data.data : [];
-      console.log('分类主页,请求结果', res.data.data);
+      this.activityList.forEach(element => {
+        element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
+        element.messageImg = 'http://hsyj.100eduonline.com/static/mini-images/messageImg.png'
+        element.startDate = this.formatDte(element.startDate)
+      });
+      this.activityList = this.activityList
+      console.log('分类主页,请求结果', this.activityList);
     },
     onMessageClick (item, index) {
       console.log('onMessageClick', item, index);
@@ -280,8 +292,8 @@ export default {
 
       // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.activityStatus})
     },
-    viewDetail () {
-      wx.navigateTo({ url: 'activitySight/main' });
+    viewDetail (item) {
+      wx.navigateTo({ url: 'activitySight/main?id=' + item.activityID });
     }
   },
   onReachBottom: function () {
@@ -313,6 +325,11 @@ export default {
         console.log('==============', this.activityList);
 
         let newActivityList = res.data.data.data ? res.data.data.data : [];
+        newActivityList.forEach(element => {
+          element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
+          element.messageImg = 'http://hsyj.100eduonline.com/static/mini-images/messageImg.png'
+          element.startDate = this.formatDte(element.startDate)
+        });
         for (var i = 0; i < newActivityList.length; i++) {
           console.log('==============', this.activityList);
           this.activityList.push(newActivityList[i]);

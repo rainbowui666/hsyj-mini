@@ -2,32 +2,32 @@
   <view class="activity-detail-page">
     <view class="activity-detail-image">
       <!-- 模糊背景开始 -->
-      <div class='frosted-glass-container'>  
-          <div class='frosted-glass'></div>
-      </div> 
-      <div class="float-container">
-        <div class="float-container-image">
-          <image src="../../../static/images/school.png" mode="widthFix"/>
-        </div>
-        <div class="float-container-detail">
-          <div class="title">2019复旦大学【一日】游春游活动进行中</div>
-          <div class="people">
-            <div class="num"><span>568</span>人报名</div>
-            <div class="status">报名中</div>
-          </div>
+      <view class='frosted-glass-container' :style="'background-image:url(https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress+')'">  
+          <view class='frosted-glass'></view>
+      </view> 
+      <view class="float-container">
+        <view class="float-container-image">
+          <image :src="'https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress" mode="widthFix"/>
+        </view>
+        <view class="float-container-detail">
+          <view class="title">{{activityList.activityName}}</view>
+          <view class="people">
+            <view class="num"><span>568</span>人报名</view>
+            <view class="status">报名中</view>
+          </view>
           <view class="float-container-detail-icon-group">
             <icon-group :list="iconArr2" :iconClick="onClick"/>
           </view>
-        </div>
+        </view>
         
-      </div> 
+      </view> 
     </view>
     <view class="activity-detail-desc">
-      <wux-cell thumb="../../../static/images/people.png" title="主办单位：" extra="复旦大学"></wux-cell>
-      <wux-cell thumb="../../../static/images/more_people.png" title="协办单位：" extra="杨浦区教育局、邯郸路街道"></wux-cell>
-      <wux-cell thumb="../../../static/images/clock.png" title="活动开始时间：" extra="2019年4月11日10:00"></wux-cell>
-      <wux-cell thumb="../../../static/images/clock.png" title="活动结束时间：" extra="2019年4月11日18:00"></wux-cell>
-      <wux-cell thumb="../../../static/images/dida.png" title="出发地点：" extra="五角场大转盘地下广场"></wux-cell>
+      <wux-cell thumb="../../../static/images/people.png" title="主办单位：" :extra="activityList.sponsor"></wux-cell>
+      <wux-cell thumb="../../../static/images/more_people.png" title="协办单位：" :extra="activityList.secondSponsor"></wux-cell>
+      <wux-cell thumb="../../../static/images/clock.png" title="活动开始时间：" :extra="activityList.startDate"></wux-cell>
+      <wux-cell thumb="../../../static/images/clock.png" title="活动结束时间：" :extra="activityList.endDate"></wux-cell>
+      <wux-cell thumb="../../../static/images/dida.png" title="出发地点：" :extra="activityList.startAddress"></wux-cell>
     </view>
     <!-- <view class="activity-detail-icon-group2">
       <view class="activity-detail-icon-group2-inner">
@@ -63,13 +63,13 @@
       <view class="activity-detail-desc-rows">
         <view class="activity-detail-desc-rows-inner">
           <text class="explain">活动说明：</text>
-          <text>&nbsp;1.按时参加</text>
+          <text>&nbsp;{{activityList.shdesc}}</text>
           <!-- <navigator url="/pages/activity/activitySight/main"> -->
-            <view class="activity-detail-desc-rows-icon">
-              <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text>
+            <!-- <view class="activity-detail-desc-rows-icon"> -->
+              <!-- <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text> -->
               <!-- <wux-icon type="ios-arrow-forward" color="#888" size="16"/> -->
               <!-- <text class="view-sight">&nbsp;查看参与景点</text> -->
-            </view>
+            <!-- </view> -->
           <!-- </navigator> -->
         </view>
       </view>
@@ -110,7 +110,7 @@
           <!-- <wux-popup position="bottom" :visible="showWords" :closable="true" @close="onClose"> -->
           <view class="activity-detail-words">
             <view class="activity-detail-words-item" v-for="(item,index) in wordsList" :key="index">
-              <view class="activity-detail-words-title">
+              <!-- <view class="activity-detail-words-title">
                 <wux-cell
                   thumb="https://wux.cdn.cloverstd.com/logo.png"
                   :title="item.name"
@@ -119,7 +119,8 @@
               </view>
               <view class="activity-detail-words-content">
                 <text>&nbsp;{{ item.content }}</text>
-              </view>
+              </view> -->
+              <message-card :data="item"/>
             </view>
           </view>
           <view class="activity-detail-words-btn">
@@ -144,10 +145,13 @@
 
 <script>
 import iconGroup from '../../../components/icon-group';
+import messageCard from '../../../components/message-card';
+import api from '@/utils/api';
 
 export default {
   components: {
-    iconGroup
+    iconGroup,
+    messageCard
   },
   data () {
     return {
@@ -239,7 +243,8 @@ export default {
         }
       ],
       showComment: false,
-      showWords: false
+      showWords: false,
+      activityList: {}
     };
   },
   // onShow () { wx.setNavigationBarTitle({ title: this.$mp.query.name }); },
@@ -284,13 +289,26 @@ export default {
       this.showWords = false;
       this.showComment = false;
       this.showCameraPopup = false;
+    },
+    formatDte (date) {
+      let time = date.substring(0, 19)
+      let time1 = time.split('T')[0] + ' ' + time.split('T')[1]
+      console.log(time1)
+      return time1
     }
   },
-  onShow () {
+  async onShow () {
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
     // this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply = this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
     this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
+    const res = await api.getActivityDetail({id: this.$mp.query.id});
+    this.activityList = res.data ? res.data : []
+    this.activityList.startDate = this.formatDte(this.activityList.startDate)
+    this.activityList.endDate = this.formatDte(this.activityList.endDate)
+    wx.setNavigationBarTitle({
+      title: this.activityList.activityName
+    })
   },
   onShareAppMessage: function (ops) {
     return {
@@ -686,7 +704,7 @@ export default {
 .frosted-glass-container{   
   width:100%;
   height:340rpx;   
-  background-image: url('https://hsyj.100eduonline.com/static/mini-images/school.png');   
+  /* background-image: url('https://hsyj.100eduonline.com/static/mini-images/school.png');    */
   background-repeat: no-repeat;   
   background-attachment: fixed;   
   overflow: hidden;   
