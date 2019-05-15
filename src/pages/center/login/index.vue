@@ -4,22 +4,22 @@
       <view class="login-bg">
       <h2 class="login_title">仅对在校大学生开放</h2>
         <view class="userinfo-name">
-          <picker @change="bindPickerChange" :value="index" :range="schoolList">
+          <picker @change="bindPickerChange" :value="pickIndex" range-key="schoolName" :range="schoolList">
             <view class="picker">
               <view class="fb-type">
-                <view class="type-label">{{schoolList[index]}}</view>
+                <view class="type-label">{{schoolList[pickIndex].schoolName}}</view>
               </view>
             </view>
           </picker>
         </view>
         <view class="userinfo-name">
-          <input maxlength="11" type="number" placeholder="学号" @input="bindInput">
+          <input maxlength="11" type="number" placeholder="学号" :value="studentId" @input="setStudentId">
         </view>
         <view class="userinfo-name">
-          <input maxlength="11" type="text" placeholder="姓名" @input="bindInput">
+          <input maxlength="11" type="text" placeholder="姓名" :value="studentName"  @input="setStudentName">
         </view>
         <view class="userinfo-name">
-          <input maxlength="11" type="number" placeholder="手机" @input="bindInput">
+          <input maxlength="11" type="number" placeholder="手机" :value="uesrTel" @input="setUserTel">
         </view>
         <view>
         <view class="login-btn">
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import api from '@/utils/api';
+
 export default {
   data () {
     return {
@@ -43,29 +45,69 @@ export default {
       // header: 'https://rainbow.ebaotech.com/static/rainbow/image/login_header.jpg',
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      schoolList: ['复旦大学', '上海大学', '同济大学'],
-      // schoolList: [
-      //   {
-      //     id: 1,
-      //     schoolName: '复旦大学'
-      //   },
-      //   {
-      //     id: 2,
-      //     schoolName: '上海大学'
-      //   },
-      //   {
-      //     id: 3,
-      //     schoolName: '同济大学'
-      //   }
-      // ],
-      index: 0
+      // schoolList: [],
+      schoolList: [
+        {
+          id: 1,
+          schoolName: '复旦大学'
+        },
+        {
+          id: 2,
+          schoolName: '上海大学'
+        },
+        {
+          id: 3,
+          schoolName: '同济大学'
+        }
+      ],
+      pickIndex: 0,
+      schoolName: null,
+      schoolID: null,
+      studentName: null,
+      studentId: null,
+      uesrTel: null
     };
   },
+  async mounted () {
+    const schoolInfo = await api.getSchoolList();
+    this.schoolList = schoolInfo.data.data;
+    if (this.schoolList) {
+      this.schoolName = this.schoolList[this.pickIndex].schoolName;
+      this.schoolID = this.schoolList[this.pickIndex].schoolID;
+    }
+    console.log('schoolInfo', this.schoolList)
+  },
   methods: {
-    goInHsyj () {
-      wx.switchTab({
-        url: '/pages/map/main'
-      });
+    async goInHsyj () {
+      let userInfo = wx.getStorageSync('userInfo') || false;
+      if (userInfo) {
+        debugger
+        userInfo.schoolName = this.schoolName;
+        userInfo.schoolID = this.schoolID;
+        userInfo.studentName = this.studentName;
+        userInfo.studentId = this.studentId;
+        userInfo.tel = this.uesrTel;
+        const addStudentInfo = await api.studentLogin(userInfo)
+        console.log('addStudentInfo', addStudentInfo)
+      }
+      // wx.switchTab({
+      //   url: '/pages/map/main'
+      // });
+    },
+    bindPickerChange (e) {
+      console.log('value', e)
+      this.pickIndex = e.target.value
+      this.schoolName = this.schoolList[this.pickIndex].schoolName;
+      this.schoolID = this.schoolList[this.pickIndex].schoolID;
+    },
+    setStudentId (e) {
+      this.studentId = e.target.value
+    },
+    setStudentName (e) {
+      this.studentName = e.target.value
+    },
+    setUserTel (e) {
+      this.uesrTel = e.target.value
     }
   }
 };
@@ -177,7 +219,7 @@ width:100%;
   height:48px;
   font-size:14px;
   justify-content:space-between;
-  width:70%;
+  /* width:70%; */
   padding-left: 26px;
   /* background: url('../../../../static/images/login_school.png');
   background-repeat: no-repeat;

@@ -38,7 +38,16 @@ const api = {
   getSearchListBykeyWord: (obj) => request.get('api/search/searchList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&keyword=' + obj.keyword, null, {
     baseURL: ApiRootUrl
   }),
+  // 首页登录授权
   indexLogin: (paramObj) => request.post('api/auth/login', paramObj, {
+    baseURL: ApiRootUrl
+  }),
+  // 学生登录
+  studentLogin: (paramObj) => request.post('admin/student/addEdit?id=' + paramObj.studentID, paramObj, {
+    baseURL: ApiRootUrl
+  }),
+  // 学校列表
+  getSchoolList: () => request.get('api/school/index', null, {
     baseURL: ApiRootUrl
   })
 }
