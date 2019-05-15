@@ -11,7 +11,7 @@
         <view>三天前</view>
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
-          <image class="thumbsUpImg" :src="thumbsUpImg"/>
+          <image class="thumbsUpImgClass" :src="thumbsUpImg"/>
           <view>{{data.pointsNum}}</view>
         </view>
       </view>
@@ -85,7 +85,7 @@ export default {
   font-size:24rpx;
   color:#aaa;
 } */
-.thumbsUpImg{
+.thumbsUpImgClass{
   position:absolute;
   width: 12px;
   height: 12px;

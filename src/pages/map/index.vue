@@ -47,11 +47,14 @@
               class="scenic-spot-recommendation-view-inner"
             >
               <navigator class="scenic-spot-recommendation-view-inner-image" url="/pages/map/sight/main?activitySight=true">
-                <image
-                  v-if="item.pics[0]"
-                  :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
-                  class="scenic-spot-recommendation-view-inner-image"
-                />
+                <view class="sceneryRecommend" v-if="item.pics[0]">
+                  <image
+                    :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                    class="scenic-spot-recommendation-view-inner-image"
+                  />
+                  <p class="title">{{item.sceneryTitle}}</p>
+                  <p class="content">{{item.joinnum}}在这里</p>
+                </view>
               </navigator>
             </view>
           </view>
@@ -68,11 +71,11 @@
             >
               <!-- <view class="scenic-spot-message-view-inner"> -->
               <navigator class="scenic-spot-message-view-inner-image" url="/pages/activity/activityDetail/main">
-              <image
-                :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
-                style="width:92px;height:66px"
-                class="scenic-spot-message-view-inner-image"
-              />
+                <image
+                  :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                  style="width:92px;height:66px"
+                  class="scenic-spot-message-view-inner-image"
+                />
               </navigator>
               <message-card :data="item"/>
             </view>
@@ -418,6 +421,25 @@ export default {
 }
 .swiper .wx-swiper-dot-active::before {
   background: #d25136;
+}
+.sceneryRecommend{
+  position:relative;
+  text-align:center;
+  height: 100%;
+}
+.sceneryRecommend .title{
+  position:absolute;
+  font-size:40rpx;
+  bottom:30rpx;
+  width:100%;
+  color: #fff
+}
+.sceneryRecommend .content{
+  position:absolute;
+  font-size:18rpx;
+  width:100%;
+  bottom:5rpx;
+  color: #fff
 }
 </style>
 
