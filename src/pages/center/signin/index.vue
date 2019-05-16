@@ -8,6 +8,8 @@
 
 <script>
 import sightCard from '../../../components/sight-card';
+// import api from '@/utils/api';
+
 export default {
   components: {
     sightCard
@@ -142,6 +144,18 @@ export default {
         }
       ]
     };
+  },
+  async onShow () {
+    // debugger
+    // const res = await api.getActivitySceneryList({id: this.$mp.query.id});
+    // this.sightList = res.data.data ? res.data.data : []
+    // this.sightList.forEach(element => {
+    //   element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
+    //   element.messageImg = 'http://hsyj.100eduonline.com/static/mini-images/messageImg.png'
+    //   element.iconType = 'ios-navigate'
+    //   element.iconColor = '#aaa'
+    // });
+    // console.log('======', this.sightList)
   },
   methods: {
     iconClick (item) {
