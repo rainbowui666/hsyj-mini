@@ -57,7 +57,12 @@ const api = {
   // 学校列表
   getSchoolList: () => request.get('api/school/index?pageindex=1&pagesize=200', null, {
     baseURL: ApiRootUrl
+  }),
+  // 我的签到
+  getMySigninList: () => request.get('api/myself/getMyAttention?studentid=1', null, {
+    baseURL: ApiRootUrl
   })
+  // http://127.0.0.1:8360/api/myself/getMyAttention?studentid=1&pageindex=1&pagesize=5
 }
 
 export default api

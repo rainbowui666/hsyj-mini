@@ -88,6 +88,8 @@ export default {
         userInfo.studentId = this.studentId;
         userInfo.tel = this.uesrTel;
         const addStudentInfo = await api.studentLogin(userInfo)
+        let resUser = addStudentInfo.data.data;
+        wx.setStorageSync('userInfo', resUser)
         console.log('addStudentInfo', addStudentInfo)
       }
       // wx.switchTab({

@@ -147,7 +147,8 @@ export default {
   },
   async onShow () {
     // debugger
-    // const res = await api.getActivitySceneryList({id: this.$mp.query.id});
+    // const res = await api.getMySigninList();
+    // console.log('res', res)
     // this.sightList = res.data.data ? res.data.data : []
     // this.sightList.forEach(element => {
     //   element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
@@ -155,7 +156,7 @@ export default {
     //   element.iconType = 'ios-navigate'
     //   element.iconColor = '#aaa'
     // });
-    // console.log('======', this.sightList)
+    // console.log('111', this.sightList)
   },
   methods: {
     iconClick (item) {

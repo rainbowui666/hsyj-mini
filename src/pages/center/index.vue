@@ -68,7 +68,12 @@ export default {
     };
   },
   onLoad () {
-    this.userInfo = wx.getStorageSync('userInfo');
+    this.userInfo = wx.getStorageSync('userInfo') || {};
+    // if (!this.userInfo.stuNo) {
+    //   wx.navigateTo({
+    //     url: '/pages/center/login/main'
+    //   })
+    // }
   },
   onShow () {
     this.userInfo = wx.getStorageSync('userInfo');
