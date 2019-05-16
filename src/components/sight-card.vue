@@ -17,9 +17,9 @@
           </view>
           <view class="sight-card-content-icongroup">
             <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
-            <view class="icon-group-item-label">{{ item.thumbsupNum }}</view>
+            <view class="icon-group-item-label">{{ item.shstate?item.shstate.wantto?item.shstate.wantto:0:0 }}</view>
             <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
-            <view class="icon-group-item-label">{{ item.messageNum }}</view>
+            <view class="icon-group-item-label">{{ item.shstate?item.shstate.disnum?item.shstate.disnum:0:0 }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
           </view>
           <view class="sight-card-content-detail">

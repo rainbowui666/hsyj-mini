@@ -55,7 +55,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 学校列表
-  getSchoolList: () => request.get('api/school/index', null, {
+  getSchoolList: () => request.get('api/school/index?pageindex=1&pagesize=200', null, {
     baseURL: ApiRootUrl
   })
 }

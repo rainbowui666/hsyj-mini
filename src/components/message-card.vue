@@ -12,7 +12,7 @@
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
           <image class="thumbsUpImgClass" :src="thumbsUpImg"/>
-          <view>{{data.pointsNum}}</view>
+          <view>{{data.clicknum}}</view>
         </view>
       </view>
       <view>

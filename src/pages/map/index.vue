@@ -5,8 +5,8 @@
     </view> -->
     <view class="activity-page">
       <div class="searchBar">
-        <picker @change="pickerChange" :value="index"  range-key="name" :range="array">
-          <view class="picker">{{array[index].name}}</view>
+        <picker @change="pickerChange" :value="index"  range-key="schoolName" :range="schoolList">
+          <view class="picker">{{schoolList[index].schoolName}}</view>
         </picker>
         <span class="sanjiao"></span>
         <img class="search_bar_img" :src="searchBarImg" @click="goToSearch">
@@ -172,7 +172,7 @@ export default {
       homeFlash: 'https://hsyj.100eduonline.com/static/images/into_flash.gif',
       searchBarImg: '../../static/images/searchBar.png',
       showGif: true,
-      array: [
+      schoolList: [
         {id: 79, name: '上海大学'},
         {id: 80, name: '上海复旦大学'},
         {id: 82, name: '上海财经大学'},
@@ -211,6 +211,9 @@ export default {
       });
       this.messageList = res2.data.data ? res2.data.data : [];
       console.log('推荐留言,请求结果', res2.data.data);
+      const schoolInfo = await api.getSchoolList();
+      this.schoolList = schoolInfo.data.data;
+      console.log('schoolInfo', this.schoolList)
     },
     navigatoTo () {
       console.log('1111111')
