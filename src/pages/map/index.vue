@@ -2,14 +2,14 @@
   <view>
     <!-- <view v-if="showGif">
       <img class="img_flash" :src="homeFlash">
-    </view> -->
+    </view>-->
     <view class="activity-page">
       <div class="searchBar">
-        <picker @change="pickerChange" :value="index"  range-key="schoolName" :range="schoolList">
+        <picker @change="pickerChange" :value="index" range-key="schoolName" :range="schoolList">
           <view class="picker">{{schoolList[index].schoolName}}</view>
         </picker>
         <span class="sanjiao"></span>
-        <img class="search_bar_img" :src="searchBarImg" @click="goToSearch">
+        <image class="search_bar_img" :src="searchBarImg" @click="goToSearch"/>
         <!-- <wux-search-bar clear controlled placeholder="想要去哪儿?"/> -->
       </div>
       <view class="activity-recommendation-group">
@@ -25,11 +25,11 @@
         >
           <block v-for="(item, index) in movies" :key="index">
             <swiper-item>
-                <image
-                  :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
-                  class="slide-image"
-                  @click="navigatoTo"
-                />
+              <image
+                :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                class="slide-image"
+                @click="navigatoTo"
+              />
             </swiper-item>
           </block>
         </swiper>
@@ -46,7 +46,10 @@
               :key="index"
               class="scenic-spot-recommendation-view-inner"
             >
-              <navigator class="scenic-spot-recommendation-view-inner-image" url="/pages/map/sight/main?activitySight=true">
+              <navigator
+                class="scenic-spot-recommendation-view-inner-image"
+                url="/pages/map/sight/main?activitySight=true"
+              >
                 <view class="sceneryRecommend" v-if="item.pics[0]">
                   <image
                     :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
@@ -70,14 +73,17 @@
               class="scenic-spot-message-view-inner"
             >
               <!-- <view class="scenic-spot-message-view-inner"> -->
-              <navigator class="scenic-spot-message-view-inner-image" url="/pages/activity/activityDetail/main">
+              <navigator
+                class="scenic-spot-message-view-inner-image"
+                url="/pages/activity/activityDetail/main"
+              >
                 <image
                   :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                   style="width:92px;height:66px"
                   class="scenic-spot-message-view-inner-image"
                 />
               </navigator>
-              <message-card :data="item"/>
+              <message-card :data="item" :imageName="item.thumbsupImg" :onThumbsupClick="onThumbsupClick" :index="index"/>
             </view>
           </view>
         </view>
@@ -95,39 +101,8 @@ export default {
   },
   data () {
     return {
-      movies: [
-        {
-          url: '../../static/images/fudan1.jpeg'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg'
-        }
-      ],
+      movies: [],
       imgList: [
-        {
-          url: '../../static/images/fudan1.jpeg'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg'
-        },
         {
           url: '../../static/images/fudan1.jpeg'
         },
@@ -143,40 +118,16 @@ export default {
           label: '三天前',
           pointsNum: '1234',
           text: 'hahahahahahahahahah'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg',
-          userImg: '../../static/images/fudan1.jpeg',
-          userName: '用户1',
-          label: '三天前',
-          pointsNum: '1234',
-          text: 'hahahahahahahahahah'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg',
-          userImg: '../../static/images/fudan1.jpeg',
-          userName: '用户1',
-          label: '三天前',
-          pointsNum: '1234',
-          text: 'hahahahahahahahahah'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg',
-          userImg: '../../static/images/fudan1.jpeg',
-          userName: '用户1',
-          label: '三天前',
-          pointsNum: '1234',
-          text: 'hahahahahahahahahah'
         }
       ],
       homeFlash: 'https://hsyj.100eduonline.com/static/images/into_flash.gif',
       searchBarImg: '../../static/images/searchBar.png',
       showGif: true,
       schoolList: [
-        {id: 79, name: '上海大学'},
-        {id: 80, name: '上海复旦大学'},
-        {id: 82, name: '上海财经大学'},
-        {id: 83, name: '同济大学'}
+        { id: 79, name: '上海大学' },
+        { id: 80, name: '上海复旦大学' },
+        { id: 82, name: '上海财经大学' },
+        { id: 83, name: '同济大学' }
       ],
       index: 0,
       pageindex: 1,
@@ -193,12 +144,19 @@ export default {
     this.getAllRecommendList();
   },
   methods: {
+    async onThumbsupClick (item, index) {
+      if (!item.likednum) {
+        await api.homeThumbsUp({id: item.discussID});
+        this.messageList[0].thumbsupImg = 'thumbsUp_red'
+        this.$set(item, 'clicknum', item.clicknum + 1)
+      }
+    },
     pickerChange (value) {
-      console.log('pickerChange', value.mp.detail.value)
-      wx.navigateTo({url: '/pages/map/schools/main?schoolId=80'})
+      console.log('pickerChange', value.mp.detail.value);
+      wx.navigateTo({ url: '/pages/map/schools/main?schoolId=80' });
     },
     goToSearch () {
-      wx.navigateTo({url: '/pages/map/navigation/main'})
+      wx.navigateTo({ url: '/pages/map/navigation/main' });
     },
     async getAllRecommendList () {
       const res1 = await api.getRecommendList();
@@ -210,14 +168,21 @@ export default {
         pagesize: this.pagesize
       });
       this.messageList = res2.data.data ? res2.data.data : [];
+      this.messageList.forEach(element => {
+        if (!element.likednum) {
+          element.thumbsupImg = 'thumbsUp'
+        } else {
+          element.thumbsupImg = 'thumbsUp_red'
+        }
+      });
       console.log('推荐留言,请求结果', res2.data.data);
       const schoolInfo = await api.getSchoolList();
       this.schoolList = schoolInfo.data.data;
-      console.log('schoolInfo', this.schoolList)
+      console.log('schoolInfo', this.schoolList);
     },
     navigatoTo () {
-      console.log('1111111')
-      wx.navigateTo({url: '/pages/activity/activityDetail/main'})
+      console.log('1111111');
+      wx.navigateTo({ url: '/pages/activity/activityDetail/main' });
     }
   },
   onReachBottom: function () {
@@ -251,6 +216,13 @@ export default {
         console.log('==============', this.messageList);
 
         let newMessageList = res.data.data.data ? res.data.data.data : [];
+        newMessageList.forEach(element => {
+          if (!element.likednum) {
+            element.thumbsupImg = 'thumbsUp'
+          } else {
+            element.thumbsupImg = 'thumbsUp_red'
+          }
+        });
         for (var i = 0; i < newMessageList.length; i++) {
           console.log('==============', this.messageList);
           this.messageList.push(newMessageList[i]);
@@ -357,14 +329,14 @@ export default {
   width: 95%;
   margin: 10px auto 0 auto;
 }
-.scenic-spot-message-view-inner > ._navigator{
-  height:60px;
-  overflow:hidden;
-  border-radius:16rpx;
+.scenic-spot-message-view-inner > ._navigator {
+  height: 60px;
+  overflow: hidden;
+  border-radius: 16rpx;
 }
 .scenic-spot-message-view-inner > ._navigator > image {
   border-radius: 15%;
-  width:120%;
+  width: 120%;
 }
 /* /searchBar/ */
 .searchBar {
@@ -384,21 +356,21 @@ export default {
   border-width: 8rpx;
   border-style: solid;
   border-color: #777 transparent transparent transparent;
-  margin-top:36rpx;
-  height:10px;
+  margin-top: 36rpx;
+  height: 10px;
 }
 .searchBar > ._wux-search-bar {
   flex-grow: 1;
-  margin-top:-1px;
-  margin-bottom:-1px;
+  margin-top: -1px;
+  margin-bottom: -1px;
 }
-.search_bar_img{
-  width:74%;
-  height:34px;
-  position:absolute;
-  top:50%;
-  left:96px;
-  transform:translateY(-50%);
+.search_bar_img {
+  width: 74%;
+  height: 34px;
+  position: absolute;
+  top: 50%;
+  left: 96px;
+  transform: translateY(-50%);
 }
 /* /swiper/ */
 .swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
@@ -425,24 +397,24 @@ export default {
 .swiper .wx-swiper-dot-active::before {
   background: #d25136;
 }
-.sceneryRecommend{
-  position:relative;
-  text-align:center;
+.sceneryRecommend {
+  position: relative;
+  text-align: center;
   height: 100%;
 }
-.sceneryRecommend .title{
-  position:absolute;
-  font-size:40rpx;
-  bottom:30rpx;
-  width:100%;
-  color: #fff
+.sceneryRecommend .title {
+  position: absolute;
+  font-size: 40rpx;
+  bottom: 30rpx;
+  width: 100%;
+  color: #fff;
 }
-.sceneryRecommend .content{
-  position:absolute;
-  font-size:18rpx;
-  width:100%;
-  bottom:5rpx;
-  color: #fff
+.sceneryRecommend .content {
+  position: absolute;
+  font-size: 18rpx;
+  width: 100%;
+  bottom: 5rpx;
+  color: #fff;
 }
 </style>
 

@@ -2,43 +2,70 @@
   <view class="activity-detail-page">
     <view class="activity-detail-image">
       <!-- 模糊背景开始 -->
-      <view class='frosted-glass-container' :style="'background-image:url(https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress+')'">  
-          <view class='frosted-glass'></view>
-      </view> 
+      <view
+        class="frosted-glass-container"
+        :style="'background-image:url(https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress+')'"
+      >
+        <view class="frosted-glass"></view>
+      </view>
       <view class="float-container">
         <view class="float-container-image">
-          <image :src="'https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress" mode="widthFix"/>
+          <image
+            :src="'https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress"
+            mode="widthFix"
+          />
         </view>
         <view class="float-container-detail">
           <view class="title">{{activityList.activityName}}</view>
           <view class="people">
-            <view class="num"><span>568</span>人报名</view>
+            <view class="num">
+              <span>568</span>人报名
+            </view>
             <view class="status">报名中</view>
           </view>
           <view class="float-container-detail-icon-group">
             <icon-group :list="iconArr2" :iconClick="onClick"/>
           </view>
         </view>
-        
-      </view> 
+      </view>
     </view>
     <view class="activity-detail-desc">
-      <wux-cell thumb="../../../static/images/people.png" title="主办单位：" :extra="activityList.sponsor"></wux-cell>
-      <wux-cell thumb="../../../static/images/more_people.png" title="协办单位：" :extra="activityList.secondSponsor"></wux-cell>
-      <wux-cell thumb="../../../static/images/clock.png" title="活动开始时间：" :extra="activityList.startDate"></wux-cell>
-      <wux-cell thumb="../../../static/images/clock.png" title="活动结束时间：" :extra="activityList.endDate"></wux-cell>
-      <wux-cell thumb="../../../static/images/dida.png" title="出发地点：" :extra="activityList.startAddress"></wux-cell>
+      <wux-cell
+        thumb="../../../static/images/people.png"
+        title="主办单位："
+        :extra="activityList.sponsor"
+      ></wux-cell>
+      <wux-cell
+        thumb="../../../static/images/more_people.png"
+        title="协办单位："
+        :extra="activityList.secondSponsor"
+      ></wux-cell>
+      <wux-cell
+        thumb="../../../static/images/clock.png"
+        title="活动开始时间："
+        :extra="activityList.startDate"
+      ></wux-cell>
+      <wux-cell
+        thumb="../../../static/images/clock.png"
+        title="活动结束时间："
+        :extra="activityList.endDate"
+      ></wux-cell>
+      <wux-cell
+        thumb="../../../static/images/dida.png"
+        title="出发地点："
+        :extra="activityList.startAddress"
+      ></wux-cell>
     </view>
     <!-- <view class="activity-detail-icon-group2">
       <view class="activity-detail-icon-group2-inner">
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
-    </view> -->
+    </view>-->
     <view v-if="!isGroup" class="bottom-btn">
       <button v-if="disApply" class="single_btn">报名</button>
       <button v-if="isApply" class="single_btn_isApply">
-        <view class='single_btn_isApply_group'>
-          <wux-icon type='ios-checkmark' size='36' color='#fff'/>
+        <view class="single_btn_isApply_group">
+          <wux-icon type="ios-checkmark" size="36" color="#fff"/>
           <view>已报名</view>
         </view>
       </button>
@@ -65,11 +92,11 @@
           <text class="explain">活动说明：</text>
           <text>&nbsp;{{activityList.shdesc}}</text>
           <!-- <navigator url="/pages/activity/activitySight/main"> -->
-            <!-- <view class="activity-detail-desc-rows-icon"> -->
-              <!-- <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text> -->
-              <!-- <wux-icon type="ios-arrow-forward" color="#888" size="16"/> -->
-              <!-- <text class="view-sight">&nbsp;查看参与景点</text> -->
-            <!-- </view> -->
+          <!-- <view class="activity-detail-desc-rows-icon"> -->
+          <!-- <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text> -->
+          <!-- <wux-icon type="ios-arrow-forward" color="#888" size="16"/> -->
+          <!-- <text class="view-sight">&nbsp;查看参与景点</text> -->
+          <!-- </view> -->
           <!-- </navigator> -->
         </view>
       </view>
@@ -119,7 +146,7 @@
               </view>
               <view class="activity-detail-words-content">
                 <text>&nbsp;{{ item.content }}</text>
-              </view> -->
+              </view>-->
               <message-card :data="item"/>
             </view>
           </view>
@@ -271,10 +298,17 @@ export default {
     hideComment () {
       this.showComment = false;
     },
-    onClick (item, index) {
+    async onClick (item, index) {
       if (index === 0) {
-        this.iconArr2[0].icon = 'ios-heart';
-        this.iconArr2[0].color = 'red';
+        if (this.iconArr2[0].color !== 'red') {
+          await api.wantToActivity({
+            studentid: wx.getStorageSync('userInfo').studentID,
+            activityid: this.$mp.query.id,
+            shstate: 0
+          });
+          this.iconArr2[0].icon = 'ios-heart';
+          this.iconArr2[0].color = 'red';
+        }
       }
       if (index === 1) {
         this.showWords = true;
@@ -291,24 +325,36 @@ export default {
       this.showCameraPopup = false;
     },
     formatDte (date) {
-      let time = date.substring(0, 19)
-      let time1 = time.split('T')[0] + ' ' + time.split('T')[1]
-      console.log(time1)
-      return time1
+      let time = date.substring(0, 19);
+      let time1 = time.split('T')[0] + ' ' + time.split('T')[1];
+      console.log(time1);
+      return time1;
     }
   },
   async onShow () {
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
     // this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
-    this.isApply = this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
+    this.isApply =
+      this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
     this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
-    const res = await api.getActivityDetail({id: this.$mp.query.id});
-    this.activityList = res.data ? res.data : []
-    this.activityList.startDate = this.formatDte(this.activityList.startDate)
-    this.activityList.endDate = this.formatDte(this.activityList.endDate)
+    const res = await api.getActivityDetail({ id: this.$mp.query.id });
+    this.activityList = res.data ? res.data : [];
+    this.activityList.startDate = this.formatDte(this.activityList.startDate);
+    this.activityList.endDate = this.formatDte(this.activityList.endDate);
     wx.setNavigationBarTitle({
       title: this.activityList.activityName
-    })
+    });
+    const isWantTo = await api.isWantTo({
+      studentid: wx.getStorageSync('userInfo').studentID,
+      activityid: this.$mp.query.id,
+      shstate: 0
+    });
+    console.log('9999999', isWantTo.data)
+    if (isWantTo.data) {
+      this.iconArr2[0].color = 'red';
+    } else {
+      this.iconArr2[0].color = '#fff';
+    }
   },
   onShareAppMessage: function (ops) {
     return {
@@ -328,7 +374,7 @@ export default {
 .activity-detail-page .activity-detail-desc {
   margin: 50rpx auto;
   font-size: 14px;
-  margin-bottom:20rpx;
+  margin-bottom: 20rpx;
 }
 .activity-detail-page .activity-detail-desc-rows {
   font-size: 14px;
@@ -344,13 +390,13 @@ export default {
 
 .activity-detail-page .activity-detail-desc-rows-inner text {
   margin-bottom: 8px;
-  line-height:30rpx;
+  line-height: 30rpx;
   color: #aaa;
 }
-.activity-detail-page .activity-detail-desc-rows-inner .explain{
-  color:#d25136;
-  font-size:36rpx;
-  padding-top:16rpx;
+.activity-detail-page .activity-detail-desc-rows-inner .explain {
+  color: #d25136;
+  font-size: 36rpx;
+  padding-top: 16rpx;
 }
 .activity-detail-page .activity-detail-icon-group {
   /* margin-top: 10px; */
@@ -642,32 +688,32 @@ export default {
 .single_btn {
   width: 90%;
   background-color: #d25136;
-  height:80rpx;
-  line-height:80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   color: #fff;
 }
 .single_btn_isApply {
   display: flex;
   width: 90%;
   background-color: #d25136;
-  height:80rpx;
-  line-height:80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   color: #fff;
 }
-.single_btn_isApply_group{
+.single_btn_isApply_group {
   display: flex;
   margin: auto;
-  height:80rpx;
-  line-height:80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
 }
-.single_btn_isApply_group ._wux-icon{
-  padding-right:20rpx;
+.single_btn_isApply_group ._wux-icon {
+  padding-right: 20rpx;
 }
 .single_btn_isDoing {
   width: 90%;
   background-color: #ffcc00;
-  height:80rpx;
-  line-height:80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   color: #fff;
 }
 .group_btn {
@@ -684,15 +730,15 @@ export default {
 }
 .group_btn_disApply button {
   background-color: #d25136;
-  height:80rpx;
-  line-height:80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   color: #fff;
   border-radius: 16rpx;
 }
 .group_btn_apply button {
   background-color: gray;
-  height:80rpx;
-  line-height:80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   color: #fff;
   border-radius: 16rpx;
 }
@@ -701,66 +747,66 @@ export default {
 }
 
 /* //////////////////////////////// */
-.frosted-glass-container{   
-  width:100%;
-  height:340rpx;   
+.frosted-glass-container {
+  width: 100%;
+  height: 340rpx;
   /* background-image: url('https://hsyj.100eduonline.com/static/mini-images/school.png');    */
-  background-repeat: no-repeat;   
-  background-attachment: fixed;   
-  overflow: hidden;   
-} 
-.frosted-glass{   
-  width:120%;
-  height:380rpx;  
-  background: inherit;   
-  -webkit-filter: blur(10px);   
-  -moz-filter: blur(10px);   
-  -ms-filter: blur(10px);   
-  -o-filter: blur(10px);   
-  filter: blur(10px);   
-  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);   
-} 
-.float-container{
-  display:flex;
-  flex-direction:row;
-  position:absolute;
-  top:100rpx;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
 }
-.float-container-image{
-  width:240rpx;
-  height:280rpx;
-  border-radius:20rpx;
-  overflow:hidden;
-  margin:0 20rpx;
+.frosted-glass {
+  width: 120%;
+  height: 380rpx;
+  background: inherit;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -o-filter: blur(10px);
+  filter: blur(10px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
 }
-.float-container-detail > .title{
-  font-size:18px;
-  padding-right:24rpx;
+.float-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 100rpx;
 }
-.float-container-detail > .people{
-  display:flex;
-  flex-direction:row;
-  justify-content:space-between;
-  padding-right:30rpx;
+.float-container-image {
+  width: 240rpx;
+  height: 280rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin: 0 20rpx;
 }
-.float-container-detail > .people > .num{
-  font-size:16px;
-  padding:8rpx 0;
+.float-container-detail > .title {
+  font-size: 18px;
+  padding-right: 24rpx;
 }
-.float-container-detail > .people > .num ._span{
-  color:#d25136;
-  padding-right:10rpx;
+.float-container-detail > .people {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 30rpx;
 }
-.float-container-detail > .people > .status{
-  font-size:14px;
-  border:1px solid #000;
-  line-height:22px;
-  padding:0 8px;
-  margin:4px 0;
-  border-radius:10rpx;
+.float-container-detail > .people > .num {
+  font-size: 16px;
+  padding: 8rpx 0;
 }
-.float-container-detail-icon-group .icon-group{
-  margin:0;
-  margin-top:16rpx;
+.float-container-detail > .people > .num ._span {
+  color: #d25136;
+  padding-right: 10rpx;
+}
+.float-container-detail > .people > .status {
+  font-size: 14px;
+  border: 1px solid #000;
+  line-height: 22px;
+  padding: 0 8px;
+  margin: 4px 0;
+  border-radius: 10rpx;
+}
+.float-container-detail-icon-group .icon-group {
+  margin: 0;
+  margin-top: 16rpx;
 }
 </style>

@@ -11,7 +11,7 @@
         <view>三天前</view>
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
-          <image class="thumbsUpImgClass" :src="thumbsUpImg"/>
+          <image class="thumbsUpImgClass" :src="'http://hsyj.100eduonline.com/static/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
           <view>{{data.clicknum}}</view>
         </view>
       </view>
@@ -30,7 +30,19 @@ export default {
       type: Object,
       default: []
     },
+    index: {
+      type: String,
+      default: null
+    },
+    imageName: {
+      type: String,
+      default: null
+    },
     iconClick: {
+      type: Function,
+      default: null
+    },
+    onThumbsupClick: {
       type: Function,
       default: null
     }
@@ -41,6 +53,11 @@ export default {
     };
   },
   methods: {
+    thumbsupClick (item, index) {
+      if (this.onThumbsupClick) {
+        this.onThumbsupClick(item, index);
+      }
+    },
     click (item) {
       if (this.iconClick) {
         this.iconClick(item);

@@ -6,7 +6,11 @@
       <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
         <block v-for="(item, index) in movies" :key="index">
           <swiper-item>
-            <image :src="item.url" class="slide-image"/>
+            <image
+              :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+              class="slide-image"
+              @click="navigatoTo"
+            />
           </swiper-item>
         </block>
       </swiper>
@@ -30,202 +34,8 @@ export default {
   },
   data () {
     return {
-      movies: [
-        {
-          url: '../../static/images/fudan1.jpeg'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg'
-        }
-      ],
+      movies: [],
       activityList: [
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          activityHolder: '复旦大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward',
-          activityStatus: '已报名',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          thumbsupNum: 111,
-          messageNum: 111,
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          activityHolder: '复旦大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward',
-          activityStatus: '进行中',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          thumbsupNum: 222,
-          messageNum: 222,
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          activityHolder: '复旦大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward',
-          isGroup: false,
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          thumbsupNum: 333,
-          messageNum: 333,
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          activityHolder: '复旦大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          thumbsupNum: 444,
-          messageNum: 444,
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          activityHolder: '复旦大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward',
-          isGroup: false,
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          thumbsupNum: 333,
-          messageNum: 333,
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          activityHolder: '复旦大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward',
-          isGroup: false,
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          thumbsupNum: 333,
-          messageNum: 333,
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          activityName: '复旦一日游',
-          activityHolder: '复旦大学',
-          activityTime: '2019年4月11日',
-          iconType: 'ios-arrow-forward',
-          isGroup: false,
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          thumbsupNum: 333,
-          messageNum: 333,
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
         {
           src: '../../static/images/fudan.jpg',
           activityName: '复旦一日游',
@@ -257,15 +67,19 @@ export default {
       pagesize: 5
     };
   },
-  mounted () {
+  async mounted () {
+    const res1 = await api.getRecommendList();
+    console.log('分类主页,请求结果', res1);
+    this.movies = res1.data.activitydata ? res1.data.activitydata : [];
+
     this.getActivityList();
   },
   methods: {
     formatDte (date) {
-      let time = date.substring(0, 19)
-      let time1 = time.split('T')[0] + ' ' + time.split('T')[1]
-      console.log(time1)
-      return time1
+      let time = date.substring(0, 19);
+      let time1 = time.split('T')[0] + ' ' + time.split('T')[1];
+      console.log(time1);
+      return time1;
     },
     async getActivityList () {
       const res = await api.getActivityList({
@@ -274,11 +88,13 @@ export default {
       });
       this.activityList = res.data.data ? res.data.data : [];
       this.activityList.forEach(element => {
-        element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
-        element.messageImg = 'http://hsyj.100eduonline.com/static/mini-images/messageImg.png'
-        element.startDate = this.formatDte(element.startDate)
+        element.thumbsupImg =
+          'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+        element.messageImg =
+          'http://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+        element.startDate = this.formatDte(element.startDate);
       });
-      this.activityList = this.activityList
+      this.activityList = this.activityList;
       console.log('分类主页,请求结果', this.activityList);
     },
     onMessageClick (item, index) {
@@ -326,9 +142,11 @@ export default {
 
         let newActivityList = res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
-          element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
-          element.messageImg = 'http://hsyj.100eduonline.com/static/mini-images/messageImg.png'
-          element.startDate = this.formatDte(element.startDate)
+          element.thumbsupImg =
+            'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+          element.messageImg =
+            'http://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+          element.startDate = this.formatDte(element.startDate);
         });
         for (var i = 0; i < newActivityList.length; i++) {
           console.log('==============', this.activityList);

@@ -38,12 +38,28 @@ const api = {
   getSearchListBykeyWord: (obj) => request.get('api/search/searchList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&keyword=' + obj.keyword, null, {
     baseURL: ApiRootUrl
   }),
+  // 首页留言点赞
+  homeThumbsUp: (obj) => request.get('api/discuss/likediscuss?discussid=' + obj.id, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 判断是否点过赞
+  isHomeThumbsUp: (obj) => request.get('api/discuss/hasLikeDiscuss?discussid=' + obj.id + 'studentid=' + obj.studentid, null, {
+    baseURL: ApiRootUrl
+  }),
   // 活动详情
   getActivityDetail: (obj) => request.get('api/activity/getactivitydetail?id=' + obj.id, null, {
     baseURL: ApiRootUrl
   }),
   // 活动路线详情
   getActivitySceneryList: (obj) => request.get('api/activity/getActivitySceneryList?pageindex=1&pagesize=15&activityid=' + obj.id, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 活动想去
+  wantToActivity: (obj) => request.get('api/student_activity/addEdit?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&shstate=' + obj.shstate, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 判断是否点过想去
+  isWantTo: (obj) => request.get('api/student_activity/studnetHasStatus?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&shstate=' + obj.shstate, null, {
     baseURL: ApiRootUrl
   }),
   // 首页登录授权
