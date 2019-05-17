@@ -13,7 +13,7 @@
           </picker>
         </view>
         <view class="userinfo-name">
-          <input maxlength="11" type="number" placeholder="学号" :value="studentId" @input="setStudentId">
+          <input maxlength="11" type="number" placeholder="学号" :value="stuNo" @input="setStudentId">
         </view>
         <view class="userinfo-name">
           <input maxlength="11" type="text" placeholder="姓名" :value="studentName"  @input="setStudentName">
@@ -64,7 +64,7 @@ export default {
       schoolName: null,
       schoolID: null,
       studentName: null,
-      studentId: null,
+      stuNo: null,
       uesrTel: null
     };
   },
@@ -82,19 +82,19 @@ export default {
       let userInfo = wx.getStorageSync('userInfo') || false;
       if (userInfo) {
         debugger
-        userInfo.schoolName = this.schoolName;
-        userInfo.schoolID = this.schoolID;
+        // userInfo.schoolName = this.schoolName;
+        userInfo.schoolid = this.schoolID;
         userInfo.studentName = this.studentName;
-        userInfo.studentId = this.studentId;
+        userInfo.stuNo = this.stuNo;
         userInfo.tel = this.uesrTel;
         const addStudentInfo = await api.studentLogin(userInfo)
         let resUser = addStudentInfo.data.data;
         wx.setStorageSync('userInfo', resUser)
         console.log('addStudentInfo', addStudentInfo)
       }
-      // wx.switchTab({
-      //   url: '/pages/map/main'
-      // });
+      wx.switchTab({
+        url: '/pages/center/main'
+      });
     },
     bindPickerChange (e) {
       console.log('value', e)
@@ -103,7 +103,7 @@ export default {
       this.schoolID = this.schoolList[this.pickIndex].schoolID;
     },
     setStudentId (e) {
-      this.studentId = e.target.value
+      this.stuNo = e.target.value
     },
     setStudentName (e) {
       this.studentName = e.target.value

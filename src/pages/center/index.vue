@@ -69,11 +69,11 @@ export default {
   },
   onLoad () {
     this.userInfo = wx.getStorageSync('userInfo') || {};
-    // if (!this.userInfo.stuNo) {
-    //   wx.navigateTo({
-    //     url: '/pages/center/login/main'
-    //   })
-    // }
+    if (this.userInfo.stuNo === 0 || this.userInfo.stuNo === null) {
+      wx.navigateTo({
+        url: '/pages/center/login/main'
+      })
+    }
   },
   onShow () {
     this.userInfo = wx.getStorageSync('userInfo');
