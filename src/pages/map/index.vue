@@ -95,6 +95,8 @@
 <script>
 import messageCard from '../../components/message-card';
 import api from '@/utils/api';
+import dayjs from 'dayjs';
+
 export default {
   components: {
     messageCard
@@ -170,6 +172,7 @@ export default {
       });
       this.messageList = res2.data.data ? res2.data.data : [];
       this.messageList.forEach(element => {
+        element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
         if (!element.likednum) {
           element.thumbsupImg = 'thumbsUp'
         } else {
@@ -218,6 +221,7 @@ export default {
 
         let newMessageList = res.data.data.data ? res.data.data.data : [];
         newMessageList.forEach(element => {
+          element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
           if (!element.likednum) {
             element.thumbsupImg = 'thumbsUp'
           } else {

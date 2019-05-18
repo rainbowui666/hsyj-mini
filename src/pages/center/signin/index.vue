@@ -151,8 +151,8 @@ export default {
     // console.log('res', res)
     // this.sightList = res.data.data ? res.data.data : []
     // this.sightList.forEach(element => {
-    //   element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
-    //   element.messageImg = 'http://hsyj.100eduonline.com/static/mini-images/messageImg.png'
+    //   element.thumbsupImg = 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
+    //   element.messageImg = 'https://hsyj.100eduonline.com/static/mini-images/messageImg.png'
     //   element.iconType = 'ios-navigate'
     //   element.iconColor = '#aaa'
     // });

@@ -7,11 +7,11 @@
     />
     <view class="scenic-spot-message-text">
       <view class="scenic-spot-message-text-label">
-        <view>大实践家</view>
-        <view>三天前</view>
+        <view>{{data.studentName?data.studentName:'大实践家'}}</view>
+        <view>{{data.createdate}}</view>
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
-          <image class="thumbsUpImgClass" :src="'http://hsyj.100eduonline.com/static/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
+          <image class="thumbsUpImgClass" :src="'https://hsyj.100eduonline.com/static/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
           <view>{{data.clicknum}}</view>
         </view>
       </view>
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import thumbsUpImg from '../../static/images/thumbsUp.png'
 export default {
   props: {
     data: {
@@ -49,7 +48,6 @@ export default {
   },
   data () {
     return {
-      thumbsUpImg
     };
   },
   methods: {

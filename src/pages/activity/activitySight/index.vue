@@ -110,8 +110,8 @@ export default {
     const res = await api.getActivitySceneryList({id: this.$mp.query.id});
     this.sightList = res.data.data ? res.data.data : []
     this.sightList.forEach(element => {
-      element.thumbsupImg = 'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
-      element.messageImg = 'http://hsyj.100eduonline.com/static/mini-images/messageImg.png'
+      element.thumbsupImg = 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
+      element.messageImg = 'https://hsyj.100eduonline.com/static/mini-images/messageImg.png'
       element.iconType = 'ios-navigate'
       element.iconColor = '#aaa'
     });
@@ -175,7 +175,7 @@ export default {
 .frosted-glass-container{   
   width:100%;
   height:450rpx;   
-  background-image: url('http://hsyj.100eduonline.com/static/mini-images/school.png');   
+  background-image: url('https://hsyj.100eduonline.com/static/mini-images/school.png');   
   background-repeat: no-repeat;   
   background-attachment: fixed;   
   overflow: hidden;  
