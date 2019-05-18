@@ -85,7 +85,7 @@ export default {
         // userInfo.schoolName = this.schoolName;
         userInfo.schoolid = this.schoolID;
         userInfo.studentName = this.studentName;
-        userInfo.stuNo = this.stuNo;
+        userInfo.stuno = this.stuNo;
         userInfo.tel = this.uesrTel;
         const addStudentInfo = await api.studentLogin(userInfo)
         let resUser = addStudentInfo.data.data;
