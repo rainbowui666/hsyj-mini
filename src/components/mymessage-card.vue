@@ -8,10 +8,10 @@
         </view>
         <view class="mymessage-card-content">
           <view class="mymessage-card-content-user">
-            <text class="mymessage-card-content-userName">{{item.userName}}</text>
-            <text class="mymessage-card-content-messageTime">{{item.messageTime}}</text>
+            <text class="mymessage-card-content-userName">{{item.studentName}}</text>
+            <text class="mymessage-card-content-messageTime">{{item.createdate}}</text>
           </view>
-          <view class="mymessage-card-content-messageInfo">{{item.messageInfo}}</view>
+          <view class="mymessage-card-content-messageInfo">{{item.content}}</view>
         </view>
         <view class="mymessage-card-content-icon-text">查看详情</view>
         <view class="mymessage-card-content-peopleNum">{{item.peopleNum}}</view>

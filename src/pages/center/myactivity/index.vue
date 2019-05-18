@@ -25,6 +25,8 @@
 <script>
 import commonCard from '../../../components/common-card';
 import headMessage from '../../../components/head-message';
+import api from '@/utils/api';
+
 export default {
   components: {
     commonCard,
@@ -245,6 +247,9 @@ export default {
       ]
     };
   },
+  async mounted () {
+    this.getActivityList();
+  },
   methods: {
     iconClick (item) {
       console.log('item', item)
@@ -253,6 +258,22 @@ export default {
     onChange (e) {
       console.log('onChange', e)
       this.current = e.target.key;
+    },
+    async getActivityList () {
+      const res = await api.getActivityList({
+        pageindex: this.pageindex,
+        pagesize: this.pagesize
+      });
+      this.activityList = res.data.data ? res.data.data : [];
+      this.activityList.forEach(element => {
+        element.thumbsupImg =
+          'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+        element.messageImg =
+          'http://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+        element.startDate = this.formatDte(element.startDate);
+      });
+      this.activityList = this.activityList;
+      console.log('分类主页,请求结果', this.activityList);
     }
   }
 };

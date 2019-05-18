@@ -21,6 +21,8 @@
 <script>
 import navigationCard from '../../../components/navigation-card';
 import mymessageCard from '../../../components/mymessage-card';
+import api from '@/utils/api';
+
 export default {
   components: {
     navigationCard,
@@ -30,6 +32,10 @@ export default {
     return {
       current: 'message_tab1',
       valueData: '累计留言：50条  审核通过：40条  未审核：5条',
+      userInfo: {},
+      discussList: [],
+      pageindex: 1,
+      pagesize: 5,
       imgList: [
         {
           url: '../../static/images/fudan1.jpeg',
@@ -51,47 +57,65 @@ export default {
       messageList: [
         {
           src: '../../static/images/fudan.jpg',
-          userName: '大实践家',
-          messageTime: '2019年4月11日',
-          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          studentName: '大实践家',
+          createdate: '2019年4月11日',
+          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
           iconType: 'ios-arrow-forward',
           peopleNum: '266人参加'
         },
         {
           src: '../../static/images/fudan.jpg',
-          userName: '大实践家',
-          messageTime: '2019年4月11日',
-          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          studentName: '大实践家',
+          createdate: '2019年4月11日',
+          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
           iconType: 'ios-arrow-forward',
           peopleNum: '266人参加'
         },
         {
           src: '../../static/images/fudan.jpg',
-          userName: '大实践家',
-          messageTime: '2019年4月11日',
-          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          studentName: '大实践家',
+          createdate: '2019年4月11日',
+          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
           iconType: 'ios-arrow-forward',
           peopleNum: '266人参加'
         },
         {
           src: '../../static/images/fudan.jpg',
-          userName: '大实践家',
-          messageTime: '2019年4月11日',
-          messageInfo: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+          studentName: '大实践家',
+          createdate: '2019年4月11日',
+          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
           iconType: 'ios-arrow-forward',
           peopleNum: '266人参加'
         }
       ]
     };
   },
+  async mounted () {
+    this.getMyDiscussList();
+  },
   methods: {
     iconClick (item) {
       console.log('item', item)
-      wx.navigateTo({ url: 'activityDetail/main?name=' + item.userName })
+      wx.navigateTo({ url: 'activityDetail/main?name=' + item.studentName })
     },
     onChange (e) {
       console.log('onChange', e)
       this.current = e.target.key;
+    },
+    async getMyDiscussList () {
+      this.userInfo = wx.getStorageSync('userInfo') || {};
+      const res = await api.getMyDiscussList({
+        pageindex: this.pageindex,
+        pagesize: this.pagesize,
+        studentid: this.userInfo.studentID
+      });
+      this.discussList = res.data.data ? res.data.data : [];
+      this.discussList.forEach(element => {
+        element.src = this.userInfo.photo
+      })
+      this.messageList = this.discussList;
+      console.log('userInfo', this.userInfo)
+      console.log('discussList', this.discussList)
     }
   }
 };
