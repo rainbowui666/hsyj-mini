@@ -62,7 +62,7 @@
       </view>
     </view>-->
     <view v-if="!isGroup" class="bottom-btn">
-      <button v-if="disApply" class="single_btn">报名</button>
+      <button v-if="disApply" class="single_btn" @click="signUp">报名</button>
       <button v-if="isApply" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
@@ -276,6 +276,14 @@ export default {
   },
   // onShow () { wx.setNavigationBarTitle({ title: this.$mp.query.name }); },
   methods: {
+    async signUp () {
+      console.log('signUp')
+      await api.wantToActivity({
+        studentid: wx.getStorageSync('userInfo').studentID,
+        activityid: this.$mp.query.id,
+        shstate: 1
+      });
+    },
     changeCreatBtn () {
       this.isCreat = true;
     },

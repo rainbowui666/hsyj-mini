@@ -20,7 +20,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 首页获取留言
-  getRecommendMessageList: (obj) => request.get('api/discuss/homeDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
+  getRecommendMessageList: (obj) => request.get('api/discuss/homeDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 活动列表
@@ -39,7 +39,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 首页留言点赞
-  homeThumbsUp: (obj) => request.get('api/discuss/likediscuss?discussid=' + obj.id, null, {
+  homeThumbsUp: (obj) => request.get('api/discuss/likediscuss?discussid=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 判断是否点过赞
