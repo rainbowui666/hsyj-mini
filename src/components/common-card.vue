@@ -116,18 +116,16 @@ export default {
 .common-card {
   display: flex;
   width: 100%;
-  /* height: 85px; */
   justify-content: space-between;
   margin-top: 15rpx;
   background-color: #fff;
   padding-bottom: 20rpx;
-  /* border-bottom: 1px solid #6666; */
 }
 .common-card-image {
   width: 40%;
   padding: 5px;
-  border-radius: 34rpx;
-  height: 110px;
+  border-radius: 40rpx;
+  height: 170rpx;
   overflow: hidden;
   position: relative;
 }
@@ -139,12 +137,10 @@ export default {
   display: flex;
   flex-direction: column;
   width: 60%;
-  /* margin-left: 15px; */
 }
 .common-card-content-title {
   padding-top: 5px;
   padding-left: 10px;
-  /* font-size: 16px; */
   max-height: 58px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,7 +158,6 @@ export default {
   display: flex;
   flex-direction: row;
   white-space: no-wrap;
-  /* padding: 5px; */
 }
 .common-card-content-desc-item ._text {
   white-space: nowrap;
@@ -172,19 +167,13 @@ export default {
   overflow: hidden;
 }
 .common-card-content-status {
-  /* padding-left: 5px; */
   width: 93%;
   text-align: center;
-  /* height: 26px; */
   font-size: 14px;
-  /* margin-top: -29px; */
-  /* z-index: 999; */
   background: rgba(210, 81, 54, 0.6);
   opacity: 0.99;
-  /* display: flex; */
   color: #fff;
   line-height: 26px;
-  /* justify-content: center; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   position: absolute;
@@ -226,12 +215,10 @@ export default {
   color: #aaa;
 }
 .thumbsUpImg {
-  /* height: 35rpx; */
   width: 28rpx;
   padding: 4px;
 }
 .messageImg {
-  /* height: 35rpx; */
   width: 32rpx;
   padding: 4px 4px 4px 15px;
 }

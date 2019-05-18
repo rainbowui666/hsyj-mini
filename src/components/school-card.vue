@@ -52,12 +52,9 @@ export default {
 .school-card {
   display: flex;
   width: 100%;
-  /* height: 85px; */
   justify-content: space-between;
   margin-bottom: 3rpx;
   background-color: #fff;
-  padding-bottom: 20rpx;
-  /* border-bottom: 1px solid #6666; */
 }
 .school-card-navigator{
   width: 100%;
@@ -66,28 +63,39 @@ export default {
 .school-card-image {
   width: 40%;
   padding: 5px;
-  margin: auto 0;
+  border-radius: 40rpx;
+  height: 170rpx;
+  overflow: hidden;
+  position: relative;
 }
 .school-card-image image {
   width: 100%;
+  border-radius: 40rpx;
 }
 .school-card-content {
   display: flex;
   flex-direction: column;
-  width: 65%;
-  /* margin-left: 15px; */
+  width: 60%;
 }
 .school-card-content-title {
   padding-top: 5px;
   padding-left: 10px;
-  /* font-size: 16px; */
+  max-height: 58px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .school-card-content-desc {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  /* padding: 5px;
   font-size: 11px;
-  margin-left: 5px;
+  margin-left: 5px; */
+  padding: 5rpx 20rpx 10rpx 20rpx;
+  font-size: 26rpx;
+  color: #777;
+  white-space: nowrap;
+  flex-grow: 1;
+  min-height: 85rpx
 }
 .school-card-content-desc-item {
   display: flex;
@@ -115,6 +123,7 @@ export default {
 .school-card-content-icongroup-text {
   width: 50%;
   font-size: 14px;
+  color: #aaa;
 }
 .sight-introduction.ellipsis {
   -webkit-line-clamp: 3;

@@ -1,12 +1,16 @@
 <template >
   <view class="school-page">
-    <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
-      <block v-for="(item, index) in movies" :key="index">
-        <swiper-item>
-          <image :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress" class="slide-image"/>
-        </swiper-item>
-      </block>
-    </swiper>
+    <div class="school-banner-group">
+      <div class="swiperBgLeft"></div>
+      <div class="swiperBgRight"></div>
+      <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
+        <block v-for="(item, index) in movies" :key="index">
+          <swiper-item>
+            <image :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress" class="slide-image"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </div>
     <!-- <view class='school-introduction-image'>
       <image
         width='360px'
@@ -17,7 +21,7 @@
       <text
         :class="ellipsis?'school-introduction ellipsis':'school-introduction unellipsis'"
       >&nbsp;&nbsp;{{ information.desc }}</text>
-      <view class="school-introduction icon" @tap="expand">
+      <view class="school-introduction-icon icon" @tap="expand">
         <wux-icon :type="ellipsis?'ios-arrow-down':'ios-arrow-up'" color="#888"/>
       </view>
     </view>
@@ -257,16 +261,21 @@ export default {
 
 <style>
 .school-page .school-introduction {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 10px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 10px;
   font-size: 13px;
-  /* color: #888; */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
   /* 通过以上四行实现收缩功能 */
+  background-color:#fff;
+}
+.school-introduction-icon{
+  text-align:center;
+  background-color:#fff;
+  margin-bottom:10rpx;
 }
 .school-page .swiper {
   width: 100%;
@@ -307,7 +316,7 @@ export default {
 .school-page .school-introduction.ellipsis {
   -webkit-line-clamp: 3;
   /* 最多显示3行 */
-  opacity: 0.75;
+  /* opacity: 0.75; */
   /* 透明度75% */
 }
 .school-page .unellipsis {
@@ -327,5 +336,72 @@ export default {
 .school-page .icon-group-item {
   margin-right: 10px;
   margin-top: -3px;
+}
+/* /////// */
+.school-page {
+  background-color: #eeecec;
+}
+.school-banner-group {
+  position: relative;
+  background-color: #fff;
+  border-top: 15rpx solid #eeecec;
+}
+.school-page .slide-image {
+  width: 100%;
+  border-radius: 10rpx;
+}
+/* /swiper/ */
+.swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
+  margin-bottom: 20rpx;
+}
+.swiper {
+  position: relative;
+}
+.swiper .wx-swiper-dot {
+  width: 40rpx;
+  display: inline-flex;
+  height: 10rpx;
+  margin-left: 5rpx;
+  justify-content: space-between;
+  position: relative;
+  top: 10px;
+}
+.swiper .wx-swiper-dot::before {
+  content: "";
+  flex-grow: 1;
+  background: #c4c1c1;
+  border-radius: 8rpx;
+}
+.swiper .wx-swiper-dot-active::before {
+  background: #d25136;
+}
+/* // */
+.school-page .swiper {
+  width: 92%;
+  height: 360rpx;
+  margin: 0 auto;
+  padding: 26rpx 0;
+}
+.swiperBgLeft {
+  height: calc(100% - 90rpx);
+  width: 40rpx;
+  position: absolute;
+  background-color: #d25136;
+  border-radius: 8rpx;
+  left: -20rpx;
+  margin: 50rpx 0;
+}
+.swiperBgRight {
+  height: calc(100% - 90rpx);
+  width: 40rpx;
+  position: absolute;
+  background-color: #d25136;
+  border-radius: 8rpx;
+  right: -20rpx;
+  margin: 50rpx 0;
+}
+.school-page ._swiper-item {
+  border-radius: 10rpx;
+  /* overflow: visible !important; */
 }
 </style>

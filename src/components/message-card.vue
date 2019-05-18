@@ -8,7 +8,8 @@
     <view class="scenic-spot-message-text">
       <view class="scenic-spot-message-text-label">
         <view>{{data.studentName?data.studentName:'大实践家'}}</view>
-        <view>{{data.createdate}}</view>
+        <view>{{betweenDays}}天前</view>
+        <!-- <view>{{dayjs().diff(dayjs('2018-05-08'),'day')}}</view> -->
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
           <image class="thumbsUpImgClass" :src="'https://hsyj.100eduonline.com/static/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 export default {
   props: {
     data: {
@@ -48,7 +50,14 @@ export default {
   },
   data () {
     return {
+      betweenDays: 0
     };
+  },
+  mounted () {
+    let today = dayjs().format('YYYY-MM-DD')
+    let index = this.data.createdate.indexOf(' ')
+    let theday = this.data.createdate.substring(0, index)
+    this.betweenDays = dayjs(today).diff(dayjs(theday), 'day')
   },
   methods: {
     thumbsupClick (item, index) {
@@ -92,21 +101,26 @@ export default {
   color:#aaa;
   padding-left:20rpx;
 }
-/* .scenic-spot-message-text-icon-group {
+.scenic-spot-message-text-icon-group {
   display: flex;
   position:absolute;
   right:10rpx;
   top:10rpx;
   font-size:24rpx;
   color:#aaa;
-} */
+}
 .thumbsUpImgClass{
-  position:absolute;
+  /* position:absolute; */
   width: 12px;
   height: 12px;
-  right:10rpx;
-  top:10rpx;
+  /* right:10rpx;
+  top:10rpx; */
   color:#aaa
+}
+.thumbsUpImgClass + ._view{
+  position:relative;
+  top:-2px;
+  padding-left:5rpx;
 }
 .scenic-spot-message-text-message{
   font-size: 24rpx;
