@@ -119,6 +119,52 @@ export default {
       console.log('userInfo', this.userInfo)
       console.log('discussList', this.discussList)
     }
+  },
+  onReachBottom: function () {
+    debugger
+    // 显示顶部刷新图标
+    console.log('11111');
+    // 显示加载图标
+    wx.showLoading({
+      title: '玩命加载中'
+    });
+
+    // 页数+1
+    let that = this;
+    console.log('==============', that.pageindex);
+
+    this.pageindex = this.pageindex + 1;
+    wx.request({
+      url:
+        'https://hsyj.100eduonline.com/api/api/discuss/list?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize + '&studentid=' + this.userInfo.studentID,
+      method: 'GET',
+      // 请求头部
+      header: {
+        'content-type': 'application/text'
+      },
+      success: res => {
+        console.log('搜索结果', res.data.data.data);
+
+        // 回调函数
+        console.log('==============', this.messageList);
+
+        let resList = res.data.data ? res.data.data : [];
+        resList.forEach(element => {
+          element.src = this.userInfo.photo
+          element.createdate = dayjs(element.createdate).format('YYYY-MM-DD')
+        })
+        for (var i = 0; i < resList.length; i++) {
+          this.messageList.push(resList[i]);
+        }
+        console.log('==============', this.messageList);
+        // 设置数据
+        // that.setData({
+        //   moment: that.data.moment
+        // })
+        // 隐藏加载框
+        wx.hideLoading();
+      }
+    });
   }
 };
 </script>

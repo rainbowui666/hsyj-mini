@@ -145,6 +145,63 @@ export default {
         }
       }
     }
+  },
+  onReachBottom: function () {
+    // 显示顶部刷新图标
+    console.log('11111');
+    // 显示加载图标
+    wx.showLoading({
+      title: '玩命加载中'
+    });
+
+    // 页数+1
+    let that = this;
+    console.log('==============', that.pageindex);
+
+    this.pageindex = this.pageindex + 1;
+    wx.request({
+      url:
+        'https://hsyj.100eduonline.com/api/api/search/searchList?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize,
+      method: 'GET',
+      // 请求头部
+      header: {
+        'content-type': 'application/text'
+      },
+      success: res => {
+        console.log('搜索结果', res.data.data.data);
+
+        // 回调函数
+        console.log('==============', this.activityList);
+
+        let searchList = res.data.data.data ? res.data.data.data : [];
+        let searchAimList = [];
+        searchList.forEach(item => {
+          let searchItem = {
+            gpsImg: '../../../static/images/gpsImg.png',
+            navigationImg: '../../../static/images/navigationImg.png',
+            activityName: item.title,
+            iconType: 'ios-navigate',
+            iconColor: '#007fff',
+            iconText: '3.9km',
+            isIcon: true,
+            address: item.address,
+            latitude: item.latitude,
+            longitude: item.longitude
+          }
+          searchAimList.push(searchItem)
+        });
+        for (var i = 0; i < searchAimList.length; i++) {
+          this.activityList.push(searchAimList[i]);
+        }
+        console.log('==============', this.activityList);
+        // 设置数据
+        // that.setData({
+        //   moment: that.data.moment
+        // })
+        // 隐藏加载框
+        wx.hideLoading();
+      }
+    });
   }
 };
 </script>
