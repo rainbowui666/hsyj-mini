@@ -19,7 +19,7 @@ export default {
       sightList: [
         {
           src: '../../static/images/school.png',
-          sightName: '中共一大会址纪念馆',
+          sceneryTitle: '中共一大会址纪念馆',
           iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
@@ -27,6 +27,11 @@ export default {
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111,
+          pics: [
+            {
+              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+            }
+          ],
           iconArr: [
             {
               icon: 'ios-heart',
@@ -44,7 +49,7 @@ export default {
         },
         {
           src: '../../static/images/school.png',
-          sightName: '中共一大会址纪念馆',
+          sceneryTitle: '中共一大会址纪念馆',
           iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
@@ -52,6 +57,11 @@ export default {
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111,
+          pics: [
+            {
+              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+            }
+          ],
           iconArr: [
             {
               icon: 'ios-heart',
@@ -69,7 +79,7 @@ export default {
         },
         {
           src: '../../static/images/school.png',
-          sightName: '中共一大会址纪念馆',
+          sceneryTitle: '中共一大会址纪念馆',
           iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
@@ -77,6 +87,11 @@ export default {
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111,
+          pics: [
+            {
+              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+            }
+          ],
           iconArr: [
             {
               icon: 'ios-heart',
@@ -94,7 +109,7 @@ export default {
         },
         {
           src: '../../static/images/school.png',
-          sightName: '中共一大会址纪念馆',
+          sceneryTitle: '中共一大会址纪念馆',
           iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
@@ -102,6 +117,11 @@ export default {
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111,
+          pics: [
+            {
+              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+            }
+          ],
           iconArr: [
             {
               icon: 'ios-heart',
@@ -119,7 +139,7 @@ export default {
         },
         {
           src: '../../static/images/school.png',
-          sightName: '中共一大会址纪念馆',
+          sceneryTitle: '中共一大会址纪念馆',
           iconType: 'ios-checkmark-circle-outline',
           sightStatus: '已完成',
           iconColor: 'red',
@@ -127,6 +147,11 @@ export default {
           messageImg: '../../static/images/messageImg.png',
           thumbsupNum: 111,
           messageNum: 111,
+          pics: [
+            {
+              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+            }
+          ],
           iconArr: [
             {
               icon: 'ios-heart',
@@ -161,7 +186,7 @@ export default {
   methods: {
     iconClick (item) {
       console.log('item', item);
-      // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sightName })
+      // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sceneryTitle })
     },
     onMessageClick (item, index) {
       console.log('onMessageClick', item, index)

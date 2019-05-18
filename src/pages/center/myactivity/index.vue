@@ -26,6 +26,7 @@
 import commonCard from '../../../components/common-card';
 import headMessage from '../../../components/head-message';
 import api from '@/utils/api';
+import dayjs from 'dayjs';
 
 export default {
   components: {
@@ -36,6 +37,8 @@ export default {
     return {
       current: 'myactivity_tab1',
       valueData: '已报名：2次  成功活动：2次  失败活动：1次  进行中：1次',
+      pageindex: 1,
+      pagesize: 5,
       activityList: [
         {
           src: '../../static/images/fudan.jpg',
@@ -262,18 +265,19 @@ export default {
     async getActivityList () {
       const res = await api.getActivityList({
         pageindex: this.pageindex,
-        pagesize: this.pagesize
+        pagesize: this.pagesize,
+        studentid: wx.getStorageSync('userInfo').studentID
       });
-      this.activityList = res.data.data ? res.data.data : [];
-      this.activityList.forEach(element => {
+      let activityInfo = res.data.data ? res.data.data : [];
+      activityInfo.forEach(element => {
         element.thumbsupImg =
           'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
         element.messageImg =
           'http://hsyj.100eduonline.com/static/mini-images/messageImg.png';
-        element.startDate = this.formatDte(element.startDate);
+        element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss');
       });
-      this.activityList = this.activityList;
-      console.log('分类主页,请求结果', this.activityList);
+      this.activityList = activityInfo;
+      console.log('666', this.activityList);
     }
   }
 };

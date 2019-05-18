@@ -22,6 +22,7 @@
 import navigationCard from '../../../components/navigation-card';
 import mymessageCard from '../../../components/mymessage-card';
 import api from '@/utils/api';
+import dayjs from 'dayjs';
 
 export default {
   components: {
@@ -112,6 +113,7 @@ export default {
       this.discussList = res.data.data ? res.data.data : [];
       this.discussList.forEach(element => {
         element.src = this.userInfo.photo
+        element.createdate = dayjs(element.createdate).format('YYYY-MM-DD')
       })
       this.messageList = this.discussList;
       console.log('userInfo', this.userInfo)
