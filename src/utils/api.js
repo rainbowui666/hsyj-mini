@@ -20,11 +20,23 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 首页获取留言
-  getRecommendMessageList: (obj) => request.get('api/discuss/homeDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
+  getRecommendMessageList: (obj) => request.get('api/discuss/homeDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 活动列表
-  getActivityList: (obj) => request.get('api/activity/frontList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
+  getActivityList: (obj) => request.get('api/activity/frontList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 获取活动留言
+  getActivityMessage: (obj) => request.get('api/discuss/list?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&distype=1' + '&activityid=' + obj.activityid, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 添加留言
+  addMessage: (obj) => request.post('api/discuss/add?distype=' + obj.distype + '&targetid=' + obj.targetid + '&studentid=' + obj.studentid, {'content': obj.content}, {
+    baseURL: ApiRootUrl
+  }),
+  // 创建团队
+  addTeam: (obj) => request.post('api/group/addEdit', obj, {
     baseURL: ApiRootUrl
   }),
   // 学校详情
@@ -39,19 +51,27 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 首页留言点赞
-  homeThumbsUp: (obj) => request.get('api/discuss/likediscuss?discussid=' + obj.id, null, {
+  homeThumbsUp: (obj) => request.get('api/discuss/likediscuss?discussid=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 判断是否点过赞
   isHomeThumbsUp: (obj) => request.get('api/discuss/hasLikeDiscuss?discussid=' + obj.id + 'studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
-  // 活动详情
+  // 个人活动详情
   getActivityDetail: (obj) => request.get('api/activity/getactivitydetail?id=' + obj.id, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 团队活动详情
+  getGroupActivityDetail: (obj) => request.get('api/activity/getactivitydetailForGroup?id=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 活动路线详情
   getActivitySceneryList: (obj) => request.get('api/activity/getActivitySceneryList?pageindex=1&pagesize=15&activityid=' + obj.id, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 活动二维码
+  getQRCode: (obj) => request.get('api/group/showQr?url=' + obj.url, null, {
     baseURL: ApiRootUrl
   }),
   // 活动想去

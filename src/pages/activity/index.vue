@@ -27,6 +27,7 @@
 <script>
 import commonCard from '../../components/common-card';
 import api from '@/utils/api';
+import dayjs from 'dayjs';
 
 export default {
   components: {
@@ -67,7 +68,8 @@ export default {
       pagesize: 5
     };
   },
-  async mounted () {
+  async onShow () {
+    this.pageindex = 1;
     const res1 = await api.getRecommendList();
     console.log('分类主页,请求结果', res1);
     this.movies = res1.data.activitydata ? res1.data.activitydata : [];
@@ -75,24 +77,19 @@ export default {
     this.getActivityList();
   },
   methods: {
-    formatDte (date) {
-      let time = date.substring(0, 19);
-      let time1 = time.split('T')[0] + ' ' + time.split('T')[1];
-      console.log(time1);
-      return time1;
-    },
     async getActivityList () {
       const res = await api.getActivityList({
         pageindex: this.pageindex,
-        pagesize: this.pagesize
+        pagesize: this.pagesize,
+        studentid: wx.getStorageSync('userInfo').studentID
       });
       this.activityList = res.data.data ? res.data.data : [];
       this.activityList.forEach(element => {
         element.thumbsupImg =
-          'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+          'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
         element.messageImg =
-          'http://hsyj.100eduonline.com/static/mini-images/messageImg.png';
-        element.startDate = this.formatDte(element.startDate);
+          'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+        element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
       });
       this.activityList = this.activityList;
       console.log('分类主页,请求结果', this.activityList);
@@ -143,10 +140,10 @@ export default {
         let newActivityList = res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
           element.thumbsupImg =
-            'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
           element.messageImg =
-            'http://hsyj.100eduonline.com/static/mini-images/messageImg.png';
-          element.startDate = this.formatDte(element.startDate);
+            'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+          element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
         });
         for (var i = 0; i < newActivityList.length; i++) {
           console.log('==============', this.activityList);

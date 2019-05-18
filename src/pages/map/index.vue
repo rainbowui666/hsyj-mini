@@ -95,6 +95,8 @@
 <script>
 import messageCard from '../../components/message-card';
 import api from '@/utils/api';
+import dayjs from 'dayjs';
+
 export default {
   components: {
     messageCard
@@ -146,8 +148,8 @@ export default {
   methods: {
     async onThumbsupClick (item, index) {
       if (!item.likednum) {
-        await api.homeThumbsUp({id: item.discussID});
-        this.messageList[0].thumbsupImg = 'thumbsUp_red'
+        await api.homeThumbsUp({id: item.discussID, studentid: wx.getStorageSync('userInfo').studentID});
+        this.messageList[index].thumbsupImg = 'thumbsUp_red'
         this.$set(item, 'clicknum', item.clicknum + 1)
       }
     },
@@ -165,10 +167,12 @@ export default {
       this.imgList = res1.data.scenerydata ? res1.data.scenerydata : [];
       const res2 = await api.getRecommendMessageList({
         pageindex: this.pageindex,
-        pagesize: this.pagesize
+        pagesize: this.pagesize,
+        studentid: wx.getStorageSync('userInfo').studentID
       });
       this.messageList = res2.data.data ? res2.data.data : [];
       this.messageList.forEach(element => {
+        element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
         if (!element.likednum) {
           element.thumbsupImg = 'thumbsUp'
         } else {
@@ -203,7 +207,7 @@ export default {
         'https://hsyj.100eduonline.com/api/api/discuss/homeDiscuss?pageindex=' +
         this.pageindex +
         '&pagesize=' +
-        this.pagesize,
+        this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID,
       method: 'GET',
       // 请求头部
       header: {
@@ -217,6 +221,7 @@ export default {
 
         let newMessageList = res.data.data.data ? res.data.data.data : [];
         newMessageList.forEach(element => {
+          element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
           if (!element.likednum) {
             element.thumbsupImg = 'thumbsUp'
           } else {

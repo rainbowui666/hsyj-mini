@@ -56,13 +56,8 @@
         :extra="activityList.startAddress"
       ></wux-cell>
     </view>
-    <!-- <view class="activity-detail-icon-group2">
-      <view class="activity-detail-icon-group2-inner">
-        <icon-group :list="iconArr2" :iconClick="onClick"/>
-      </view>
-    </view>-->
     <view v-if="!isGroup" class="bottom-btn">
-      <button v-if="disApply" class="single_btn">报名</button>
+      <button v-if="disApply" class="single_btn" @click="signUp">报名</button>
       <button v-if="isApply" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
@@ -76,14 +71,10 @@
         <button @click="changeCreatBtn">创建团队</button>
       </view>
       <view v-if="isInvite" class="group_btn_disApply">
-        <button @click="onInviteBtn">邀请加入团队</button>
+        <button @click="onInviteBtn">邀请加入</button>
       </view>
-      <!-- <view v-if="isCreat" class="group_btn_creat">
-        <input maxlength="11" type="text" placeholder="请输入姓名" @input="bindInput">
-        <button>确定</button>
-      </view>-->
       <view class="group_btn_apply">
-        <button @click="onInviteBtn">扫码加入团队</button>
+        <button @click="scan">扫码加入</button>
       </view>
     </view>
     <view>
@@ -91,13 +82,6 @@
         <view class="activity-detail-desc-rows-inner">
           <text class="explain">活动说明：</text>
           <text>&nbsp;{{activityList.shdesc}}</text>
-          <!-- <navigator url="/pages/activity/activitySight/main"> -->
-          <!-- <view class="activity-detail-desc-rows-icon"> -->
-          <!-- <text>&nbsp;2.一共8个景点，至少完成6个景点的签到与自拍上传。</text> -->
-          <!-- <wux-icon type="ios-arrow-forward" color="#888" size="16"/> -->
-          <!-- <text class="view-sight">&nbsp;查看参与景点</text> -->
-          <!-- </view> -->
-          <!-- </navigator> -->
         </view>
       </view>
     </view>
@@ -109,9 +93,7 @@
       :maskClosable="false"
     >
       <view class="activity-detail-comment">
-        <img
-          src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554023021200&di=5b6f6be7d8681bbae3b2113193a5aa52&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201701%2F28%2F20170128085020_jfRhX.jpeg"
-        >
+        <image :src="svgSrc"/>
       </view>
     </wux-popup>
     <wux-popup
@@ -123,7 +105,7 @@
       :maskClosable="false"
     >
       <view class="activity-detail-comment">
-        <input placeholder="请输入团队名称">
+        <input v-model="teamName" placeholder="请输入团队名称">
       </view>
       <view class="activity-detail-comment-btn">
         <button type="default" size="mini" :plain="false" @click="onCreatClose">取消</button>
@@ -160,7 +142,7 @@
     </view>
     <wux-popup position="bottom" :visible="showComment" @close="onClose" :maskClosable="false">
       <view class="activity-detail-comment">
-        <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
+        <textarea v-model="content" placeholder="发表留言" style="height:60px"/>
       </view>
       <view class="activity-detail-comment-btn">
         <!-- <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button> -->
@@ -174,6 +156,7 @@
 import iconGroup from '../../../components/icon-group';
 import messageCard from '../../../components/message-card';
 import api from '@/utils/api';
+import dayjs from 'dayjs';
 
 export default {
   components: {
@@ -191,6 +174,9 @@ export default {
       isCreat: false,
       isInvite: false,
       isTwoCode: false,
+      content: '',
+      teamName: '',
+      svgSrc: 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png',
       iconArr: [
         {
           icon: 'ios-heart',
@@ -271,15 +257,45 @@ export default {
       ],
       showComment: false,
       showWords: false,
-      activityList: {}
+      activityList: {},
+      pageindex: 1,
+      pagesize: 10
     };
   },
-  // onShow () { wx.setNavigationBarTitle({ title: this.$mp.query.name }); },
   methods: {
-    changeCreatBtn () {
-      this.isCreat = true;
+    async signUp () {
+      console.log('signUp');
+      if (wx.getStorageSync('userInfo').stuNo) {
+        await api.wantToActivity({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          activityid: this.$mp.query.id,
+          shstate: 1
+        });
+        this.disApply = false;
+        this.isApply = true;
+      } else {
+        wx.navigateTo({ url: '/pages/center/login/main' });
+      }
     },
-    onInviteBtn () {
+    changeCreatBtn () {
+      if (wx.getStorageSync('userInfo').stuNo) {
+        this.isCreat = true;
+      } else {
+        wx.navigateTo({ url: '/pages/center/login/main' });
+      }
+    },
+    async onInviteBtn () {
+      let url1 = 'https://hsyj.100eduonline.com/api/api/group/showQr?url='
+      let url =
+        'https://hsyj.100eduonline.com/api/api/group/joinGroup?groupid=' +
+        this.activityList.group[0].groupid +
+        '&studentid=' +
+        wx.getStorageSync('userInfo').studentID +
+        '&activityid=' +
+        this.$mp.query.id;
+      // const res = await api.getQRCode({url: url});
+      this.svgSrc = url1 + url
+      console.log('svgSrc', this.svgSrc)
       this.isTwoCode = true;
     },
     onTwoCodeClose () {
@@ -288,15 +304,28 @@ export default {
     onCreatClose () {
       this.isCreat = false;
     },
-    onCreatConfirm () {
+    async onCreatConfirm () {
+      await api.addTeam({
+        id: this.$mp.query.id,
+        groupname: this.teamName
+      });
+      this.getDetailInfo();
+
       this.isCreat = false;
-      this.isInvite = true;
     },
     hideWords () {
       this.showWords = false;
     },
-    hideComment () {
+    async hideComment () {
+      await api.addMessage({
+        studentid: wx.getStorageSync('userInfo').studentID,
+        targetid: this.$mp.query.id,
+        distype: 1,
+        content: this.content
+      });
+      this.getMessage()
       this.showComment = false;
+      // this.showWords = true;
     },
     async onClick (item, index) {
       if (index === 0) {
@@ -315,7 +344,7 @@ export default {
       }
     },
     comment () {
-      this.showWords = false;
+      // this.showWords = false;
       this.showComment = true;
     },
     onClose () {
@@ -324,11 +353,56 @@ export default {
       this.showComment = false;
       this.showCameraPopup = false;
     },
-    formatDte (date) {
-      let time = date.substring(0, 19);
-      let time1 = time.split('T')[0] + ' ' + time.split('T')[1];
-      console.log(time1);
-      return time1;
+    async getMessage () {
+      const res = await api.getActivityMessage({
+        activityid: this.$mp.query.id,
+        pageindex: this.pageindex,
+        pagesize: this.pagesize
+      });
+      this.wordsList = res.data.data ? res.data.data : [];
+      this.wordsList.forEach(element => {
+        element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
+      });
+    },
+    scan () {
+      wx.scanCode({
+        success: res => {
+          wx.showToast({
+            title: '加入成功',
+            icon: 'success',
+            duration: 2000// 持续的时间
+          })
+        },
+        fail: res => {
+          console.log(res);
+        }
+      });
+    },
+    async getDetailInfo () {
+      if (this.$mp.query.isGroup === '1') {
+        const res = await api.getGroupActivityDetail({
+          id: this.$mp.query.id,
+          studentid: wx.getStorageSync('userInfo').studentID
+        });
+        this.activityList = res.data ? res.data : [];
+        this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
+        this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
+        wx.setNavigationBarTitle({
+          title: this.activityList.activityName
+        });
+        if (this.activityList.group[0]) {
+          this.isInvite = true;
+        }
+      } else {
+        const res = await api.getActivityDetail({ id: this.$mp.query.id });
+        this.activityList = res.data ? res.data : [];
+        this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
+        this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
+
+        wx.setNavigationBarTitle({
+          title: this.activityList.activityName
+        });
+      }
     }
   },
   async onShow () {
@@ -337,24 +411,18 @@ export default {
     this.isApply =
       this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
     this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
-    const res = await api.getActivityDetail({ id: this.$mp.query.id });
-    this.activityList = res.data ? res.data : [];
-    this.activityList.startDate = this.formatDte(this.activityList.startDate);
-    this.activityList.endDate = this.formatDte(this.activityList.endDate);
-    wx.setNavigationBarTitle({
-      title: this.activityList.activityName
-    });
+    this.getDetailInfo();
     const isWantTo = await api.isWantTo({
       studentid: wx.getStorageSync('userInfo').studentID,
       activityid: this.$mp.query.id,
       shstate: 0
     });
-    console.log('9999999', isWantTo.data)
     if (isWantTo.data) {
       this.iconArr2[0].color = 'red';
     } else {
       this.iconArr2[0].color = '#fff';
     }
+    this.getMessage();
   },
   onShareAppMessage: function (ops) {
     return {
