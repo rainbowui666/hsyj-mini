@@ -11,8 +11,8 @@
         </view>
         <view class="sight-card-content">
           <view class="sight-card-content-title">
-            <wux-tag v-if="item.start" color="red">起点</wux-tag>
-            <wux-tag v-if="item.end" color="red">终点</wux-tag>
+            <wux-tag v-if="item.startSceneryid===item.sceneryid" color="red">起点</wux-tag>
+            <wux-tag v-if="item.endSceneryid===item.sceneryid" color="red">终点</wux-tag>
             <text style="margin-top: 4px;">{{ item.sceneryTitle }}</text>
           </view>
           <view class="sight-card-content-icongroup">

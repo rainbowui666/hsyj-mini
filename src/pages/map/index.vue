@@ -28,7 +28,7 @@
               <image
                 :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
                 class="slide-image"
-                @click="navigatoTo"
+                @click="navigatoTo(item)"
               />
             </swiper-item>
           </block>
@@ -184,9 +184,11 @@ export default {
       this.schoolList = schoolInfo.data.data;
       console.log('schoolInfo', this.schoolList);
     },
-    navigatoTo () {
-      console.log('1111111');
-      wx.navigateTo({ url: '/pages/activity/activityDetail/main' });
+    navigatoTo (item) {
+      console.log('1111111', item);
+      wx.navigateTo({
+        url: '/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate
+      });
     }
   },
   onReachBottom: function () {

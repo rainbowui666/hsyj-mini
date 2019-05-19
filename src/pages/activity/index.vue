@@ -9,7 +9,7 @@
             <image
               :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
               class="slide-image"
-              @click="navigatoTo"
+              @click="navigatoTo(item)"
             />
           </swiper-item>
         </block>
@@ -93,6 +93,12 @@ export default {
       });
       this.activityList = this.activityList;
       console.log('分类主页,请求结果', this.activityList);
+    },
+    navigatoTo (item) {
+      console.log('1111111', item);
+      wx.navigateTo({
+        url: '/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate
+      });
     },
     onMessageClick (item, index) {
       console.log('onMessageClick', item, index);

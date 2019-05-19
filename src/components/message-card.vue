@@ -8,7 +8,7 @@
     <view class="scenic-spot-message-text">
       <view class="scenic-spot-message-text-label">
         <view>{{data.studentName?data.studentName:'大实践家'}}</view>
-        <view>{{betweenDays}}天前</view>
+        <view>{{showTime?data.createdate:betweenDays}}</view>
         <!-- <view>{{dayjs().diff(dayjs('2018-05-08'),'day')}}</view> -->
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
@@ -46,6 +46,10 @@ export default {
     onThumbsupClick: {
       type: Function,
       default: null
+    },
+    showTime: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -54,10 +58,11 @@ export default {
     };
   },
   mounted () {
+    debugger
     let today = dayjs().format('YYYY-MM-DD')
     let index = this.data.createdate.indexOf(' ')
     let theday = this.data.createdate.substring(0, index)
-    this.betweenDays = dayjs(today).diff(dayjs(theday), 'day')
+    this.betweenDays = dayjs(today).diff(dayjs(theday), 'day') + '天前'
   },
   methods: {
     thumbsupClick (item, index) {

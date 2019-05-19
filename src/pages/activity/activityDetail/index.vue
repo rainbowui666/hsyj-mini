@@ -129,7 +129,7 @@
               <view class="activity-detail-words-content">
                 <text>&nbsp;{{ item.content }}</text>
               </view>-->
-              <message-card :data="item"/>
+              <message-card :data="item" :showTime='true'/>
             </view>
           </view>
           <view class="activity-detail-words-btn">
