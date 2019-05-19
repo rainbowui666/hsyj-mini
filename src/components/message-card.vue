@@ -1,7 +1,7 @@
 <template >
   <view class="scenic-spot-message-text-group">
     <image
-      src="../../static/images/touxiang.png"
+      :src="data.photo?data.photo:'https://hsyj.100eduonline.com/static/mini-images/touxiang.png'"
       style="width:40px;height:40px;border-radius:50%"
       class="scenic-spot-message-view-inner-image"
     />

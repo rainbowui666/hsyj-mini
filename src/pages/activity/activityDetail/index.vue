@@ -4,14 +4,14 @@
       <!-- 模糊背景开始 -->
       <view
         class="frosted-glass-container"
-        :style="'background-image:url(https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress+')'"
+        :style="activityList.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress+')'"
       >
         <view class="frosted-glass"></view>
       </view>
       <view class="float-container">
         <view class="float-container-image">
           <image
-            :src="'https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress"
+            :src="activityList.pics[0].sourceAddress===undefined?'https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg':'https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress"
             mode="widthFix"
           />
         </view>
@@ -176,6 +176,7 @@ export default {
       isTwoCode: false,
       content: '',
       teamName: '',
+      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
       svgSrc: 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png',
       iconArr: [
         {
@@ -406,6 +407,7 @@ export default {
     }
   },
   async onShow () {
+    debugger
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
     // this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply =
@@ -426,7 +428,7 @@ export default {
   },
   onShareAppMessage: function (ops) {
     return {
-      title: '红色印记'
+      title: this.$mp.query.name
     };
   }
 };

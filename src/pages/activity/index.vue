@@ -97,7 +97,7 @@ export default {
     navigatoTo (item) {
       console.log('1111111', item);
       wx.navigateTo({
-        url: '/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate
+        url: '/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate + '&name=' + item.activityName
       });
     },
     onMessageClick (item, index) {
