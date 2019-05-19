@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="page-sight">
     <navigator url="/pages/map/sight/main?activitySight=true">
       <view v-for="(item,index) in data" :key="index" class="sight-card">
         <view class="sight-card-image">

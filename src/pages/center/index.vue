@@ -222,12 +222,12 @@ page {
   width: 100%;
 }
 .center-sub{
-  width:90%;
+  width:100%;
   border-radius:16rpx;
   position:absolute;
   margin-top:16%;
-  left:5%;
-  margin-bottom:10px;
+  /* left:5%;
+  margin-bottom:10px; */
   /* overflow: hidden; */
 }
 .center-sub-new{

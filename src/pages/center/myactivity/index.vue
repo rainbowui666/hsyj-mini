@@ -329,8 +329,12 @@ export default {
 
 <style>
 .myactivity-page{
-  background-color: #f4f4f4;
-  border-radius:16rpx;
+  background-color: #ccc;
+  /* border-radius:16rpx; */
+  padding:0 5%;
+}
+.myactivity-page .common-page{
+  padding: 0 5%;
 }
 .myactivity-page > ._view{
   border-top:1px solid #aaa;

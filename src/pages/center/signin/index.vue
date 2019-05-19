@@ -1,6 +1,6 @@
 <template >
-  <view class="sight-page">
-    <view class="activity-sight-list">
+  <view class="my-sight-page">
+    <view class="my-sight-list">
       <sight-card :data="sightList" :iconClick="iconClick"/>
     </view>
   </view>
@@ -208,8 +208,13 @@ export default {
 </script>
 
 <style>
-.sight-page {
-  background-color: #f4f4f4;
+.my-sight-page {
+  background-color: #ccc;
+  padding: 0 5%;
+}
+
+.sight-page .page-sight{
+  padding: 0 5%;
 }
 
 .background-image image {
