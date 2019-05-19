@@ -6,14 +6,16 @@
   <view class="backgroubd-modal"/>
   <view class="sight-page">
     <view class='sight-audio'>
-      <audio
-        :name="name"
-        :author="author"
-        :src="audioSrc"
-        id="myAudio"
-        controls
-        loop
-      ></audio>
+      <view class='sight-audio-container'>
+        <audio
+          :name="name"
+          :author="author"
+          :src="audioSrc"
+          id="myAudio"
+          controls
+          loop
+        ></audio>
+      </view>
     </view>
     <swiper class="swiper" :indicator-dots="swiper.indicatorDots" :autoplay="swiper.autoplay" i:nterval="swiper.interval" :duration="swiper.duration" :current="swiper.current">
       <block v-for="(item, index) in swiper.movies" :key="index">
@@ -454,6 +456,12 @@ export default {
 <style>
 .sight-audio{
   padding-top:50px;
+}
+.sight-audio-container{
+  background-color:#fff;
+  border-top-right-radius:8px;
+  border-top-left-radius:16rpx;
+  overflow:hidden;
 }
 .sight-page {
   height: 110vh;

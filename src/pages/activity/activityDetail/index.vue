@@ -839,6 +839,7 @@ export default {
   flex-direction: row;
   position: absolute;
   top: 100rpx;
+  width: 100%
 }
 .float-container-image {
   width: 240rpx;
@@ -846,6 +847,9 @@ export default {
   border-radius: 20rpx;
   overflow: hidden;
   margin: 0 20rpx;
+}
+.float-container-detail{
+  flex-grow:1;
 }
 .float-container-detail > .title {
   font-size: 18px;

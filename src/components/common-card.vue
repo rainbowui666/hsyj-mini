@@ -124,14 +124,14 @@ export default {
 .common-card-image {
   width: 40%;
   padding: 5px;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
   height: 170rpx;
   overflow: hidden;
   position: relative;
 }
 .common-card-image image {
   width: 100%;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
 }
 .common-card-content {
   display: flex;
