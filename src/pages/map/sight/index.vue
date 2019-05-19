@@ -64,7 +64,7 @@
       <view class="sight-introduction-video-inner">
         <view class="sight-introduction-video-image" @click="popupVideo">
           <image :src="playImg" mode="widthFix"/>
-          <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="red"/> -->
+          <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="#d25136"/> -->
         </view>
         <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
           <video
@@ -102,7 +102,7 @@
         <scroll-view :class="showWords?'inner':'inner-hide'" :scroll-y="true">
           <!-- <wux-popup position="bottom" :visible="showWords" :closable="true" @close="onClose"> -->
           <view class="sight-words">
-            <view v-for="(item,index) in wordsList" :key="index">
+            <view class="sight-words-item" v-for="(item,index) in wordsList" :key="index">
               <!-- <view class="sight-words-title"> -->
                 <!-- <text>{{ item.name }}</text>
                 <text>{{ item.time }}</text>-->
@@ -368,7 +368,7 @@ export default {
       console.log('1111');
       if (index === 0) {
         this.iconArr2[0].icon = 'ios-heart';
-        this.iconArr2[0].color = 'red';
+        this.iconArr2[0].color = '#d25136';
       }
       if (index === 1) {
         this.showWords = true;
@@ -526,7 +526,7 @@ export default {
   width: 35px;
   /* height: 35px;
   border-radius: 50%;
-  border: red 1px solid; */
+  border: #d25136 1px solid; */
   margin: 5px;
   display: flex;
   justify-content: center;
@@ -642,7 +642,12 @@ export default {
   line-height:36px;
 }
 .sight-page .sight-introduction-icon-btn-inner .signed {
-  background: red
+  width:calc(100% - 4px);
+  background:#d25136;
+  border-radius:0;
+  height:36px;
+  margin:2px;
+  line-height:36px;
 }
 .sight-page .sight-words-item {
   margin-top: 10px;
@@ -719,20 +724,27 @@ export default {
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
 .sight-page .sight-question-btn button:last-child {
   margin-left: 20px;
-  background: red
+  background: #d25136
 }
 .sight-page .sight-comment-btn button:last-child {
   margin-top: 15px;
-  background: red
+  background: #d25136
 }
 .sight-page .sight-comment {
   display: flex;
   justify-content: center;
 }
 .sight-page .sight-comment textarea {
-  margin-top: 15px;
+  /* margin-top: 15px;
   height: 60px;
-  border: 1px #000 solid;
+  border: 1px #000 solid; */
+  margin:10px;
+  height:120rpx;
+  border:1px solid #ddd;
+  text-align:left;
+  width:100%;
+  padding:20rpx;
+  margin-top:20px;
 }
 .sight-page .sight-camera {
   display: flex;
@@ -767,6 +779,9 @@ export default {
   display: flex;
   margin-left: 20px;
   text-align: initial;
+  padding-top:10rpx;
+  padding:10rpx 20rpx;
+  font-size:28rpx;
 }
 .ceshi_prew text {
   color: #fff;
@@ -837,4 +852,22 @@ export default {
   background: rgba(0, 0, 0, 0.2);
 }
 
+.sight-page .sight-words-item .scenic-spot-message-text-group{
+position: relative;
+  display: flex;
+  border:none;
+  border-radius:0;
+  padding:0;
+  margin-left:10rpx;
+  flex-grow:1;
+  border-bottom:1px solid #aaa;
+  margin:0 20rpx;
+}
+.sight-page .sight-words-item .scenic-spot-message-text-label ._view:first-child{
+  font-size: 30rpx
+}
+.sight-page .sight-words-item .scenic-spot-message-text-message{
+  line-height: 40rpx;
+  padding-bottom:10rpx;
+}
 </style>

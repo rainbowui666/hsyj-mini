@@ -39,7 +39,7 @@
           </view>
         </view>-->
         <view class="common-card-image">
-          <image mode="widthFix" 
+          <image mode="aspectFill" 
           :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
           <view v-if="item.hasjoin" class="common-card-content-status">
             <view v-if="item.hasjoin=='进行中'" class="on-status">{{ item.hasjoin }}</view>
@@ -132,7 +132,8 @@ export default {
   position: relative;
 }
 .common-card-image image {
-  width: 100%;
+  width:290rpx;
+  height:180rpx;
   border-radius: 20rpx;
 }
 .common-card-content {
