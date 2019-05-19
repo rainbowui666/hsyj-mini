@@ -589,7 +589,25 @@ export default {
   display: flex;
   flex-direction: column;
   line-height: 30px;
-  width: 95%;
+  width: 100%;
+}
+.activity-detail-page .activity-detail-words-item .scenic-spot-message-text-group {
+  position: relative;
+  display: flex;
+  border:none;
+  border-radius:0;
+  padding:0;
+  margin-left:10rpx;
+  flex-grow:1;
+  border-bottom:1px solid #aaa;
+  margin:0 20rpx;
+}
+.activity-detail-page .activity-detail-words-item .scenic-spot-message-text-label ._view:first-child{
+  font-size: 30rpx
+}
+.activity-detail-page .activity-detail-words-item .scenic-spot-message-text-message{
+  line-height: 40rpx;
+  padding-bottom:10rpx;
 }
 .activity-detail-page .activity-detail-words-title {
   min-height: 30px;
@@ -612,26 +630,7 @@ export default {
 }
 .activity-detail-page .activity-detail-comment-btn button:last-child {
   margin-top: 15px;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* 标准的语法 */
+  background: #d25136;
   margin-left: 20px;
 }
 .activity-detail-page .inner {
@@ -658,26 +657,7 @@ export default {
   .activity-detail-words-btn
   button:last-child {
   margin-left: 20px;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* 标准的语法 */
+  background: #d25136
 }
 .activity-detail-page .pop-hide,
 .activity-detail-page .modal-hide,
@@ -716,38 +696,23 @@ export default {
   .activity-detail-words-btn
   button:last-child {
   margin-left: 20px;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    rgb(241, 92, 92),
-    rgb(255, 38, 0)
-  ); /* 标准的语法 */
+  background: #d25136
 }
 .activity-detail-page .activity-detail-comment-btn {
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 .activity-detail-page .activity-detail-comment {
   display: flex;
   justify-content: center;
 }
 .activity-detail-page .activity-detail-comment textarea {
-  margin-top: 15px;
-  height: 60px;
-  border: 1px #000 solid;
+  margin:10px;
+  height:120rpx;
+  border:1px solid #ddd;
+  text-align:left;
+  width:100%;
+  padding:20rpx;
+  margin-top:20px;
 }
 .activity-detail-page .activity-detail-comment input {
   margin-top: 15px;
