@@ -1,5 +1,6 @@
 <template>
-  <view class="wrap my-message-card">
+<view class="page-mymessage">
+  <view class="my-message-card">
     <navigator
       url="/pages/activity/activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus">
       <view v-for="(item,index) in data" :key="index" class="mymessage-card">
@@ -18,6 +19,7 @@
       </view>
     </navigator>
   </view>
+</view>
 </template>
 
 <script>
@@ -73,7 +75,11 @@ export default {
 </script>
 
 <style>
-.wrap {
+.page-mymessage{
+  padding: 0 5%;
+  overflow-y: auto;
+}
+.my-message-card {
   padding:0 20rpx;
   background-color:white;
   border-radius: 10rpx;
@@ -89,6 +95,9 @@ export default {
   padding-bottom:48rpx;
   position: relative;
   border-bottom: 1px solid #6666;
+}
+.mymessage-card:last-child {
+  border-bottom: none;
 }
 .mymessage-card-image {
   width: 50px;

@@ -148,7 +148,7 @@ export default {
         // 回调函数
         console.log('==============', this.messageList);
 
-        let resList = res.data.data ? res.data.data : [];
+        let resList = res.data.data.data ? res.data.data.data : [];
         resList.forEach(element => {
           element.src = this.userInfo.photo
           element.createdate = dayjs(element.createdate).format('YYYY-MM-DD')
@@ -172,6 +172,8 @@ export default {
 <style>
 .message-page{
   background-color: #ccc;
+  /* margin:10px;
+  height:100%; */
 }
 .message-page ._scroll-view{
   position:absolute;
@@ -179,6 +181,7 @@ export default {
   top: 0
 }
 .message-scroll{
+  margin:0 5%;
   /* display: flex;
   flex-direction: row;
   height: 100%; */

@@ -1,6 +1,6 @@
 <template>
 <view class="search-card-wrap-wrap">
-  <view class="search-card-wrap" style="padding: 0 20px;">
+  <view class="search-card-wrap">
     <!-- <navigator url="/pages/map/navigation/main?activitySight=true"> -->
       <view v-for="(item,index) in data" :key="index" class="search-card">
         <image class="gpsImg" :src="item.gpsImg"/>
@@ -163,7 +163,7 @@ export default {
 
 .search-card-wrap-wrap{
   background-color:#eee;
-  height:100vh;
+  /* height:100vh; */
   padding-top:10px;
 }
 .search-card-wrap{
