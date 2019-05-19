@@ -201,7 +201,24 @@ export default {
           '位于上海音乐学院汾阳路校区，草坪西侧，为纪念上海音乐学院前教务主任、著名作曲家、音乐教育家黄自先生而建，黄自先生创作的《抗敌歌》是中国第一首以抗日救亡为主题的歌曲。'
       },
       swiper: {
-        movies: [],
+        movies: [
+          {
+            url: 'https://hsyj.100eduonline.com/static/images/e0b00a77-304c-46fe-b6e1-01a01f96d8e7.png'
+          },
+          {
+            url: 'https://hsyj.100eduonline.com/static/images/9d36b7df-0313-48a7-a9a3-1222f06ef7a5.png'
+          },
+          {
+            url: 'https://hsyj.100eduonline.com/static/images/45bb7804-85ac-452f-8f65-de2cbc00b630ed0dc9810d10714a9a0a3d933feda75d.jpeg'
+          },
+          {
+            url: 'https://hsyj.100eduonline.com/static/images/6aca58c7-c5fa-4ba5-aa16-0bd68dc4acaa.jpg'
+          },
+          {
+            url: 'https://hsyj.100eduonline.com/static/images/e16a4ec5-aab5-420c-a567-c4528d173f17.jpg'
+          }
+        ],
+        // movies: [],
         indicatorDots: true,
         autoplay: false,
         interval: 5000,
