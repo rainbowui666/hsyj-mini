@@ -3,8 +3,8 @@
         <view class="center-box">
           <view>
           <img src="https://hsyj.100eduonline.com/static/mini-images/bg.jpg" alt="bg" class="bg-image" />
-          <img src="https://hsyj.100eduonline.com/static/mini-images/head1.jpeg" alt="head" class="head-image" />
-          <h3 class="user-name">我是皮仔呀</h3>
+          <img :src="userHeadImg" alt="head" class="head-image" />
+          <h3 class="user-name">{{userName}}</h3>
           <view class="personal-center">
             <!-- <navigator url="/pages/center/signin/main"> -->
               <view class="item" @click="onClickSignin">
@@ -67,7 +67,9 @@ export default {
       isShowSignin: true,
       state: 0,
       pageindex: 1,
-      pagesize: 5
+      pagesize: 5,
+      userName: '我是皮仔呀',
+      userHeadImg: 'https://hsyj.100eduonline.com/static/mini-images/head1.jpeg'
     };
   },
   onLoad () {
@@ -80,6 +82,10 @@ export default {
   },
   onShow () {
     this.userInfo = wx.getStorageSync('userInfo');
+  },
+  mounted () {
+    this.userName = this.userInfo.studentName;
+    this.userHeadImg = this.userInfo.photo;
   },
   methods: {
     buttonClicked () {
