@@ -207,7 +207,13 @@ export default {
 </script>
 
 <style>
+page{
+  background-color: #eee;
+}
 .navigation-page{
   background-color: #f4f4f4;
+}
+.search-page .wux-search-bar {
+  background-color: #fff;
 }
 </style>

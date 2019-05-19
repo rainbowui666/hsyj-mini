@@ -31,12 +31,15 @@ export default {
 } */
 .myintegral {
   background: #ffffff;
-  width: 100%;
+  width: 80%;
   height: 200px;
   border-radius: 16rpx;
+  padding: 0 5%;
+  margin-left: 5%;
 }
 .myintegral .group_list{
   /* padding-top: 10px; */
+  border-radius: 16rpx;
 }
 .myintegral_group{
   width: 100%;
