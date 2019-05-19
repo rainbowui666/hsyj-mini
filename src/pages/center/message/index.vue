@@ -10,7 +10,7 @@
               :src="item.url"
               class="message-scroll-view-inner-image"/>
             <span class="message-scroll-view-inner-title">{{item.site}}</span>
-            <span class="message-scroll-view-inner-btn">写留言</span>
+            <span class="message-scroll-view-inner-btn" @click="gotoMessage(item)">写留言</span>
           </view>
         </view>
       </scroll-view>
@@ -95,9 +95,9 @@ export default {
     this.getMyDiscussList();
   },
   methods: {
-    iconClick (item) {
+    gotoMessage (item) {
       console.log('item', item)
-      wx.navigateTo({ url: 'activityDetail/main?name=' + item.studentName })
+      wx.navigateTo({ url: '/pages/map/sight/main' })
     },
     onChange (e) {
       console.log('onChange', e)

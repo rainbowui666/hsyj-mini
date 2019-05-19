@@ -279,6 +279,50 @@ export default {
       this.activityList = activityInfo;
       console.log('666', this.activityList);
     }
+  },
+  onReachBottom: function () {
+    // 显示加载图标
+    wx.showLoading({
+      title: '玩命加载中'
+    });
+
+    // 页数+1
+    let that = this;
+    console.log('==============', that.pageindex);
+
+    this.pageindex = this.pageindex + 1;
+    wx.request({
+      url:
+        'https://hsyj.100eduonline.com/api/api/activity/frontList?pageindex=' +
+        this.pageindex +
+        '&pagesize=' +
+        this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID,
+      method: 'GET',
+      // 请求头部
+      header: {
+        'content-type': 'application/text'
+      },
+      success: res => {
+        console.log('推荐留言,请求结果2222', res.data.data.data);
+
+        // 回调函数
+        console.log('==============', this.activityList);
+
+        let newActivityList = res.data.data.data ? res.data.data.data : [];
+        newActivityList.forEach(element => {
+          element.thumbsupImg =
+            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+          element.messageImg =
+            'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+          element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
+        });
+        for (var i = 0; i < newActivityList.length; i++) {
+          console.log('==============', this.activityList);
+          this.activityList.push(newActivityList[i]);
+        }
+        wx.hideLoading();
+      }
+    });
   }
 };
 </script>

@@ -74,6 +74,8 @@ page {
   width: 200px;
   bottom: 20%;
   left: 50%;
-  transform: translateX(-50%)
+  transform: translateX(-50%);
+  color: #ffff!important;
+  border: 1px solid #ffffff!important;
 }
 </style>

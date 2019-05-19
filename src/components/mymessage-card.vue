@@ -1,9 +1,9 @@
 <template>
 <view class="page-mymessage">
   <view class="my-message-card">
-    <navigator
-      url="/pages/activity/activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus">
-      <view v-for="(item,index) in data" :key="index" class="mymessage-card">
+    <!-- <navigator
+      url="/pages/activity/activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus"> -->
+      <view v-for="(item,index) in data" :key="index" class="mymessage-card" @click="gotoMyPage(item)">
         <view class="mymessage-card-image">
           <image mode="widthFix" :src="item.src"/>
         </view>
@@ -17,7 +17,7 @@
         <view class="mymessage-card-content-icon-text">查看详情</view>
         <view class="mymessage-card-content-peopleNum">{{item.peopleNum}}</view>
       </view>
-    </navigator>
+    <!-- </navigator> -->
   </view>
 </view>
 </template>
@@ -55,19 +55,13 @@ export default {
     };
   },
   methods: {
-    click (item) {
-      if (this.iconClick) {
-        this.iconClick(item);
+    gotoMyPage (item) {
+      console.log(item)
+      if (item.distype === 0) {
+        wx.navigateTo({url: '/pages/map/sight/main'})
       }
-    },
-    thumbsupClick (item, index) {
-      if (this.onThumbsupClick) {
-        this.onThumbsupClick(item, index);
-      }
-    },
-    messageClick (item, index) {
-      if (this.onMessageClick) {
-        this.onMessageClick(item, index);
+      if (item.distype === 1) {
+        wx.navigateTo({url: '/pages/activity/activityDetail/main?id=' + item.targetid})
       }
     }
   }
