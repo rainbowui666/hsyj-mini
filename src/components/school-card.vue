@@ -15,7 +15,7 @@
           </view>
         </view>
         <view class="school-card-image">
-          <image mode="widthFix" :src="item.pics?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:''"/>
+          <image mode="widthFix" :src="item.pics?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg"/>
         </view>
     </navigator>
     </view>
@@ -37,6 +37,11 @@ export default {
       type: Function,
       default: null
     }
+  },
+  data () {
+    return {
+      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
+    };
   },
   methods: {
     click (item) {

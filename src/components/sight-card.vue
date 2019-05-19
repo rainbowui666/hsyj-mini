@@ -4,7 +4,7 @@
       <view v-for="(item,index) in data" :key="index" class="sight-card">
         <view class="sight-card-image">
           <image mode="widthFix" 
-            :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"/>
+          :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
           <!-- <view class="sight-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
           </view>-->
@@ -63,6 +63,11 @@ export default {
       type: Function,
       default: null
     }
+  },
+  data () {
+    return {
+      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
+    };
   },
   methods: {
     click (item) {

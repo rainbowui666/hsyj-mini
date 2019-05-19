@@ -26,7 +26,7 @@
           <block v-for="(item, index) in movies" :key="index">
             <swiper-item>
               <image
-                :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                 class="slide-image"
                 @click="navigatoTo(item)"
               />
@@ -50,9 +50,9 @@
                 class="scenic-spot-recommendation-view-inner-image"
                 url="/pages/map/sight/main?activitySight=true"
               >
-                <view class="sceneryRecommend" v-if="item.pics[0]">
+                <view class="sceneryRecommend" v-if="item.pics?item.pics[0]?item.pics[0]:false:false">
                   <image
-                    :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                    :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                     class="scenic-spot-recommendation-view-inner-image"
                   />
                   <p class="title">{{item.sceneryTitle}}</p>
@@ -78,7 +78,7 @@
                 url="/pages/activity/activityDetail/main"
               >
                 <image
-                  :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+                  :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                   style="width:92px;height:66px"
                   class="scenic-spot-message-view-inner-image"
                 />
@@ -122,6 +122,7 @@ export default {
           text: 'hahahahahahahahahah'
         }
       ],
+      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
       homeFlash: 'https://hsyj.100eduonline.com/static/images/into_flash.gif',
       searchBarImg: '../../static/images/searchBar.png',
       showGif: true,

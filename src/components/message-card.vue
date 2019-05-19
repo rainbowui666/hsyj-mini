@@ -12,7 +12,7 @@
         <!-- <view>{{dayjs().diff(dayjs('2018-05-08'),'day')}}</view> -->
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <!-- <wux-icon type="ios-thumbs-up" size="20"/> -->
-          <image class="thumbsUpImgClass" :src="'https://hsyj.100eduonline.com/static/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
+          <image class="thumbsUpImgClass" v-if="imageName!==undefine&&imageName!==null" :src="'https://hsyj.100eduonline.com/static/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
           <view>{{data.clicknum}}</view>
         </view>
       </view>
@@ -60,9 +60,9 @@ export default {
   mounted () {
     debugger
     let today = dayjs().format('YYYY-MM-DD')
-    let index = this.data.createdate.indexOf(' ')
-    let theday = this.data.createdate.substring(0, index)
-    this.betweenDays = dayjs(today).diff(dayjs(theday), 'day') + '天前'
+    let index = this.data.createdate ? this.data.createdate.indexOf(' ') : 0
+    let theday = this.data.createdate ? this.data.createdate.substring(0, index) : ''
+    this.betweenDays = dayjs(today).diff(dayjs(theday), 'day') ? dayjs(today).diff(dayjs(theday), 'day') + '天前' : '10天前'
   },
   methods: {
     thumbsupClick (item, index) {
