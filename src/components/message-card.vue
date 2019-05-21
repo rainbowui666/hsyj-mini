@@ -58,7 +58,6 @@ export default {
     };
   },
   mounted () {
-    debugger
     let today = dayjs().format('YYYY-MM-DD')
     let index = this.data.createdate ? this.data.createdate.indexOf(' ') : 0
     let theday = this.data.createdate ? this.data.createdate.substring(0, index) : ''

@@ -180,6 +180,8 @@ import messageCard from '../../../components/message-card';
 import iconGroup from '../../../components/icon-group';
 import didaImg from '../../../../static/images/dida_white.png';
 import playImg from '../../../../static/images/play.png';
+import api from '@/utils/api';
+
 export default {
   components: {
     iconGroup, messageCard
@@ -343,8 +345,10 @@ export default {
         '十九大的主题是：不忘初心，________，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。'
     };
   },
-  onShow () {
-    wx.setNavigationBarTitle({ title: this.information.name });
+  async onShow () {
+    const res = await api.getSightDetail({id: this.$mp.query.id})
+    console.log('sight', res)
+    wx.setNavigationBarTitle({ title: this.$mp.query.name });
   },
   onReady (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -448,7 +452,7 @@ export default {
   },
   onShareAppMessage: function (ops) {
     return {
-      title: '红色印记'
+      title: this.$mp.query.name
     };
   }
 };

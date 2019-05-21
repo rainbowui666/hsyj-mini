@@ -106,7 +106,6 @@ export default {
     };
   },
   async onShow () {
-    debugger
     const res = await api.getActivitySceneryList({id: this.$mp.query.id});
     this.sightList = res.data.data ? res.data.data : []
     this.sightList.forEach(element => {
@@ -125,7 +124,7 @@ export default {
   },
   onShareAppMessage: function (ops) {
     return {
-      title: '红色印记'
+      title: this.$mp.query.name
     };
   }
 };

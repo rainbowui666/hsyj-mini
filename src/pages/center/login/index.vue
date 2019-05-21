@@ -81,7 +81,6 @@ export default {
     async goInHsyj () {
       let userInfo = wx.getStorageSync('userInfo') || false;
       if (userInfo) {
-        debugger
         // userInfo.schoolName = this.schoolName;
         userInfo.schoolid = this.schoolID;
         userInfo.studentName = this.studentName;

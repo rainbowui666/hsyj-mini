@@ -134,7 +134,6 @@ export default {
     }
   },
   onReachBottom: function () {
-    debugger
     // 显示顶部刷新图标
     console.log('11111');
     // 显示加载图标
