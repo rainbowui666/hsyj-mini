@@ -234,8 +234,6 @@ export default {
 }
 .activity-sight-list navigator,
 .activity-sight-list .navigator-hover{
-  border-bottom-right-radius:28rpx;
-  border-bottom-left-radius:28rpx;
-  overflow: hidden;
+  
 }
 </style>

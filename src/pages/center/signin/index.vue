@@ -214,7 +214,7 @@ export default {
 }
 
 .sight-page .page-sight{
-  padding: 0 5%;
+  padding: 0;
 }
 
 .background-image image {

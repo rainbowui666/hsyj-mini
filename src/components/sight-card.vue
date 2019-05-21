@@ -113,7 +113,12 @@ export default {
 </script>
 
 <style>
-.sight-card {
+.page-sight{
+  border-bottom-right-radius:28rpx;
+  border-bottom-left-radius:28rpx;
+  overflow: hidden;
+}
+.sight-card ._navigator{
   display: flex;
   width: 100%;
   height: 100px;
