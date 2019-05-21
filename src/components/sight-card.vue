@@ -1,10 +1,14 @@
 <template>
   <view class="page-sight">
-    <navigator url="/pages/map/sight/main?activitySight=true">
-      <view v-for="(item,index) in data" :key="index" class="sight-card">
+    <view v-for="(item,index) in data" :key="index" class="sight-card">
+      <navigator
+        :url="'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&name'+item.sceneryTitle"
+      >
         <view class="sight-card-image">
-          <image mode="widthFix" 
-          :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
+          <image
+            mode="widthFix"
+            :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
+          />
           <!-- <view class="sight-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
           </view>-->
@@ -16,10 +20,24 @@
             <text style="margin-top: 4px;">{{ item.sceneryTitle }}</text>
           </view>
           <view class="sight-card-content-icongroup">
-            <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
-            <view class="icon-group-item-label">{{ item.shstate?item.shstate.wantto?item.shstate.wantto:0:0 }}</view>
-            <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
-            <view class="icon-group-item-label">{{ item.shstate?item.shstate.disnum?item.shstate.disnum:0:0 }}</view>
+            <image
+              class="thumbsUpImg"
+              :src="item.thumbsupImg"
+              @click="thumbsupClick(item,index)"
+              mode="widthFix"
+            />
+            <view
+              class="icon-group-item-label"
+            >{{ item.shstate?item.shstate.wantto?item.shstate.wantto:0:0 }}</view>
+            <image
+              class="messageImg"
+              :src="item.messageImg"
+              @click="messageClick(item,index)"
+              mode="widthFix"
+            />
+            <view
+              class="icon-group-item-label"
+            >{{ item.shstate?item.shstate.disnum?item.shstate.disnum:0:0 }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
           </view>
           <view class="sight-card-content-detail">
@@ -31,12 +49,16 @@
             <wux-icon :type="item.iconType" :color="item.iconColor"/>
           </view>
           <view class="sight-card-icon-text">
-            <view v-if="item.sightStatus=='导航'" class="on-status" :style="'color:' + item.iconColor">{{ item.sightStatus }}</view>
+            <view
+              v-if="item.sightStatus=='导航'"
+              class="on-status"
+              :style="'color:' + item.iconColor"
+            >{{ item.sightStatus }}</view>
             <view v-if="item.sightStatus=='已完成'" class="sign-up-status">{{ item.sightStatus }}</view>
           </view>
         </view>
-      </view>
-    </navigator>
+      </navigator>
+    </view>
   </view>
 </template>
 
@@ -66,7 +88,8 @@ export default {
   },
   data () {
     return {
-      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
+      defaultImg:
+        'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
     };
   },
   methods: {
@@ -100,13 +123,13 @@ export default {
   /* border-bottom: 1px solid #888; */
 }
 .sight-card-image {
-  width:36%;
-  margin:15px;
-  overflow:hidden;
-  height:166rpx;
-  border-radius:16rpx;
-  padding:0;
-  margin-right:0;
+  width: 36%;
+  margin: 15px;
+  overflow: hidden;
+  height: 166rpx;
+  border-radius: 16rpx;
+  padding: 0;
+  margin-right: 0;
 }
 .sight-card .sight-card-content-icongroup {
   width: 50%;
@@ -121,13 +144,13 @@ export default {
 }
 .sight-card-image image {
   width: 130%;
-  border-radius: 16rpx
+  border-radius: 16rpx;
 }
 .sight-card-content {
   display: flex;
   flex-direction: column;
   width: 60%;
-  justify-content:space-around;
+  justify-content: space-around;
 }
 .sight-card-content-title {
   padding: 18rpx 0 0 18rpx;
@@ -137,9 +160,9 @@ export default {
   flex-direction: column;
   /* line-height: 40px; */
 }
-.sight-card-content-title ._text{
-  font-size:30rpx;
-  margin-top:0!important;
+.sight-card-content-title ._text {
+  font-size: 30rpx;
+  margin-top: 0 !important;
 }
 .sight-card-content-desc {
   display: flex;
@@ -168,15 +191,15 @@ export default {
   color: rgb(96, 170, 231);
 }
 .sight-card-content-detail {
-  font-size:24rpx;
-  color:#aaa;
-  padding-left:18rpx;
+  font-size: 24rpx;
+  color: #aaa;
+  padding-left: 18rpx;
 }
 .sight-card-icon {
-  width:14%;
-  margin:auto;
-  padding:12rpx;
-  color:#d25136;
+  width: 14%;
+  margin: auto;
+  padding: 12rpx;
+  color: #d25136;
 }
 .sight-card-icon-inner {
   width: 62%;
@@ -184,8 +207,8 @@ export default {
   display: flex;
   justify-content: center;
 }
-.sight-card-icon-inner ._wux-icon{
-  color:#d25136;
+.sight-card-icon-inner ._wux-icon {
+  color: #d25136;
 }
 .sight-card-icon-text {
   text-align: center;
@@ -198,13 +221,13 @@ export default {
   position: relative;
 }
 .sight-card-content-icongroup {
-  padding-left:20rpx;
-  height:52rpx;
-  opacity:0.6;
-  display:flex;
-  line-height:52rpx;
-  align-items:center;
-  flex-direction:row;
+  padding-left: 20rpx;
+  height: 52rpx;
+  opacity: 0.6;
+  display: flex;
+  line-height: 52rpx;
+  align-items: center;
+  flex-direction: row;
 }
 .common-card-content-icongroup-text {
   width: 50%;
@@ -226,10 +249,10 @@ export default {
   width: 32rpx;
   padding: 4px 4px 4px 15px;
 }
-.sight-card .icon-group-item-label{
-  font-size:24rpx;
-  color:#666;
-  align-self:flex-start;
-  margin-left: 0
+.sight-card .icon-group-item-label {
+  font-size: 24rpx;
+  color: #666;
+  align-self: flex-start;
+  margin-left: 0;
 }
 </style>

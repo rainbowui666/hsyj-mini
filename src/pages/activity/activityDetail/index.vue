@@ -407,7 +407,6 @@ export default {
     }
   },
   async onShow () {
-    debugger
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
     // this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply =

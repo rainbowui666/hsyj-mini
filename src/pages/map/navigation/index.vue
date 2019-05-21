@@ -115,7 +115,6 @@ export default {
     },
     async searchConfirm (e) {
       console.log('searchConfirm', e)
-      debugger
       this.searchValue = e.target.value;
       if (this.searchValue) {
         const resSearchList = await api.getSearchListBykeyWord({
