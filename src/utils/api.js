@@ -94,12 +94,20 @@ const api = {
   getSchoolList: () => request.get('api/school/index?pageindex=1&pagesize=200', null, {
     baseURL: ApiRootUrl
   }),
+  // 景点列表
+  getSceneryList: (obj) => request.get('api/scenery/index?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize, null, {
+    baseURL: ApiRootUrl
+  }),
   // 我的签到
   getMySigninList: () => request.get('api/myself/getMyAttention?studentid=1', null, {
     baseURL: ApiRootUrl
   }),
   // 我的留言
   getMyDiscussList: (obj) => request.get('/api/discuss/list?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 我的景点
+  getMySceneryList: (obj) => request.get('/api/myself/getMyScenery?studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   })
 }

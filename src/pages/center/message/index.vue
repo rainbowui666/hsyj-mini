@@ -3,13 +3,13 @@
       <scroll-view scroll-x="true" class="message-scroll">
         <view class="message-scroll-view">
           <view
-            v-for="(item, index) in imgList"
+            v-for="(item, index) in sceneryList"
             :key="index"
             class="message-scroll-view-inner">
             <image
-              :src="item.url"
+              :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
               class="message-scroll-view-inner-image"/>
-            <span class="message-scroll-view-inner-title">{{item.site}}</span>
+            <span class="message-scroll-view-inner-title">{{item.sceneryTitle}}</span>
             <span class="message-scroll-view-inner-btn" @click="gotoMessage(item)">写留言</span>
           </view>
         </view>
@@ -35,8 +35,10 @@ export default {
       valueData: '累计留言：50条  审核通过：40条  未审核：5条',
       userInfo: {},
       discussList: [],
+      sceneryList: [],
       pageindex: 1,
       pagesize: 5,
+      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
       imgList: [
         {
           url: '../../static/images/fudan1.jpeg',
@@ -93,6 +95,7 @@ export default {
   },
   async mounted () {
     this.getMyDiscussList();
+    this.getSceneryList();
   },
   methods: {
     gotoMessage (item) {
@@ -118,6 +121,16 @@ export default {
       this.messageList = this.discussList;
       console.log('userInfo', this.userInfo)
       console.log('discussList', this.discussList)
+    },
+    async getSceneryList () {
+      this.userInfo = wx.getStorageSync('userInfo') || {};
+      const res = await api.getSceneryList({
+        pageindex: this.pageindex,
+        pagesize: this.pagesize
+        // studentid: this.userInfo.studentID
+      });
+      this.sceneryList = res.data.data ? res.data.data : [];
+      console.log('sceneryList', this.sceneryList)
     }
   },
   onReachBottom: function () {
@@ -177,7 +190,7 @@ export default {
 }
 .message-page ._scroll-view{
   position:absolute;
-  width:110%;
+  width:90%;
   top: 0
 }
 .message-scroll{
