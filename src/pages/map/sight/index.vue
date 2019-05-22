@@ -1,6 +1,8 @@
 <template >
 <view class="sight-page-wrap">
-  <view class='frosted-glass-container'>  
+  <view class='frosted-glass-container' 
+  :style="sightObj.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+sightObj.pics[0].sourceAddress+')'"
+  >  
     <view class='frosted-glass'></view>
   </view>
   <view class="backgroubd-modal"/>
@@ -20,7 +22,7 @@
     <swiper class="swiper" :indicator-dots="swiper.indicatorDots" :autoplay="swiper.autoplay" i:nterval="swiper.interval" :duration="swiper.duration" :current="swiper.current">
       <block v-for="(item, index) in swiper.movies" :key="index">
         <swiper-item>
-          <image :src="item.url" class="slide-image"/>
+          <image :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>
@@ -34,7 +36,7 @@
     </view>
     <view class="sight-introduction-bar">
       <view class="sight-introduction-bar-inner">
-        <view class="sight-introduction-bar-label">
+        <view class="sight-introduction-bar-label"  @click="navigationClick(item)">
           <image :src="didaImg" mode="widthFix"/>
           <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
           <text>点击导航</text>
@@ -89,7 +91,7 @@
       </view>
     </view>-->
     <view class="sight-introduction-text">
-      <text>{{ information.introduction }}</text>
+      <text>{{ sightObj.shdesc }}</text>
     </view>
     <!-- <view class="sight-introduction-icon-group2">
       <view class="sight-introduction-icon-group2-inner">
@@ -188,6 +190,7 @@ export default {
   },
   data () {
     return {
+      sightObj: {},
       didaImg,
       playImg,
       audioCtx: null,
@@ -203,23 +206,7 @@ export default {
           '位于上海音乐学院汾阳路校区，草坪西侧，为纪念上海音乐学院前教务主任、著名作曲家、音乐教育家黄自先生而建，黄自先生创作的《抗敌歌》是中国第一首以抗日救亡为主题的歌曲。'
       },
       swiper: {
-        movies: [
-          {
-            url: 'https://hsyj.100eduonline.com/static/images/e0b00a77-304c-46fe-b6e1-01a01f96d8e7.png'
-          },
-          {
-            url: 'https://hsyj.100eduonline.com/static/images/9d36b7df-0313-48a7-a9a3-1222f06ef7a5.png'
-          },
-          {
-            url: 'https://hsyj.100eduonline.com/static/images/45bb7804-85ac-452f-8f65-de2cbc00b630ed0dc9810d10714a9a0a3d933feda75d.jpeg'
-          },
-          {
-            url: 'https://hsyj.100eduonline.com/static/images/6aca58c7-c5fa-4ba5-aa16-0bd68dc4acaa.jpg'
-          },
-          {
-            url: 'https://hsyj.100eduonline.com/static/images/e16a4ec5-aab5-420c-a567-c4528d173f17.jpg'
-          }
-        ],
+        movies: [],
         // movies: [],
         indicatorDots: true,
         autoplay: false,
@@ -347,7 +334,9 @@ export default {
   },
   async onShow () {
     const res = await api.getSightDetail({id: this.$mp.query.id})
-    console.log('sight', res)
+    this.sightObj = res.data ? res.data : {}
+    this.swiper.movies = res.data.pics ? res.data.pics : {}
+    console.log('sight', res.data, this.sightObj)
     wx.setNavigationBarTitle({ title: this.$mp.query.name });
   },
   onReady (e) {
@@ -451,6 +440,7 @@ export default {
     }
   },
   onShareAppMessage: function (ops) {
+    console.log('111', this.$mp.query)
     return {
       title: this.$mp.query.name
     };

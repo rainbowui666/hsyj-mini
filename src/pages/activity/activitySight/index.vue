@@ -111,6 +111,8 @@ export default {
     this.sightList.forEach(element => {
       element.thumbsupImg = 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
       element.messageImg = 'https://hsyj.100eduonline.com/static/mini-images/messageImg.png'
+      element.navigationImg = '../../../static/images/navigationImg.png',
+      element.activityName = element.sceneryTitle,
       element.iconType = 'ios-navigate'
       element.iconColor = '#aaa'
     });

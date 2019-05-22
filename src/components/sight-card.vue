@@ -2,7 +2,7 @@
   <view class="page-sight">
     <view v-for="(item,index) in data" :key="index" class="sight-card">
       <navigator
-        :url="'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&name'+item.sceneryTitle"
+        :url="'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&name='+item.sceneryTitle"
       >
         <view class="sight-card-image">
           <image
@@ -45,8 +45,9 @@
           </view>
         </view>
         <view class="sight-card-icon">
-          <view class="sight-card-icon-inner" @click="click(item)">
-            <wux-icon :type="item.iconType" :color="item.iconColor"/>
+          <view class="sight-card-icon-inner">
+          <image class="navigationImg" mode='widthFix' :src="item.navigationImg" @click="navigationClick(item)"/>
+            <!-- <wux-icon :type="item.iconType" :color="item.iconColor"/> -->
           </view>
           <view class="sight-card-icon-text">
             <view
@@ -107,6 +108,13 @@ export default {
       if (this.onMessageClick) {
         this.onMessageClick(item, index);
       }
+    },
+    navigationClick (item) {
+      console.log('item', item)
+      let latitude = item.latitude;
+      let longitude = item.longitude;
+      let title = item.activityName
+      wx.navigateTo({ url: '/pages/map/mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
     }
   }
 };
