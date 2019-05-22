@@ -1,180 +1,179 @@
 <template >
-<view class="sight-page-wrap">
-  <view class='frosted-glass-container' 
-  :style="sightObj.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+sightObj.pics[0].sourceAddress+')'"
-  >  
-    <view class='frosted-glass'></view>
-  </view>
-  <view class="backgroubd-modal"/>
-  <view class="sight-page">
-    <view class='sight-audio'>
-      <view class='sight-audio-container'>
-        <audio
-          :name="name"
-          :author="author"
-          :src="audioSrc"
-          id="myAudio"
-          controls
-          loop
-        ></audio>
+  <view class="sight-page-wrap">
+    <view
+      class="frosted-glass-container"
+      :style="sightObj.pics[0]?sightObj.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+sightObj.pics[0].sourceAddress+')':'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'"
+    >
+      <view class="frosted-glass"></view>
+    </view>
+    <view class="backgroubd-modal"/>
+    <view class="sight-page">
+      <view class="sight-audio">
+        <view class="sight-audio-container">
+          <audio :name="name" :author="author" :src="audioSrc" id="myAudio" controls loop></audio>
+        </view>
       </view>
-    </view>
-    <swiper class="swiper" :indicator-dots="swiper.indicatorDots" :autoplay="swiper.autoplay" i:nterval="swiper.interval" :duration="swiper.duration" :current="swiper.current">
-      <block v-for="(item, index) in swiper.movies" :key="index">
-        <swiper-item>
-          <image :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress" class="slide-image"/>
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class='ceshi_next' @click='prevImg'>
-      <wux-icon type='ios-arrow-forward' size='20' color='#fff'/>
-      <!-- <text class='icon ios-arrow-back'></text> -->
-    </view>
-    <view class='ceshi_prew' @click='nextImg'>
-      <wux-icon type='ios-arrow-back' size='20' color='#fff'/>
-      <!-- <text class='icon ios-arrow-forward'></text> -->
-    </view>
-    <view class="sight-introduction-bar">
-      <view class="sight-introduction-bar-inner">
-        <view class="sight-introduction-bar-label"  @click="navigationClick(item)">
-          <image :src="didaImg" mode="widthFix"/>
-          <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
-          <text>点击导航</text>
-        </view>
-        <view class="sight-introduction-icon-group">
-          <icon-group :list="iconArr2" :iconClick="onClick"/>
-          <!-- <icon-group :list="iconArr"/> -->
-        </view>
-        <!-- <view class="sight-introduction-bar-icon" @click="toDestination">
+      <swiper
+        class="swiper"
+        :indicator-dots="swiper.indicatorDots"
+        :autoplay="swiper.autoplay"
+        i:nterval="swiper.interval"
+        :duration="swiper.duration"
+        :current="swiper.current"
+      >
+        <block v-for="(item, index) in swiper.movies" :key="index">
+          <swiper-item>
+            <image
+              :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress"
+              class="slide-image"
+            />
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="ceshi_next" @click="prevImg">
+        <wux-icon type="ios-arrow-forward" size="20" color="#fff"/>
+        <!-- <text class='icon ios-arrow-back'></text> -->
+      </view>
+      <view class="ceshi_prew" @click="nextImg">
+        <wux-icon type="ios-arrow-back" size="20" color="#fff"/>
+        <!-- <text class='icon ios-arrow-forward'></text> -->
+      </view>
+      <view class="sight-introduction-bar">
+        <view class="sight-introduction-bar-inner">
+          <view class="sight-introduction-bar-label" @click="navigationClick(item)">
+            <image :src="didaImg" mode="widthFix"/>
+            <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
+            <text>点击导航</text>
+          </view>
+          <view class="sight-introduction-icon-group">
+            <icon-group :list="iconArr2" :iconClick="onClick"/>
+            <!-- <icon-group :list="iconArr"/> -->
+          </view>
+          <!-- <view class="sight-introduction-bar-icon" @click="toDestination">
           <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="#007fff"/>
-        </view>-->
-      </view>
-    </view>
-    <view class="sight-introduction-content">
-    <view class="sight-introduction-icon-btn">
-      <view class="sight-introduction-icon-btn-inner">
-        <button
-          :class="signText=='签到'?'sign':'signed'"
-          type="warn"
-          size="default"
-          :plain="false"
-          @click="onSign"
-        >{{signText}}</button>
-      </view>
-    </view>
-    <view class="sight-introduction-video">
-      <view class="sight-introduction-video-inner">
-        <view class="sight-introduction-video-image" @click="popupVideo">
-          <image :src="playImg" mode="widthFix"/>
-          <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="#d25136"/> -->
-        </view>
-        <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
-          <video
-            id="myVideo"
-            src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-            enable-danmu
-            danmu-btn
-            controls
-          ></video>
-        </wux-popup>
-        <view class="sight-introduction-video-text">
-          <text>点击播放 视频讲解</text>
+          </view>-->
         </view>
       </view>
-      <!-- <view @click="toDestination">
+      <view class="sight-introduction-content">
+        <view class="sight-introduction-icon-btn">
+          <view class="sight-introduction-icon-btn-inner">
+            <button
+              :class="signText=='签到'?'sign':'signed'"
+              type="warn"
+              size="default"
+              :plain="false"
+              @click="onSign"
+            >{{signText}}</button>
+          </view>
+        </view>
+        <view class="sight-introduction-video">
+          <view class="sight-introduction-video-inner">
+            <view class="sight-introduction-video-image" @click="popupVideo">
+              <image :src="playImg" mode="widthFix"/>
+              <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="#d25136"/> -->
+            </view>
+            <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
+              <video
+                id="myVideo"
+                src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+                enable-danmu
+                danmu-btn
+                controls
+              ></video>
+            </wux-popup>
+            <view class="sight-introduction-video-text">
+              <text>点击播放 视频讲解</text>
+            </view>
+          </view>
+          <!-- <view @click="toDestination">
         <wux-icon wux-class="navigation" type="ios-navigate" size="34" color="white"/>
-      </view> -->
-    </view>
-    <!-- <view class="sight-introduction-icon-group">
+          </view>-->
+        </view>
+        <!-- <view class="sight-introduction-icon-group">
       <view class="sight-introduction-icon-group-inner">
         <icon-group :list="iconArr"/>
       </view>
-    </view>-->
-    <view class="sight-introduction-text">
-      <text>{{ sightObj.shdesc }}</text>
-    </view>
-    <!-- <view class="sight-introduction-icon-group2">
+        </view>-->
+        <view class="sight-introduction-text">
+          <text>{{ sightObj.shdesc }}</text>
+        </view>
+        <!-- <view class="sight-introduction-icon-group2">
       <view class="sight-introduction-icon-group2-inner">
         <icon-group :list="iconArr2" :iconClick="onClick"/>
       </view>
-    </view> -->
-    <view :class="showWords?'pop':'pop-hide'">
-      <!-- <view :class="showWords?'modal':'modal-hide'" @click="onClose"> -->
-      <view :class="showWords?'modal':'modal-hide'">
-        <scroll-view :class="showWords?'inner':'inner-hide'" :scroll-y="true">
-          <!-- <wux-popup position="bottom" :visible="showWords" :closable="true" @close="onClose"> -->
-          <view class="sight-words">
-            <view class="sight-words-item" v-for="(item,index) in wordsList" :key="index">
-              <!-- <view class="sight-words-title"> -->
-                <!-- <text>{{ item.name }}</text>
-                <text>{{ item.time }}</text>-->
-                <!-- <wux-cell
+        </view>-->
+        <view :class="showWords?'pop':'pop-hide'">
+          <!-- <view :class="showWords?'modal':'modal-hide'" @click="onClose"> -->
+          <view :class="showWords?'modal':'modal-hide'">
+            <scroll-view :class="showWords?'inner':'inner-hide'" :scroll-y="true">
+              <!-- <wux-popup position="bottom" :visible="showWords" :closable="true" @close="onClose"> -->
+              <view class="sight-words">
+                <view class="sight-words-item" v-for="(item,index) in wordsList" :key="index">
+                  <!-- <view class="sight-words-title"> -->
+                  <!-- <text>{{ item.name }}</text>
+                  <text>{{ item.time }}</text>-->
+                  <!-- <wux-cell
                   thumb="https://wux.cdn.cloverstd.com/logo.png"
                   :title="item.name"
                   :extra="item.time"
-                ></wux-cell> -->
-                 <message-card :data="item"/>
-              <!-- </view> -->
-              <!-- <view class="sight-words-content">
+                  ></wux-cell>-->
+                  <message-card :data="item"/>
+                  <!-- </view> -->
+                  <!-- <view class="sight-words-content">
                 <view>&nbsp;{{ item.content }}</view>
-              </view> -->
-            </view>
+                  </view>-->
+                </view>
+              </view>
+              <view class="sight-words-btn">
+                <button type="default" size="mini" :plain="false" @click="hideWords">隐藏留言</button>
+                <button type="primary" size="mini" :plain="false" @click="comment">我要留言</button>
+              </view>
+              <!-- </wux-popup> -->
+            </scroll-view>
           </view>
-          <view class="sight-words-btn">
-            <button type="default" size="mini" :plain="false" @click="hideWords">隐藏留言</button>
-            <button type="primary" size="mini" :plain="false" @click="comment">我要留言</button>
+        </view>
+        <wux-popup position="bottom" :visible="showComment" @close="onClose" :maskClosable="false">
+          <view class="sight-comment">
+            <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
           </view>
-          <!-- </wux-popup> -->
-        </scroll-view>
-      </view>
-    </view>
-    <wux-popup
-      position="bottom"
-      :visible="showComment"
-      @close="onClose"
-      :maskClosable="false"
-    >
-      <view class="sight-comment">
-        <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
-      </view>
-      <view class="sight-comment-btn">
-        <!-- <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button> -->
-        <button type="primary" size="mini" :plain="false" @click="wordsCommit">确定</button>
-      </view>
-    </wux-popup>
-  
-    <view :class="showCameraPopup?'pop':'pop-hide'">
-      <view :class="showCameraPopup?'modal':'modal-hide'">
-        <scroll-view :class="showCameraPopup?'inner':'inner-hide'" :scroll-y="true">
-          <view class="sight-camera" v-if="showCamera">
-            <camera device-position="back" flash="off" style="width: 100%; height: 300px;"></camera>
+          <view class="sight-comment-btn">
+            <!-- <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button> -->
+            <button type="primary" size="mini" :plain="false" @click="wordsCommit">确定</button>
           </view>
-          <view class="sight-camera-btn">
-            <button type="primary" size="mini" :plain="false" @click="uploadPhoto">上传照片</button>
+        </wux-popup>
+
+        <view :class="showCameraPopup?'pop':'pop-hide'">
+          <view :class="showCameraPopup?'modal':'modal-hide'">
+            <scroll-view :class="showCameraPopup?'inner':'inner-hide'" :scroll-y="true">
+              <view class="sight-camera" v-if="showCamera">
+                <camera device-position="back" flash="off" style="width: 100%; height: 300px;"></camera>
+              </view>
+              <view class="sight-camera-btn">
+                <button type="primary" size="mini" :plain="false" @click="uploadPhoto">上传照片</button>
+              </view>
+            </scroll-view>
           </view>
-        </scroll-view>
+        </view>
+        <wux-popup position="bottom" :visible="showQuestion" @close="onClose" :maskClosable="false">
+          <view class="sight-question">
+            <view class="sight-question-title">单选题</view>
+            <view class="sight-question-content">&nbsp;&nbsp;{{question}}</view>
+          </view>
+          <view class="sight-answer">
+            <radio-group class="radio-group" @change="radioChange">
+              <label class="radio" v-for="(item,index) in radioList" :key="index">
+                <radio :value="item.name" :checked="item.checked"/>
+                {{item.value}}
+              </label>
+            </radio-group>
+          </view>
+          <view class="sight-question-btn">
+            <button type="primary" size="mini" :plain="false" @click="commitQuestion">完成答题</button>
+          </view>
+        </wux-popup>
       </view>
-    </view>
-    <wux-popup position="bottom" :visible="showQuestion" @close="onClose" :maskClosable="false">
-      <view class="sight-question">
-        <view class="sight-question-title">单选题</view>
-        <view class="sight-question-content">&nbsp;&nbsp;{{question}}</view>
-      </view>
-      <view class="sight-answer">
-        <radio-group class="radio-group" @change="radioChange">
-          <label class="radio" v-for="(item,index) in radioList" :key="index">
-            <radio :value="item.name" :checked="item.checked"/>
-            {{item.value}}
-          </label>
-        </radio-group>
-      </view>
-      <view class="sight-question-btn">
-        <button type="primary" size="mini" :plain="false" @click="commitQuestion">完成答题</button>
-      </view>
-    </wux-popup>
     </view>
   </view>
-</view>
 </template>
 
 <script>
@@ -186,7 +185,8 @@ import api from '@/utils/api';
 
 export default {
   components: {
-    iconGroup, messageCard
+    iconGroup,
+    messageCard
   },
   data () {
     return {
@@ -194,10 +194,12 @@ export default {
       didaImg,
       playImg,
       audioCtx: null,
-      poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
+      poster:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
       name: '此时此刻',
       author: '许巍',
-      audioSrc: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
+      audioSrc:
+        'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
       signText: '签到',
       information: {
         name: '黄自半身铜像',
@@ -206,7 +208,11 @@ export default {
           '位于上海音乐学院汾阳路校区，草坪西侧，为纪念上海音乐学院前教务主任、著名作曲家、音乐教育家黄自先生而建，黄自先生创作的《抗敌歌》是中国第一首以抗日救亡为主题的歌曲。'
       },
       swiper: {
-        movies: [],
+        movies: [
+          {
+            sourceAddress: '7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg'
+          }
+        ],
         // movies: [],
         indicatorDots: true,
         autoplay: false,
@@ -275,8 +281,7 @@ export default {
         {
           name: '用户名',
           time: '2019年3月27日',
-          content:
-            '用户的留言'
+          content: '用户的留言'
         },
         {
           name: '用户名',
@@ -296,8 +301,7 @@ export default {
         {
           name: '用户名',
           time: '2019年3月27日',
-          content:
-            '用户的留言'
+          content: '用户的留言'
         },
         {
           name: '用户名',
@@ -333,33 +337,35 @@ export default {
     };
   },
   async onShow () {
-    const res = await api.getSightDetail({id: this.$mp.query.id})
-    this.sightObj = res.data ? res.data : {}
-    this.swiper.movies = res.data.pics ? res.data.pics : {}
-    console.log('sight', res.data, this.sightObj)
-    wx.setNavigationBarTitle({ title: this.$mp.query.name });
+    const res = await api.getSightDetail({ id: this.$mp.query.id });
+    this.sightObj = res.data ? res.data : {};
+    this.swiper.movies = res.data.pics[0]
+      ? res.data.pics
+      : [{ sourceAddress: '7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg' }];
+    console.log('sight', res.data, this.sightObj);
+    wx.setNavigationBarTitle({ title: this.sightObj.sceneryTitle });
   },
   onReady (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioCtx = wx.createAudioContext('myAudio');
   },
 
   methods: {
     audioPlay () {
-      this.audioCtx.play()
+      this.audioCtx.play();
     },
     prevImg () {
       let swiper = this.swiper;
       let current = swiper.current;
-      swiper.current = current < (swiper.movies.length - 1) ? current + 1 : 0;
-      this.swiper = swiper
+      swiper.current = current < swiper.movies.length - 1 ? current + 1 : 0;
+      this.swiper = swiper;
     },
 
     nextImg () {
       let swiper = this.swiper;
       let current = swiper.current;
       swiper.current = current > 0 ? current - 1 : swiper.movies.length - 1;
-      this.swiper = swiper
+      this.swiper = swiper;
     },
     popupVideo () {
       this.showPopUp = true;
@@ -440,7 +446,7 @@ export default {
     }
   },
   onShareAppMessage: function (ops) {
-    console.log('111', this.$mp.query)
+    console.log('111', this.$mp.query);
     return {
       title: this.$mp.query.name
     };
@@ -449,26 +455,26 @@ export default {
 </script>
 
 <style>
-.sight-audio{
-  padding-top:50px;
+.sight-audio {
+  padding-top: 50px;
 }
-.sight-audio-container{
-  background-color:#fff;
-  border-top-right-radius:8px;
-  border-top-left-radius:16rpx;
-  overflow:hidden;
+.sight-audio-container {
+  background-color: #fff;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 16rpx;
+  overflow: hidden;
 }
 .sight-page {
   height: 110vh;
-  position:relative;
-  background-color:transparent;
-  width:94%;
-  margin:0 auto;
+  position: relative;
+  background-color: transparent;
+  width: 94%;
+  margin: 0 auto;
 }
-.sight-introduction-content{
-  background-color:#fff;
-  border-bottom-right-radius:16rpx;
-  border-bottom-left-radius:16rpx;
+.sight-introduction-content {
+  background-color: #fff;
+  border-bottom-right-radius: 16rpx;
+  border-bottom-left-radius: 16rpx;
 }
 .sight-page .swiper {
   width: 100%;
@@ -495,18 +501,18 @@ export default {
 }
 .sight-page .sight-introduction-bar-label {
   color: #fff;
-  height:60rpx;
-  line-height:60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
 }
-.sight-page .sight-introduction-bar-label image{
+.sight-page .sight-introduction-bar-label image {
   /* height:20px; */
-  width:25rpx;
+  width: 25rpx;
 }
 .sight-page .sight-introduction-bar-label text {
-  font-size:30rpx;
-  position:relative;
-  top:-4rpx;
-  padding-left:5px;
+  font-size: 30rpx;
+  position: relative;
+  top: -4rpx;
+  padding-left: 5px;
 }
 .sight-page .sight-introduction-bar-icon {
   /* width: 35px;
@@ -550,10 +556,10 @@ export default {
   margin-bottom: auto;
 }
 .sight-page .sight-introduction-video-text text {
-  line-height:94rpx;
-  margin-left:20rpx;
-  color:#d25136;
-  font-size:32rpx;
+  line-height: 94rpx;
+  margin-left: 20rpx;
+  color: #d25136;
+  font-size: 32rpx;
 }
 .sight-page .sight-introduction-icon-group {
   margin-top: auto;
@@ -563,16 +569,25 @@ export default {
   width: 40%;
   color: #fff;
 }
-.sight-page .sight-introduction-icon-group .icon-group-item{
-  font-size:26rpx;
+.sight-page .sight-introduction-icon-group .icon-group-item {
+  font-size: 26rpx;
 }
-.sight-page .sight-introduction-icon-group .icon-group-item .icon-group-item-inner ._wux-icon{
-  font-size:20px;
+.sight-page
+  .sight-introduction-icon-group
+  .icon-group-item
+  .icon-group-item-inner
+  ._wux-icon {
+  font-size: 20px;
 }
-.sight-page .sight-introduction-icon-group .icon-group-item .icon-group-item-inner ._wux-icon .ion{
-  font-size:20px;
-  color:#fff;
-  padding-top:5px;
+.sight-page
+  .sight-introduction-icon-group
+  .icon-group-item
+  .icon-group-item-inner
+  ._wux-icon
+  .ion {
+  font-size: 20px;
+  color: #fff;
+  padding-top: 5px;
 }
 .sight-page .sight-introduction-icon-group-inner {
   width: 50%;
@@ -589,10 +604,10 @@ export default {
 
 .sight-page .sight-introduction-text text {
   width: 95%;
-  color:#aaa;
-  font-size:30rpx;
-  line-height:50rpx;
-  padding-bottom:30rpx;
+  color: #aaa;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  padding-bottom: 30rpx;
 }
 
 .sight-page .sight-introduction-icon-group2 {
@@ -608,7 +623,7 @@ export default {
   display: flex;
   margin: auto;
   justify-content: center;
-} 
+}
 .sight-page .sight-introduction-icon-btn button {
   width: 100%;
 }
@@ -644,21 +659,21 @@ export default {
 .sight-page .sight-introduction-icon-btn-inner {
   width: 100%;
 }
-.sight-page .sight-introduction-icon-btn-inner .sign{
-  width:calc(100% - 4px);
-  background:#d25136;
-  border-radius:0;
-  height:36px;
-  margin:2px;
-  line-height:36px;
+.sight-page .sight-introduction-icon-btn-inner .sign {
+  width: calc(100% - 4px);
+  background: #d25136;
+  border-radius: 0;
+  height: 36px;
+  margin: 2px;
+  line-height: 36px;
 }
 .sight-page .sight-introduction-icon-btn-inner .signed {
-  width:calc(100% - 4px);
-  background:#d25136;
-  border-radius:0;
-  height:36px;
-  margin:2px;
-  line-height:36px;
+  width: calc(100% - 4px);
+  background: #d25136;
+  border-radius: 0;
+  height: 36px;
+  margin: 2px;
+  line-height: 36px;
 }
 .sight-page .sight-words-item {
   margin-top: 10px;
@@ -673,7 +688,7 @@ export default {
   margin-left: 10px;
   font-size: 16px;
 }
-.sight-page .sight-words-title .wux-cell:after{
+.sight-page .sight-words-title .wux-cell:after {
   border-bottom: none;
 }
 .sight-page .sight-words-content {
@@ -735,11 +750,11 @@ export default {
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
 .sight-page .sight-question-btn button:last-child {
   margin-left: 20px;
-  background: #d25136
+  background: #d25136;
 }
 .sight-page .sight-comment-btn button:last-child {
   margin-top: 15px;
-  background: #d25136
+  background: #d25136;
 }
 .sight-page .sight-comment {
   display: flex;
@@ -749,13 +764,13 @@ export default {
   /* margin-top: 15px;
   height: 60px;
   border: 1px #000 solid; */
-  margin:10px;
-  height:120rpx;
-  border:1px solid #ddd;
-  text-align:left;
-  width:100%;
-  padding:20rpx;
-  margin-top:20px;
+  margin: 10px;
+  height: 120rpx;
+  border: 1px solid #ddd;
+  text-align: left;
+  width: 100%;
+  padding: 20rpx;
+  margin-top: 20px;
 }
 .sight-page .sight-camera {
   display: flex;
@@ -790,9 +805,9 @@ export default {
   display: flex;
   margin-left: 20px;
   text-align: initial;
-  padding-top:10rpx;
-  padding:10rpx 20rpx;
-  font-size:28rpx;
+  padding-top: 10rpx;
+  padding: 10rpx 20rpx;
+  font-size: 28rpx;
 }
 .ceshi_prew text {
   color: #fff;
@@ -831,29 +846,29 @@ export default {
   border-bottom-right-radius: 80rpx; */
 }
 /* ///// */
-.frosted-glass-container{   
-  width:100%;
-  height:450rpx;   
-  background-image: url('https://hsyj.100eduonline.com/static/mini-images/school.png');   
-  background-repeat: no-repeat;   
-  background-attachment: fixed;   
-  overflow: hidden;  
-  position: fixed; 
-} 
+.frosted-glass-container {
+  width: 100%;
+  height: 450rpx;
+  background-image: url("https://hsyj.100eduonline.com/static/mini-images/school.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  position: fixed;
+}
 
-.frosted-glass{   
-  width:120%;
-  height:500rpx;  
-  background: inherit;   
-  -webkit-filter: blur(10px);   
-  -moz-filter: blur(10px);   
-  -ms-filter: blur(10px);   
-  -o-filter: blur(10px);   
-  filter: blur(10px);   
-  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);   
-} 
+.frosted-glass {
+  width: 120%;
+  height: 500rpx;
+  background: inherit;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -o-filter: blur(10px);
+  filter: blur(10px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+}
 
-.backgroubd-modal{
+.backgroubd-modal {
   position: fixed;
   /* z-index: 100; */
   top: 0;
@@ -863,22 +878,25 @@ export default {
   background: rgba(0, 0, 0, 0.2);
 }
 
-.sight-page .sight-words-item .scenic-spot-message-text-group{
-position: relative;
+.sight-page .sight-words-item .scenic-spot-message-text-group {
+  position: relative;
   display: flex;
-  border:none;
-  border-radius:0;
-  padding:0;
-  margin-left:10rpx;
-  flex-grow:1;
-  border-bottom:1px solid #aaa;
-  margin:0 20rpx;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin-left: 10rpx;
+  flex-grow: 1;
+  border-bottom: 1px solid #aaa;
+  margin: 0 20rpx;
 }
-.sight-page .sight-words-item .scenic-spot-message-text-label ._view:first-child{
-  font-size: 30rpx
+.sight-page
+  .sight-words-item
+  .scenic-spot-message-text-label
+  ._view:first-child {
+  font-size: 30rpx;
 }
-.sight-page .sight-words-item .scenic-spot-message-text-message{
+.sight-page .sight-words-item .scenic-spot-message-text-message {
   line-height: 40rpx;
-  padding-bottom:10rpx;
+  padding-bottom: 10rpx;
 }
 </style>

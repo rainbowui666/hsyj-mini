@@ -46,11 +46,11 @@
               :key="index"
               class="scenic-spot-recommendation-view-inner"
             >
-              <navigator
+              <!-- <navigator
                 class="scenic-spot-recommendation-view-inner-image"
                 url="/pages/map/sight/main?activitySight=true"
-              >
-                <view class="sceneryRecommend">
+              > -->
+                <view class="sceneryRecommend" @click='navigatoToSight(item)'>
                   <image
                     :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                     class="scenic-spot-recommendation-view-inner-image"
@@ -58,7 +58,7 @@
                   <p class="title">{{item.schoolName}}</p>
                   <p class="content">{{item.joinnum}}在这里</p>
                 </view>
-              </navigator>
+              <!-- </navigator> -->
             </view>
           </view>
         </scroll-view>
@@ -73,16 +73,17 @@
               class="scenic-spot-message-view-inner"
             >
               <!-- <view class="scenic-spot-message-view-inner"> -->
-              <navigator
+              <!-- <navigator
                 class="scenic-spot-message-view-inner-image"
-                url="/pages/activity/activityDetail/main"
-              >
+                :url="'/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate+ '&name=' + item.activityName"
+              > -->
                 <image
                   :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                   style="width:92px;height:66px"
                   class="scenic-spot-message-view-inner-image"
+                  @click="navigatoToRecommend(item)"
                 />
-              </navigator>
+              <!-- </navigator> -->
               <message-card :data="item" :imageName="item.thumbsupImg" :onThumbsupClick="onThumbsupClick" :index="index"/>
             </view>
           </view>
@@ -186,11 +187,43 @@ export default {
       console.log('schoolInfo', this.schoolList);
     },
     navigatoTo (item) {
-      console.log('1111111', item);
+      console.log('navigatoTo', item);
       wx.navigateTo({
         url: '/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate + '&name=' + item.activityName
       });
+    },
+    navigatoToSight (item) {
+      console.log('navigatoToSight', item);
+      wx.navigateTo({
+        url: '/pages/map/sight/main?activitySight=true&id=' + item.sceneryID + '&name=' + item.sceneryTitle
+      });
+    },
+    async navigatoToRecommend (item) {
+      console.log('navigatoToRecommend', item);
+      if (item.distype === 1) {
+        if (item.isgroup) {
+          const res = await api.getGroupActivityDetail({
+            id: item.targetid,
+            studentid: wx.getStorageSync('userInfo').studentID
+          });
+          console.log(res)
+          wx.navigateTo({
+            url: '/pages/activity/activityDetail/main?id=' + res.data.activityID + '&isGroup=' + res.data.isGroup + '&applyStatus=' + res.data.hasjoin + '&startDate=' + res.data.startDate + '&name=' + res.data.activityName
+          });
+        } else {
+          const res = await api.getActivityDetail({id: item.targetid, studentid: wx.getStorageSync('userInfo').studentID});
+          console.log(res)
+          wx.navigateTo({
+            url: '/pages/activity/activityDetail/main?id=' + res.data.activityID + '&isGroup=' + res.data.isGroup + '&applyStatus=' + res.data.hasjoin + '&startDate=' + res.data.startDate + '&name=' + res.data.activityName
+          });
+        }
+      } else {
+        wx.navigateTo({
+          url: '/pages/map/sight/main?activitySight=true&id=' + item.targetid
+        });
+      }
     }
+
   },
   onReachBottom: function () {
     // 显示顶部刷新图标
