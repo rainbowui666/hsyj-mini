@@ -50,7 +50,7 @@
                 class="scenic-spot-recommendation-view-inner-image"
                 url="/pages/map/sight/main?activitySight=true"
               >
-                <view class="sceneryRecommend" v-if="item.pics?item.pics[0]?item.pics[0]:false:false">
+                <view class="sceneryRecommend">
                   <image
                     :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                     class="scenic-spot-recommendation-view-inner-image"
