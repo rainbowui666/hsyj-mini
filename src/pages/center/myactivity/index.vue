@@ -251,7 +251,7 @@ export default {
     };
   },
   async mounted () {
-    this.getActivityList();
+    this.getMyActivityList();
   },
   methods: {
     iconClick (item) {
@@ -262,8 +262,8 @@ export default {
       console.log('onChange', e)
       this.current = e.target.key;
     },
-    async getActivityList () {
-      const res = await api.getActivityList({
+    async getMyActivityList () {
+      const res = await api.getMyActivityList({
         pageindex: this.pageindex,
         pagesize: this.pagesize,
         studentid: wx.getStorageSync('userInfo').studentID
@@ -293,9 +293,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsyj.100eduonline.com/api/api/activity/frontList?pageindex=' +
-        this.pageindex +
-        '&pagesize=' +
+        'https://hsyj.100eduonline.com/api/api/myself/getMyActivityList?pageindex=' + this.pageindex + '&pagesize=' +
         this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID,
       method: 'GET',
       // 请求头部
