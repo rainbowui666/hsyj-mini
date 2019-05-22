@@ -83,7 +83,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 景点详情
-  getSightDetail: (obj) => request.get('api/scenery/getscenerydetail?id=1' + obj.id, null, {
+  getSightDetail: (obj) => request.get('api/scenery/getscenerydetail?id=' + obj.id, null, {
     baseURL: ApiRootUrl
   }),
   // 首页登录授权

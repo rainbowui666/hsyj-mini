@@ -1,6 +1,8 @@
 <template >
 <view class="sight-page-wrap">
-  <view class='frosted-glass-container'>  
+  <view class='frosted-glass-container' 
+  :style="sightObj.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+sightObj.pics[0].sourceAddress+')'"
+  >  
     <view class='frosted-glass'></view>
   </view>
   <view class="backgroubd-modal"/>
@@ -18,9 +20,9 @@
       </view>
     </view>
     <swiper class="swiper" :indicator-dots="swiper.indicatorDots" :autoplay="swiper.autoplay" i:nterval="swiper.interval" :duration="swiper.duration" :current="swiper.current">
-      <block v-for="(item, index) in swiper.movies" :key="index">
+      <block v-for="(item, index) in sightObj.pics" :key="index">
         <swiper-item>
-          <image :src="item.url" class="slide-image"/>
+          <image :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>
@@ -34,7 +36,7 @@
     </view>
     <view class="sight-introduction-bar">
       <view class="sight-introduction-bar-inner">
-        <view class="sight-introduction-bar-label">
+        <view class="sight-introduction-bar-label"  @click="navigationClick(item)">
           <image :src="didaImg" mode="widthFix"/>
           <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
           <text>点击导航</text>
@@ -188,6 +190,7 @@ export default {
   },
   data () {
     return {
+      sightObj: {},
       didaImg,
       playImg,
       audioCtx: null,
@@ -347,7 +350,8 @@ export default {
   },
   async onShow () {
     const res = await api.getSightDetail({id: this.$mp.query.id})
-    console.log('sight', res)
+    this.sightObj = res.data ? res.data : {}
+    console.log('sight', res.data, this.sightObj)
     wx.setNavigationBarTitle({ title: this.$mp.query.name });
   },
   onReady (e) {
@@ -451,6 +455,7 @@ export default {
     }
   },
   onShareAppMessage: function (ops) {
+    console.log('111', this.$mp.query)
     return {
       title: this.$mp.query.name
     };
