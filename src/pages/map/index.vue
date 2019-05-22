@@ -55,7 +55,7 @@
                     :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                     class="scenic-spot-recommendation-view-inner-image"
                   />
-                  <p class="title">{{item.sceneryTitle}}</p>
+                  <p class="title">{{item.schoolName}}</p>
                   <p class="content">{{item.joinnum}}在这里</p>
                 </view>
               </navigator>
