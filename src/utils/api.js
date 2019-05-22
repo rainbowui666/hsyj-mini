@@ -113,6 +113,10 @@ const api = {
   // 我的景点
   getMySceneryList: (obj) => request.get('/api/myself/getMyScenery?studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
+  }),
+  // 我的活动
+  getMyActivityList: (obj) => request.get('/api/myself/getMyActivityList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
+    baseURL: ApiRootUrl
   })
 }
 
