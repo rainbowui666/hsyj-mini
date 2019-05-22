@@ -59,7 +59,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 个人活动详情
-  getActivityDetail: (obj) => request.get('api/activity/getactivitydetail?id=' + obj.id, null, {
+  getActivityDetail: (obj) => request.get('api/activity/getactivitydetail?id=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 团队活动详情

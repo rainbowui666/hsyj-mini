@@ -395,7 +395,7 @@ export default {
           this.isInvite = true;
         }
       } else {
-        const res = await api.getActivityDetail({ id: this.$mp.query.id });
+        const res = await api.getActivityDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
         this.activityList = res.data ? res.data : [];
         this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
         this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
