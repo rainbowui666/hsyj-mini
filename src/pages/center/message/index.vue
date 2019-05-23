@@ -188,7 +188,7 @@ export default {
   height:100%; */
 }
 .message-page ._scroll-view{
-  position:absolute;
+  /* position:absolute; */
   width:90%;
   top: 0
 }
@@ -242,6 +242,6 @@ export default {
 }
 .message-page .my-message-card{
   position: relative;
-  top:90rpx
+  /* top:90rpx */
 }
 </style>

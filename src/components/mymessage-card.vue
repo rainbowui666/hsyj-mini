@@ -70,8 +70,8 @@ export default {
 
 <style>
 .page-mymessage{
-  padding: 0 5%;
-  overflow-y: auto;
+  padding: 10rpx 5%;
+  /* overflow-y: auto; */
 }
 .my-message-card {
   padding:0 20rpx;
