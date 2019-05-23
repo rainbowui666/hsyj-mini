@@ -62,7 +62,7 @@
               type="warn"
               size="default"
               :plain="false"
-              @click="onSign"
+              @click="formSubmit"
             >{{signText}}</button>
           </view>
         </view>
@@ -182,6 +182,7 @@ import iconGroup from '../../../components/icon-group';
 import didaImg from '../../../../static/images/dida_white.png';
 import playImg from '../../../../static/images/play.png';
 import api from '@/utils/api';
+import QQMapWX from '../../../../build/qqmap-wx-jssdk.js';
 
 export default {
   components: {
@@ -194,6 +195,8 @@ export default {
       didaImg,
       playImg,
       audioCtx: null,
+      qqmapsdk: null,
+      distance: [],
       poster:
         'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
       name: '此时此刻',
@@ -332,6 +335,10 @@ export default {
       showCamera: false,
       showQuestion: false,
       src: '',
+      centerX: 121.475186,
+      centerY: 31.228725,
+      toAddress: '31.124820,121.493855',
+      fromAddress: '31.137677,121.507502',
       question:
         '十九大的主题是：不忘初心，________，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。'
     };
@@ -342,8 +349,26 @@ export default {
     this.swiper.movies = res.data.pics[0]
       ? res.data.pics
       : [{ sourceAddress: '7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg' }];
+    this.toAddress = res.data.latitude + ',' + res.data.longitude;
+    // 取当前位置
+    wx.getLocation({
+      type: 'gcj02',
+      success: res => {
+        let latitude = res.latitude;
+        let longitude = res.longitude;
+        this.centerX = longitude;
+        this.centerY = latitude;
+      }
+    });
+    this.fromAddress = this.centerY + ',' + this.centerX;
     console.log('sight', res.data, this.sightObj);
     wx.setNavigationBarTitle({ title: this.sightObj.sceneryTitle });
+  },
+  onLoad: function () {
+    // 实例化API核心类
+    this.qqmapsdk = new QQMapWX({
+      key: 'AFDBZ-QT5HQ-2XV56-GAXW7-43Q2T-OQBE4'
+    });
   },
   onReady (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -443,6 +468,37 @@ export default {
       //     // 这里顺道展示一下如何将上传上来的文件返回给后端，就是调用wx.uploadFile函数
       //   }
       // })
+    },
+    formSubmit (e) {
+      debugger
+      // let _this = this;
+      // 调用距离计算接口
+      this.qqmapsdk.calculateDistance({
+        // mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+        // from参数不填默认当前地址
+        // 获取表单提交的经纬度并设置from和to参数（示例为string格式）
+        // from: e.detail.value.start || '', // 若起点有数据则采用起点坐标，若为空默认当前地址
+        to: this.toAddress, // 终点坐标
+        success: res => { // 成功后的回调
+          console.log(res);
+          let result = res.result;
+          // let dis = [];
+          // for (let i = 0; i < result.elements.length; i++) {
+          //   dis.push(result.elements[i].distance); // 将返回数据存入dis数组，
+          // }
+          // 设置并更新distance数据
+          this.distance = result.elements[0].distance;
+          if (this.distance < 1000) {
+            this.onSign()
+          }
+        },
+        fail: function (error) {
+          console.error(error);
+        },
+        complete: function (end) {
+          console.log(end);
+        }
+      });
     }
   },
   onShareAppMessage: function (ops) {

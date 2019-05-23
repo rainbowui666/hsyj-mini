@@ -166,11 +166,11 @@ export default {
     wx.getLocation({
       type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
       success: res => {
-        // var latitude = Number(query.latitude)
-        // var longitude = Number(query.longitude)
+        var latitude = Number(query.latitude)
+        var longitude = Number(query.longitude)
         var title = query.title;
-        var latitude = 31.248617
-        var longitude = 121.453857
+        // var latitude = 31.248617
+        // var longitude = 121.453857
         wx.openLocation({
           latitude: latitude,
           longitude: longitude,
