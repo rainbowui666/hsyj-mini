@@ -214,48 +214,7 @@ export default {
           openType: 'share'
         }
       ],
-      wordsList: [
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        }
-      ],
+      wordsList: [],
       showComment: false,
       showWords: false,
       activityList: {},

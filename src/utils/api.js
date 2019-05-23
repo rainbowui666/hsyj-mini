@@ -31,6 +31,10 @@ const api = {
   getActivityMessage: (obj) => request.get('api/discuss/list?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&distype=1' + '&activityid=' + obj.activityid, null, {
     baseURL: ApiRootUrl
   }),
+  // 获取景点留言
+  getSightMessage: (obj) => request.get('api/discuss/list?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&distype=0' + '&sceneryid=' + obj.sceneryid, null, {
+    baseURL: ApiRootUrl
+  }),
   // 添加留言
   addMessage: (obj) => request.post('api/discuss/add?distype=' + obj.distype + '&targetid=' + obj.targetid + '&studentid=' + obj.studentid, {'content': obj.content}, {
     baseURL: ApiRootUrl
@@ -78,12 +82,16 @@ const api = {
   wantToActivity: (obj) => request.get('api/student_activity/addEdit?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&shstate=' + obj.shstate, null, {
     baseURL: ApiRootUrl
   }),
+  // 景点想去
+  wantToSight: (obj) => request.get('api/student_scenery/addEdit?studentid=' + obj.studentid + '&sceneryid=' + obj.sceneryid + '&shstate=' + obj.shstate, null, {
+    baseURL: ApiRootUrl
+  }),
   // 判断是否点过想去
   isWantTo: (obj) => request.get('api/student_activity/studnetHasStatus?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&shstate=' + obj.shstate, null, {
     baseURL: ApiRootUrl
   }),
   // 景点详情
-  getSightDetail: (obj) => request.get('api/scenery/getscenerydetail?id=' + obj.id, null, {
+  getSightDetail: (obj) => request.get('api/scenery/getscenerydetail?id=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 首页登录授权

@@ -134,11 +134,11 @@
         </view>
         <wux-popup position="bottom" :visible="showComment" @close="onClose" :maskClosable="false">
           <view class="sight-comment">
-            <textarea bindblur="bindTextAreaBlur" placeholder="发表留言" style="height:60px"/>
+            <textarea v-model="content" placeholder="发表留言" style="height:60px"/>
           </view>
           <view class="sight-comment-btn">
             <!-- <button type="default" size="mini" :plain="false" @click="hideWords">撤销</button> -->
-            <button type="primary" size="mini" :plain="false" @click="wordsCommit">确定</button>
+            <button type="primary" size="mini" :plain="false" @click="hideComment">确定</button>
           </view>
         </wux-popup>
 
@@ -182,7 +182,11 @@ import iconGroup from '../../../components/icon-group';
 import didaImg from '../../../../static/images/dida_white.png';
 import playImg from '../../../../static/images/play.png';
 import api from '@/utils/api';
+<<<<<<< HEAD
 import QQMapWX from '../../../../build/qqmap-wx-jssdk.js';
+=======
+import dayjs from 'dayjs';
+>>>>>>> update
 
 export default {
   components: {
@@ -192,6 +196,8 @@ export default {
   data () {
     return {
       sightObj: {},
+      wordsList: [],
+      content: '',
       didaImg,
       playImg,
       audioCtx: null,
@@ -280,48 +286,6 @@ export default {
         //   openType: null
         // }
       ],
-      wordsList: [
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        },
-        {
-          name: '用户名',
-          time: '2019年3月27日',
-          content: '用户的留言2019年3月27日'
-        }
-      ],
       radioList: [
         { name: 'A', value: '继续前进' },
         { name: 'B', value: '牢记使命' },
@@ -339,12 +303,14 @@ export default {
       centerY: 31.228725,
       toAddress: '31.124820,121.493855',
       fromAddress: '31.137677,121.507502',
+      pageindex: 1,
+      pagesize: 10,
       question:
         '十九大的主题是：不忘初心，________，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。'
     };
   },
   async onShow () {
-    const res = await api.getSightDetail({ id: this.$mp.query.id });
+    const res = await api.getSightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
     this.sightObj = res.data ? res.data : {};
     this.swiper.movies = res.data.pics[0]
       ? res.data.pics
@@ -362,7 +328,13 @@ export default {
     });
     this.fromAddress = this.centerY + ',' + this.centerX;
     console.log('sight', res.data, this.sightObj);
+    if (this.sightObj.shstate.wantto) {
+      this.iconArr2[0].color = 'red';
+    } else {
+      this.iconArr2[0].color = '#fff';
+    }
     wx.setNavigationBarTitle({ title: this.sightObj.sceneryTitle });
+    this.getMessage();
   },
   onLoad: function () {
     // 实例化API核心类
@@ -376,6 +348,17 @@ export default {
   },
 
   methods: {
+    async getMessage () {
+      const res = await api.getSightMessage({
+        sceneryid: this.$mp.query.id,
+        pageindex: this.pageindex,
+        pagesize: this.pagesize
+      });
+      this.wordsList = res.data.data ? res.data.data : [];
+      this.wordsList.forEach(element => {
+        element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
+      });
+    },
     audioPlay () {
       this.audioCtx.play();
     },
@@ -405,24 +388,39 @@ export default {
     onClose2 () {
       this.showCameraPopup = true;
     },
-    onClick (item, index) {
+    async onClick (item, index) {
       console.log('1111');
       if (index === 0) {
-        this.iconArr2[0].icon = 'ios-heart';
-        this.iconArr2[0].color = '#d25136';
+        if (this.iconArr2[0].color !== 'red') {
+          await api.wantToSight({
+            studentid: wx.getStorageSync('userInfo').studentID,
+            sceneryid: this.$mp.query.id,
+            shstate: 0
+          });
+          this.iconArr2[0].icon = 'ios-heart';
+          this.iconArr2[0].color = 'red';
+        }
       }
       if (index === 1) {
         this.showWords = true;
       }
     },
-    wordsCommit () {
+    async hideComment () {
+      await api.addMessage({
+        studentid: wx.getStorageSync('userInfo').studentID,
+        targetid: this.$mp.query.id,
+        distype: 0,
+        content: this.content
+      });
+      this.getMessage()
       this.showComment = false;
+      // this.showWords = true;
     },
     hideWords () {
       this.showWords = false;
     },
     comment () {
-      this.showWords = false;
+      // this.showWords = false;
       this.showComment = true;
     },
     uploadPhoto () {
