@@ -507,8 +507,13 @@ export default {
       const ctx = wx.createCameraContext();
       ctx.takePhoto({
         quality: 'high',
-        success: res => {
+        success: async (res) => {
           this.src = res.tempImagePath;
+          let sourceInfo = {}
+          sourceInfo.sourcetype = 3,
+          sourceInfo.insertid = this.sightObj.sceneryID,
+          sourceInfo.sourceaddress = this.src
+          await api.sourceAdd(sourceInfo);
         }
       });
       // wx.chooseImage({
@@ -904,6 +909,7 @@ export default {
 .sight-page .sight-question {
   display: flex;
   flex-direction: column;
+  padding-top: 20rpx
 }
 .sight-page .sight-answer {
   display: flex;

@@ -129,6 +129,10 @@ const api = {
   // 我的活动
   getMyActivityList: (obj) => request.get('/api/myself/getMyActivityList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
+  }),
+  // 上传自拍图片
+  sourceAdd: (obj) => request.post('/admin/source/add', obj, {
+    baseURL: ApiRootUrl
   })
 }
 

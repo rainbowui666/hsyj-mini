@@ -56,7 +56,7 @@
         :extra="activityList.startAddress"
       ></wux-cell>
     </view>
-    <view class="bottom-btn">
+<view class="bottom-btn">
       <button v-if="disApply" class="single_btn" @click="signUp">报名</button>
       <button v-if="isApply&&!isDoing" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
@@ -129,7 +129,7 @@
               <view class="activity-detail-words-content">
                 <text>&nbsp;{{ item.content }}</text>
               </view>-->
-              <message-card :data="item" :showTime='true'/>
+              <message-card :data="item" :showTime='false'/>
             </view>
           </view>
           <view class="activity-detail-words-btn">

@@ -55,7 +55,7 @@
                     :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                     class="scenic-spot-recommendation-view-inner-image"
                   />
-                  <p class="title">{{item.schoolName}}</p>
+                  <p class="title">{{item.shortName}}</p>
                   <p class="content">{{item.joinnum}}在这里</p>
                 </view>
               <!-- </navigator> -->
@@ -77,12 +77,14 @@
                 class="scenic-spot-message-view-inner-image"
                 :url="'/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate+ '&name=' + item.activityName"
               > -->
+              <view class="scenic-spot-message-view-image" >
                 <image
                   :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
-                  style="width:92px;height:66px"
+                  style="width:92px;height:66px;border-radius:16rpx"
                   class="scenic-spot-message-view-inner-image"
                   @click="navigatoToRecommend(item)"
                 />
+              </view>
               <!-- </navigator> -->
               <message-card :data="item" :imageName="item.thumbsupImg" :onThumbsupClick="onThumbsupClick" :index="index"/>
             </view>
@@ -456,6 +458,11 @@ export default {
   width: 100%;
   bottom: 5rpx;
   color: #fff;
+}
+.scenic-spot-message-view-image{
+  border-radius:16rpx;
+  overflow:hidden;
+  padding-right: 10rpx
 }
 </style>
 
