@@ -444,7 +444,7 @@ export default {
         }
       })
     },
-    commitQuestion () {
+    async commitQuestion () {
       if (this.selectAnswer === this.rightAnswer) {
         this.checkAnswer = true;
         wx.showToast({
@@ -454,6 +454,12 @@ export default {
           mask: true
         })
         this.showQuestion = false;
+        await api.wantToSight({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          sceneryid: this.$mp.query.id,
+          shstate: 1
+        });
+        this.signText = '已签到';
       } else {
         wx.showToast({
           title: '回答错误',
@@ -464,7 +470,6 @@ export default {
       }
     },
     onSign () {
-      this.signText = '已签到';
       if (this.$mp.query.activitySight === 'true') {
         this.showCameraPopup = true;
         this.showCamera = true;
