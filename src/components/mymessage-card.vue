@@ -58,7 +58,7 @@ export default {
     gotoMyPage (item) {
       console.log(item)
       if (item.distype === 0) {
-        wx.navigateTo({url: '/pages/map/sight/main'})
+        wx.navigateTo({url: '/pages/map/sight/main?activitySight=true&id=' + item.targetid})
       }
       if (item.distype === 1) {
         wx.navigateTo({url: '/pages/activity/activityDetail/main?id=' + item.targetid})

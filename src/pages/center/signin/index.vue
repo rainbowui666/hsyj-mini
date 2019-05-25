@@ -1,22 +1,22 @@
 <template >
-  <view class="my-sight-page">
-    <view class="my-sight-list">
-      <sight-card :data="sightList" :iconClick="iconClick"/>
+  <view class="my-signin-page">
+    <view class="my-signin-list">
+      <signin-card :data="signinList" :iconClick="iconClick"/>
     </view>
   </view>
 </template>
 
 <script>
-import sightCard from '../../../components/sight-card';
-// import api from '@/utils/api';
+import signinCard from '../../../components/signin-card';
+import api from '@/utils/api';
 
 export default {
   components: {
-    sightCard
+    signinCard
   },
   data () {
     return {
-      sightList: [
+      signinList: [
         {
           src: '../../static/images/school.png',
           sceneryTitle: '中共一大会址纪念馆',
@@ -25,6 +25,7 @@ export default {
           iconColor: 'red',
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
+          navigationImg: '../../static/images/bingo.png',
           thumbsupNum: 111,
           messageNum: 111,
           pics: [
@@ -55,6 +56,7 @@ export default {
           iconColor: 'red',
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
+          navigationImg: '../../static/images/bingo.png',
           thumbsupNum: 111,
           messageNum: 111,
           pics: [
@@ -85,6 +87,7 @@ export default {
           iconColor: 'red',
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
+          navigationImg: '../../static/images/bingo.png',
           thumbsupNum: 111,
           messageNum: 111,
           pics: [
@@ -115,6 +118,7 @@ export default {
           iconColor: 'red',
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
+          navigationImg: '../../static/images/bingo.png',
           thumbsupNum: 111,
           messageNum: 111,
           pics: [
@@ -145,6 +149,7 @@ export default {
           iconColor: 'red',
           thumbsupImg: '../../static/images/thumbsupImg.png',
           messageImg: '../../static/images/messageImg.png',
+          navigationImg: '../../static/images/bingo.png',
           thumbsupNum: 111,
           messageNum: 111,
           pics: [
@@ -167,36 +172,32 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      pageindex: 1,
+      pagesize: 5
     };
   },
-  async onShow () {
-    // debugger
-    // const res = await api.getMySigninList();
-    // console.log('res', res)
-    // this.sightList = res.data.data ? res.data.data : []
-    // this.sightList.forEach(element => {
-    //   element.thumbsupImg = 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
-    //   element.messageImg = 'https://hsyj.100eduonline.com/static/mini-images/messageImg.png'
-    //   element.iconType = 'ios-navigate'
-    //   element.iconColor = '#aaa'
-    // });
-    // console.log('111', this.sightList)
+  async mounted () {
+    debugger
+    const res = await api.getMySigninList({
+      pageindex: this.pageindex,
+      pagesize: this.pagesize,
+      studentid: wx.getStorageSync('userInfo').studentID
+    });
+    console.log('res', res)
+    this.signinList = res.data.data ? res.data.data : []
+    this.signinList.forEach(element => {
+      element.thumbsupImg = 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
+      element.messageImg = 'https://hsyj.100eduonline.com/static/mini-images/messageImg.png'
+      element.navigationImg = '../../static/images/bingo.png'
+      element.sightStatus = '已完成'
+    });
+    console.log('111', this.signinList)
   },
   methods: {
     iconClick (item) {
       console.log('item', item);
       // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sceneryTitle })
-    },
-    onMessageClick (item, index) {
-      console.log('onMessageClick', item, index)
-      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
-    },
-    onThumbsupClick (item, index) {
-      console.log('onThumbsupClick', item, index)
-      this.sightList[index].thumbsupImg = '../../static/images/thumbsUp_red.png'
-
-      // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isSingle=' + item.isSingle + '&applyStatus=' + item.activityStatus})
     }
   },
   onShareAppMessage: function (ops) {
@@ -208,23 +209,23 @@ export default {
 </script>
 
 <style>
-.my-sight-page {
+.my-signin-page {
   background-color: #ccc;
   padding: 0 5%;
 }
 
-.sight-page .page-sight{
+.signin-page .page-signin{
   padding: 0;
 }
 
 .background-image image {
   width: 100%;
 }
-.activity-sight-title-group{
+.activity-signin-title-group{
   display: flex;
   justify-content: space-between;
 }
-.activity-sight-title-share button {
+.activity-signin-title-share button {
   font-size: 20px;
   font-weight: 600;
   margin-left: 5px;
@@ -235,13 +236,13 @@ export default {
   background-color: #fff;
   display: flex;
 }
-.activity-sight-title-share button::after {
+.activity-signin-title-share button::after {
   border: none;
 }
-.activity-sight-title-share .button-hover {
+.activity-signin-title-share .button-hover {
   color: #000;
 }
-.activity-sight-title-label{
+.activity-signin-title-label{
   line-height: 40px;
 }
 </style>

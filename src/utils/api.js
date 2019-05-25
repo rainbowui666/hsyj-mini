@@ -115,7 +115,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 我的签到
-  getMySigninList: () => request.get('api/myself/getMyAttention?studentid=1', null, {
+  getMySigninList: (obj) => request.get('api/myself/getMyAttention?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 我的留言
