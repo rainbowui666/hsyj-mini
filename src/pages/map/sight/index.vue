@@ -2,7 +2,12 @@
   <view class="sight-page-wrap">
     <view
       class="frosted-glass-container"
-      :style="sightObj.pics[0]?sightObj.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+sightObj.pics[0].sourceAddress+')':'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'"
+      :style="sightObj.pics?sightObj.pics[0]
+      ?sightObj.pics[0].sourceAddress===undefined
+      ?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'
+      :'background-image:url(https://hsyj.100eduonline.com/static/images/'+sightObj.pics[0].sourceAddress+')'
+      :'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'
+      :'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'"
     >
       <view class="frosted-glass"></view>
     </view>
@@ -311,6 +316,11 @@ export default {
       ? res.data.pics
       : [{ sourceAddress: '7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg' }];
     this.toAddress = res.data.latitude + ',' + res.data.longitude;
+    if (this.sightObj.shstate.checkin) {
+      this.signText = '已签到'
+    } else {
+      this.signText = '签到'
+    }
     // 取当前位置
     wx.getLocation({
       type: 'gcj02',
@@ -514,36 +524,38 @@ export default {
     },
     formSubmit (e) {
       debugger
+      if (!this.sightObj.shstate.checkin) {
       // this.onSign()
 
       // let _this = this;
       // 调用距离计算接口
-      this.qqmapsdk.calculateDistance({
+        this.qqmapsdk.calculateDistance({
         // mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
         // from参数不填默认当前地址
         // 获取表单提交的经纬度并设置from和to参数（示例为string格式）
         // from: e.detail.value.start || '', // 若起点有数据则采用起点坐标，若为空默认当前地址
-        to: this.toAddress, // 终点坐标
-        success: res => { // 成功后的回调
-          console.log(res);
-          let result = res.result;
-          // let dis = [];
-          // for (let i = 0; i < result.elements.length; i++) {
-          //   dis.push(result.elements[i].distance); // 将返回数据存入dis数组，
-          // }
-          // 设置并更新distance数据
-          this.distance = result.elements[0].distance;
-          if (this.distance < 1000) {
-            this.onSign()
+          to: this.toAddress, // 终点坐标
+          success: res => { // 成功后的回调
+            console.log(res);
+            let result = res.result;
+            // let dis = [];
+            // for (let i = 0; i < result.elements.length; i++) {
+            //   dis.push(result.elements[i].distance); // 将返回数据存入dis数组，
+            // }
+            // 设置并更新distance数据
+            this.distance = result.elements[0].distance;
+            if (this.distance < 1000) {
+              this.onSign()
+            }
+          },
+          fail: function (error) {
+            console.error(error);
+          },
+          complete: function (end) {
+            console.log(end);
           }
-        },
-        fail: function (error) {
-          console.error(error);
-        },
-        complete: function (end) {
-          console.log(end);
-        }
-      });
+        });
+      }
     }
   },
   onShareAppMessage: function (ops) {
