@@ -45,7 +45,7 @@
       </view>
       <view class="sight-introduction-bar">
         <view class="sight-introduction-bar-inner">
-          <view class="sight-introduction-bar-label" @click="navigationClick(item)">
+          <view class="sight-introduction-bar-label" @click="navigationClick(sightObj)">
             <image :src="didaImg" mode="widthFix"/>
             <!-- <wux-icon type='ios-navigate' size='26' color='white'/> -->
             <text>点击导航</text>
@@ -521,6 +521,13 @@ export default {
       //     // 这里顺道展示一下如何将上传上来的文件返回给后端，就是调用wx.uploadFile函数
       //   }
       // })
+    },
+    navigationClick (item) {
+      console.log('mapGps', item)
+      let latitude = item.latitude;
+      let longitude = item.longitude;
+      let title = item.sceneryTitle
+      wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
     },
     formSubmit (e) {
       debugger
