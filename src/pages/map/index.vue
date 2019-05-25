@@ -195,7 +195,7 @@ export default {
     navigatoToSight (item) {
       console.log('navigatoToSight', item);
       wx.navigateTo({
-        url: '/pages/map/sight/main?activitySight=true&id=' + item.sceneryID + '&name=' + item.sceneryTitle
+        url: '/pages/map/sight/main?id=' + item.sceneryID + '&name=' + item.sceneryTitle
       });
     },
     async navigatoToRecommend (item) {
@@ -219,7 +219,7 @@ export default {
         }
       } else {
         wx.navigateTo({
-          url: '/pages/map/sight/main?activitySight=true&id=' + item.targetid
+          url: '/pages/map/sight/main?id=' + item.targetid
         });
       }
     }

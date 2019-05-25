@@ -469,10 +469,18 @@ export default {
         })
       }
     },
-    onSign () {
+    async onSign () {
+      debugger
       if (this.$mp.query.activitySight === 'true') {
         this.showCameraPopup = true;
         this.showCamera = true;
+      } else {
+        await api.wantToSight({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          sceneryid: this.$mp.query.id,
+          shstate: 1
+        });
+        this.signText = '已签到';
       }
       // wx.chooseImage({
       //   count: 1,
