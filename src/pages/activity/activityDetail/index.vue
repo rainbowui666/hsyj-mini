@@ -56,17 +56,17 @@
         :extra="activityList.startAddress"
       ></wux-cell>
     </view>
-    <view v-if="!isGroup" class="bottom-btn">
+    <view class="bottom-btn">
       <button v-if="disApply" class="single_btn" @click="signUp">报名</button>
-      <button v-if="isApply" class="single_btn_isApply">
+      <button v-if="isApply&&!isDoing" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
           <view>已报名</view>
         </view>
       </button>
-      <button v-if="isDoing" class="single_btn_isDoing">进入活动</button>
+      <button v-if="isDoing&&!isGroup" class="single_btn_isDoing">进入活动</button>
     </view>
-    <view v-if="isGroup" class="group_btn">
+    <view v-if="isGroup&&isApply&&isDoing" class="group_btn">
       <view v-if="!isInvite" class="group_btn_disApply">
         <button @click="changeCreatBtn">创建团队</button>
       </view>
@@ -346,6 +346,9 @@ export default {
         });
         this.activityList = res.data ? res.data : [];
         this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
+        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0) {
+          this.isDoing = true
+        }
         this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
@@ -358,7 +361,9 @@ export default {
         this.activityList = res.data ? res.data : [];
         this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
         this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
-
+        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0) {
+          this.isDoing = true
+        }
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
         });
@@ -367,7 +372,7 @@ export default {
   },
   async onShow () {
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
-    // this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
+    this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply =
       this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
     this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
