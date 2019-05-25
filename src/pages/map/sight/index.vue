@@ -182,11 +182,8 @@ import iconGroup from '../../../components/icon-group';
 import didaImg from '../../../../static/images/dida_white.png';
 import playImg from '../../../../static/images/play.png';
 import api from '@/utils/api';
-<<<<<<< HEAD
 import QQMapWX from '../../../../build/qqmap-wx-jssdk.js';
-=======
 import dayjs from 'dayjs';
->>>>>>> update
 
 export default {
   components: {
