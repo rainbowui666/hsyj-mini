@@ -39,6 +39,10 @@ const api = {
   addMessage: (obj) => request.post('api/discuss/add?distype=' + obj.distype + '&targetid=' + obj.targetid + '&studentid=' + obj.studentid, {'content': obj.content}, {
     baseURL: ApiRootUrl
   }),
+  // 答题
+  getQuestion: (obj) => request.post('api/question/getQuestionbyActid?activityid=' + obj.activityid + '&sceneryid=' + obj.sceneryid, null, {
+    baseURL: ApiRootUrl
+  }),
   // 创建团队
   addTeam: (obj) => request.post('api/group/addEdit', obj, {
     baseURL: ApiRootUrl

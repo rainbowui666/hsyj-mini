@@ -283,12 +283,10 @@ export default {
         //   openType: null
         // }
       ],
-      radioList: [
-        { name: 'A', value: '继续前进' },
-        { name: 'B', value: '牢记使命' },
-        { name: 'C', value: '方得始终' },
-        { name: 'D', value: '砥砺前行' }
-      ],
+      radioList: [],
+      rightAnswer: '',
+      checkAnswer: false,
+      selectAnswer: '',
       showPopUp: false,
       showWords: false,
       showComment: false,
@@ -420,13 +418,50 @@ export default {
       // this.showWords = false;
       this.showComment = true;
     },
-    uploadPhoto () {
-      console.log('111');
+    async uploadPhoto () {
       this.showCameraPopup = false;
-      this.showQuestion = true;
+      const res = await api.getQuestion({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
+      console.log('----------', this, res)
+      if (res.data[0]) {
+        this.question = res.data[0].questionTitle
+        this.rightAnswer = res.data[0].rightAnswer
+        this.radioList = []
+        this.radioList.push({ name: 'A', value: res.data[0].answerA })
+        this.radioList.push({ name: 'B', value: res.data[0].answerB })
+        this.radioList.push({ name: 'C', value: res.data[0].answerC })
+        this.radioList.push({ name: 'D', value: res.data[0].answerD })
+        this.showQuestion = true;
+      }
+    },
+    radioChange (e) {
+      console.log('111', e, e.mp.detail.value);
+      this.selectAnswer = e.mp.detail.value
+      this.radioList.forEach((item) => {
+        if (item.name === this.selectAnswer) {
+          item.checked = true
+        } else {
+          item.checked = false
+        }
+      })
     },
     commitQuestion () {
-      this.showQuestion = false;
+      if (this.selectAnswer === this.rightAnswer) {
+        this.checkAnswer = true;
+        wx.showToast({
+          title: '回答正确',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+        this.showQuestion = false;
+      } else {
+        wx.showToast({
+          title: '回答错误',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+      }
     },
     onSign () {
       this.signText = '已签到';
@@ -466,6 +501,8 @@ export default {
     },
     formSubmit (e) {
       debugger
+      // this.onSign()
+
       // let _this = this;
       // 调用距离计算接口
       this.qqmapsdk.calculateDistance({

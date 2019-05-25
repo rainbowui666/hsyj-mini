@@ -2,7 +2,7 @@
   <view class="page-sight">
     <view v-for="(item,index) in data" :key="index" class="sight-card">
       <navigator
-        :url="'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid"
+        :url="item.activityid?'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&activityid='+item.activityid:'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid"
       >
         <view class="sight-card-image">
           <image
