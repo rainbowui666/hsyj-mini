@@ -57,14 +57,15 @@
       ></wux-cell>
     </view>
 <view class="bottom-btn">
-      <button v-if="disApply" class="single_btn" @click="signUp">报名</button>
-      <button v-if="isApply&&!isDoing" class="single_btn_isApply">
+      <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
+      <button v-if="isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
           <view>已报名</view>
         </view>
       </button>
-      <button v-if="isDoing&&!isGroup" class="single_btn_isDoing">进入活动</button>
+      <button v-if="isDoing&&!isGroup&&!isComplete" class="single_btn_isDoing">进入活动</button>
+      <button v-if="isComplete" class="single_btn" >已完成</button>
     </view>
     <view v-if="isGroup&&isApply&&isDoing" class="group_btn">
       <view v-if="!isInvite" class="group_btn_disApply">
@@ -169,6 +170,7 @@ export default {
       isGroup: true,
       isApply: false,
       disApply: false,
+      isComplete: false,
       isDoing: false,
       isStatusTrue: true,
       isCreat: false,
@@ -371,10 +373,13 @@ export default {
     }
   },
   async onShow () {
+    debugger
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
     this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply =
       this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
+    this.isComplete =
+      this.$mp.query.applyStatus === '已完成' ? this.isStatusTrue : false;
     this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
     this.getDetailInfo();
     const isWantTo = await api.isWantTo({
