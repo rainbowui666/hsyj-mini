@@ -320,6 +320,7 @@ export default {
       radioList: [],
       rightAnswer: '',
       checkAnswer: false,
+      uploadSuccess: false,
       selectAnswer: '',
       showPopUp: false,
       showWords: false,
@@ -350,6 +351,10 @@ export default {
     } else {
       this.signText = '签到'
     }
+    this.formData = {
+      sourcetype: 3,
+      insertid: this.$mp.query.id
+    },
     // 取当前位置
     wx.getLocation({
       type: 'gcj02',
@@ -398,6 +403,7 @@ export default {
     },
     onSuccess (e) {
       console.log('onSuccess', e)
+      this.uploadSuccess = true
     },
     onFail (e) {
       console.log('onFail', e)
@@ -482,18 +488,20 @@ export default {
       this.showComment = true;
     },
     async uploadPhoto () {
-      this.showCameraPopup = false;
-      const res = await api.getQuestion({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
-      console.log('----------', this, res)
-      if (res.data[0]) {
-        this.question = res.data[0].questionTitle
-        this.rightAnswer = res.data[0].rightAnswer
-        this.radioList = []
-        this.radioList.push({ name: 'A', value: res.data[0].answerA })
-        this.radioList.push({ name: 'B', value: res.data[0].answerB })
-        this.radioList.push({ name: 'C', value: res.data[0].answerC })
-        this.radioList.push({ name: 'D', value: res.data[0].answerD })
-        this.showQuestion = true;
+      if (this.uploadSuccess) {
+        this.showCameraPopup = false;
+        const res = await api.getQuestion({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
+        console.log('----------', this, res)
+        if (res.data[0]) {
+          this.question = res.data[0].questionTitle
+          this.rightAnswer = res.data[0].rightAnswer
+          this.radioList = []
+          this.radioList.push({ name: 'A', value: res.data[0].answerA })
+          this.radioList.push({ name: 'B', value: res.data[0].answerB })
+          this.radioList.push({ name: 'C', value: res.data[0].answerC })
+          this.radioList.push({ name: 'D', value: res.data[0].answerD })
+          this.showQuestion = true;
+        }
       }
     },
     radioChange (e) {
@@ -533,7 +541,6 @@ export default {
       }
     },
     async onSign () {
-      debugger
       if (this.$mp.query.activitySight === 'true') {
         this.showCameraPopup = true;
         this.showCamera = true;
@@ -545,16 +552,6 @@ export default {
         });
         this.signText = '已签到';
       }
-      // wx.chooseImage({
-      //   count: 1,
-      //   success (res) {
-      //     // 这里无论用户是从相册选择还是直接用相机拍摄，拍摄完成后的图片临时路径都会传递进来
-      //     // app.startOperating('保存中')
-      //     // var filePath = res.tempFilePaths[0];
-      //     // var session_key = wx.getStorageSync('session_key');
-      //     // 这里顺道展示一下如何将上传上来的文件返回给后端，就是调用wx.uploadFile函数
-      //   }
-      // })
     },
     takePhoto () {
       const ctx = wx.createCameraContext();
