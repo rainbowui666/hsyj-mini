@@ -64,7 +64,7 @@
           <view>已报名</view>
         </view>
       </button>
-      <button v-if="isDoing&&!isGroup&&!isComplete" class="single_btn_isDoing">进入活动</button>
+      <button v-if="isDoing&&!isGroup&&!isComplete" class="single_btn_isDoing" @click="gotoActivity">进入活动</button>
       <button v-if="isComplete" class="single_btn" >已完成</button>
     </view>
     <view v-if="isGroup&&isApply&&isDoing" class="group_btn">
@@ -348,7 +348,7 @@ export default {
         });
         this.activityList = res.data ? res.data : [];
         this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
-        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0) {
+        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0 && this.isApply) {
           this.isDoing = true
         }
         this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
@@ -363,13 +363,16 @@ export default {
         this.activityList = res.data ? res.data : [];
         this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
         this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
-        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0) {
+        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0 && this.isApply) {
           this.isDoing = true
         }
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
         });
       }
+    },
+    gotoActivity () {
+      wx.navigateTo({ url: '/pages/activity/activitySight/main?id=' + this.$mp.query.id });
     }
   },
   async onShow () {
