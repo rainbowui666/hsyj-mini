@@ -69,7 +69,7 @@
               :plain="false"
               @click="formSubmit"
             >{{signText}}</button>
-            <wux-upload 
+            <!-- <wux-upload 
                 listType="picture-card"
                 :header="header"
                 :formData="formData"
@@ -79,7 +79,7 @@
                 @fail="onFail"
                 @remove="onRemove">
                     <button type="default">Click to Upload</button>
-                </wux-upload>
+                </wux-upload> -->
           </view>
         </view>
         <view class="sight-introduction-video">
@@ -172,7 +172,7 @@
                 @success="onSuccess" 
                 @fail="onFail"
                 @remove="onRemove">
-                    <button type="default">Click to Upload</button>
+                    <button type="default">拍照上传</button>
                 </wux-upload>
               </view>
               <view class="sight-camera-btn">
@@ -223,7 +223,7 @@ export default {
         Authorization: wx.getStorageSync('token')
       },
       formData: {
-        sourcetype: 0,
+        sourcetype: 3,
         insertid: 41
       },
       sightObj: {},
