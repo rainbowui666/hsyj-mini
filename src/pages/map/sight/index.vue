@@ -69,6 +69,17 @@
               :plain="false"
               @click="formSubmit"
             >{{signText}}</button>
+            <wux-upload 
+                listType="picture-card"
+                :header="header"
+                :formData="formData"
+                url="https://hsyj.100eduonline.com/api/api/upload/wxUpload"
+                @change="onChange"
+                @success="onSuccess" 
+                @fail="onFail"
+                @remove="onRemove">
+                    <button type="default">Click to Upload</button>
+                </wux-upload>
           </view>
         </view>
         <view class="sight-introduction-video">
@@ -151,7 +162,18 @@
           <view :class="showCameraPopup?'modal':'modal-hide'">
             <scroll-view :class="showCameraPopup?'inner':'inner-hide'" :scroll-y="true">
               <view class="sight-camera" v-if="showCamera">
-                <camera device-position="back" flash="off" style="width: 100%; height: 300px;"></camera>
+                <!-- <camera device-position="back" flash="off" style="width: 100%; height: 300px;"></camera> -->
+                <wux-upload 
+                listType="picture-card"
+                :header="header"
+                :formData="formData"
+                url="https://hsyj.100eduonline.com/api/api/upload/wxUpload"
+                @change="onChange"
+                @success="onSuccess" 
+                @fail="onFail"
+                @remove="onRemove">
+                    <button type="default">Click to Upload</button>
+                </wux-upload>
               </view>
               <view class="sight-camera-btn">
                 <button type="primary" size="mini" :plain="false" @click="uploadPhoto">上传照片</button>
@@ -197,6 +219,13 @@ export default {
   },
   data () {
     return {
+      header: {
+        Authorization: wx.getStorageSync('token')
+      },
+      formData: {
+        sourcetype: 0,
+        insertid: 41
+      },
       sightObj: {},
       wordsList: [],
       content: '',
@@ -353,6 +382,30 @@ export default {
   },
 
   methods: {
+    onChange (e) {
+      console.log('onChange', e)
+      const { file } = e.detail
+      if (file.status === 'uploading') {
+        this.setData({
+          progress: 0
+        })
+        wx.showLoading()
+      } else if (file.status === 'done') {
+        this.setData({
+          imageUrl: file.url
+        })
+      }
+    },
+    onSuccess (e) {
+      console.log('onSuccess', e)
+    },
+    onFail (e) {
+      console.log('onFail', e)
+    },
+    onComplete (e) {
+      console.log('onComplete', e)
+      wx.hideLoading()
+    },
     async getMessage () {
       const res = await api.getSightMessage({
         sceneryid: this.$mp.query.id,

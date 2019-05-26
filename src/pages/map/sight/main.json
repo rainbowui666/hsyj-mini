@@ -8,6 +8,7 @@
     "wux-col": "../../../static/wux/col/index",
     "wux-badge": "../../../static/wux/badge/index",
     "wux-popup": "../../../static/wux/popup/index",
-    "wux-cell": "../../../static/wux/cell/index"
+    "wux-cell": "../../../static/wux/cell/index",
+    "wux-upload": "../../../static/wux/upload/index"
   }
 }
