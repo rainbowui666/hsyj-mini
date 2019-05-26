@@ -6,7 +6,7 @@
     <view class="activity-page">
       <div class="searchBar">
         <picker @change="pickerChange" :value="index" range-key="schoolName" :range="schoolList">
-          <view class="picker">{{schoolList[index].schoolName}}</view>
+          <view class="picker">{{schoolList[index].shortName ? schoolList[index].shortName : schoolList[index].schoolName}}</view>
         </picker>
         <span class="sanjiao"></span>
         <image class="search_bar_img" :src="searchBarImg" @click="goToSearch"/>
