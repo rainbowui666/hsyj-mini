@@ -172,11 +172,11 @@
                 @success="onSuccess" 
                 @fail="onFail"
                 @remove="onRemove">
-                    <button type="default">拍照上传</button>
+                    <button type="default" v-if='showTakePhoto'>拍照上传</button>
                 </wux-upload>
               </view>
               <view class="sight-camera-btn">
-                <button type="primary" size="mini" :plain="false" @click="uploadPhoto">上传照片</button>
+                <button type="primary" size="mini" :plain="false" @click="uploadPhoto">下一步</button>
               </view>
             </scroll-view>
           </view>
@@ -219,6 +219,7 @@ export default {
   },
   data () {
     return {
+      showTakePhoto: true,
       header: {
         Authorization: wx.getStorageSync('token')
       },
@@ -403,6 +404,7 @@ export default {
     },
     onSuccess (e) {
       console.log('onSuccess', e)
+      this.showTakePhoto = false
       this.uploadSuccess = true
     },
     onFail (e) {
@@ -882,13 +884,14 @@ export default {
   position: fixed;
   width: 100%;
   background-color: #fff;
-  height: calc(100% - 44px);
+  /* height: calc(100% - 44px); */
   /*border-top-left-radius: 20px;*/
   /*border-top-right-radius: 20px;*/
   bottom: 0px;
   z-index: 1001;
   padding-bottom: 40px;
-  height: 60vh;
+  /* height: 60vh; */
+  /* height:228rpx;  高度不设置，自动撑开*/
 }
 .sight-page .pop-hide,
 .sight-page .modal-hide,

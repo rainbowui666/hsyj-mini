@@ -7,7 +7,7 @@
       class="scenic-spot-message-view-inner-image"
     />
     </view>
-    <view class="scenic-spot-message-text">
+    <view class="scenic-spot-message-text-content">
       <view class="scenic-spot-message-text-label">
         <view>{{data.studentName?data.studentName:'大实践家'}}</view>
         <view>{{showTime?data.createdate:betweenDays}}</view>
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style>
-.scenic-spot-message-text {
+.scenic-spot-message-text-content {
   display: flex;
   flex-direction: column;
 }
@@ -91,10 +91,6 @@ export default {
   padding:10rpx 10rpx 10rpx 20rpx;
   margin-left:10rpx;
   flex-grow:1;
-}
-.scenic-spot-message-text {
-  display: flex;
-  flex-direction: column;
 }
 .scenic-spot-message-text-label {
   display: flex;
