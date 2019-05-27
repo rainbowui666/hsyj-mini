@@ -39,6 +39,7 @@ export default {
       valueData: '已报名：2次  成功活动：2次  失败活动：1次  进行中：1次',
       pageindex: 1,
       pagesize: 5,
+      keyWord: '已报名',
       activityList: [
         {
           src: '../../static/images/fudan.jpg',
@@ -260,13 +261,24 @@ export default {
     },
     onChange (e) {
       console.log('onChange', e)
+      if (e.target.key === 'myactivity_tab1') {
+        this.keyWord = '已报名'
+        this.getMyActivityList()
+      } else if (e.target.key === 'myactivity_tab2') {
+        this.keyWord = '进行中'
+        this.getMyActivityList()
+      } else {
+        this.keyWord = '已完成'
+        this.getMyActivityList()
+      }
       this.current = e.target.key;
     },
     async getMyActivityList () {
       const res = await api.getMyActivityList({
         pageindex: this.pageindex,
         pagesize: this.pagesize,
-        studentid: wx.getStorageSync('userInfo').studentID
+        studentid: wx.getStorageSync('userInfo').studentID,
+        hasjoin: this.keyWord
       });
       let activityInfo = res.data.data ? res.data.data : [];
       activityInfo.forEach(element => {

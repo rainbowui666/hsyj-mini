@@ -127,7 +127,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 我的活动
-  getMyActivityList: (obj) => request.get('/api/myself/getMyActivityList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
+  getMyActivityList: (obj) => request.get('/api/myself/getMyActivityList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid + '&hasjoin=' + obj.hasjoin, null, {
     baseURL: ApiRootUrl
   }),
   // 上传自拍图片
