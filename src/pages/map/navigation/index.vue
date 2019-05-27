@@ -100,7 +100,9 @@ export default {
         isIcon: true,
         address: item.address,
         latitude: item.latitude,
-        longitude: item.longitude
+        longitude: item.longitude,
+        msgtype: item.msgtype,
+        id: item.id
       }
       searchAimList.push(searchItem)
     });
@@ -110,39 +112,46 @@ export default {
   methods: {
     iconClick (item) {
       console.log('item', item)
-      wx.navigateTo({ url: '/pages/activity/activityDetail/main?name=' + '复旦一日游' })
+      if (item.msgtype === 'school') {
+        wx.navigateTo({ url: '/pages/map/schools/main?schoolId=' + item.id });
+      } else if (item.msgtype === 'scenery') {
+        wx.navigateTo({url: '/pages/map/sight/main?activitySight=true&id=' + item.id})
+      }
+      // {wx.navigateTo({ url: '/pages/activity/activityDetail/main?name=' + '复旦一日游' })}
       // wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
     },
     async searchConfirm (e) {
       console.log('searchConfirm', e)
       this.searchValue = e.target.value;
-      if (this.searchValue) {
-        const resSearchList = await api.getSearchListBykeyWord({
-          pageindex: this.pageindex,
-          pagesize: this.pagesize,
-          keyword: this.searchValue
+      // if (this.searchValue) {
+      const resSearchList = await api.getSearchListBykeyWord({
+        pageindex: this.pageindex,
+        pagesize: this.pagesize,
+        keyword: this.searchValue
+      });
+      if (resSearchList && resSearchList.data && resSearchList.data.data) {
+        let searchAimList = [];
+        let searchList = resSearchList.data.data;
+        searchList.forEach(item => {
+          let searchItem = {
+            gpsImg: '../../../static/images/gpsImg.png',
+            navigationImg: '../../../static/images/navigationImg.png',
+            activityName: item.title,
+            iconType: 'ios-navigate',
+            iconColor: '#007fff',
+            iconText: '3.9km',
+            isIcon: true,
+            address: item.address,
+            latitude: item.latitude,
+            longitude: item.longitude,
+            msgtype: item.msgtype,
+            id: item.id
+          }
+          searchAimList.push(searchItem)
         });
-        if (resSearchList && resSearchList.data && resSearchList.data.data) {
-          let searchAimList = [];
-          let searchList = resSearchList.data.data;
-          searchList.forEach(item => {
-            let searchItem = {
-              gpsImg: '../../../static/images/gpsImg.png',
-              navigationImg: '../../../static/images/navigationImg.png',
-              activityName: item.title,
-              iconType: 'ios-navigate',
-              iconColor: '#007fff',
-              iconText: '3.9km',
-              isIcon: true,
-              address: item.address,
-              latitude: item.latitude,
-              longitude: item.longitude
-            }
-            searchAimList.push(searchItem)
-          });
-          this.activityList = searchAimList;
-        }
+        this.activityList = searchAimList;
       }
+      // }
     }
   },
   onReachBottom: function () {
@@ -185,7 +194,9 @@ export default {
             isIcon: true,
             address: item.address,
             latitude: item.latitude,
-            longitude: item.longitude
+            longitude: item.longitude,
+            msgtype: item.msgtype,
+            id: item.id
           }
           searchAimList.push(searchItem)
         });
