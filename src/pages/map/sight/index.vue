@@ -587,7 +587,6 @@ export default {
       wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
     },
     formSubmit (e) {
-      debugger
       if (!this.sightObj.shstate.checkin) {
       // this.onSign()
 
@@ -610,9 +609,20 @@ export default {
             this.distance = result.elements[0].distance;
             if (this.distance < 1000) {
               this.onSign()
+            } else {
+              wx.showToast({
+                title: '距离太远，无法签到！',
+                icon: 'none',
+                duration: 2000
+              })
             }
           },
           fail: function (error) {
+            wx.showToast({
+              title: '无法签到！',
+              icon: 'none',
+              duration: 2000
+            })
             console.error(error);
           },
           complete: function (end) {
