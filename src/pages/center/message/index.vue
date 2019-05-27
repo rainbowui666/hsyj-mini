@@ -100,7 +100,7 @@ export default {
   methods: {
     gotoMessage (item) {
       console.log('item', item)
-      wx.navigateTo({ url: '/pages/map/sight/main' })
+      wx.navigateTo({ url: '/pages/map/sight/main?id=' + item.sceneryid + '&name=' + item.sceneryTitle })
     },
     onChange (e) {
       console.log('onChange', e)
@@ -124,13 +124,13 @@ export default {
     },
     async getSceneryList () {
       this.userInfo = wx.getStorageSync('userInfo') || {};
-      const res = await api.getSceneryList({
-        pageindex: this.pageindex,
-        pagesize: this.pagesize
-        // studentid: this.userInfo.studentID
+      const res = await api.getMySceneryList({
+        // pageindex: this.pageindex,
+        // pagesize: this.pagesize
+        studentid: this.userInfo.studentID
       });
-      this.sceneryList = res.data.data ? res.data.data : [];
-      console.log('sceneryList', this.sceneryList)
+      this.sceneryList = res.data ? res.data : [];
+      console.log('getMySceneryList', this.sceneryList)
     }
   },
   onReachBottom: function () {

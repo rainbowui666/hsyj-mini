@@ -8,25 +8,25 @@
           <view class="personal-center">
             <!-- <navigator url="/pages/center/signin/main"> -->
               <view class="item" @click="onClickSignin">
-                <text :class="state == 0 ? 'timeRed' : 'time'">2次</text>
+                <text :class="state == 0 ? 'timeRed' : 'time'">{{signinCount}}次</text>
                 <text class="content">我的签到</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/message/main"> -->
               <view class="item" @click="onClickMessage">
-                <text :class="state == 1 ? 'timeRed' : 'time'">29次</text>
+                <text :class="state == 1 ? 'timeRed' : 'time'">{{discussCount}}次</text>
                 <text class="content">我的留言</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/myactivity/main"> -->
               <view class="item"  @click="onClickActivity">
-                <text :class="state == 2 ? 'timeRed' : 'time'">33次</text>
+                <text :class="state == 2 ? 'timeRed' : 'time'">{{activityCount}}次</text>
                 <text class="content">我的活动</text>
               </view>
             <!-- </navigator> -->
             <!-- <navigator url="/pages/center/integral/main"> -->
               <view class="item" @click="onClickIntegral">
-                <text :class="state == 3 ? 'timeRed' : 'time'">56次</text>
+                <text :class="state == 3 ? 'timeRed' : 'time'">{{integralCount}}次</text>
                 <text class="content">我的积分</text>
               </view>
             <!-- </navigator> -->
@@ -34,7 +34,7 @@
           <view class="center-sub" v-if="isShowSignin || isShowActivity || isShowIntegral">
             <mysignin v-if="isShowSignin" />
             <myactivity v-if="isShowActivity" />
-            <myintegral v-if="isShowIntegral" />
+            <myintegral v-if="isShowIntegral" :signin="signinCount" :discuss="discussCount" :activity="activityCount"/>
           </view>
           </view>
           <view class="center-sub-new" v-if="isShowMessage">
@@ -49,6 +49,7 @@ import mysignin from './signin/index';
 import myintegral from './integral/index';
 import myactivity from './myactivity/index';
 import mymessage from './message/index';
+import api from '@/utils/api';
 // import dayjs from 'dayjs';
 
 export default {
@@ -68,6 +69,10 @@ export default {
       state: 0,
       pageindex: 1,
       pagesize: 5,
+      signinCount: 0,
+      discussCount: 0,
+      activityCount: 0,
+      integralCount: 0,
       userName: '我是皮仔呀',
       userHeadImg: 'https://hsyj.100eduonline.com/static/mini-images/head1.jpeg'
     };
@@ -83,9 +88,30 @@ export default {
   onShow () {
     this.userInfo = wx.getStorageSync('userInfo');
   },
-  mounted () {
+  async mounted () {
     this.userName = this.userInfo.studentName;
     this.userHeadImg = this.userInfo.photo;
+    const signinRes = await api.getMySigninList({
+      pageindex: this.pageindex,
+      pagesize: this.pagesize,
+      studentid: this.userInfo.studentID
+    });
+    this.signinCount = signinRes.data ? signinRes.data.counta : 0;
+
+    const discussRes = await api.getMyDiscussList({
+      pageindex: this.pageindex,
+      pagesize: this.pagesize,
+      studentid: this.userInfo.studentID
+    });
+    this.discussCount = discussRes.data ? discussRes.data.counta : 0;
+
+    const activityRes = await api.getMyActivityList({
+      pageindex: this.pageindex,
+      pagesize: this.pagesize,
+      studentid: wx.getStorageSync('userInfo').studentID
+    });
+    this.activityCount = activityRes.data ? activityRes.data.counta : 0;
+    this.integralCount = this.signinCount + this.discussCount + this.activityCount;
   },
   methods: {
     buttonClicked () {
