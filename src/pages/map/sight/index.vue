@@ -15,7 +15,12 @@
     <view class="sight-page">
       <view class="sight-audio">
         <view class="sight-audio-container">
-          <audio :name="name" :author="author" :src="audioSrc" id="myAudio" controls loop></audio>
+          <image
+              src="https://hsyj.100eduonline.com/static/mini-images/sceneryAudio.png"
+              class="slide-audio-image"
+              mode="widthFix"
+            />
+          <!-- <audio :name="name" :author="author" :src="audioSrc" id="myAudio" controls loop></audio> -->
         </view>
       </view>
       <swiper
@@ -667,6 +672,9 @@ export default {
 .sight-page .swiper {
   width: 100%;
   height: 230px;
+}
+.sight-page .slide-audio-image{
+  width: 100%;
 }
 .sight-page .slide-image {
   width: 100%;
