@@ -443,7 +443,7 @@ export default {
     },
     popupVideo () {
       // this.showPopUp = true;
-      wx.navigateTo({url: '/pages/webview/main?videoUrl=https://v.qq.com/x/page/q0873ac1sx9.html'})
+      wx.navigateTo({url: '/pages/webview/main?videoUrl=' + this.sightObj.videourl})
     },
     onClose () {
       this.showPopUp = false;

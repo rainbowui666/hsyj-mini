@@ -15,9 +15,12 @@ export default {
   //     this.src = options.url;
   //   }
   // },
+  onShow () {
+    this.src = this.$mp ? this.$mp.query.videoUrl ? this.$mp.query.videoUrl : '' : ''
+  },
   data () {
     return {
-      src: this.$mp.query.videoUrl
+      src: this.$mp ? this.$mp.query.videoUrl ? this.$mp.query.videoUrl : '' : ''
     };
   }
 };

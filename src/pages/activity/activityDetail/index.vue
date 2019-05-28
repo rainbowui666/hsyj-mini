@@ -64,7 +64,7 @@
           <view>已报名</view>
         </view>
       </button>
-      <button v-if="isDoing&&!isGroup&&!isComplete" class="single_btn_isDoing" @click="gotoActivity">进入活动</button>
+      <button v-if="isDoing&&!isGroup&&!isComplete&&isApply" class="single_btn_isDoing" @click="gotoActivity">进入活动</button>
       <button v-if="isComplete" class="single_btn" >已完成</button>
     </view>
     <view v-if="isGroup&&isApply&&isDoing" class="group_btn">
@@ -377,14 +377,15 @@ export default {
   },
   async onShow () {
     debugger
+    this.getDetailInfo();
+    console.log(this.activityList)
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
     this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply =
       this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
     this.isComplete =
       this.$mp.query.applyStatus === '已完成' ? this.isStatusTrue : false;
-    this.disApply = !this.isApply && !this.isDoing ? this.isStatusTrue : false;
-    this.getDetailInfo();
+    this.disApply = !this.isApply ? this.isStatusTrue : false;
     const isWantTo = await api.isWantTo({
       studentid: wx.getStorageSync('userInfo').studentID,
       activityid: this.$mp.query.id,
