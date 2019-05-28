@@ -40,56 +40,56 @@ export default {
       pagesize: 5,
       defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
       imgList: [
-        {
-          url: '../../static/images/fudan1.jpeg',
-          site: '交通大学：石狮子景区'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg',
-          site: '交通大学：石狮子'
-        },
-        {
-          url: '../../static/images/fudan1.jpeg',
-          site: '交通大学：石狮子'
-        },
-        {
-          url: '../../static/images/fudan2.jpeg',
-          site: '交通大学：石狮子'
-        }
+        // {
+        //   url: '../../static/images/fudan1.jpeg',
+        //   site: '交通大学：石狮子景区'
+        // },
+        // {
+        //   url: '../../static/images/fudan2.jpeg',
+        //   site: '交通大学：石狮子'
+        // },
+        // {
+        //   url: '../../static/images/fudan1.jpeg',
+        //   site: '交通大学：石狮子'
+        // },
+        // {
+        //   url: '../../static/images/fudan2.jpeg',
+        //   site: '交通大学：石狮子'
+        // }
       ],
       messageList: [
-        {
-          src: '../../static/images/fudan.jpg',
-          studentName: '大实践家',
-          createdate: '2019年4月11日',
-          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward',
-          peopleNum: '266人参加'
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          studentName: '大实践家',
-          createdate: '2019年4月11日',
-          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward',
-          peopleNum: '266人参加'
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          studentName: '大实践家',
-          createdate: '2019年4月11日',
-          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward',
-          peopleNum: '266人参加'
-        },
-        {
-          src: '../../static/images/fudan.jpg',
-          studentName: '大实践家',
-          createdate: '2019年4月11日',
-          content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
-          iconType: 'ios-arrow-forward',
-          peopleNum: '266人参加'
-        }
+        // {
+        //   src: '../../static/images/fudan.jpg',
+        //   studentName: '大实践家',
+        //   createdate: '2019年4月11日',
+        //   content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+        //   iconType: 'ios-arrow-forward',
+        //   peopleNum: '266人参加'
+        // },
+        // {
+        //   src: '../../static/images/fudan.jpg',
+        //   studentName: '大实践家',
+        //   createdate: '2019年4月11日',
+        //   content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+        //   iconType: 'ios-arrow-forward',
+        //   peopleNum: '266人参加'
+        // },
+        // {
+        //   src: '../../static/images/fudan.jpg',
+        //   studentName: '大实践家',
+        //   createdate: '2019年4月11日',
+        //   content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+        //   iconType: 'ios-arrow-forward',
+        //   peopleNum: '266人参加'
+        // },
+        // {
+        //   src: '../../static/images/fudan.jpg',
+        //   studentName: '大实践家',
+        //   createdate: '2019年4月11日',
+        //   content: '这个地方超好玩，啦啦啦啦啦啦啦啦啦啦啦啦',
+        //   iconType: 'ios-arrow-forward',
+        //   peopleNum: '266人参加'
+        // }
       ]
     };
   },
