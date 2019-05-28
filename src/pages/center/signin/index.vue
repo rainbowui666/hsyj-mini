@@ -17,161 +17,161 @@ export default {
   data () {
     return {
       signinList: [
-        {
-          src: '../../static/images/school.png',
-          sceneryTitle: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle-outline',
-          sightStatus: '已完成',
-          iconColor: 'red',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          navigationImg: '../../static/images/bingo.png',
-          thumbsupNum: 111,
-          messageNum: 111,
-          pics: [
-            {
-              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
-            }
-          ],
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/school.png',
-          sceneryTitle: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle-outline',
-          sightStatus: '已完成',
-          iconColor: 'red',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          navigationImg: '../../static/images/bingo.png',
-          thumbsupNum: 111,
-          messageNum: 111,
-          pics: [
-            {
-              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
-            }
-          ],
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/school.png',
-          sceneryTitle: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle-outline',
-          sightStatus: '已完成',
-          iconColor: 'red',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          navigationImg: '../../static/images/bingo.png',
-          thumbsupNum: 111,
-          messageNum: 111,
-          pics: [
-            {
-              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
-            }
-          ],
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/school.png',
-          sceneryTitle: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle-outline',
-          sightStatus: '已完成',
-          iconColor: 'red',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          navigationImg: '../../static/images/bingo.png',
-          thumbsupNum: 111,
-          messageNum: 111,
-          pics: [
-            {
-              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
-            }
-          ],
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          src: '../../static/images/school.png',
-          sceneryTitle: '中共一大会址纪念馆',
-          iconType: 'ios-checkmark-circle-outline',
-          sightStatus: '已完成',
-          iconColor: 'red',
-          thumbsupImg: '../../static/images/thumbsupImg.png',
-          messageImg: '../../static/images/messageImg.png',
-          navigationImg: '../../static/images/bingo.png',
-          thumbsupNum: 111,
-          messageNum: 111,
-          pics: [
-            {
-              sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
-            }
-          ],
-          iconArr: [
-            {
-              icon: 'ios-heart',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        }
+        // {
+        //   src: '../../static/images/school.png',
+        //   sceneryTitle: '中共一大会址纪念馆',
+        //   iconType: 'ios-checkmark-circle-outline',
+        //   sightStatus: '已完成',
+        //   iconColor: 'red',
+        //   thumbsupImg: '../../static/images/thumbsupImg.png',
+        //   messageImg: '../../static/images/messageImg.png',
+        //   navigationImg: '../../static/images/bingo.png',
+        //   thumbsupNum: 111,
+        //   messageNum: 111,
+        //   pics: [
+        //     {
+        //       sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+        //     }
+        //   ],
+        //   iconArr: [
+        //     {
+        //       icon: 'ios-heart',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     },
+        //     {
+        //       icon: 'ios-chatboxes',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     }
+        //   ]
+        // },
+        // {
+        //   src: '../../static/images/school.png',
+        //   sceneryTitle: '中共一大会址纪念馆',
+        //   iconType: 'ios-checkmark-circle-outline',
+        //   sightStatus: '已完成',
+        //   iconColor: 'red',
+        //   thumbsupImg: '../../static/images/thumbsupImg.png',
+        //   messageImg: '../../static/images/messageImg.png',
+        //   navigationImg: '../../static/images/bingo.png',
+        //   thumbsupNum: 111,
+        //   messageNum: 111,
+        //   pics: [
+        //     {
+        //       sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+        //     }
+        //   ],
+        //   iconArr: [
+        //     {
+        //       icon: 'ios-heart',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     },
+        //     {
+        //       icon: 'ios-chatboxes',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     }
+        //   ]
+        // },
+        // {
+        //   src: '../../static/images/school.png',
+        //   sceneryTitle: '中共一大会址纪念馆',
+        //   iconType: 'ios-checkmark-circle-outline',
+        //   sightStatus: '已完成',
+        //   iconColor: 'red',
+        //   thumbsupImg: '../../static/images/thumbsupImg.png',
+        //   messageImg: '../../static/images/messageImg.png',
+        //   navigationImg: '../../static/images/bingo.png',
+        //   thumbsupNum: 111,
+        //   messageNum: 111,
+        //   pics: [
+        //     {
+        //       sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+        //     }
+        //   ],
+        //   iconArr: [
+        //     {
+        //       icon: 'ios-heart',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     },
+        //     {
+        //       icon: 'ios-chatboxes',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     }
+        //   ]
+        // },
+        // {
+        //   src: '../../static/images/school.png',
+        //   sceneryTitle: '中共一大会址纪念馆',
+        //   iconType: 'ios-checkmark-circle-outline',
+        //   sightStatus: '已完成',
+        //   iconColor: 'red',
+        //   thumbsupImg: '../../static/images/thumbsupImg.png',
+        //   messageImg: '../../static/images/messageImg.png',
+        //   navigationImg: '../../static/images/bingo.png',
+        //   thumbsupNum: 111,
+        //   messageNum: 111,
+        //   pics: [
+        //     {
+        //       sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+        //     }
+        //   ],
+        //   iconArr: [
+        //     {
+        //       icon: 'ios-heart',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     },
+        //     {
+        //       icon: 'ios-chatboxes',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     }
+        //   ]
+        // },
+        // {
+        //   src: '../../static/images/school.png',
+        //   sceneryTitle: '中共一大会址纪念馆',
+        //   iconType: 'ios-checkmark-circle-outline',
+        //   sightStatus: '已完成',
+        //   iconColor: 'red',
+        //   thumbsupImg: '../../static/images/thumbsupImg.png',
+        //   messageImg: '../../static/images/messageImg.png',
+        //   navigationImg: '../../static/images/bingo.png',
+        //   thumbsupNum: 111,
+        //   messageNum: 111,
+        //   pics: [
+        //     {
+        //       sourceAddress: '24bb88da-4ab1-4b6c-95ee-ed871b7f341d.jpg'
+        //     }
+        //   ],
+        //   iconArr: [
+        //     {
+        //       icon: 'ios-heart',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     },
+        //     {
+        //       icon: 'ios-chatboxes',
+        //       size: '16',
+        //       color: '#888',
+        //       label: 11
+        //     }
+        //   ]
+        // }
       ],
       pageindex: 1,
       pagesize: 5
