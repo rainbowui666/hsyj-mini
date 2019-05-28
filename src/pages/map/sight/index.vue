@@ -88,7 +88,7 @@
               <image :src="playImg" mode="widthFix"/>
               <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="#d25136"/> -->
             </view>
-            <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
+            <!-- <wux-popup position="bottom" :visible="showPopUp" :closable="true" @close="onClose">
               <video
                 id="myVideo"
                 src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
@@ -96,7 +96,7 @@
                 danmu-btn
                 controls
               ></video>
-            </wux-popup>
+            </wux-popup> -->
             <view class="sight-introduction-video-text">
               <text>点击播放 视频讲解</text>
             </view>
@@ -442,7 +442,8 @@ export default {
       this.swiper = swiper;
     },
     popupVideo () {
-      this.showPopUp = true;
+      // this.showPopUp = true;
+      wx.navigateTo({url: '/pages/webview/main?videoUrl=https://v.qq.com/x/page/q0873ac1sx9.html'})
     },
     onClose () {
       this.showPopUp = false;

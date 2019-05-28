@@ -6,7 +6,7 @@
       <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
         <block v-for="(item, index) in movies" :key="index">
           <swiper-item>
-            <image :src="'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress" class="slide-image"/>
+            <image :src="item.sourceAddress?'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress:'https://hsyj.100eduonline.com/static/images/2c28c5bc-3633-405e-a669-015c78507a37c1a9bda1b2482b33a3c42f528edb571e.jpeg'" class="slide-image"/>
           </swiper-item>
         </block>
       </swiper>
@@ -20,7 +20,7 @@
     <view class="school-introduction-group">
       <text
         :class="ellipsis?'school-introduction ellipsis':'school-introduction unellipsis'"
-      >&nbsp;&nbsp;{{ information.desc }}</text>
+      >&nbsp;&nbsp;{{ schoolList.schooldesc }}</text>
       <view class="school-introduction-icon icon" @tap="expand">
         <wux-icon :type="ellipsis?'ios-arrow-down':'ios-arrow-up'" color="#888"/>
       </view>
@@ -75,11 +75,7 @@ export default {
           url: '../../../static/images/fudan2.jpeg'
         }
       ],
-      information: {
-        name: '复旦大学',
-        desc:
-          '复旦大学（Shanghai University of Finance and Economics），简称“复旦”，是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一；由教育部、财政部和上海市人民政府三方共建。'
-      },
+      schoolList: {},
       sight: [
         {
           schoolName: '复旦大学--文青楼',
@@ -232,24 +228,20 @@ export default {
       // newArr: []
     };
   },
-  // onShow () {
-  //   wx.setNavigationBarTitle({ title: this.information.name });
-  //   let length = this.sight.length;
-  //   this.newArr = [];
-  //   for (let i = 0; i < length; i += 2) {
-  //     this.newArr.push(this.sight.slice(i, i + 2));
-  //   }
-  //   console.log(this.newArr);
-  // },
+  onShow () {
+    this.getSchoolDetail();
+  },
   mounted () {
     this.getSchoolDetail();
   },
   methods: {
     async getSchoolDetail () {
-      const res = await api.getSchoolDetail({id: 80});
+      const res = await api.getSchoolDetail({id: this.$mp.query.schoolId});
       this.movies = res.data ? res.data.schoolpics ? res.data.schoolpics : [] : []
       this.sight = res.data ? res.data.scenery ? res.data.scenery : [] : []
+      this.schoolList = res.data ? res.data : []
       console.log('学校详情', this.sight);
+      wx.setNavigationBarTitle({ title: this.schoolList.schoolName });
     },
     expand () {
       var value = !this.ellipsis;

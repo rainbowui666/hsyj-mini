@@ -159,7 +159,7 @@ export default {
     },
     pickerChange (value) {
       console.log('pickerChange', value.mp.detail.value);
-      wx.navigateTo({ url: '/pages/map/schools/main?schoolId=80' });
+      wx.navigateTo({ url: '/pages/map/schools/main?schoolId=' + this.schoolList[value.mp.detail.value].schoolID });
     },
     goToSearch () {
       wx.navigateTo({ url: '/pages/map/navigation/main' });
