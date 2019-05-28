@@ -4,6 +4,7 @@
           <view>
           <img src="https://hsyj.100eduonline.com/static/mini-images/bg.jpg" alt="bg" class="bg-image" />
           <img :src="userHeadImg" alt="head" class="head-image" />
+          <span class="user-clear" @click="exitAndClear">登出</span>
           <h3 class="user-name">{{userName}}</h3>
           <view class="personal-center">
             <!-- <navigator url="/pages/center/signin/main"> -->
@@ -114,6 +115,14 @@ export default {
     this.integralCount = this.signinCount + this.discussCount + this.activityCount;
   },
   methods: {
+    exitAndClear () {
+      wx.clearStorage({
+        success: res => {
+          console.log(res)
+          wx.navigateTo({ url: './homeflash/main' })
+        }
+      })
+    },
     buttonClicked () {
       console.log('1')
     },
@@ -190,6 +199,14 @@ page {
   top: -5%;
   left: 50%;
   transform: translate(-50%, 50%);
+}
+.user-clear{
+  position:absolute;
+  top:10px;
+  right:20px;
+  font-size:26rpx;
+  color:#fff;
+  border-bottom: #fff solid 1px;
 }
 .user-name{
   border-radius:50%;
