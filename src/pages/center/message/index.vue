@@ -99,11 +99,9 @@ export default {
   },
   methods: {
     gotoMessage (item) {
-      console.log('item', item)
       wx.navigateTo({ url: '/pages/map/sight/main?id=' + item.sceneryid + '&name=' + item.sceneryTitle })
     },
     onChange (e) {
-      console.log('onChange', e)
       this.current = e.target.key;
     },
     async getMyDiscussList () {
@@ -119,8 +117,6 @@ export default {
         element.createdate = dayjs(element.createdate).format('YYYY-MM-DD')
       })
       this.messageList = this.discussList;
-      console.log('userInfo', this.userInfo)
-      console.log('discussList', this.discussList)
     },
     async getSceneryList () {
       this.userInfo = wx.getStorageSync('userInfo') || {};
@@ -130,21 +126,16 @@ export default {
         studentid: this.userInfo.studentID
       });
       this.sceneryList = res.data ? res.data : [];
-      console.log('getMySceneryList', this.sceneryList)
     }
   },
   onReachBottom: function () {
     // 显示顶部刷新图标
-    console.log('11111');
     // 显示加载图标
     wx.showLoading({
       title: '玩命加载中'
     });
 
     // 页数+1
-    let that = this;
-    console.log('==============', that.pageindex);
-
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
@@ -155,11 +146,7 @@ export default {
         'content-type': 'application/text'
       },
       success: res => {
-        console.log('搜索结果', res.data.data.data);
-
         // 回调函数
-        console.log('==============', this.messageList);
-
         let resList = res.data.data.data ? res.data.data.data : [];
         resList.forEach(element => {
           element.src = this.userInfo.photo
@@ -168,11 +155,7 @@ export default {
         for (var i = 0; i < resList.length; i++) {
           this.messageList.push(resList[i]);
         }
-        console.log('==============', this.messageList);
         // 设置数据
-        // that.setData({
-        //   moment: that.data.moment
-        // })
         // 隐藏加载框
         wx.hideLoading();
       }

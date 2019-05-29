@@ -118,13 +118,9 @@ export default {
     exitAndClear () {
       wx.clearStorage({
         success: res => {
-          console.log(res)
           wx.navigateTo({ url: './homeflash/main' })
         }
       })
-    },
-    buttonClicked () {
-      console.log('1')
     },
     onClickIntegral () {
       this.isShowIntegral = true;

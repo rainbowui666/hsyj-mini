@@ -196,7 +196,6 @@ export default {
   },
   methods: {
     iconClick (item) {
-      console.log('item', item)
       wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
     }
   }

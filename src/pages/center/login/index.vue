@@ -75,7 +75,6 @@ export default {
       this.schoolName = this.schoolList[this.pickIndex].schoolName;
       this.schoolID = this.schoolList[this.pickIndex].schoolID;
     }
-    console.log('schoolInfo', this.schoolList)
   },
   methods: {
     async goInHsyj () {
@@ -89,14 +88,12 @@ export default {
         const addStudentInfo = await api.studentLogin(userInfo)
         let resUser = addStudentInfo.data.data;
         wx.setStorageSync('userInfo', resUser)
-        console.log('addStudentInfo', addStudentInfo)
       }
       wx.switchTab({
         url: '/pages/center/main'
       });
     },
     bindPickerChange (e) {
-      console.log('value', e)
       this.pickIndex = e.target.value
       this.schoolName = this.schoolList[this.pickIndex].schoolName;
       this.schoolID = this.schoolList[this.pickIndex].schoolID;

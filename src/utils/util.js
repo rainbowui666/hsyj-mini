@@ -29,8 +29,6 @@ function request (url, data = {}, method = 'GET') {
         'X-Xbyjshop-Token': wx.getStorageSync('token')
       },
       success: function (res) {
-        // console.log('请求成功，url:', url);
-        // console.log('请求参数，data:', data);
         if (res.statusCode === 200) {
           if (res.data.errno === 401) {
             // 需要登录后才可以操作
@@ -67,8 +65,6 @@ function request (url, data = {}, method = 'GET') {
       },
       fail: function (err) {
         reject(err)
-        // console.log('请求失败，url', url);
-        // console.log('请求参数，data:', data);
       }
     })
   });
@@ -98,7 +94,6 @@ function login () {
       success: function (res) {
         if (res.code) {
           // 登录远程服务器
-          // console.log('微信登陆成功', res)
           resolve(res);
         } else {
           reject(res);
@@ -123,16 +118,13 @@ function getUserInfo () {
           wx.getUserInfo({
             withCredentials: true,
             success: function (res) {
-              // console.log('获取用户信息成功', res);
               resolve(res);
             },
             fail: function (err) {
-              // console.log('获取用户信息失败', err);
               reject(err);
             }
           })
         } else { // 没有授权
-          // console.log('但获取用户信息失败，未同意button授权');
         }
       }
     })

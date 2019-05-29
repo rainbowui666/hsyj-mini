@@ -256,11 +256,9 @@ export default {
   },
   methods: {
     iconClick (item) {
-      console.log('item', item)
       wx.navigateTo({ url: '/pages/activity/activityDetail/main?name=' + item.activityName })
     },
     onChange (e) {
-      console.log('onChange', e)
       if (e.target.key === 'myactivity_tab1') {
         this.keyWord = '已报名'
         this.getMyActivityList()
@@ -289,7 +287,6 @@ export default {
         element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss');
       });
       this.activityList = activityInfo;
-      console.log('666', this.activityList);
     }
   },
   onReachBottom: function () {
@@ -299,9 +296,6 @@ export default {
     });
 
     // 页数+1
-    let that = this;
-    console.log('==============', that.pageindex);
-
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
@@ -313,11 +307,7 @@ export default {
         'content-type': 'application/text'
       },
       success: res => {
-        console.log('推荐留言,请求结果2222', res.data.data.data);
-
         // 回调函数
-        console.log('==============', this.activityList);
-
         let newActivityList = res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
           element.thumbsupImg =
@@ -327,7 +317,6 @@ export default {
           element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
         });
         for (var i = 0; i < newActivityList.length; i++) {
-          console.log('==============', this.activityList);
           this.activityList.push(newActivityList[i]);
         }
         wx.hideLoading();
