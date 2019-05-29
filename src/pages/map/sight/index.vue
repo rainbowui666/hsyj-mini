@@ -372,7 +372,6 @@ export default {
       }
     });
     this.fromAddress = this.centerY + ',' + this.centerX;
-    console.log('sight', res.data, this.sightObj);
     if (this.sightObj.shstate.wantto) {
       this.iconArr2[0].color = 'red';
     } else {
@@ -394,7 +393,6 @@ export default {
 
   methods: {
     onChange (e) {
-      console.log('onChange', e)
       const { file } = e.detail
       if (file.status === 'uploading') {
         this.setData({
@@ -408,15 +406,12 @@ export default {
       }
     },
     onSuccess (e) {
-      console.log('onSuccess', e)
       this.showTakePhoto = false
       this.uploadSuccess = true
     },
     onFail (e) {
-      console.log('onFail', e)
     },
     onComplete (e) {
-      console.log('onComplete', e)
       wx.hideLoading()
     },
     async getMessage () {
@@ -461,7 +456,6 @@ export default {
       this.showCameraPopup = true;
     },
     async onClick (item, index) {
-      console.log('1111');
       if (index === 0) {
         if (this.iconArr2[0].color !== 'red') {
           await api.wantToSight({
@@ -499,7 +493,6 @@ export default {
       if (this.uploadSuccess) {
         this.showCameraPopup = false;
         const res = await api.getQuestion({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
-        console.log('----------', this, res)
         if (res.data[0]) {
           this.question = res.data[0].questionTitle
           this.rightAnswer = res.data[0].rightAnswer
@@ -513,7 +506,6 @@ export default {
       }
     },
     radioChange (e) {
-      console.log('111', e, e.mp.detail.value);
       this.selectAnswer = e.mp.detail.value
       this.radioList.forEach((item) => {
         if (item.name === this.selectAnswer) {
@@ -586,7 +578,6 @@ export default {
       // })
     },
     navigationClick (item) {
-      console.log('mapGps', item)
       let latitude = item.latitude;
       let longitude = item.longitude;
       let title = item.sceneryTitle
@@ -605,7 +596,6 @@ export default {
         // from: e.detail.value.start || '', // 若起点有数据则采用起点坐标，若为空默认当前地址
           to: this.toAddress, // 终点坐标
           success: res => { // 成功后的回调
-            console.log(res);
             let result = res.result;
             // let dis = [];
             // for (let i = 0; i < result.elements.length; i++) {
@@ -639,7 +629,6 @@ export default {
     }
   },
   onShareAppMessage: function (ops) {
-    console.log('111', this.$mp.query);
     return {
       title: this.$mp.query.name
     };

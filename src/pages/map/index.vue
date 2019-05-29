@@ -158,7 +158,6 @@ export default {
       }
     },
     pickerChange (value) {
-      console.log('pickerChange', value.mp.detail.value);
       wx.navigateTo({ url: '/pages/map/schools/main?schoolId=' + this.schoolList[value.mp.detail.value].schoolID });
     },
     goToSearch () {
@@ -168,7 +167,6 @@ export default {
       const res1 = await api.getRecommendList({
         studentid: wx.getStorageSync('userInfo').studentID
       });
-      console.log('分类主页,请求结果', res1);
       this.movies = res1.data.activitydata ? res1.data.activitydata : [];
       this.imgList = res1.data.scenerydata ? res1.data.scenerydata : [];
       const res2 = await api.getRecommendMessageList({
@@ -185,38 +183,31 @@ export default {
           element.thumbsupImg = 'thumbsUp_red'
         }
       });
-      console.log('推荐留言,请求结果', res2.data.data);
       const schoolInfo = await api.getSchoolList();
       this.schoolList = schoolInfo.data.data;
-      console.log('schoolInfo', this.schoolList);
     },
     navigatoTo (item) {
-      console.log('navigatoTo', item);
       wx.navigateTo({
         url: '/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate + '&name=' + item.activityName
       });
     },
     navigatoToSight (item) {
-      console.log('navigatoToSight', item);
       wx.navigateTo({
         url: '/pages/map/sight/main?id=' + item.sceneryID + '&name=' + item.sceneryTitle
       });
     },
     async navigatoToRecommend (item) {
-      console.log('navigatoToRecommend', item);
       if (item.distype === 1) {
         if (item.isgroup) {
           const res = await api.getGroupActivityDetail({
             id: item.targetid,
             studentid: wx.getStorageSync('userInfo').studentID
           });
-          console.log(res)
           wx.navigateTo({
             url: '/pages/activity/activityDetail/main?id=' + res.data.activityID + '&isGroup=' + res.data.isGroup + '&applyStatus=' + res.data.hasjoin + '&startDate=' + res.data.startDate + '&name=' + res.data.activityName
           });
         } else {
           const res = await api.getActivityDetail({id: item.targetid, studentid: wx.getStorageSync('userInfo').studentID});
-          console.log(res)
           wx.navigateTo({
             url: '/pages/activity/activityDetail/main?id=' + res.data.activityID + '&isGroup=' + res.data.isGroup + '&applyStatus=' + res.data.hasjoin + '&startDate=' + res.data.startDate + '&name=' + res.data.activityName
           });
@@ -231,16 +222,12 @@ export default {
   },
   onReachBottom: function () {
     // 显示顶部刷新图标
-    console.log('11111');
     // 显示加载图标
     wx.showLoading({
       title: '玩命加载中'
     });
 
     // 页数+1
-    let that = this;
-    console.log('==============', that.pageindex);
-
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
@@ -254,10 +241,7 @@ export default {
         'content-type': 'application/text'
       },
       success: res => {
-        console.log('推荐留言,请求结果2222', res.data.data.data);
-
         // 回调函数
-        console.log('==============', this.messageList);
 
         let newMessageList = res.data.data.data ? res.data.data.data : [];
         newMessageList.forEach(element => {
@@ -269,7 +253,6 @@ export default {
           }
         });
         for (var i = 0; i < newMessageList.length; i++) {
-          console.log('==============', this.messageList);
           this.messageList.push(newMessageList[i]);
         }
         // 设置数据
