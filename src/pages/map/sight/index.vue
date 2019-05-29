@@ -19,6 +19,7 @@
               src="https://hsyj.100eduonline.com/static/mini-images/sceneryAudio.png"
               class="slide-audio-image"
               mode="widthFix"
+              @click="showAudio"
             />
           <!-- <audio :name="name" :author="author" :src="audioSrc" id="myAudio" controls loop></audio> -->
         </view>
@@ -89,7 +90,7 @@
         </view>
         <view class="sight-introduction-video">
           <view class="sight-introduction-video-inner">
-            <view class="sight-introduction-video-image" @click="popupVideo">
+            <view class="sight-introduction-video-image" @click="showVideo">
               <image :src="playImg" mode="widthFix"/>
               <!-- <wux-icon wux-class="video-icon" type="ios-play" size="34" color="#d25136"/> -->
             </view>
@@ -441,9 +442,11 @@ export default {
       swiper.current = current > 0 ? current - 1 : swiper.movies.length - 1;
       this.swiper = swiper;
     },
-    popupVideo () {
-      // this.showPopUp = true;
+    showVideo () {
       wx.navigateTo({url: '/pages/webview/main?videoUrl=' + this.sightObj.videourl})
+    },
+    showAudio () {
+      wx.navigateTo({url: '/pages/webview/main?videoUrl=' + this.sightObj.soundurl})
     },
     onClose () {
       this.showPopUp = false;
