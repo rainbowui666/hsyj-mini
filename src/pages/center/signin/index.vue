@@ -178,13 +178,11 @@ export default {
     };
   },
   async mounted () {
-    debugger
     const res = await api.getMySigninList({
       pageindex: this.pageindex,
       pagesize: this.pagesize,
       studentid: wx.getStorageSync('userInfo').studentID
     });
-    console.log('res', res)
     this.signinList = res.data.data ? res.data.data : []
     this.signinList.forEach(element => {
       element.thumbsupImg = 'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png'
@@ -192,11 +190,9 @@ export default {
       element.navigationImg = '../../static/images/bingo.png'
       element.sightStatus = '已完成'
     });
-    console.log('111', this.signinList)
   },
   methods: {
     iconClick (item) {
-      console.log('item', item);
       // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sceneryTitle })
     }
   },

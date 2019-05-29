@@ -39,10 +39,8 @@ export default {
     onConfirm (event) {
       wx.login({
         success: async res => {
-          console.log('res', res)
           this.userInfo = event.mp.detail.userInfo;
           this.userInfo.code = res.code;
-          console.log('userDetail', this.userInfo)
           const userInfo = await api.indexLogin(this.userInfo);
           wx.setStorageSync('token', userInfo.data.token)
           wx.setStorageSync('userInfo', userInfo.data.userInfo)

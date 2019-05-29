@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     buttonClicked () {
-      console.log('1')
     },
     gotoSignin () {
       wx.navigateTo({url: '/pages/center/signin/main'})

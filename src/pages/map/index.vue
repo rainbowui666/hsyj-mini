@@ -165,7 +165,9 @@ export default {
       wx.navigateTo({ url: '/pages/map/navigation/main' });
     },
     async getAllRecommendList () {
-      const res1 = await api.getRecommendList();
+      const res1 = await api.getRecommendList({
+        studentid: wx.getStorageSync('userInfo').studentID
+      });
       console.log('分类主页,请求结果', res1);
       this.movies = res1.data.activitydata ? res1.data.activitydata : [];
       this.imgList = res1.data.scenerydata ? res1.data.scenerydata : [];

@@ -16,7 +16,7 @@ const api = {
   //   baseURL: ApiGateWayUrl
   // }),
   // 首页获取推荐活动和景点
-  getRecommendList: (r) => request.get('api/index/home', null, {
+  getRecommendList: (obj) => request.get('api/index/home' + '?studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 首页获取留言

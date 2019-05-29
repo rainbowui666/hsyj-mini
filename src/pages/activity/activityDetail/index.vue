@@ -19,7 +19,7 @@
           <view class="title">{{activityList.activityName}}</view>
           <view class="people">
             <view class="num">
-              <span>568</span>人报名
+              <span>{{activityList.shstate.applyNum}}</span>人报名
             </view>
             <view class="status">报名中</view>
           </view>
@@ -226,7 +226,6 @@ export default {
   },
   methods: {
     async signUp () {
-      console.log('signUp');
       if (wx.getStorageSync('userInfo').stuNo) {
         await api.wantToActivity({
           studentid: wx.getStorageSync('userInfo').studentID,
@@ -257,7 +256,6 @@ export default {
         this.$mp.query.id;
       // const res = await api.getQRCode({url: url});
       this.svgSrc = url1 + url
-      console.log('svgSrc', this.svgSrc)
       this.isTwoCode = true;
     },
     onTwoCodeClose () {
@@ -336,7 +334,6 @@ export default {
           })
         },
         fail: res => {
-          console.log(res);
         }
       });
     },
@@ -376,9 +373,7 @@ export default {
     }
   },
   async onShow () {
-    debugger
     this.getDetailInfo();
-    console.log(this.activityList)
     this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
     this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
     this.isApply =

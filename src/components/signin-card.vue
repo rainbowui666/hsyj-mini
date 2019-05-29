@@ -110,7 +110,6 @@ export default {
       }
     },
     navigationClick (item) {
-      console.log('item', item)
       // let latitude = item.latitude;
       // let longitude = item.longitude;
       // let title = item.activityName

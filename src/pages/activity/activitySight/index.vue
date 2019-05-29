@@ -116,11 +116,9 @@ export default {
       element.iconType = 'ios-navigate'
       element.iconColor = '#aaa'
     });
-    console.log('======', this.sightList)
   },
   methods: {
     iconClick (item) {
-      console.log('item', item);
       // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sightName })
     }
   },

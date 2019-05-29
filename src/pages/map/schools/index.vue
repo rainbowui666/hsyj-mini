@@ -240,7 +240,6 @@ export default {
       this.movies = res.data ? res.data.schoolpics ? res.data.schoolpics : [] : []
       this.sight = res.data ? res.data.scenery ? res.data.scenery : [] : []
       this.schoolList = res.data ? res.data : []
-      console.log('学校详情', this.sight);
       wx.setNavigationBarTitle({ title: this.schoolList.schoolName });
     },
     expand () {

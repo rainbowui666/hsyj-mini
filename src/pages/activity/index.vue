@@ -70,8 +70,9 @@ export default {
   },
   async onShow () {
     this.pageindex = 1;
-    const res1 = await api.getRecommendList();
-    console.log('分类主页,请求结果', res1);
+    const res1 = await api.getRecommendList({
+      studentid: wx.getStorageSync('userInfo').studentID
+    });
     this.movies = res1.data.activitydata ? res1.data.activitydata : [];
 
     this.getActivityList();
@@ -92,20 +93,16 @@ export default {
         element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
       });
       this.activityList = this.activityList;
-      console.log('分类主页,请求结果', this.activityList);
     },
     navigatoTo (item) {
-      console.log('1111111', item);
       wx.navigateTo({
         url: '/pages/activity/activityDetail/main?id=' + item.activityID + '&isGroup=' + item.isGroup + '&applyStatus=' + item.hasjoin + '&startDate=' + item.startDate + '&name=' + item.activityName
       });
     },
     onMessageClick (item, index) {
-      console.log('onMessageClick', item, index);
       // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.activityStatus})
     },
     onThumbsupClick (item, index) {
-      console.log('onThumbsupClick', item, index);
       this.activityList[index].thumbsupImg =
         '../../static/images/thumbsUp_red.png';
 
@@ -122,8 +119,6 @@ export default {
     });
 
     // 页数+1
-    let that = this;
-    console.log('==============', that.pageindex);
 
     this.pageindex = this.pageindex + 1;
     wx.request({
@@ -138,10 +133,7 @@ export default {
         'content-type': 'application/text'
       },
       success: res => {
-        console.log('推荐留言,请求结果2222', res.data.data.data);
-
         // 回调函数
-        console.log('==============', this.activityList);
 
         let newActivityList = res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
@@ -152,7 +144,6 @@ export default {
           element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
         });
         for (var i = 0; i < newActivityList.length; i++) {
-          console.log('==============', this.activityList);
           this.activityList.push(newActivityList[i]);
         }
         wx.hideLoading();
