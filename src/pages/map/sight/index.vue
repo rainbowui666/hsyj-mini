@@ -618,7 +618,7 @@ export default {
           },
           fail: function (error) {
             wx.showToast({
-              title: '无法签到！',
+              title: '距离太远，无法签到！',
               icon: 'none',
               duration: 2000
             })
