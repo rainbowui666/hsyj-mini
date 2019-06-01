@@ -229,11 +229,12 @@ export default {
       if (wx.getStorageSync('userInfo').stuNo) {
         await api.wantToActivity({
           studentid: wx.getStorageSync('userInfo').studentID,
-          activityid: this.$mp.query.id,
+          activityid: this.activityList.activityID,
           shstate: 1
         });
         this.disApply = false;
         this.isApply = true;
+        this.getDetailInfo()
       } else {
         wx.navigateTo({ url: '/pages/center/login/main' });
       }
@@ -253,7 +254,7 @@ export default {
         '&studentid=' +
         wx.getStorageSync('userInfo').studentID +
         '&activityid=' +
-        this.$mp.query.id;
+        this.activityList.activityID;
       // const res = await api.getQRCode({url: url});
       this.svgSrc = url1 + url
       this.isTwoCode = true;
@@ -266,7 +267,7 @@ export default {
     },
     async onCreatConfirm () {
       await api.addTeam({
-        id: this.$mp.query.id,
+        id: this.activityList.activityID,
         groupname: this.teamName
       });
       this.getDetailInfo();
@@ -279,7 +280,7 @@ export default {
     async hideComment () {
       await api.addMessage({
         studentid: wx.getStorageSync('userInfo').studentID,
-        targetid: this.$mp.query.id,
+        targetid: this.activityList.activityID,
         distype: 1,
         content: this.content
       });
@@ -292,7 +293,7 @@ export default {
         if (this.iconArr2[0].color !== 'red') {
           await api.wantToActivity({
             studentid: wx.getStorageSync('userInfo').studentID,
-            activityid: this.$mp.query.id,
+            activityid: this.activityList.activityID,
             shstate: 0
           });
           this.iconArr2[0].icon = 'ios-heart';
@@ -315,7 +316,7 @@ export default {
     },
     async getMessage () {
       const res = await api.getActivityMessage({
-        activityid: this.$mp.query.id,
+        activityid: this.activityList.activityID,
         pageindex: this.pageindex,
         pagesize: this.pagesize
       });
@@ -369,17 +370,17 @@ export default {
       }
     },
     gotoActivity () {
-      wx.navigateTo({ url: '/pages/activity/activitySight/main?id=' + this.$mp.query.id });
+      wx.navigateTo({ url: '/pages/activity/activitySight/main?id=' + this.activityList.activityID });
     }
   },
   async onShow () {
-    this.getDetailInfo();
-    this.isGroup = this.$mp.query.isGroup === '1' ? this.isStatusTrue : false;
-    this.isDoing = this.$mp.query.applyStatus === '进行中' ? this.isStatusTrue : false;
+    await this.getDetailInfo();
+    this.isGroup = this.activityList.isGroup === '1' ? this.isStatusTrue : false;
+    this.isDoing = this.activityList.hasjoin === '进行中' ? this.isStatusTrue : false;
     this.isApply =
-      this.$mp.query.applyStatus === '已报名' ? this.isStatusTrue : false;
+      this.activityList.hasjoin === '已报名' ? this.isStatusTrue : false;
     this.isComplete =
-      this.$mp.query.applyStatus === '已完成' ? this.isStatusTrue : false;
+      this.activityList.hasjoin === '已完成' ? this.isStatusTrue : false;
     this.disApply = !this.isApply ? this.isStatusTrue : false;
     const isWantTo = await api.isWantTo({
       studentid: wx.getStorageSync('userInfo').studentID,
@@ -395,7 +396,7 @@ export default {
   },
   onShareAppMessage: function (ops) {
     return {
-      title: this.$mp.query.name
+      title: this.activityList.activityName
     };
   }
 };

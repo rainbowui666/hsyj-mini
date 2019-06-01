@@ -263,6 +263,16 @@ export default {
         wx.hideLoading();
       }
     });
+  },
+  onPullDownRefresh: function () {
+    console.log('下拉刷新')
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    // // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // // 停止下拉动作
+    this.getAllRecommendList();
+    wx.stopPullDownRefresh();
   }
 };
 </script>
