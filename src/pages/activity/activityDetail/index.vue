@@ -4,7 +4,7 @@
       <!-- 模糊背景开始 -->
       <view
         class="frosted-glass-container"
-        :style="activityList.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress+')'"
+        :style="activityList.pics[0]?activityList.pics[0].sourceAddress===undefined?'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://hsyj.100eduonline.com/static/images/'+activityList.pics[0].sourceAddress+')':'background-image:url(https://hsyj.100eduonline.com/static/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'"
       >
         <view class="frosted-glass"></view>
       </view>
@@ -86,6 +86,7 @@
         </view>
       </view>
     </view>
+    <view v-if="isShare" @click="goHomeBack">返回首页</view>
     <wux-popup
       position="center"
       :visible="isTwoCode"
@@ -167,6 +168,7 @@ export default {
   data () {
     return {
       currentTime: null,
+      isShare: false,
       isGroup: true,
       isApply: false,
       disApply: false,
@@ -225,6 +227,11 @@ export default {
     };
   },
   methods: {
+    goHomeBack () {
+      wx.navigateTo({
+        url: '/pages/center/homeflash/main'
+      });
+    },
     async signUp () {
       if (wx.getStorageSync('userInfo').stuNo) {
         await api.wantToActivity({
@@ -374,6 +381,12 @@ export default {
     }
   },
   async onShow () {
+    this.isShare = false
+    if (this.$mp.query.isShare) {
+      this.isShare = true
+      this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
+      this.$mp.query.id = this.$mp.query.isShare.split('-')[2]
+    }
     await this.getDetailInfo();
     this.isGroup = this.activityList.isGroup === '1' ? this.isStatusTrue : false;
     this.isDoing = this.activityList.hasjoin === '进行中' ? this.isStatusTrue : false;
@@ -396,7 +409,8 @@ export default {
   },
   onShareAppMessage: function (ops) {
     return {
-      title: this.activityList.activityName
+      title: this.activityList.activityName,
+      path: '/pages/activity/activityDetail/main?isShare=1-' + this.$mp.query.isGroup + '-' + this.$mp.query.id
     };
   }
 };

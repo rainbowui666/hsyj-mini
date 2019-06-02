@@ -119,6 +119,7 @@
         <view class="sight-introduction-text">
           <text>{{ sightObj.shdesc }}</text>
         </view>
+        <view v-if="isShare" @click="goHomeBack">返回首页</view>
         <!-- <view class="sight-introduction-icon-group2">
       <view class="sight-introduction-icon-group2-inner">
         <icon-group :list="iconArr2" :iconClick="onClick"/>
@@ -335,6 +336,7 @@ export default {
       showCameraPopup: false,
       showCamera: false,
       showQuestion: false,
+      isShare: false,
       src: '',
       centerX: 121.475186,
       centerY: 31.228725,
@@ -347,6 +349,11 @@ export default {
     };
   },
   async onShow () {
+    this.isShare = false
+    if (this.$mp.query.isShare) {
+      this.isShare = true
+      this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
+    }
     const res = await api.getSightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
     this.sightObj = res.data ? res.data : {};
     this.swiper.movies = res.data.pics[0]
@@ -393,6 +400,11 @@ export default {
   },
 
   methods: {
+    goHomeBack () {
+      wx.navigateTo({
+        url: '/pages/center/homeflash/main'
+      });
+    },
     onChange (e) {
       const { file } = e.detail
       if (file.status === 'uploading') {
@@ -633,7 +645,8 @@ export default {
   },
   onShareAppMessage: function (ops) {
     return {
-      title: this.$mp.query.name
+      title: this.$mp.query.name,
+      path: '/pages/map/sight/main?isShare=1-' + this.$mp.query.id
     };
   }
 };
