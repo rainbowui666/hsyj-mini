@@ -458,7 +458,7 @@ export default {
       wx.navigateTo({url: '/pages/webview/main?videoUrl=' + this.sightObj.videourl})
     },
     showAudio () {
-      wx.navigateTo({url: '/pages/webview/main?videoUrl=' + this.sightObj.soundurl})
+      wx.navigateTo({url: '/pages/webview/main?soundurl=' + this.sightObj.soundurl})
     },
     onClose () {
       this.showPopUp = false;

@@ -9,7 +9,10 @@ export default {
       ? this.$mp.query.videoUrl
         ? 'https://hsyj.100eduonline.com/static/mini-images/video.html?url=' +
           this.$mp.query.videoUrl
-        : ''
+        : this.$mp.query.soundurl
+          ? 'https://hsyj.100eduonline.com/static/mini-images/audio.html?url=' +
+            this.$mp.query.soundurl
+          : ''
       : '';
   },
   data () {
@@ -18,7 +21,10 @@ export default {
         ? this.$mp.query.videoUrl
           ? 'https://hsyj.100eduonline.com/static/mini-images/video.html?url=' +
             this.$mp.query.videoUrl
-          : ''
+          : this.$mp.query.soundurl
+            ? 'https://hsyj.100eduonline.com/static/mini-images/audio.html?url=' +
+              this.$mp.query.soundurl
+            : ''
         : ''
     };
   }
