@@ -86,8 +86,13 @@ export default {
       });
       this.activityList = res.data.data ? res.data.data : [];
       this.activityList.forEach(element => {
-        element.thumbsupImg =
-          'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+        if (element.shstate.wantto) {
+          element.thumbsupImg =
+            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp_red.png';
+        } else {
+          element.thumbsupImg =
+            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+        }
         element.messageImg =
           'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
         element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
@@ -137,8 +142,13 @@ export default {
 
         let newActivityList = res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
-          element.thumbsupImg =
+          if (element.shstate.wantto) {
+            element.thumbsupImg =
+            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp_red.png';
+          } else {
+            element.thumbsupImg =
             'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+          }
           element.messageImg =
             'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
           element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')

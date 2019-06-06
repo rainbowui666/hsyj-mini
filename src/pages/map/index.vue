@@ -6,7 +6,7 @@
     <view class="activity-page">
       <div class="searchBar">
         <picker @change="pickerChange" :value="index" range-key="schoolName" :range="schoolList">
-          <view class="picker">{{schoolList[index].shortName ? schoolList[index].shortName : schoolList[index].schoolName}}</view>
+          <view class="picker">{{isPickerChange?schoolList[index].shortName ? schoolList[index].shortName : schoolList[index].schoolName:"学校列表"}}</view>
         </picker>
         <span class="sanjiao"></span>
         <image class="search_bar_img" :src="searchBarImg" @click="goToSearch"/>
@@ -106,6 +106,7 @@ export default {
   },
   data () {
     return {
+      isPickerChange: false,
       movies: [],
       imgList: [
         {
@@ -149,6 +150,9 @@ export default {
     // }, 2010);
     this.getAllRecommendList();
   },
+  onShow () {
+    this.isPickerChange = false;
+  },
   methods: {
     async onThumbsupClick (item, index) {
       if (!item.likednum) {
@@ -158,6 +162,8 @@ export default {
       }
     },
     pickerChange (value) {
+      console.log('===============')
+      this.isPickerChange = true;
       wx.navigateTo({ url: '/pages/map/schools/main?schoolId=' + this.schoolList[value.mp.detail.value].schoolID });
     },
     goToSearch () {

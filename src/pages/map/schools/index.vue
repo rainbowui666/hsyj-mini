@@ -76,128 +76,7 @@ export default {
         }
       ],
       schoolList: {},
-      sight: [
-        {
-          schoolName: '复旦大学--文青楼',
-          src: '../../../static/images/fudan1.jpeg',
-          desc:
-            '复旦大学,简称“复旦”,是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一',
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          schoolName: '复旦大学--文青楼',
-          src: '../../../static/images/fudan1.jpeg',
-          desc:
-            '复旦大学,简称“复旦”,是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一',
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          schoolName: '复旦大学--文青楼',
-          src: '../../../static/images/fudan1.jpeg',
-          desc:
-            '复旦大学,简称“复旦”,是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一',
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          schoolName: '复旦大学--文青楼',
-          src: '../../../static/images/fudan1.jpeg',
-          desc:
-            '复旦大学,简称“复旦”,是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一',
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          schoolName: '复旦大学--文青楼',
-          src: '../../../static/images/fudan1.jpeg',
-          desc:
-            '复旦大学,简称“复旦”,是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一',
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        },
-        {
-          schoolName: '复旦大学--文青楼',
-          src: '../../../static/images/fudan1.jpeg',
-          desc:
-            '复旦大学,简称“复旦”,是中华人民共和国教育部直属的一所以经济管理学科为主，经、管、法、文、理、哲等多学科协调发展的研究型重点大学；是国家“211工程”、“985工程优势学科创新平台”重点建设高校，国家“双一流”世界一流学科建设高校；入选“国家经济学基础人才培养基地”、“国家海外高层人才创新创业基地”、“教育部人文社会科学重点研究基地”、“卓越法律人才教育培养计划”、“国家建设高水平大学公派研究生项目”、“中国政府奖学金来华留学生接收院校”、“海外高层次人才引进计划”、“111计划”；是全国首批博士、硕士、学士学位授予单位之一',
-          iconArr: [
-            {
-              icon: 'ios-thumbs-up',
-              size: '16',
-              color: '#888',
-              label: 11
-            },
-            {
-              icon: 'ios-chatboxes',
-              size: '16',
-              color: '#888',
-              label: 11
-            }
-          ]
-        }
-      ],
+      sight: [],
       iconArr: [
         // {
         //   icon: 'ios-checkmark-circle-outline',
@@ -239,6 +118,14 @@ export default {
       const res = await api.getSchoolDetail({id: this.$mp.query.schoolId});
       this.movies = res.data ? res.data.schoolpics ? res.data.schoolpics : [] : []
       this.sight = res.data ? res.data.scenery ? res.data.scenery : [] : []
+      if (this.sight.lenght !== 0) {
+        this.sight.forEach(element => {
+          element.thumbsupImg =
+          'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+          element.messageImg =
+          'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+        });
+      }
       this.schoolList = res.data ? res.data : []
       wx.setNavigationBarTitle({ title: this.schoolList.schoolName });
     },
