@@ -350,6 +350,11 @@ export default {
   },
   async onShow () {
     this.isShare = false
+    this.showPopUp = false;
+    this.showWords = false;
+    this.showComment = false;
+    this.showCameraPopup = false;
+    this.showQuestion = false;
     if (this.$mp.query.isShare) {
       this.isShare = true
       this.$mp.query.id = this.$mp.query.isShare.split('-')[1]

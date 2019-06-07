@@ -382,6 +382,8 @@ export default {
   },
   async onShow () {
     this.isShare = false
+    this.showComment = false
+    this.showWords = false
     if (this.$mp.query.isShare) {
       this.isShare = true
       this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
