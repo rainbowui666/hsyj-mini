@@ -82,6 +82,7 @@ export default {
     };
   },
   async mounted () {
+    this.pageindex = 1;
     const resSearchList = await api.getSearchList({
       pageindex: this.pageindex,
       pagesize: this.pagesize

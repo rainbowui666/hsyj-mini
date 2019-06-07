@@ -63,8 +63,9 @@ export default {
     navigationClick (item) {
       let latitude = item.latitude;
       let longitude = item.longitude;
-      let title = item.activityName
-      wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
+      let title = item.activityName;
+      let address = item.address;
+      wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title + '&address=' + address })
     }
   }
 };
