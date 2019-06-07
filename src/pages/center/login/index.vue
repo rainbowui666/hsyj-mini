@@ -3,7 +3,7 @@
     <view class="login-list">
       <view class="login-bg">
       <h2 class="login_title">仅对在校大学生开放</h2>
-        <view class="userinfo-name">
+        <view v-if="isShowSchPick" class="userinfo-name">
           <picker @change="bindPickerChange" :value="pickIndex" range-key="schoolName" :range="schoolList">
             <view class="picker">
               <view class="fb-type">
@@ -12,17 +12,23 @@
             </view>
           </picker>
         </view>
-        <view class="userinfo-name">
-          <input maxlength="11" type="number" placeholder="学号" :value="stuNo" @input="setStudentId">
+        <view v-if="!isShowSchPick" class="userinfo-name">
+          <input maxlength="11" type="number" placeholder="学校" :value="schoolID" disabled="true">
         </view>
         <view class="userinfo-name">
-          <input maxlength="11" type="text" placeholder="姓名" :value="studentName"  @input="setStudentName">
+          <input maxlength="11" type="number" placeholder="学号" :value="stuNo" @input="setStudentId" :disabled="InfoDisabled">
         </view>
         <view class="userinfo-name">
-          <input maxlength="11" type="number" placeholder="手机" :value="uesrTel" @input="setUserTel">
+          <input maxlength="11" type="text" placeholder="姓名" :value="studentName"  @input="setStudentName" :disabled="InfoDisabled">
+        </view>
+        <view class="userinfo-name">
+          <input maxlength="11" type="number" placeholder="手机" :value="uesrTel" @input="setUserTel" :disabled="InfoDisabled">
+        </view>
+        <view v-if="isShowStatus" class="userinfo-name">
+          <input maxlength="11" type="text" placeholder="状态" :value="uesrStatus" @input="setStatus" :disabled="InfoDisabled">
         </view>
         <view>
-        <view class="login-btn">
+        <view v-if="isShowCommit" class="login-btn">
           <button
             @click="goInHsyj"
           >提交</button>
@@ -65,15 +71,36 @@ export default {
       schoolID: null,
       studentName: null,
       stuNo: null,
-      uesrTel: null
+      uesrTel: null,
+      uesrStatus: '',
+      isShowSchPick: true,
+      isShowStatus: false,
+      InfoDisabled: false,
+      isShowCommit: true
     };
   },
   async mounted () {
     const schoolInfo = await api.getSchoolList();
     this.schoolList = schoolInfo.data.data;
+    let userInfo = wx.getStorageSync('userInfo') || false;
     if (this.schoolList) {
       this.schoolName = this.schoolList[this.pickIndex].schoolName;
       this.schoolID = this.schoolList[this.pickIndex].schoolID;
+    }
+    if (this.$mp.query.isMyselfInfo === 'true') {
+      this.isShowSchPick = false;
+      this.isShowStatus = true;
+      this.InfoDisabled = true;
+      this.isShowCommit = false;
+      this.schoolID = userInfo.schoolid;
+      this.studentName = userInfo.studentName;
+      this.stuNo = userInfo.stuNo;
+      this.uesrTel = userInfo.tel;
+      if (this.uesrStatus === '未通过') {
+        this.isShowSchPick = true;
+        this.InfoDisabled = false;
+        this.isShowCommit = true;
+      }
     }
   },
   methods: {
@@ -106,6 +133,9 @@ export default {
     },
     setUserTel (e) {
       this.uesrTel = e.target.value
+    },
+    setStatus (e) {
+      this.uesrStatus = e.target.value
     }
   }
 };

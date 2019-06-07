@@ -3,7 +3,7 @@
         <view class="center-box">
           <view>
           <img src="https://hsyj.100eduonline.com/static/mini-images/bg.jpg" alt="bg" class="bg-image" />
-          <img :src="userHeadImg" alt="head" class="head-image" />
+          <img :src="userHeadImg" alt="head" class="head-image" @click="goToMyInfo"/>
           <span class="user-clear" @click="exitAndClear">登出</span>
           <h3 class="user-name">{{userName}}</h3>
           <view class="personal-center">
@@ -161,6 +161,9 @@ export default {
     },
     gotoIntegral () {
       wx.navigateTo({url: '/pages/center/integral/main'})
+    },
+    goToMyInfo () {
+      wx.navigateTo({ url: '/pages/center/login/main?isMyselfInfo=true' })
     }
   }
 };
