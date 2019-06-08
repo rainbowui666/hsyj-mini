@@ -285,12 +285,20 @@ export default {
       this.showWords = false;
     },
     async hideComment () {
-      await api.addMessage({
+      const result = await api.addMessage({
         studentid: wx.getStorageSync('userInfo').studentID,
         targetid: this.activityList.activityID,
         distype: 1,
         content: this.content
       });
+      if (result.data === '留言成功') {
+        wx.showToast({
+          title: '留言成功,等待审核',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+      }
       this.getMessage()
       this.showComment = false;
       // this.showWords = true;
