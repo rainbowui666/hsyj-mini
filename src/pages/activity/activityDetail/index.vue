@@ -245,7 +245,7 @@ export default {
           this.getDetailInfo()
         } else {
           wx.showToast({
-            title: '身份信息验证中',
+            title: '信息审核中，暂无法报名',
             icon: 'none',
             duration: 1000,
             mask: true
@@ -261,7 +261,7 @@ export default {
           this.isCreat = true;
         } else {
           wx.showToast({
-            title: '身份信息验证中',
+            title: '信息审核中，暂无法报名',
             icon: 'none',
             duration: 1000,
             mask: true
