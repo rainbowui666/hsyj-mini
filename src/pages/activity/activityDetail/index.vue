@@ -631,13 +631,13 @@ export default {
   position: fixed;
   width: 100%;
   background-color: #fff;
-  height: calc(100% - 44px);
+  /* height: calc(100% - 44px); */
   /*border-top-left-radius: 20px;*/
   /*border-top-right-radius: 20px;*/
   bottom: 0px;
   z-index: 1001;
   padding-bottom: 40px;
-  height: 60vh;
+  /* height: 60vh; */
 }
 .activity-detail-page .pop .modal .inner .activity-detail-words-btn {
   position: fixed;
