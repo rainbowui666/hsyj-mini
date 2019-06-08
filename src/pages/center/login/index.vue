@@ -13,7 +13,7 @@
           </picker>
         </view>
         <view v-if="!isShowSchPick" class="userinfo-name">
-          <input maxlength="11" type="number" placeholder="学校" :value="schoolID" disabled="true">
+          <input maxlength="11" type="number" placeholder="学校" :value="schoolName" disabled="true">
         </view>
         <view class="userinfo-name">
           <input maxlength="11" type="number" placeholder="学号" :value="stuNo" @input="setStudentId" :disabled="InfoDisabled">
@@ -92,6 +92,8 @@ export default {
       this.isShowStatus = true;
       this.InfoDisabled = true;
       this.isShowCommit = false;
+      const schoolDetail = await api.getSchoolDetail({id: userInfo.schoolid});
+      this.schoolName = schoolDetail.data.schoolName;
       this.schoolID = userInfo.schoolid;
       this.studentName = userInfo.studentName;
       this.stuNo = userInfo.stuNo;
