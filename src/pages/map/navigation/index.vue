@@ -78,8 +78,19 @@ export default {
           isIcon: true,
           address: '上海市-黄浦区-中山东路'
         }
-      ]
+      ],
+      mylatitude: null,
+      mylongitude: null
     };
+  },
+  onLoad: function () {
+    wx.getLocation({
+      type: 'gcj02',
+      success: res => {
+        this.mylatitude = res.latitude;
+        this.mylongitude = res.longitude;
+      }
+    });
   },
   async mounted () {
     this.pageindex = 1;
@@ -104,6 +115,8 @@ export default {
         msgtype: item.msgtype,
         id: item.id
       }
+      let resDistance = this.getDistance(this.mylatitude, this.mylongitude, item.latitude, item.longitude)
+      searchItem.iconText = resDistance.toFixed(2) + 'km';
       searchAimList.push(searchItem)
     });
     this.activityList = searchAimList;
@@ -144,11 +157,27 @@ export default {
             msgtype: item.msgtype,
             id: item.id
           }
+          let resDistance = this.getDistance(this.mylatitude, this.mylongitude, item.latitude, item.longitude)
+          searchItem.iconText = resDistance.toFixed(2) + 'km';
           searchAimList.push(searchItem)
         });
         this.activityList = searchAimList;
       }
       // }
+    },
+    getDistance: function (lat1, lng1, lat2, lng2) {
+      let La1 = lat1 * Math.PI / 180.0;
+
+      let La2 = lat2 * Math.PI / 180.0;
+
+      let La3 = La1 - La2;
+
+      let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+
+      let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+
+      let d = s * 6378.137;// 地球半径
+      return Math.round(d * 10000) / 10000;
     }
   },
   onReachBottom: function () {
@@ -188,9 +217,11 @@ export default {
             msgtype: item.msgtype,
             id: item.id
           }
+          let resDistance = this.getDistance(this.mylatitude, this.mylongitude, item.latitude, item.longitude)
+          searchItem.iconText = resDistance.toFixed(2) + 'km';
           searchAimList.push(searchItem)
         });
-        for (var i = 0; i < searchAimList.length; i++) {
+        for (let i = 0; i < searchAimList.length; i++) {
           this.activityList.push(searchAimList[i]);
         }
         // 设置数据
