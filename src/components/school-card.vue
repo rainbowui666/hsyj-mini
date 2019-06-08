@@ -6,8 +6,8 @@
           <view class="school-card-content-title">
             <text>{{ item.sceneryTitle }}</text>
           </view>
-          <view class="school-card-content-desc">
-            <view class="sight-introduction ellipsis">{{ item.shdesc }}</view>
+          <view class="school-card-content-desc">{{ item.shdesc }}
+            <!-- <view class="sight-introduction ellipsis">{{ item.shdesc }}</view> -->
           </view>
           <view class="school-card-content-icongroup">
             <view class="common-card-content-icongroup">
@@ -131,17 +131,23 @@ export default {
   text-overflow: ellipsis;
 }
 .school-card-content-desc {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  /* padding: 5px;
-  font-size: 11px;
-  margin-left: 5px; */
   padding: 5rpx 20rpx 10rpx 20rpx;
   font-size: 26rpx;
   color: #777;
   white-space: nowrap;
   flex-grow: 1;
-  min-height: 85rpx;
+  min-height: 85rpx; */
+  display:flex;
+  flex-direction:column;
+  padding:5rpx 20rpx 10rpx 20rpx;
+  font-size:22rpx;
+  color:#777;
+  white-space:pre-wrap;
+  flex-grow:1;
+  max-height:42px;
+  overflow:hidden;
 }
 .school-card-content-desc-item {
   display: flex;
@@ -195,5 +201,19 @@ export default {
 .school-card-content-icongroup-text {
   width: 50%;
   font-size: 14px;
+}
+.school-card .icon-group-item-label{
+  font-size:24rpx;
+  color:#666;
+  align-self:flex-start;
+  margin-left: 0
+}
+.school-card-content-icongroup .common-card-content-icongroup{
+  padding-left: 0px
+}
+.common-card-content-icongroup-text {
+  width: 50%;
+  font-size: 28rpx;
+  color: #aaa;
 }
 </style>
