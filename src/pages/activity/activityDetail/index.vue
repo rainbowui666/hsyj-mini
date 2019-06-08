@@ -234,21 +234,39 @@ export default {
     },
     async signUp () {
       if (wx.getStorageSync('userInfo').stuNo) {
-        await api.wantToActivity({
-          studentid: wx.getStorageSync('userInfo').studentID,
-          activityid: this.activityList.activityID,
-          shstate: 1
-        });
-        this.disApply = false;
-        this.isApply = true;
-        this.getDetailInfo()
+        if (wx.getStorageSync('userInfo').shstate === 4) {
+          await api.wantToActivity({
+            studentid: wx.getStorageSync('userInfo').studentID,
+            activityid: this.activityList.activityID,
+            shstate: 1
+          });
+          this.disApply = false;
+          this.isApply = true;
+          this.getDetailInfo()
+        } else {
+          wx.showToast({
+            title: '身份信息验证中',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
       } else {
         wx.navigateTo({ url: '/pages/center/login/main' });
       }
     },
     changeCreatBtn () {
       if (wx.getStorageSync('userInfo').stuNo) {
-        this.isCreat = true;
+        if (wx.getStorageSync('userInfo').shstate === 4) {
+          this.isCreat = true;
+        } else {
+          wx.showToast({
+            title: '身份信息验证中',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
       } else {
         wx.navigateTo({ url: '/pages/center/login/main' });
       }
