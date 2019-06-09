@@ -25,7 +25,7 @@
           <input maxlength="11" type="number" placeholder="手机" :value="uesrTel" @input="setUserTel" :disabled="InfoDisabled">
         </view>
         <view v-if="isShowStatus" class="userinfo-name">
-          <input maxlength="11" type="text" placeholder="状态" :value="uesrStatus" @input="setStatus" :disabled="InfoDisabled">
+          <input maxlength="11" type="text" placeholder="状态" :value="uesrStatusText" @input="setStatus" disabled="true">
         </view>
         <view>
         <view v-if="isShowCommit" class="login-btn">
@@ -73,6 +73,7 @@ export default {
       stuNo: null,
       uesrTel: null,
       uesrStatus: '',
+      uesrStatusText: '',
       isShowSchPick: true,
       isShowStatus: false,
       InfoDisabled: false,
@@ -83,6 +84,15 @@ export default {
     const schoolInfo = await api.getSchoolList();
     this.schoolList = schoolInfo.data.data;
     let userInfo = wx.getStorageSync('userInfo') || false;
+    const studentDetail = await api.getStudentDetail({studentid: userInfo.studentID});
+    this.uesrStatus = studentDetail.data.shstate;
+    if (this.uesrStatus === 0 || this.uesrStatus === 2) {
+      this.uesrStatusText = '未验证'
+    } else if (this.uesrStatus === 3) {
+      this.uesrStatusText = '验证中'
+    } else if (this.uesrStatus === 4) {
+      this.uesrStatusText = '验证通过'
+    }
     if (this.schoolList) {
       this.schoolName = this.schoolList[this.pickIndex].schoolName;
       this.schoolID = this.schoolList[this.pickIndex].schoolID;
@@ -98,7 +108,7 @@ export default {
       this.studentName = userInfo.studentName;
       this.stuNo = userInfo.stuNo;
       this.uesrTel = userInfo.tel;
-      if (this.uesrStatus === '未通过') {
+      if (this.uesrStatus === 2 || this.uesrStatus === 0) {
         this.isShowSchPick = true;
         this.InfoDisabled = false;
         this.isShowCommit = true;
@@ -135,9 +145,6 @@ export default {
     },
     setUserTel (e) {
       this.uesrTel = e.target.value
-    },
-    setStatus (e) {
-      this.uesrStatus = e.target.value
     }
   }
 };

@@ -133,6 +133,10 @@ const api = {
   // 上传自拍图片
   sourceAdd: (obj) => request.post('/admin/source/add', obj, {
     baseURL: ApiRootUrl
+  }),
+  // 学生详细信息
+  getStudentDetail: (obj) => request.get('/api/student/getStudentDetail?studentid=' + obj.studentid, null, {
+    baseURL: ApiRootUrl
   })
 }
 
