@@ -631,7 +631,7 @@ export default {
             // }
             // 设置并更新distance数据
             this.distance = result.elements[0].distance;
-            if (this.distance < 1000) {
+            if (this.distance < this.sightObj.distance) {
               this.onSign()
             } else {
               wx.showToast({
