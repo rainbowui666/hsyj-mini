@@ -299,7 +299,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsyj.100eduonline.com/api/api/myself/getMyActivityList?pageindex=' + this.pageindex + '&pagesize=' +
+        'https://hsapi.100eduonline.com/api/myself/getMyActivityList?pageindex=' + this.pageindex + '&pagesize=' +
         this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID,
       method: 'GET',
       // 请求头部
@@ -311,9 +311,9 @@ export default {
         let newActivityList = res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
           element.thumbsupImg =
-            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+            'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
           element.messageImg =
-            'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+            'https://cdn.100eduonline.com/mini-images/messageImg.png';
           element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
         });
         for (var i = 0; i < newActivityList.length; i++) {

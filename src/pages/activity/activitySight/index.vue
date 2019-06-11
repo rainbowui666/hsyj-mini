@@ -117,9 +117,9 @@ export default {
     this.sightList = res.data.data ? res.data.data : [];
     this.sightList.forEach(element => {
       element.thumbsupImg =
-        'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+        'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
       element.messageImg =
-        'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+        'https://cdn.100eduonline.com/mini-images/messageImg.png';
       (element.navigationImg = '../../../static/images/navigationImg.png'),
       (element.activityName = element.sceneryTitle),
       (element.iconType = 'ios-navigate');
@@ -189,7 +189,7 @@ export default {
 .frosted-glass-container {
   width: 100%;
   height: 450rpx;
-  background-image: url("https://hsyj.100eduonline.com/static/mini-images/school.png");
+  background-image: url("https://cdn.100eduonline.com/mini-images/school.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;

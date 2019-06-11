@@ -2,7 +2,7 @@
   <view class="scenic-spot-message-text-group">
     <view class="scenic-spot-message-view-image">
     <image
-      :src="data.photo?data.photo:'https://hsyj.100eduonline.com/static/mini-images/touxiang.png'"
+      :src="data.photo?data.photo:'https://cdn.100eduonline.com/mini-images/touxiang.png'"
       style="width:40px;height:40px;border-radius:50%;margin:0 20rpx 0 10rpx;"
       class="scenic-spot-message-view-inner-image"
     />
@@ -12,7 +12,7 @@
         <view>{{data.studentName?data.studentName:'大实践家'}}</view>
         <view>{{showTime?data.createdate:betweenDays}}</view>
         <view class="scenic-spot-message-text-icon-group" @click="click">
-          <image class="thumbsUpImgClass" v-if="imageName!==undefine&&imageName!==null" :src="'https://hsyj.100eduonline.com/static/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
+          <image class="thumbsUpImgClass" v-if="imageName!==undefine&&imageName!==null" :src="'https://cdn.100eduonline.com/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
           <view>{{data.clicknum}}</view>
         </view>
       </view>

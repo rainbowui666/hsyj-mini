@@ -7,7 +7,7 @@
         <block v-for="(item, index) in movies" :key="index">
           <swiper-item>
             <image
-              :src="'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress"
+              :src="'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress"
               class="slide-image"
               @click="navigatoTo(item)"
             />
@@ -88,13 +88,13 @@ export default {
       this.activityList.forEach(element => {
         if (element.shstate.wantto) {
           element.thumbsupImg =
-            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp_red.png';
+            'https://cdn.100eduonline.com/mini-images/thumbsUp_red.png';
         } else {
           element.thumbsupImg =
-            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+            'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
         }
         element.messageImg =
-          'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+          'https://cdn.100eduonline.com/mini-images/messageImg.png';
         element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
       });
       this.activityList = this.activityList;
@@ -128,7 +128,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsyj.100eduonline.com/api/api/activity/frontList?pageindex=' +
+        'https://hsapi.100eduonline.com/api/activity/frontList?pageindex=' +
         this.pageindex +
         '&pagesize=' +
         this.pagesize,
@@ -144,13 +144,13 @@ export default {
         newActivityList.forEach(element => {
           if (element.shstate.wantto) {
             element.thumbsupImg =
-            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp_red.png';
+            'https://cdn.100eduonline.com/mini-images/thumbsUp_red.png';
           } else {
             element.thumbsupImg =
-            'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+            'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
           }
           element.messageImg =
-            'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+            'https://cdn.100eduonline.com/mini-images/messageImg.png';
           element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
         });
         for (var i = 0; i < newActivityList.length; i++) {

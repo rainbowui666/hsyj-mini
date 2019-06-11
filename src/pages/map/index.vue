@@ -26,7 +26,7 @@
           <block v-for="(item, index) in movies" :key="index">
             <swiper-item>
               <image
-                :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
+                :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                 class="slide-image"
                 @click="navigatoTo(item)"
               />
@@ -52,7 +52,7 @@
               > -->
                 <view class="sceneryRecommend" @click='navigatoToSight(item)'>
                   <image
-                    :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
+                    :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                     class="scenic-spot-recommendation-view-inner-image"
                   />
                   <p class="title">{{item.shortName}}</p>
@@ -79,7 +79,7 @@
               > -->
               <view class="scenic-spot-message-view-image" >
                 <image
-                  :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
+                  :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
                   style="width:92px;height:66px;border-radius:16rpx"
                   class="scenic-spot-message-view-inner-image"
                   @click="navigatoToRecommend(item)"
@@ -126,8 +126,8 @@ export default {
           text: 'hahahahahahahahahah'
         }
       ],
-      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
-      homeFlash: 'https://hsyj.100eduonline.com/static/images/into_flash.gif',
+      defaultImg: 'https://cdn.100eduonline.com/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
+      homeFlash: 'https://cdn.100eduonline.com/images/into_flash.gif',
       searchBarImg: '../../static/images/searchBar.png',
       showGif: true,
       schoolList: [
@@ -237,7 +237,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsyj.100eduonline.com/api/api/discuss/homeDiscuss?pageindex=' +
+        'https://hsapi.100eduonline.com/api/discuss/homeDiscuss?pageindex=' +
         this.pageindex +
         '&pagesize=' +
         this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID,

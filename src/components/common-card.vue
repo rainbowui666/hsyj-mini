@@ -40,7 +40,7 @@
         </view>-->
         <view class="common-card-image">
           <image mode="aspectFill" 
-          :src="item.pics?item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
+          :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
           <view v-if="item.hasjoin" class="common-card-content-status">
             <view v-if="item.hasjoin=='进行中'" class="on-status">{{ item.hasjoin }}</view>
             <view v-if="item.hasjoin=='已报名'" class="sign-up-status">{{ item.hasjoin }}</view>
@@ -86,7 +86,7 @@ export default {
     return {
       thumbsupImg,
       messageImg,
-      defaultImg: 'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
+      defaultImg: 'https://cdn.100eduonline.com/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
     };
   },
   methods: {

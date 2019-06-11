@@ -6,7 +6,7 @@
       <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
         <block v-for="(item, index) in movies" :key="index">
           <swiper-item>
-            <image :src="item.sourceAddress?'https://hsyj.100eduonline.com/static/images/'+item.sourceAddress:'https://hsyj.100eduonline.com/static/images/2c28c5bc-3633-405e-a669-015c78507a37c1a9bda1b2482b33a3c42f528edb571e.jpeg'" class="slide-image"/>
+            <image :src="item.sourceAddress?'https://cdn.100eduonline.com/images/'+item.sourceAddress:'https://cdn.100eduonline.com/images/2c28c5bc-3633-405e-a669-015c78507a37c1a9bda1b2482b33a3c42f528edb571e.jpeg'" class="slide-image"/>
           </swiper-item>
         </block>
       </swiper>
@@ -121,9 +121,9 @@ export default {
       if (this.sight.lenght !== 0) {
         this.sight.forEach(element => {
           element.thumbsupImg =
-          'https://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+          'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
           element.messageImg =
-          'https://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+          'https://cdn.100eduonline.com/mini-images/messageImg.png';
         });
       }
       this.schoolList = res.data ? res.data : []

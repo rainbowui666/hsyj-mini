@@ -36,7 +36,7 @@
         <view class="school-card-image">
           <image
             mode="widthFix"
-            :src="item.pics[0]?'https://hsyj.100eduonline.com/static/images/'+item.pics[0].sourceAddress:defaultImg"
+            :src="item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg"
           />
         </view>
       </navigator>
@@ -71,7 +71,7 @@ export default {
   data () {
     return {
       defaultImg:
-        'https://hsyj.100eduonline.com/static/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
+        'https://cdn.100eduonline.com/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
     };
   },
   methods: {

@@ -23,8 +23,8 @@ export default {
     return {
       showFlash: true,
       userInfo: {},
-      homeFlash: 'https://hsyj.100eduonline.com/static/mini-images/into_flash.gif',
-      loginBg: 'https://hsyj.100eduonline.com/static/mini-images/login_index.png'
+      homeFlash: 'https://cdn.100eduonline.com/mini-images/into_flash.gif',
+      loginBg: 'https://cdn.100eduonline.com/mini-images/login_index.png'
     };
   },
   mounted () {
