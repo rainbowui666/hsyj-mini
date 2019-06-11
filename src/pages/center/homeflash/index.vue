@@ -33,7 +33,7 @@ export default {
       // wx.switchTab({
       //   url: '/pages/map/main'
       // });
-    }, 2000)
+    }, 1600)
   },
   methods: {
     onConfirm (event) {
