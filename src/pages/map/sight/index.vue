@@ -73,7 +73,7 @@
               type="warn"
               size="default"
               :plain="false"
-              @click="formSubmit"
+              @click="getDistance"
             >{{signText}}</button>
             <!-- <wux-upload 
                 listType="picture-card"
@@ -226,6 +226,8 @@ export default {
   },
   data () {
     return {
+      mylatitude: null,
+      mylongitude: null,
       showTakePhoto: true,
       header: {
         Authorization: wx.getStorageSync('token')
@@ -241,7 +243,7 @@ export default {
       playImg,
       audioCtx: null,
       qqmapsdk: null,
-      distance: [],
+      distance: 0,
       poster:
         'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
       name: '此时此刻',
@@ -610,6 +612,36 @@ export default {
       let longitude = item.longitude;
       let title = item.sceneryTitle
       wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
+    },
+    getDistance () {
+      let lat1 = this.centerY;
+      let lng1 = this.centerX;
+      let lat2 = this.sightObj.latitude;
+      let lng2 = this.sightObj.longitude
+      if (!this.sightObj.shstate.checkin) {
+        let La1 = lat1 * Math.PI / 180.0;
+
+        let La2 = lat2 * Math.PI / 180.0;
+
+        let La3 = La1 - La2;
+
+        let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+
+        let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+
+        let d = s * 6378.137;// 地球半径
+        let result = Math.round(d * 10000);
+        this.distance = result.toFixed(0);
+        if (this.distance < this.sightObj.distance) {
+          this.onSign()
+        } else {
+          wx.showToast({
+            title: '距离太远，无法签到！',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
     },
     formSubmit (e) {
       if (!this.sightObj.shstate.checkin) {
