@@ -234,8 +234,8 @@ export default {
       });
     },
     async signUp () {
-      if (wx.getStorageSync('userInfo').stuNo) {
-        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
         if (this.uesrStatus === 4) {
           await api.wantToActivity({
@@ -259,8 +259,8 @@ export default {
       }
     },
     async changeCreatBtn () {
-      if (wx.getStorageSync('userInfo').stuNo) {
-        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
         if (this.uesrStatus === 4) {
           this.isCreat = true;
