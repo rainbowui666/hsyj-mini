@@ -422,9 +422,9 @@ export default {
     }
     await this.getDetailInfo();
     this.isGroup = this.activityList.isGroup === '1' ? this.isStatusTrue : false;
-    this.isDoing = this.activityList.hasjoin === '进行中' ? this.isStatusTrue : false;
+    this.isDoing = this.activityList.hasjoin === '进行中' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
     this.isApply =
-      this.activityList.hasjoin === '已报名' ? this.isStatusTrue : false;
+      this.activityList.hasjoin === '已报名' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
     this.isComplete =
       this.activityList.hasjoin === '已完成' ? this.isStatusTrue : false;
     this.disApply = !this.isApply ? this.isStatusTrue : false;
