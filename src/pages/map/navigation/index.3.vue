@@ -8,6 +8,8 @@
 <script>
 import searchCard from '../../../components/search-card';
 import api from '@/utils/api';
+import QQMapWX from '../../../../build/qqmap-wx-jssdk.js';
+
 export default {
   components: {
     searchCard
@@ -79,17 +81,15 @@ export default {
           address: '上海市-黄浦区-中山东路'
         }
       ],
-      mylatitude: null,
-      mylongitude: null
+      qqmapsdk: null,
+      distance: 0,
+      toAddress: '31.124820,121.493855'
     };
   },
   onLoad: function () {
-    wx.getLocation({
-      type: 'gcj02',
-      success: res => {
-        this.mylatitude = res.latitude;
-        this.mylongitude = res.longitude;
-      }
+    // 实例化API核心类
+    this.qqmapsdk = new QQMapWX({
+      key: 'AFDBZ-QT5HQ-2XV56-GAXW7-43Q2T-OQBE4'
     });
   },
   async mounted () {
@@ -115,8 +115,10 @@ export default {
         msgtype: item.msgtype,
         id: item.id
       }
-      let resDistance = this.getDistance(this.mylatitude, this.mylongitude, item.latitude, item.longitude)
-      searchItem.iconText = resDistance.toFixed(2) + 'km';
+      this.toAddress = item.latitude + ',' + item.longitude;
+      debugger
+      this.formSubmit()
+      searchItem.iconText = this.distance / 1000 + 'km'
       searchAimList.push(searchItem)
     });
     this.activityList = searchAimList;
@@ -126,7 +128,7 @@ export default {
       if (item.msgtype === 'school') {
         wx.navigateTo({ url: '/pages/map/schools/main?schoolId=' + item.id });
       } else if (item.msgtype === 'scenery') {
-        wx.navigateTo({url: '/pages/map/sight/main?id=' + item.id + '&name=' + item.activityName})
+        wx.navigateTo({url: '/pages/map/sight/main?activitySight=true&id=' + item.id})
       }
       // {wx.navigateTo({ url: '/pages/activity/activityDetail/main?name=' + '复旦一日游' })}
       // wx.navigateTo({ url: 'activityDetail/main?name=' + item.activityName })
@@ -157,28 +159,44 @@ export default {
             msgtype: item.msgtype,
             id: item.id
           }
-          let resDistance = this.getDistance(this.mylatitude, this.mylongitude, item.latitude, item.longitude)
-          searchItem.iconText = resDistance.toFixed(2) + 'km';
           searchAimList.push(searchItem)
         });
         this.activityList = searchAimList;
       }
       // }
     },
-    getDistance: function (lat1, lng1, lat2, lng2) {
-      let La1 = lat1 * Math.PI / 180.0;
+    formSubmit (e) {
+      // if (!this.sightObj.shstate.checkin) {
+      // this.onSign()
 
-      let La2 = lat2 * Math.PI / 180.0;
-
-      let La3 = La1 - La2;
-
-      let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
-
-      let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
-
-      let d = s * 6378.137;// 地球半径
-      return Math.round(d * 10000) / 10000;
+      // let _this = this;
+      // 调用距离计算接口
+      this.qqmapsdk.calculateDistance({
+        // mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+        // from参数不填默认当前地址
+        // 获取表单提交的经纬度并设置from和to参数（示例为string格式）
+        // from: e.detail.value.start || '', // 若起点有数据则采用起点坐标，若为空默认当前地址
+        to: this.toAddress, // 终点坐标
+        success: res => { // 成功后的回调
+          let result = res.result;
+          // 设置并更新distance数据
+          this.distance = result.elements[0].distance;
+        },
+        fail: function (error) {
+          // wx.showToast({
+          //   title: '距离太远，无法签到！',
+          //   icon: 'none',
+          //   duration: 2000
+          // })
+          this.distance = '>10km'
+          console.error(error);
+        },
+        complete: function (end) {
+          console.log(end);
+        }
+      });
     }
+    // }
   },
   onReachBottom: function () {
     // 显示顶部刷新图标
@@ -192,7 +210,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsapi.100eduonline.com/api/search/searchList?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize,
+        'https://hsyj.100eduonline.com/api/api/search/searchList?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize,
       method: 'GET',
       // 请求头部
       header: {
@@ -217,11 +235,9 @@ export default {
             msgtype: item.msgtype,
             id: item.id
           }
-          let resDistance = this.getDistance(this.mylatitude, this.mylongitude, item.latitude, item.longitude)
-          searchItem.iconText = resDistance.toFixed(2) + 'km';
           searchAimList.push(searchItem)
         });
-        for (let i = 0; i < searchAimList.length; i++) {
+        for (var i = 0; i < searchAimList.length; i++) {
           this.activityList.push(searchAimList[i]);
         }
         // 设置数据
