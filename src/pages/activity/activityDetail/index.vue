@@ -223,7 +223,8 @@ export default {
       showWords: false,
       activityList: {},
       pageindex: 1,
-      pagesize: 10
+      pagesize: 10,
+      uesrStatus: 0
     };
   },
   methods: {
@@ -234,7 +235,9 @@ export default {
     },
     async signUp () {
       if (wx.getStorageSync('userInfo').stuNo) {
-        if (wx.getStorageSync('userInfo').shstate === 4) {
+        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+        this.uesrStatus = studentDetail.data.shstate;
+        if (this.uesrStatus === 4) {
           await api.wantToActivity({
             studentid: wx.getStorageSync('userInfo').studentID,
             activityid: this.activityList.activityID,
@@ -255,9 +258,11 @@ export default {
         wx.navigateTo({ url: '/pages/center/login/main' });
       }
     },
-    changeCreatBtn () {
+    async changeCreatBtn () {
       if (wx.getStorageSync('userInfo').stuNo) {
-        if (wx.getStorageSync('userInfo').shstate === 4) {
+        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+        this.uesrStatus = studentDetail.data.shstate;
+        if (this.uesrStatus === 4) {
           this.isCreat = true;
         } else {
           wx.showToast({
