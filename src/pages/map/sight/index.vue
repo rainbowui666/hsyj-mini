@@ -4,10 +4,10 @@
       class="frosted-glass-container"
       :style="sightObj.pics?sightObj.pics[0]
       ?sightObj.pics[0].sourceAddress===undefined
-      ?'background-image:url(https://cdn.100eduonline.com/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'
+      ?'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'
       :'background-image:url(https://cdn.100eduonline.com/images/'+sightObj.pics[0].sourceAddress+')'
-      :'background-image:url(https://cdn.100eduonline.com/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'
-      :'background-image:url(https://cdn.100eduonline.com/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'"
+      :'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'
+      :'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'"
     >
       <view class="frosted-glass"></view>
     </view>

@@ -38,7 +38,7 @@ export default {
       sceneryList: [],
       pageindex: 1,
       pagesize: 5,
-      defaultImg: 'https://cdn.100eduonline.com/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
+      defaultImg: 'https://cdn.100eduonline.com/mini-images/default.png',
       imgList: [
         // {
         //   url: '../../static/images/fudan1.jpeg',

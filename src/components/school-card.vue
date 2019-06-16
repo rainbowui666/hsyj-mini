@@ -71,7 +71,7 @@ export default {
   data () {
     return {
       defaultImg:
-        'https://cdn.100eduonline.com/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg'
+        'https://cdn.100eduonline.com/mini-images/default.png'
     };
   },
   methods: {
