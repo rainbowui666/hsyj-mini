@@ -281,9 +281,9 @@ export default {
       let activityInfo = res.data.data ? res.data.data : [];
       activityInfo.forEach(element => {
         element.thumbsupImg =
-          'http://hsyj.100eduonline.com/static/mini-images/thumbsUp.png';
+          'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
         element.messageImg =
-          'http://hsyj.100eduonline.com/static/mini-images/messageImg.png';
+          'https://cdn.100eduonline.com/mini-images/messageImg.png';
         element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss');
       });
       this.activityList = activityInfo;
