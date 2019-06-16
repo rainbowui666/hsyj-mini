@@ -258,7 +258,7 @@ export default {
       swiper: {
         movies: [
           {
-            sourceAddress: '7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg'
+            sourceAddress: 'default.png'
           }
         ],
         // movies: [],
@@ -363,7 +363,7 @@ export default {
     this.sightObj = res.data ? res.data : {};
     this.swiper.movies = res.data.pics[0]
       ? res.data.pics
-      : [{ sourceAddress: '7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg' }];
+      : [{ sourceAddress: 'default.png' }];
     this.toAddress = res.data.latitude + ',' + res.data.longitude;
     if (this.sightObj.shstate.checkin) {
       this.signText = '已签到'
