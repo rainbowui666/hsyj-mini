@@ -4,14 +4,14 @@
       <!-- 模糊背景开始 -->
       <view
         class="frosted-glass-container"
-        :style="activityList.pics[0]?activityList.pics[0].sourceAddress===undefined?'background-image:url(https://cdn.100eduonline.com/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)':'background-image:url(https://cdn.100eduonline.com/images/'+activityList.pics[0].sourceAddress+')':'background-image:url(https://cdn.100eduonline.com/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg)'"
+        :style="activityList.pics[0]?activityList.pics[0].sourceAddress===undefined?'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)':'background-image:url(https://cdn.100eduonline.com/images/'+activityList.pics[0].sourceAddress+')':'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'"
       >
         <view class="frosted-glass"></view>
       </view>
       <view class="float-container">
         <view class="float-container-image">
           <image
-            :src="activityList.pics[0].sourceAddress===undefined?'https://cdn.100eduonline.com/images/7c6c88b9-9a12-4dfb-b210-875692555fbc.jpg':'https://cdn.100eduonline.com/images/'+activityList.pics[0].sourceAddress"
+            :src="activityList.pics[0].sourceAddress===undefined?'https://cdn.100eduonline.com/mini-images/default.png':'https://cdn.100eduonline.com/images/'+activityList.pics[0].sourceAddress"
             mode="widthFix"
           />
         </view>
@@ -180,7 +180,7 @@ export default {
       isTwoCode: false,
       content: '',
       teamName: '',
-      defaultImg: 'https://cdn.100eduonline.com/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
+      defaultImg: 'https://cdn.100eduonline.com/mini-images/default.png',
       svgSrc: 'https://cdn.100eduonline.com/mini-images/thumbsUp.png',
       iconArr: [
         {
@@ -234,8 +234,8 @@ export default {
       });
     },
     async signUp () {
-      if (wx.getStorageSync('userInfo').stuNo) {
-        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
         if (this.uesrStatus === 4) {
           await api.wantToActivity({
@@ -259,8 +259,8 @@ export default {
       }
     },
     async changeCreatBtn () {
-      if (wx.getStorageSync('userInfo').stuNo) {
-        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
         if (this.uesrStatus === 4) {
           this.isCreat = true;
@@ -422,9 +422,9 @@ export default {
     }
     await this.getDetailInfo();
     this.isGroup = this.activityList.isGroup === '1' ? this.isStatusTrue : false;
-    this.isDoing = this.activityList.hasjoin === '进行中' ? this.isStatusTrue : false;
+    this.isDoing = this.activityList.hasjoin === '进行中' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
     this.isApply =
-      this.activityList.hasjoin === '已报名' ? this.isStatusTrue : false;
+      this.activityList.hasjoin === '已报名' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
     this.isComplete =
       this.activityList.hasjoin === '已完成' ? this.isStatusTrue : false;
     this.disApply = !this.isApply ? this.isStatusTrue : false;

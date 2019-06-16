@@ -126,7 +126,7 @@ export default {
           text: 'hahahahahahahahahah'
         }
       ],
-      defaultImg: 'https://cdn.100eduonline.com/images/54a22670-6ef8-44c3-a165-fa4771275079.jpg',
+      defaultImg: 'https://cdn.100eduonline.com/mini-images/default.png',
       homeFlash: 'https://cdn.100eduonline.com/images/into_flash.gif',
       searchBarImg: '../../static/images/searchBar.png',
       showGif: true,
