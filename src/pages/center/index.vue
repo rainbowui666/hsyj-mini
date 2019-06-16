@@ -75,7 +75,7 @@ export default {
       activityCount: 0,
       integralCount: 0,
       userName: '我是皮仔呀',
-      userHeadImg: 'https://cdn.100eduonline.com/mini-images/head1.jpeg'
+      userHeadImg: 'https://cdn.100eduonline.com/mini-images/user_head.png'
     };
   },
   onLoad () {
