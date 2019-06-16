@@ -2,6 +2,7 @@ import request from './request'
 
 const ApiRootUrl = 'https://hsapi.100eduonline.com/'
 
+
 const api = {
   // 获得服务列表
   // login: (paramObj) => request.post('user/login', paramObj, {
@@ -37,10 +38,6 @@ const api = {
   }),
   // 添加留言
   addMessage: (obj) => request.post('api/discuss/add?distype=' + obj.distype + '&targetid=' + obj.targetid + '&studentid=' + obj.studentid, {'content': obj.content}, {
-    baseURL: ApiRootUrl
-  }),
-  // 答题
-  getQuestion: (obj) => request.post('api/question/getQuestionbyActid?activityid=' + obj.activityid + '&sceneryid=' + obj.sceneryid, null, {
     baseURL: ApiRootUrl
   }),
   // 创建团队
@@ -115,7 +112,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 我的签到
-  getMySigninList: (obj) => request.get('api/myself/getMyAttention?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
+  getMySigninList: () => request.get('api/myself/getMyAttention?studentid=1', null, {
     baseURL: ApiRootUrl
   }),
   // 我的留言
