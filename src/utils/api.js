@@ -1,6 +1,8 @@
 import request from './request'
 
 const ApiRootUrl = 'https://hsapi.100eduonline.com/'
+// const ApiRootUrl = 'http://localhost:8360/'
+
 const api = {
   // 获得服务列表
   // login: (paramObj) => request.post('user/login', paramObj, {
