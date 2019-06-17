@@ -636,7 +636,7 @@ export default {
           this.onSign()
         } else {
           wx.showToast({
-            title: '距离太远，无法签到！',
+            title: '距离太远，无法签到！有效距离' + this.sightObj.distance + '米',
             icon: 'none',
             duration: 2000
           })
