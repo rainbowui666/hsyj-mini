@@ -116,17 +116,23 @@ export default {
       this.isShare = true;
       this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
     }
-    const res = await api.getActivitySceneryList({ id: this.$mp.query.id });
+    const res = await api.getActivitySceneryList({ id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID });
     this.sightList = res.data.data ? res.data.data : [];
     this.sightList.forEach(element => {
       element.thumbsupImg =
         'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
       element.messageImg =
         'https://cdn.100eduonline.com/mini-images/messageImg.png';
-      (element.navigationImg = '../../../static/images/navigationImg.png'),
-      (element.activityName = element.sceneryTitle),
-      (element.iconType = 'ios-navigate');
-      element.iconColor = '#aaa';
+      (element.activityName = element.sceneryTitle)
+      if (!element.sceneryState.checkin) {
+        (element.navigationImg = '../../../static/images/navigationImg.png'),
+        (element.iconType = 'ios-navigate');
+        element.iconColor = '#aaa';
+      } else {
+        (element.navigationImg = '../../../static/images/navigationImg.png'),
+        (element.iconType = 'ios-checkmark-circle-outline');
+        element.iconColor = 'red';
+      }
     });
   },
   methods: {

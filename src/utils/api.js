@@ -72,7 +72,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 活动路线详情
-  getActivitySceneryList: (obj) => request.get('api/activity/getActivitySceneryList?pageindex=1&pagesize=15&activityid=' + obj.id, null, {
+  getActivitySceneryList: (obj) => request.get('api/activity/getActivitySceneryList?pageindex=1&pagesize=15&activityid=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 活动二维码
