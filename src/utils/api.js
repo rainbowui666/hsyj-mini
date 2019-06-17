@@ -91,6 +91,10 @@ const api = {
   isWantTo: (obj) => request.get('api/student_activity/studnetHasStatus?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&shstate=' + obj.shstate, null, {
     baseURL: ApiRootUrl
   }),
+  // 答题
+  getQuestionbyActid: (obj) => request.get('api/question/getQuestionbyActid?activityid=' + obj.activityid + '&sceneryid=' + obj.sceneryid, null, {
+    baseURL: ApiRootUrl
+  }),
   // 景点详情
   getSightDetail: (obj) => request.get('api/scenery/getscenerydetail?id=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl

@@ -57,7 +57,7 @@
       ></wux-cell>
     </view>
 <view class="bottom-btn">
-      <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
+      <button v-if="!isGroup&&disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
       <button v-if="isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
@@ -412,6 +412,7 @@ export default {
     }
   },
   async onShow () {
+    this.content = '';
     this.isShare = false
     this.showComment = false
     this.showWords = false

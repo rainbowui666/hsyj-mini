@@ -114,7 +114,8 @@ export default {
       // wx.navigateTo({url: 'activityDetail/main?name=' + item.activityName + '&isGroup=' + item.isGroup + '&applyStatus=' + item.activityStatus})
     },
     viewDetail (item) {
-      wx.navigateTo({ url: 'activitySight/main?id=' + item.activityID });
+      console.log('====', item)
+      wx.navigateTo({ url: 'activitySight/main?id=' + item.activityID + '&name=' + item.activityName });
     }
   },
   onReachBottom: function () {

@@ -23,7 +23,7 @@
             </view>
           </view>
           <view class="common-card-content-icongroup">
-            <view class="common-card-content-icongroup-text" @click="detailClick(item)">查看详情</view>
+            <view class="common-card-content-icongroup-text" @click.stop="detailClick(item)">查看详情</view>
             <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
             <view class="icon-group-item-label">{{ item.shstate?item.shstate.wantto?item.shstate.wantto:0:0 }}</view>
             <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
@@ -42,7 +42,7 @@
           <image mode="aspectFill" 
           :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
           <view v-if="item.hasjoin" class="common-card-content-status">
-            <view v-if="item.hasjoin=='进行中'" class="on-status">{{ item.hasjoin }}</view>
+            <view v-if="item.hasjoin=='进行中'||item.hasjoin=='已报名,进行中'" class="on-status">进行中</view>
             <view v-if="item.hasjoin=='已报名'" class="sign-up-status">{{ item.hasjoin }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
           </view>

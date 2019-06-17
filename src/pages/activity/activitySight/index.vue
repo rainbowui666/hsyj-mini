@@ -108,6 +108,9 @@ export default {
     };
   },
   async onShow () {
+    wx.setNavigationBarTitle({
+      title: this.$mp.query.name
+    });
     this.isShare = false
     if (this.$mp.query.isShare) {
       this.isShare = true;

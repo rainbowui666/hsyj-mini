@@ -13,12 +13,13 @@
     </view>
     <view class="backgroubd-modal"/>
     <view class="sight-page">
-      <view class="sight-audio">
+      <view class="sight-audio" >
         <view class="sight-audio-container">
           <image
               src="https://cdn.100eduonline.com/mini-images/sceneryAudio.png"
               class="slide-audio-image"
               mode="widthFix"
+              v-if='sightObj.soundurl'
               @click="showAudio"
             />
           <!-- <audio :name="name" :author="author" :src="audioSrc" id="myAudio" controls loop></audio> -->
@@ -179,11 +180,11 @@
                 @success="onSuccess" 
                 @fail="onFail"
                 @remove="onRemove">
-                    <button type="default" v-if='showTakePhoto'>拍照上传</button>
+                <button type="default" v-if='showTakePhoto'>拍照上传</button>
                 </wux-upload>
               </view>
               <view class="sight-camera-btn">
-                <button type="primary" size="mini" :plain="false" @click="uploadPhoto">下一步</button>
+                <button type="primary" size="mini" :plain="false" v-if='hasQuestion' @click="uploadPhoto">下一步</button>
               </view>
             </scroll-view>
           </view>
@@ -339,6 +340,9 @@ export default {
       showCamera: false,
       showQuestion: false,
       isShare: false,
+      hasQuestion: false,
+      progress: null,
+      imageUrl: '',
       src: '',
       centerX: 121.475186,
       centerY: 31.228725,
@@ -357,6 +361,8 @@ export default {
     this.showComment = false;
     this.showCameraPopup = false;
     this.showQuestion = false;
+    this.hasQuestion = false;
+    this.content = '';
     if (this.$mp.query.isShare) {
       this.isShare = true
       this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
@@ -367,6 +373,19 @@ export default {
       ? res.data.pics
       : [{ sourceAddress: 'default.png' }];
     this.toAddress = res.data.latitude + ',' + res.data.longitude;
+    // 判断是否需要答题
+    const question = await api.getQuestionbyActid({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
+    console.log('question-------', question)
+    if (question.data[0]) {
+      this.hasQuestion = true
+      this.question = question.data[0].questionTitle
+      this.rightAnswer = question.data[0].rightAnswer
+      this.radioList = []
+      this.radioList.push({ name: 'A', value: question.data[0].answerA })
+      this.radioList.push({ name: 'B', value: question.data[0].answerB })
+      this.radioList.push({ name: 'C', value: question.data[0].answerC })
+      this.radioList.push({ name: 'D', value: question.data[0].answerD })
+    }
     if (this.sightObj.shstate.checkin) {
       this.signText = '已签到'
     } else {
@@ -375,7 +394,8 @@ export default {
     this.formData = {
       sourcetype: 3,
       insertid: this.$mp.query.id
-    },
+    }
+
     // 取当前位置
     wx.getLocation({
       type: 'gcj02',
@@ -415,19 +435,26 @@ export default {
     onChange (e) {
       const { file } = e.detail
       if (file.status === 'uploading') {
-        this.setData({
-          progress: 0
-        })
+        this.progress = 0
         wx.showLoading()
       } else if (file.status === 'done') {
-        this.setData({
-          imageUrl: file.url
-        })
+        this.imageUrl = file.url
       }
     },
     onSuccess (e) {
-      this.showTakePhoto = false
-      this.uploadSuccess = true
+      if (this.hasQuestion) {
+        this.showCameraPopup = true;
+      } else {
+        this.showCameraPopup = false;
+      }
+      wx.showToast({
+        title: '上传成功',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      this.showCameraPopup = true;
+      this.uploadSuccess = true;
     },
     onFail (e) {
     },
@@ -522,17 +549,7 @@ export default {
     async uploadPhoto () {
       if (this.uploadSuccess) {
         this.showCameraPopup = false;
-        const res = await api.getQuestion({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
-        if (res.data[0]) {
-          this.question = res.data[0].questionTitle
-          this.rightAnswer = res.data[0].rightAnswer
-          this.radioList = []
-          this.radioList.push({ name: 'A', value: res.data[0].answerA })
-          this.radioList.push({ name: 'B', value: res.data[0].answerB })
-          this.radioList.push({ name: 'C', value: res.data[0].answerC })
-          this.radioList.push({ name: 'D', value: res.data[0].answerD })
-          this.showQuestion = true;
-        }
+        this.showQuestion = true;
       }
     },
     radioChange (e) {
@@ -632,7 +649,7 @@ export default {
         let d = s * 6378.137;// 地球半径
         let result = Math.round(d * 10000);
         this.distance = result.toFixed(0);
-        if (this.distance < this.sightObj.distance) {
+        if (this.distance > this.sightObj.distance) {
           this.onSign()
         } else {
           wx.showToast({
