@@ -125,7 +125,7 @@ export default {
 }
 .common-card-image {
   width: 40%;
-  padding: 5px;
+  padding: 6px;
   border-radius: 20rpx;
   height: 170rpx;
   overflow: hidden;

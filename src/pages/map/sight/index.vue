@@ -1078,18 +1078,19 @@ export default {
 }
 .sight-page .sight-answer radio-group label {
   padding: 5px;
+  display:flex;
+  flex-direction:row;
 }
 .sight-page .sight-question-title {
   display: flex;
   margin-left: 20px;
 }
 .sight-page .sight-question-content {
-  display: flex;
-  margin-left: 20px;
-  text-align: initial;
-  padding-top: 10rpx;
-  padding: 10rpx 20rpx;
-  font-size: 28rpx;
+  display:flex;
+  text-align:initial;
+  padding-top:10rpx;
+  padding:15rpx 20rpx 10rpx 20rpx;
+  font-size:34rpx;
 }
 .ceshi_prew text {
   color: #fff;

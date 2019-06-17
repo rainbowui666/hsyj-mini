@@ -6,7 +6,7 @@
       >
         <view class="sight-card-image">
           <image
-            mode="widthFix"
+            mode="aspectFill"
             :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
           />
           <!-- <view class="sight-card-content-icongroup">
@@ -155,7 +155,8 @@ export default {
   line-height: 26px;
 }
 .sight-card-image image {
-  width: 130%;
+  width: 100%;
+  height: 100%;
   border-radius: 16rpx;
 }
 .sight-card-content {

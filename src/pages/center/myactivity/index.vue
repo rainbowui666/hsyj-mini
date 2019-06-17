@@ -336,7 +336,7 @@ export default {
   padding:0 5%;
 }
 .myactivity-page .common-page{
-  padding: 0 5%;
+  /* padding: 0 5%; */
 }
 .myactivity-page > ._view{
   border-top:1px solid #aaa;
@@ -369,5 +369,12 @@ export default {
 .myactivity-page .wux-tabs__tab--current .title{
     color: #d25136;
     border:1px solid #d25136;
+}
+.myactivity-page .common-card-image{
+  padding: 0;
+  margin-top: 10rpx
+}
+.myactivity-page .common-card-content-status{
+  width:100%;
 }
 </style>
