@@ -67,7 +67,7 @@
       <button v-if="isDoing&&!isGroup&&!isComplete&&isApply" class="single_btn_isDoing" @click="gotoActivity">进入活动</button>
       <button v-if="isComplete" class="single_btn" >已完成</button>
     </view>
-    <view v-if="isGroup&&isApply&&isDoing" class="group_btn">
+    <view v-if="isGroup&&isDoing" class="group_btn">
       <view v-if="!isInvite" class="group_btn_disApply">
         <button @click="changeCreatBtn">创建团队</button>
       </view>
@@ -391,6 +391,7 @@ export default {
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
         });
+        debugger
         if (this.activityList.group[0]) {
           this.isInvite = true;
         }
@@ -422,7 +423,8 @@ export default {
       this.$mp.query.id = this.$mp.query.isShare.split('-')[2]
     }
     await this.getDetailInfo();
-    this.isGroup = this.activityList.isGroup === '1' ? this.isStatusTrue : false;
+    debugger
+    this.isGroup = this.activityList.isGroup === 1 ? this.isStatusTrue : false;
     this.isDoing = this.activityList.hasjoin === '进行中' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
     this.isApply =
       this.activityList.hasjoin === '已报名' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
