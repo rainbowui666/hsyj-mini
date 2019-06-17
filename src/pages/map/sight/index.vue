@@ -374,17 +374,19 @@ export default {
       : [{ sourceAddress: 'default.png' }];
     this.toAddress = res.data.latitude + ',' + res.data.longitude;
     // 判断是否需要答题
-    const question = await api.getQuestionbyActid({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
-    console.log('question-------', question)
-    if (question.data[0]) {
-      this.hasQuestion = true
-      this.question = question.data[0].questionTitle
-      this.rightAnswer = question.data[0].rightAnswer
-      this.radioList = []
-      this.radioList.push({ name: 'A', value: question.data[0].answerA })
-      this.radioList.push({ name: 'B', value: question.data[0].answerB })
-      this.radioList.push({ name: 'C', value: question.data[0].answerC })
-      this.radioList.push({ name: 'D', value: question.data[0].answerD })
+    if (this.$mp.query.activityid) {
+      const question = await api.getQuestionbyActid({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
+      console.log('question-------', question)
+      if (question.data[0]) {
+        this.hasQuestion = true
+        this.question = question.data[0].questionTitle
+        this.rightAnswer = question.data[0].rightAnswer
+        this.radioList = []
+        this.radioList.push({ name: 'A', value: question.data[0].answerA })
+        this.radioList.push({ name: 'B', value: question.data[0].answerB })
+        this.radioList.push({ name: 'C', value: question.data[0].answerC })
+        this.radioList.push({ name: 'D', value: question.data[0].answerD })
+      }
     }
     if (this.sightObj.shstate.checkin) {
       this.signText = '已签到'
@@ -630,34 +632,49 @@ export default {
       let title = item.sceneryTitle
       wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
     },
-    getDistance () {
-      let lat1 = this.centerY;
-      let lng1 = this.centerX;
-      let lat2 = this.sightObj.latitude;
-      let lng2 = this.sightObj.longitude
-      if (!this.sightObj.shstate.checkin) {
-        let La1 = lat1 * Math.PI / 180.0;
+    async getDistance () {
+      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      if (studentDetail.data.stuNo) {
+        this.uesrStatus = studentDetail.data.shstate;
+        if (this.uesrStatus === 4) {
+          let lat1 = this.centerY;
+          let lng1 = this.centerX;
+          let lat2 = this.sightObj.latitude;
+          let lng2 = this.sightObj.longitude
+          if (!this.sightObj.shstate.checkin) {
+            let La1 = lat1 * Math.PI / 180.0;
 
-        let La2 = lat2 * Math.PI / 180.0;
+            let La2 = lat2 * Math.PI / 180.0;
 
-        let La3 = La1 - La2;
+            let La3 = La1 - La2;
 
-        let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+            let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
 
-        let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+            let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
 
-        let d = s * 6378.137;// 地球半径
-        let result = Math.round(d * 10000);
-        this.distance = result.toFixed(0);
-        if (this.distance < this.sightObj.distance) {
-          this.onSign()
+            let d = s * 6378.137;// 地球半径
+            let result = Math.round(d * 10000);
+            this.distance = result.toFixed(0);
+            if (this.distance < this.sightObj.distance) {
+              this.onSign()
+            } else {
+              wx.showToast({
+                title: '距离太远，无法签到！有效距离' + this.sightObj.distance + '米',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          }
         } else {
           wx.showToast({
-            title: '距离太远，无法签到！有效距离' + this.sightObj.distance + '米',
+            title: '信息审核中，暂无法签到',
             icon: 'none',
-            duration: 2000
+            duration: 1000,
+            mask: true
           })
         }
+      } else {
+        wx.navigateTo({ url: '/pages/center/login/main' });
       }
     },
     formSubmit (e) {

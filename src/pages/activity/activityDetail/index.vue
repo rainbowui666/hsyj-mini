@@ -57,7 +57,7 @@
       ></wux-cell>
     </view>
 <view class="bottom-btn">
-      <button v-if="!isGroup&&disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
+      <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
       <button v-if="isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
@@ -67,7 +67,7 @@
       <button v-if="isDoing&&!isGroup&&!isComplete&&isApply" class="single_btn_isDoing" @click="gotoActivity">进入活动</button>
       <button v-if="isComplete" class="single_btn" >已完成</button>
     </view>
-    <view v-if="isGroup&&isDoing" class="group_btn">
+    <view v-if="isGroup&&isApply&&!isDoing" class="group_btn">
       <view v-if="!isInvite" class="group_btn_disApply">
         <button @click="changeCreatBtn">创建团队</button>
       </view>
@@ -238,14 +238,23 @@ export default {
       if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
         if (this.uesrStatus === 4) {
-          await api.wantToActivity({
-            studentid: wx.getStorageSync('userInfo').studentID,
-            activityid: this.activityList.activityID,
-            shstate: 1
-          });
-          this.disApply = false;
-          this.isApply = true;
-          this.getDetailInfo()
+          if (this.activityList.hasjoin === '进行中' && this.activityList.isGroup) {
+            wx.showToast({
+              title: '团体活动已开始，无法报名',
+              icon: 'none',
+              duration: 1000,
+              mask: true
+            })
+          } else {
+            await api.wantToActivity({
+              studentid: wx.getStorageSync('userInfo').studentID,
+              activityid: this.activityList.activityID,
+              shstate: 1
+            });
+            this.disApply = false;
+            this.isApply = true;
+            this.getDetailInfo()
+          }
         } else {
           wx.showToast({
             title: '信息审核中，暂无法报名',

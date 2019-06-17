@@ -198,6 +198,7 @@ export default {
       });
     },
     navigatoToSight (item) {
+      console.log('---', item)
       wx.navigateTo({
         url: '/pages/map/sight/main?id=' + item.sceneryID + '&name=' + item.sceneryTitle
       });
