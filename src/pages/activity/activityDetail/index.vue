@@ -58,7 +58,7 @@
     </view>
 <view class="bottom-btn">
       <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
-      <button v-if="isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
+      <button v-if="isApply&&!isDoing&&!isComplete&&!isGroup" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
           <view>已报名</view>
@@ -68,14 +68,22 @@
       <button v-if="isComplete" class="single_btn" >已完成</button>
     </view>
     <view v-if="isGroup&&isApply&&!isDoing" class="group_btn">
+      <view class="group_btn_disApply">
+        <button @click="scan">加入团队</button>
+      </view>
       <view v-if="!isInvite" class="group_btn_disApply">
         <button @click="changeCreatBtn">创建团队</button>
       </view>
       <view v-if="isInvite" class="group_btn_disApply">
-        <button @click="onInviteBtn">邀请加入</button>
+        <button @click="onInviteBtn">出示邀请码</button>
       </view>
-      <view class="group_btn_apply">
-        <button @click="scan">扫码加入</button>
+    </view>
+    <view v-if="isGroup&&isApply&&isDoing" class="group_btn">
+      <view class="group_btn_disApply">
+        <button>活动统计</button>
+      </view>
+      <view class="group_btn_doing">
+        <button @click="gotoActivity">进入活动</button>
       </view>
     </view>
     <view>
@@ -234,6 +242,7 @@ export default {
       });
     },
     async signUp () {
+      debugger
       const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
       if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
@@ -792,6 +801,17 @@ export default {
 }
 .group_btn_disApply button {
   background-color: #d25136;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 16rpx;
+}
+.group_btn_doing {
+  /* border-radius: 0%; */
+  width: 47%;
+}
+.group_btn_doing button {
+  background-color: #ffcc00;
   height: 80rpx;
   line-height: 80rpx;
   color: #fff;
