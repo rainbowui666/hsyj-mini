@@ -129,7 +129,7 @@ export default {
         (element.iconType = 'ios-navigate');
         element.iconColor = '#aaa';
       } else {
-        (element.navigationImg = '../../../static/images/navigationImg.png'),
+        (element.navigationImg = '../../../static/images/gou.png'),
         (element.iconType = 'ios-checkmark-circle-outline');
         element.iconColor = 'red';
       }
