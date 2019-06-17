@@ -18,7 +18,7 @@
         </wux-tab> -->
       </wux-tabs>
     <!-- <head-message :valueData="valueData"> </head-message> -->
-    <common-card :data="activityList" :iconClick="iconClick"/>
+    <common-card :data="activityList" :iconClick="iconClick" :viewDetail="viewDetail"/>
   </view>
 </template>
 
@@ -255,6 +255,9 @@ export default {
     this.getMyActivityList();
   },
   methods: {
+    viewDetail (item) {
+      wx.navigateTo({ url: '/pages/activity/activitySight/main?id=' + item.activityID + '&name=' + item.activityName });
+    },
     iconClick (item) {
       wx.navigateTo({ url: '/pages/activity/activityDetail/main?name=' + item.activityName })
     },

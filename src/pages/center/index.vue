@@ -86,10 +86,10 @@ export default {
       })
     }
   },
-  onShow () {
+  async onShow () {
     this.userInfo = wx.getStorageSync('userInfo');
-  },
-  async mounted () {
+    // },
+    // async mounted () {
     this.userName = this.userInfo.studentName;
     this.userHeadImg = this.userInfo.photo;
     const signinRes = await api.getMySigninList({
