@@ -992,7 +992,7 @@ export default {
   /*border-top-right-radius: 20px;*/
   bottom: 0px;
   z-index: 1001;
-  padding-bottom: 40px;
+  /* padding-bottom: 40px; */
   /* height: 60vh; */
   /* height:228rpx;  高度不设置，自动撑开*/
 }
@@ -1021,11 +1021,20 @@ export default {
   bottom: 0;
   background: rgba(0, 0, 0, 0.2);
 }
-.sight-page .pop .modal .inner .sight-words-btn,
+.sight-page .pop .modal .inner .sight-words-btn{
+  display:flex;
+  padding:20rpx;
+}
 .sight-page .pop .modal .inner .sight-camera-btn {
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  right: 20px;
+  right: 20px; */
+  display:flex;
+  padding:20rpx;
+}
+.sight-page .pop .modal .inner .sight-camera-btn button{
+  margin-left: 0!important;
+  margin: 0 auto!important;
 }
 .sight-page .pop .modal .inner .sight-words-btn button:last-child,
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
@@ -1061,6 +1070,7 @@ export default {
 }
 .sight-page .sight-camera image {
   margin: 10px auto;
+  width: 100%;
 }
 .sight-page .sight-question {
   display: flex;
@@ -1181,5 +1191,8 @@ export default {
 .sight-page .sight-words-item .scenic-spot-message-text-message {
   line-height: 40rpx;
   padding-bottom: 10rpx;
+}
+.sight-page .sight-question-btn{
+  margin-bottom:20rpx;
 }
 </style>
