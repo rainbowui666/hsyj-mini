@@ -242,7 +242,6 @@ export default {
       });
     },
     async signUp () {
-      debugger
       const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
       if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
@@ -409,7 +408,6 @@ export default {
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
         });
-        debugger
         if (this.activityList.group[0]) {
           this.isInvite = true;
         }
@@ -427,7 +425,7 @@ export default {
       }
     },
     gotoActivity () {
-      wx.navigateTo({ url: '/pages/activity/activitySight/main?id=' + this.activityList.activityID });
+      wx.navigateTo({ url: '/pages/activity/activitySight/main?id=' + this.activityList.activityID + '&name=' + this.activityList.activityName + '&hasjoin=' + this.activityList.hasjoin });
     }
   },
   async onShow () {
@@ -441,7 +439,6 @@ export default {
       this.$mp.query.id = this.$mp.query.isShare.split('-')[2]
     }
     await this.getDetailInfo();
-    debugger
     this.isGroup = this.activityList.isGroup === 1 ? this.isStatusTrue : false;
     this.isDoing = this.activityList.hasjoin === '进行中' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
     this.isApply =

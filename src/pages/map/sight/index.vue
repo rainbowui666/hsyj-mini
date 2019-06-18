@@ -341,6 +341,7 @@ export default {
       showQuestion: false,
       isShare: false,
       hasQuestion: false,
+      // showOnSign: false,
       progress: null,
       imageUrl: '',
       src: '',
@@ -362,11 +363,15 @@ export default {
     this.showCameraPopup = false;
     this.showQuestion = false;
     this.hasQuestion = false;
+    // this.showOnSign = false;
     this.content = '';
     if (this.$mp.query.isShare) {
       this.isShare = true
       this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
     }
+    // if (this.$mp.query.activitySight === 'true') {
+    //   this.showOnSign = true;
+    // }
     const res = await api.getSightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
     this.sightObj = res.data ? res.data : {};
     this.swiper.movies = res.data.pics[0]
@@ -574,10 +579,10 @@ export default {
           mask: true
         })
         this.showQuestion = false;
-        await api.wantToSight({
+        await api.attentionActivity({
           studentid: wx.getStorageSync('userInfo').studentID,
           sceneryid: this.$mp.query.id,
-          shstate: 1
+          activityid: this.$mp.query.activityid
         });
         this.signText = '已签到';
       } else {
@@ -590,17 +595,17 @@ export default {
       }
     },
     async onSign () {
-      if (this.$mp.query.activitySight === 'true') {
-        this.showCameraPopup = true;
-        this.showCamera = true;
-      } else {
-        await api.wantToSight({
-          studentid: wx.getStorageSync('userInfo').studentID,
-          sceneryid: this.$mp.query.id,
-          shstate: 1
-        });
-        this.signText = '已签到';
-      }
+      // if (this.$mp.query.activitySight === 'true') {
+      this.showCameraPopup = true;
+      this.showCamera = true;
+      // } else {
+      //   await api.wantToSight({
+      //     studentid: wx.getStorageSync('userInfo').studentID,
+      //     sceneryid: this.$mp.query.id,
+      //     shstate: 1
+      //   });
+      //   this.signText = '已签到';
+      // }
     },
     takePhoto () {
       const ctx = wx.createCameraContext();
@@ -633,48 +638,64 @@ export default {
       wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
     },
     async getDistance () {
-      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
-      if (studentDetail.data.stuNo) {
-        this.uesrStatus = studentDetail.data.shstate;
-        if (this.uesrStatus === 4) {
-          let lat1 = this.centerY;
-          let lng1 = this.centerX;
-          let lat2 = this.sightObj.latitude;
-          let lng2 = this.sightObj.longitude
-          if (!this.sightObj.shstate.checkin) {
-            let La1 = lat1 * Math.PI / 180.0;
+      if (this.$mp.query.hasjoin === '已报名,进行中' || !this.$mp.query.activitySight) {
+        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+        // if (this.$mp.query.startSceneryid === this.sightObj.sceneryID) {
+        if (studentDetail.data.stuNo) {
+          this.uesrStatus = studentDetail.data.shstate;
+          if (this.uesrStatus === 4) {
+            let lat1 = this.centerY;
+            let lng1 = this.centerX;
+            let lat2 = this.sightObj.latitude;
+            let lng2 = this.sightObj.longitude
+            if (!this.sightObj.shstate.checkin) {
+              let La1 = lat1 * Math.PI / 180.0;
 
-            let La2 = lat2 * Math.PI / 180.0;
+              let La2 = lat2 * Math.PI / 180.0;
 
-            let La3 = La1 - La2;
+              let La3 = La1 - La2;
 
-            let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+              let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
 
-            let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+              let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
 
-            let d = s * 6378.137;// 地球半径
-            let result = Math.round(d * 10000);
-            this.distance = result.toFixed(0);
-            if (this.distance < this.sightObj.distance) {
-              this.onSign()
-            } else {
-              wx.showToast({
-                title: '距离太远，无法签到！有效距离' + this.sightObj.distance + '米',
-                icon: 'none',
-                duration: 2000
-              })
+              let d = s * 6378.137;// 地球半径
+              let result = Math.round(d * 10000);
+              this.distance = result.toFixed(0);
+              if (this.distance > this.sightObj.distance) {
+                this.onSign()
+              } else {
+                wx.showToast({
+                  title: '距离太远，无法签到！有效距离' + this.sightObj.distance + '米',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
             }
+          } else {
+            wx.showToast({
+              title: '信息审核中，暂无法签到',
+              icon: 'none',
+              duration: 1000,
+              mask: true
+            })
           }
         } else {
-          wx.showToast({
-            title: '信息审核中，暂无法签到',
-            icon: 'none',
-            duration: 1000,
-            mask: true
-          })
+          wx.navigateTo({ url: '/pages/center/login/main' });
         }
+      // } else {
+      //   wx.showToast({
+      //     title: '请从起点景点开始签到',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
       } else {
-        wx.navigateTo({ url: '/pages/center/login/main' });
+        wx.showToast({
+          title: '未报名活动或活动未开始',
+          icon: 'none',
+          duration: 2000
+        })
       }
     },
     formSubmit (e) {

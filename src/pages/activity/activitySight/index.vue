@@ -23,7 +23,7 @@
         </view>
         <view v-if="isShare" class="icon-group-item-label" @click="goHomeBack">返回首页</view>
       </view>
-      <sight-card :data="sightList" :iconClick="iconClick"/>
+      <sight-card :data="sightList" :iconClick="iconClick" :hasjoin="hasjoin"/>
     </view>
   </view>
 </template>
@@ -39,6 +39,7 @@ export default {
   data () {
     return {
       isShare: false,
+      hasjoin: this.$mp ? this.$mp.query.hasjoin ? this.$mp.query.hasjoin : '' : '',
       sightList: [
         {
           src: '../../../static/images/school.png',
@@ -111,6 +112,7 @@ export default {
     wx.setNavigationBarTitle({
       title: this.$mp.query.name
     });
+    this.hasjoin = this.$mp ? this.$mp.query.hasjoin ? this.$mp.query.hasjoin : '' : '',
     this.isShare = false
     if (this.$mp.query.isShare) {
       this.isShare = true;
@@ -142,7 +144,8 @@ export default {
       });
     },
     iconClick (item) {
-      // wx.navigateTo({ url: 'sightDetail/main?name=' + item.sightName })
+      // :url="item.activityid?'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&activityid='+item.activityid+'&startSceneryid='+item.startSceneryid:'/pages/map/sight/main?&id='+ item.sceneryid"
+      // wx.navigateTo({ url: item.activityid ? '/pages/map/sight/main?activitySight=true&id=' + item.sceneryid + '&activityid=' + item.activityid + '&startSceneryid=' + item.startSceneryid + '&hasjoin=' + this.$mp.query.hasjoin : '/pages/map/sight/main?&id=' + item.sceneryid })
     }
   },
   onShareAppMessage: function (ops) {

@@ -2,7 +2,7 @@
   <view class="page-sight">
     <view v-for="(item,index) in data" :key="index" class="sight-card">
       <navigator
-        :url="item.activityid?'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&activityid='+item.activityid:'/pages/map/sight/main?&id='+ item.sceneryid"
+        :url="item.activityid?'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&activityid='+item.activityid+'&hasjoin='+hasjoin:'/pages/map/sight/main?&id='+ item.sceneryid"
       >
         <view class="sight-card-image">
           <image
@@ -73,6 +73,10 @@ export default {
     data: {
       type: Array,
       default: []
+    },
+    hasjoin: {
+      type: String,
+      default: ''
     },
     iconClick: {
       type: Function,

@@ -115,7 +115,7 @@ export default {
     },
     viewDetail (item) {
       console.log('====', item)
-      wx.navigateTo({ url: 'activitySight/main?id=' + item.activityID + '&name=' + item.activityName });
+      wx.navigateTo({ url: 'activitySight/main?id=' + item.activityID + '&name=' + item.activityName + '&hasjoin=' + item.hasjoin });
     }
   },
   onReachBottom: function () {

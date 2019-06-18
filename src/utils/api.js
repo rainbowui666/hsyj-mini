@@ -83,6 +83,10 @@ const api = {
   wantToActivity: (obj) => request.get('api/student_activity/addEdit?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&shstate=' + obj.shstate, null, {
     baseURL: ApiRootUrl
   }),
+  // 活动景点签到
+  attentionActivity: (obj) => request.get('api/attention_activity/attentionActivity?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&sceneryid=' + obj.sceneryid + '&shstate=1', null, {
+    baseURL: ApiRootUrl
+  }),
   // 景点想去
   wantToSight: (obj) => request.get('api/student_scenery/addEdit?studentid=' + obj.studentid + '&sceneryid=' + obj.sceneryid + '&shstate=' + obj.shstate, null, {
     baseURL: ApiRootUrl
