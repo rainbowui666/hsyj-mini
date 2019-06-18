@@ -677,14 +677,15 @@ export default {
   /*border-top-right-radius: 20px;*/
   bottom: 0px;
   z-index: 1001;
-  padding-bottom: 40px;
+  /* padding-bottom: 40px; */
+  min-height: 50px
   /* height: 60vh; */
 }
-.activity-detail-page .pop .modal .inner .activity-detail-words-btn {
+/* .activity-detail-page .pop .modal .inner .activity-detail-words-btn {
   position: fixed;
   bottom: 0;
   right: 20px;
-}
+} */
 .activity-detail-page
   .pop
   .modal
@@ -720,9 +721,11 @@ export default {
   background: rgba(0, 0, 0, 0.2);
 }
 .activity-detail-page .pop .modal .inner .activity-detail-words-btn {
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  right: 20px;
+  right: 20px; */
+  display:flex;
+  padding:20rpx;
 }
 .activity-detail-page
   .pop
