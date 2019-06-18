@@ -369,15 +369,22 @@ export default {
       this.isShare = true
       this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
     }
-    // if (this.$mp.query.activitySight === 'true') {
+    if (this.$mp.query.activitySight === 'true') {
     //   this.showOnSign = true;
-    // }
-    const res = await api.getSightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
-    this.sightObj = res.data ? res.data : {};
-    this.swiper.movies = res.data.pics[0]
-      ? res.data.pics
-      : [{ sourceAddress: 'default.png' }];
-    this.toAddress = res.data.latitude + ',' + res.data.longitude;
+      const res = await api.getActivitySightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID, activity: this.$mp.query.activityid});
+      this.sightObj = res.data ? res.data : {};
+      this.swiper.movies = res.data.pics[0]
+        ? res.data.pics
+        : [{ sourceAddress: 'default.png' }];
+      this.toAddress = res.data.latitude + ',' + res.data.longitude;
+    } else {
+      const res = await api.getSightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
+      this.sightObj = res.data ? res.data : {};
+      this.swiper.movies = res.data.pics[0]
+        ? res.data.pics
+        : [{ sourceAddress: 'default.png' }];
+      this.toAddress = res.data.latitude + ',' + res.data.longitude;
+    }
     // 判断是否需要答题
     if (this.$mp.query.activityid) {
       const question = await api.getQuestionbyActid({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})

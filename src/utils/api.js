@@ -103,6 +103,10 @@ const api = {
   getSightDetail: (obj) => request.get('api/scenery/getscenerydetail?id=' + obj.id + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
+  // 景点详情
+  getActivitySightDetail: (obj) => request.get('api/scenery/getActivitySceneryDetail?sceneryid=' + obj.id + '&studentid=' + obj.studentid + '&activityid=' + obj.activity, null, {
+    baseURL: ApiRootUrl
+  }),
   // 首页登录授权
   indexLogin: (paramObj) => request.post('api/auth/login', paramObj, {
     baseURL: ApiRootUrl
