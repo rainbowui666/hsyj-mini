@@ -132,7 +132,9 @@ export default {
         'https://hsapi.100eduonline.com/api/activity/frontList?pageindex=' +
         this.pageindex +
         '&pagesize=' +
-        this.pagesize,
+        this.pagesize +
+        '&studentid=' +
+        wx.getStorageSync('userInfo').studentID,
       method: 'GET',
       // 请求头部
       header: {

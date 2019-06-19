@@ -185,6 +185,7 @@
               </view>
               <view class="sight-camera-btn">
                 <button type="primary" size="mini" :plain="false" v-if='hasQuestion' @click="uploadPhoto">下一步</button>
+                <button type="primary" size="mini" :plain="false" v-else @click="photoCommit">确定</button>
               </view>
             </scroll-view>
           </view>
@@ -615,6 +616,43 @@ export default {
           duration: 1000,
           mask: true
         })
+      }
+    },
+    async photoCommit () {
+      if (this.$mp.query.activitySight === 'true') {
+        const data = await api.attentionActivity({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          sceneryid: this.$mp.query.id,
+          activityid: this.$mp.query.activityid
+        });
+        if (data.errmsg !== '失败,第一个签到景点必须为起点') {
+          this.signText = '已签到';
+        } else {
+          wx.showToast({
+            title: '失败,第一个签到景点必须为起点',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
+      } else {
+        if (this.uploadSuccess) {
+          await api.wantToSight({
+            studentid: wx.getStorageSync('userInfo').studentID,
+            sceneryid: this.$mp.query.id,
+            shstate: 1
+          });
+          this.showCameraPopup = false;
+          this.showCamera = false;
+          this.signText = '已签到';
+        } else {
+          wx.showToast({
+            title: '请先上传照片',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
       }
     },
     async onSign () {
