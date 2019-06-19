@@ -723,7 +723,9 @@ export default {
               let d = s * 6378.137;// 地球半径
               let result = Math.round(d * 10000);
               this.distance = result.toFixed(0);
-              if (this.distance > this.sightObj.distance) {
+              debugger
+              let limitDisance = this.sightObj.distance + 300;
+              if (this.distance < limitDisance) {
                 this.onSign()
               } else {
                 wx.showToast({
