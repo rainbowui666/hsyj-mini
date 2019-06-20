@@ -30,6 +30,7 @@
                 class="slide-image"
                 @click="navigatoTo(item)"
               />
+              <div class="bannerHead">{{item.activityName ? item.activityName : ''}}</div>
             </swiper-item>
           </block>
         </swiper>
@@ -174,6 +175,7 @@ export default {
         studentid: wx.getStorageSync('userInfo').studentID
       });
       this.movies = res1.data.activitydata ? res1.data.activitydata : [];
+      console.log('this.movies', this.movies)
       this.imgList = res1.data.scenerydata ? res1.data.scenerydata : [];
       const res2 = await api.getRecommendMessageList({
         pageindex: this.pageindex,
@@ -465,6 +467,19 @@ export default {
   border-radius:16rpx;
   overflow:hidden;
   padding-right: 10rpx
+}
+.bannerHead{
+  position:absolute;
+  top:60rpx;
+  left:0;
+  font-size:34rpx;
+  background-color:rgba(210,81,54,0.5);
+  padding:10rpx 30rpx 10rpx 60rpx;
+  color:#fff;
+  border-top-right-radius:10rpx;
+  border-bottom-right-radius:10rpx;
+  max-width:250rpx;
+  letter-spacing:12px;
 }
 </style>
 
