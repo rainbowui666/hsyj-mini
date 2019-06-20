@@ -96,6 +96,7 @@
     </view>
     <view v-if="isShare" @click="goHomeBack">返回首页</view>
     <wux-popup
+      :title="groupName+'小队'"
       position="center"
       :visible="isTwoCode"
       :closable="true"
@@ -186,6 +187,7 @@ export default {
       isCreat: false,
       isInvite: false,
       isTwoCode: false,
+      groupName: '',
       content: '',
       teamName: '',
       defaultImg: 'https://cdn.100eduonline.com/mini-images/default.png',
@@ -294,6 +296,7 @@ export default {
       }
     },
     async onInviteBtn () {
+      this.groupName = this.activityList.group[0].groupName
       let url1 = 'https://hsapi.100eduonline.com/api/group/showQr?url='
       let url =
         'https://hsapi.100eduonline.com/api/group/joinGroup?groupid=' +
@@ -315,11 +318,12 @@ export default {
     async onCreatConfirm () {
       await api.addTeam({
         id: this.activityList.activityID,
-        groupname: this.teamName
+        groupname: this.teamName,
+        studentid: wx.getStorageSync('userInfo').studentID
       });
-      this.getDetailInfo();
-
+      await this.getDetailInfo();
       this.isCreat = false;
+      this.onInviteBtn();
     },
     hideWords () {
       this.showWords = false;
@@ -429,6 +433,7 @@ export default {
     }
   },
   async onShow () {
+    this.groupName = '';
     this.content = '';
     this.isShare = false
     this.showComment = false
