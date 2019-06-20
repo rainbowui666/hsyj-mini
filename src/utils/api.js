@@ -146,6 +146,10 @@ const api = {
   // 学生详细信息
   getStudentDetail: (obj) => request.get('/api/student/getStudentDetail?studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
+  }),
+  // 确认扫码
+  readyScan: (obj) => request.get('/api/group/readyScan?studentid=' + obj.studentid, null, {
+    baseURL: ApiRootUrl
   })
 }
 

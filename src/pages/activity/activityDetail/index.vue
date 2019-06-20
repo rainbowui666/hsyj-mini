@@ -384,18 +384,21 @@ export default {
         element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
       });
     },
-    scan () {
-      wx.scanCode({
-        success: res => {
-          wx.showToast({
-            title: '加入成功',
-            icon: 'success',
-            duration: 2000// 持续的时间
-          })
-        },
-        fail: res => {
-        }
-      });
+    async scan () {
+      const res = await api.readyScan({ studentid: wx.getStorageSync('userInfo').studentID })
+      if (res.data.scan) {
+        wx.scanCode({
+          success: res => {
+            wx.showToast({
+              title: '加入成功',
+              icon: 'success',
+              duration: 2000// 持续的时间
+            })
+          },
+          fail: res => {
+          }
+        });
+      }
     },
     async getDetailInfo () {
       if (this.$mp.query.isGroup === '1') {
@@ -433,6 +436,7 @@ export default {
     }
   },
   async onShow () {
+    this.isTwoCode = false;
     this.groupName = '';
     this.content = '';
     this.isShare = false
