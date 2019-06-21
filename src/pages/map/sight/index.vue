@@ -364,6 +364,7 @@ export default {
     this.showCameraPopup = false;
     this.showQuestion = false;
     this.hasQuestion = false;
+    this.showTakePhoto = true;
     // this.showOnSign = false;
     this.content = '';
     if (this.$mp.query.isShare) {
@@ -468,6 +469,7 @@ export default {
         duration: 1000,
         mask: true
       })
+      this.showTakePhoto = false;
       this.showCameraPopup = true;
       this.uploadSuccess = true;
     },

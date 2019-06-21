@@ -56,44 +56,53 @@
         :extra="activityList.startAddress"
       ></wux-cell>
     </view>
-<view class="bottom-btn">
+    <view class="bottom-btn" v-if="!isGroup">
       <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
-      <button v-if="isApply&&!isDoing&&!isComplete&&!isGroup" class="single_btn_isApply">
+      <button v-if="isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
           <view>已报名</view>
         </view>
       </button>
-      <button v-if="isDoing&&!isGroup&&!isComplete&&isApply" class="single_btn_isDoing" @click="gotoActivity">进入活动</button>
-      <button v-if="isComplete" class="single_btn" >已完成</button>
+      <button
+        v-if="isDoing&&!isComplete&&isApply"
+        class="single_btn_isDoing"
+        @click="gotoActivity"
+      >进入活动</button>
+      <button v-if="isComplete" class="single_btn">已完成</button>
     </view>
-    <view v-if="isGroup&&isApply&&!isDoing" class="group_btn">
-      <view class="group_btn_disApply">
-        <button @click="scan">加入团队</button>
+    <view class="bottom-btn" v-else>
+      <button v-if="disApply&&!isComplete&&!isDoing" class="single_btn" @click="signUp">报名</button>
+      <button v-if="isComplete" class="single_btn">已完成</button>
+      <view v-if="isApply&&!isDoing" class="group_btn">
+        <view class="group_btn_disApply">
+          <button @click="scan">加入团队</button>
+        </view>
+        <view v-if="!isInvite" class="group_btn_disApply">
+          <button @click="changeCreatBtn">创建团队</button>
+        </view>
+        <view v-if="isInvite" class="group_btn_disApply">
+          <button @click="onInviteBtn">出示邀请码</button>
+        </view>
       </view>
-      <view v-if="!isInvite" class="group_btn_disApply">
-        <button @click="changeCreatBtn">创建团队</button>
+      <view v-if="isDoing" class="group_btn">
+        <view class="group_btn_disApply">
+          <button>活动统计</button>
+        </view>
+        <view class="group_btn_doing">
+          <button @click="gotoActivity">进入活动</button>
+        </view>
       </view>
-      <view v-if="isInvite" class="group_btn_disApply">
-        <button @click="onInviteBtn">出示邀请码</button>
-      </view>
-    </view>
-    <view v-if="isGroup&&isApply&&isDoing" class="group_btn">
-      <view class="group_btn_disApply">
-        <button>活动统计</button>
-      </view>
-      <view class="group_btn_doing">
-        <button @click="gotoActivity">进入活动</button>
-      </view>
-    </view>
-    <view>
-      <view class="activity-detail-desc-rows">
-        <view class="activity-detail-desc-rows-inner">
-          <text class="explain">活动说明：</text>
-          <text>&nbsp;{{activityList.shdesc}}</text>
+      <view>
+        <view class="activity-detail-desc-rows">
+          <view class="activity-detail-desc-rows-inner">
+            <text class="explain">活动说明：</text>
+            <text>&nbsp;{{activityList.shdesc}}</text>
+          </view>
         </view>
       </view>
     </view>
+
     <view v-if="isShare" @click="goHomeBack">返回首页</view>
     <wux-popup
       :title="groupName+'小队'"
@@ -140,7 +149,7 @@
               <view class="activity-detail-words-content">
                 <text>&nbsp;{{ item.content }}</text>
               </view>-->
-              <message-card :data="item" :showTime='false'/>
+              <message-card :data="item" :showTime="false"/>
             </view>
           </view>
           <view class="activity-detail-words-btn">
@@ -244,41 +253,48 @@ export default {
       });
     },
     async signUp () {
-      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      const studentDetail = await api.getStudentDetail({
+        studentid: wx.getStorageSync('userInfo').studentID
+      });
       if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
         if (this.uesrStatus === 4) {
-          if (this.activityList.hasjoin === '进行中' && this.activityList.isGroup) {
-            wx.showToast({
-              title: '团体活动已开始，无法报名',
-              icon: 'none',
-              duration: 1000,
-              mask: true
-            })
-          } else {
-            await api.wantToActivity({
-              studentid: wx.getStorageSync('userInfo').studentID,
-              activityid: this.activityList.activityID,
-              shstate: 1
-            });
-            this.disApply = false;
-            this.isApply = true;
-            this.getDetailInfo()
-          }
+          // if (
+          //   this.activityList.hasjoin === '进行中' &&
+          //   this.activityList.isGroup
+          // ) {
+          //   wx.showToast({
+          //     title: '团体活动已开始，无法报名',
+          //     icon: 'none',
+          //     duration: 1000,
+          //     mask: true
+          //   });
+          // } else {
+          await api.wantToActivity({
+            studentid: wx.getStorageSync('userInfo').studentID,
+            activityid: this.activityList.activityID,
+            shstate: 1
+          });
+          this.disApply = false;
+          this.isApply = true;
+          this.getDetailInfo();
+          // }
         } else {
           wx.showToast({
             title: '信息审核中，暂无法报名',
             icon: 'none',
             duration: 1000,
             mask: true
-          })
+          });
         }
       } else {
         wx.navigateTo({ url: '/pages/center/login/main' });
       }
     },
     async changeCreatBtn () {
-      const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      const studentDetail = await api.getStudentDetail({
+        studentid: wx.getStorageSync('userInfo').studentID
+      });
       if (studentDetail.data.stuNo) {
         this.uesrStatus = studentDetail.data.shstate;
         if (this.uesrStatus === 4) {
@@ -289,15 +305,15 @@ export default {
             icon: 'none',
             duration: 1000,
             mask: true
-          })
+          });
         }
       } else {
         wx.navigateTo({ url: '/pages/center/login/main' });
       }
     },
     async onInviteBtn () {
-      this.groupName = this.activityList.group[0].groupName
-      let url1 = 'https://hsapi.100eduonline.com/api/group/showQr?url='
+      this.groupName = this.activityList.group[0].groupName;
+      let url1 = 'https://hsapi.100eduonline.com/api/group/showQr?url=';
       let url =
         'https://hsapi.100eduonline.com/api/group/joinGroup?groupid=' +
         this.activityList.group[0].groupid +
@@ -306,7 +322,7 @@ export default {
         '&activityid=' +
         this.activityList.activityID;
       // const res = await api.getQRCode({url: url});
-      this.svgSrc = url1 + url
+      this.svgSrc = url1 + url;
       this.isTwoCode = true;
     },
     onTwoCodeClose () {
@@ -341,9 +357,9 @@ export default {
           icon: 'none',
           duration: 1000,
           mask: true
-        })
+        });
       }
-      this.getMessage()
+      this.getMessage();
       this.showComment = false;
       // this.showWords = true;
     },
@@ -381,22 +397,25 @@ export default {
       });
       this.wordsList = res.data.data ? res.data.data : [];
       this.wordsList.forEach(element => {
-        element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
+        element.createdate = dayjs(element.createdate).format(
+          'YYYY-MM-DD HH:mm:ss'
+        );
       });
     },
     async scan () {
-      const res = await api.readyScan({ studentid: wx.getStorageSync('userInfo').studentID })
+      const res = await api.readyScan({
+        studentid: wx.getStorageSync('userInfo').studentID
+      });
       if (res.data.scan) {
         wx.scanCode({
           success: res => {
             wx.showToast({
               title: '加入成功',
               icon: 'success',
-              duration: 2000// 持续的时间
-            })
+              duration: 2000 // 持续的时间
+            });
           },
-          fail: res => {
-          }
+          fail: res => {}
         });
       }
     },
@@ -407,11 +426,21 @@ export default {
           studentid: wx.getStorageSync('userInfo').studentID
         });
         this.activityList = res.data ? res.data : [];
-        this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
-        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0 && this.isApply) {
-          this.isDoing = true
+        this.activityList.startDate = dayjs(this.activityList.startDate).format(
+          'YYYY-MM-DD HH:mm:ss'
+        );
+        if (
+          dayjs(dayjs().format('YYYY-MM-DD')).diff(
+            dayjs(this.activityList.startDate),
+            'day'
+          ) >= 0 &&
+          this.isApply
+        ) {
+          this.isDoing = true;
         }
-        this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
+        this.activityList.endDate = dayjs(this.activityList.endDate).format(
+          'YYYY-MM-DD HH:mm:ss'
+        );
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
         });
@@ -419,12 +448,25 @@ export default {
           this.isInvite = true;
         }
       } else {
-        const res = await api.getActivityDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
+        const res = await api.getActivityDetail({
+          id: this.$mp.query.id,
+          studentid: wx.getStorageSync('userInfo').studentID
+        });
         this.activityList = res.data ? res.data : [];
-        this.activityList.startDate = dayjs(this.activityList.startDate).format('YYYY-MM-DD HH:mm:ss')
-        this.activityList.endDate = dayjs(this.activityList.endDate).format('YYYY-MM-DD HH:mm:ss')
-        if (dayjs(dayjs().format('YYYY-MM-DD')).diff(dayjs(this.activityList.startDate), 'day') >= 0 && this.isApply) {
-          this.isDoing = true
+        this.activityList.startDate = dayjs(this.activityList.startDate).format(
+          'YYYY-MM-DD HH:mm:ss'
+        );
+        this.activityList.endDate = dayjs(this.activityList.endDate).format(
+          'YYYY-MM-DD HH:mm:ss'
+        );
+        if (
+          dayjs(dayjs().format('YYYY-MM-DD')).diff(
+            dayjs(this.activityList.startDate),
+            'day'
+          ) >= 0 &&
+          this.isApply
+        ) {
+          this.isDoing = true;
         }
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
@@ -432,26 +474,50 @@ export default {
       }
     },
     gotoActivity () {
-      wx.navigateTo({ url: '/pages/activity/activitySight/main?id=' + this.activityList.activityID + '&name=' + this.activityList.activityName + '&hasjoin=' + this.activityList.hasjoin });
+      if (this.isGroup && !this.isApply) {
+        wx.showToast({
+          title: '您未报名该活动，无法进入活动',
+          icon: 'none',
+          duration: 3000,
+          mask: true
+        });
+      } else {
+        wx.navigateTo({
+          url:
+            '/pages/activity/activitySight/main?id=' +
+            this.activityList.activityID +
+            '&name=' +
+            this.activityList.activityName +
+            '&hasjoin=' +
+            this.activityList.hasjoin
+        });
+      }
     }
   },
   async onShow () {
     this.isTwoCode = false;
     this.groupName = '';
     this.content = '';
-    this.isShare = false
-    this.showComment = false
-    this.showWords = false
+    this.isShare = false;
+    this.showComment = false;
+    this.showWords = false;
     if (this.$mp.query.isShare) {
-      this.isShare = true
-      this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
-      this.$mp.query.id = this.$mp.query.isShare.split('-')[2]
+      this.isShare = true;
+      this.$mp.query.id = this.$mp.query.isShare.split('-')[1];
+      this.$mp.query.id = this.$mp.query.isShare.split('-')[2];
     }
     await this.getDetailInfo();
     this.isGroup = this.activityList.isGroup === 1 ? this.isStatusTrue : false;
-    this.isDoing = this.activityList.hasjoin === '进行中' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
+    this.isDoing =
+      this.activityList.hasjoin === '进行中' ||
+      this.activityList.hasjoin === '已报名,进行中'
+        ? this.isStatusTrue
+        : false;
     this.isApply =
-      this.activityList.hasjoin === '已报名' || this.activityList.hasjoin === '已报名,进行中' ? this.isStatusTrue : false;
+      this.activityList.hasjoin === '已报名' ||
+      this.activityList.hasjoin === '已报名,进行中'
+        ? this.isStatusTrue
+        : false;
     this.isComplete =
       this.activityList.hasjoin === '已完成' ? this.isStatusTrue : false;
     this.disApply = !this.isApply ? this.isStatusTrue : false;
@@ -470,7 +536,11 @@ export default {
   onShareAppMessage: function (ops) {
     return {
       title: this.activityList.activityName,
-      path: '/pages/activity/activityDetail/main?isShare=1-' + this.$mp.query.isGroup + '-' + this.$mp.query.id
+      path:
+        '/pages/activity/activityDetail/main?isShare=1-' +
+        this.$mp.query.isGroup +
+        '-' +
+        this.$mp.query.id
     };
   }
 };
@@ -635,23 +705,30 @@ export default {
   line-height: 30px;
   width: 100%;
 }
-.activity-detail-page .activity-detail-words-item .scenic-spot-message-text-group {
+.activity-detail-page
+  .activity-detail-words-item
+  .scenic-spot-message-text-group {
   position: relative;
   display: flex;
-  border:none;
-  border-radius:0;
-  padding:0;
-  margin-left:10rpx;
-  flex-grow:1;
-  border-bottom:1px solid #aaa;
-  margin:0 20rpx;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin-left: 10rpx;
+  flex-grow: 1;
+  border-bottom: 1px solid #aaa;
+  margin: 0 20rpx;
 }
-.activity-detail-page .activity-detail-words-item .scenic-spot-message-text-label ._view:first-child{
-  font-size: 30rpx
+.activity-detail-page
+  .activity-detail-words-item
+  .scenic-spot-message-text-label
+  ._view:first-child {
+  font-size: 30rpx;
 }
-.activity-detail-page .activity-detail-words-item .scenic-spot-message-text-message{
+.activity-detail-page
+  .activity-detail-words-item
+  .scenic-spot-message-text-message {
   line-height: 40rpx;
-  padding-bottom:10rpx;
+  padding-bottom: 10rpx;
 }
 .activity-detail-page .activity-detail-words-title {
   min-height: 30px;
@@ -687,7 +764,7 @@ export default {
   bottom: 0px;
   z-index: 1001;
   /* padding-bottom: 40px; */
-  min-height: 50px
+  min-height: 50px;
   /* height: 60vh; */
 }
 /* .activity-detail-page .pop .modal .inner .activity-detail-words-btn {
@@ -702,7 +779,7 @@ export default {
   .activity-detail-words-btn
   button:last-child {
   margin-left: 20px;
-  background: #d25136
+  background: #d25136;
 }
 .activity-detail-page .pop-hide,
 .activity-detail-page .modal-hide,
@@ -733,8 +810,8 @@ export default {
   /* position: fixed;
   bottom: 0;
   right: 20px; */
-  display:flex;
-  padding:20rpx;
+  display: flex;
+  padding: 20rpx;
 }
 .activity-detail-page
   .pop
@@ -743,7 +820,7 @@ export default {
   .activity-detail-words-btn
   button:last-child {
   margin-left: 20px;
-  background: #d25136
+  background: #d25136;
 }
 .activity-detail-page .activity-detail-comment-btn {
   /* margin-top: 15px; */
@@ -753,13 +830,13 @@ export default {
   justify-content: center;
 }
 .activity-detail-page .activity-detail-comment textarea {
-  margin:10px;
-  height:120rpx;
-  border:1px solid #ddd;
-  text-align:left;
-  width:100%;
-  padding:20rpx;
-  margin-top:20px;
+  margin: 10px;
+  height: 120rpx;
+  border: 1px solid #ddd;
+  text-align: left;
+  width: 100%;
+  padding: 20rpx;
+  margin-top: 20px;
 }
 .activity-detail-page .activity-detail-comment input {
   margin-top: 15px;
@@ -862,7 +939,7 @@ export default {
   flex-direction: row;
   position: absolute;
   top: 100rpx;
-  width: 100%
+  width: 100%;
 }
 .float-container-image {
   width: 240rpx;
@@ -871,8 +948,8 @@ export default {
   overflow: hidden;
   margin: 0 20rpx;
 }
-.float-container-detail{
-  flex-grow:1;
+.float-container-detail {
+  flex-grow: 1;
 }
 .float-container-detail > .title {
   font-size: 18px;
