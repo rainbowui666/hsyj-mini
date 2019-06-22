@@ -7,7 +7,7 @@
         <block v-for="(item, index) in movies" :key="index">
           <swiper-item>
             <image
-              :src="'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress"
+              :src="item.pics[0]?item.pics[0].sourceAddress?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:'https://cdn.100eduonline.com/mini-images/default.png':'https://cdn.100eduonline.com/mini-images/default.png'"
               class="slide-image"
               @click="navigatoTo(item)"
             />
