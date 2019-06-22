@@ -727,12 +727,13 @@ export default {
               let d = s * 6378.137;// 地球半径
               let result = Math.round(d * 10000);
               this.distance = result.toFixed(0);
-              let limitDisance = this.sightObj.distance + 300;
+              let limitDisance = this.sightObj.distance + 350;
               if (this.distance < limitDisance) {
                 this.onSign()
               } else {
+                let farDistance = this.distance - limitDisance + 200;
                 wx.showToast({
-                  title: '距离太远，无法签到！有效距离' + this.sightObj.distance + '米',
+                  title: '距离太远，无法签到！距离签到地点还有' + farDistance + '米',
                   icon: 'none',
                   duration: 2000
                 })
