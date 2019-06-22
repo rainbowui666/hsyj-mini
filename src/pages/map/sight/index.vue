@@ -628,6 +628,8 @@ export default {
           activityid: this.$mp.query.activityid
         });
         if (data.errmsg !== '失败,第一个签到景点必须为起点') {
+          this.showCameraPopup = false;
+          this.showCamera = false;
           this.signText = '已签到';
         } else {
           wx.showToast({
