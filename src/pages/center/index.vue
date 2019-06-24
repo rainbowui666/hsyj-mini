@@ -106,12 +106,19 @@ export default {
     });
     this.discussCount = discussRes.data ? discussRes.data.counta : 0;
 
-    const activityRes = await api.getMyActivityList({
-      pageindex: this.pageindex,
-      pagesize: this.pagesize,
-      studentid: wx.getStorageSync('userInfo').studentID
-    });
-    this.activityCount = activityRes.data ? activityRes.data.counta : 0;
+    // const activityRes = await api.getMyActivityList({
+    //   pageindex: this.pageindex,
+    //   pagesize: this.pagesize,
+    //   studentid: wx.getStorageSync('userInfo').studentID
+    // });
+    // this.activityCount = activityRes.data ? activityRes.data.count : 0;
+    const allCount = await api.getMyCount({
+      studentid: wx.getStorageSync('userInfo').studentID,
+      shstate: 1
+    })
+    // this.signinCount = allCount.data[0].attentionSceneryTimes
+    // this.discussCount = allCount.data[0].attentionDiscuss
+    this.activityCount = allCount.data[0].attentionJoinActivityTimes
     this.integralCount = this.signinCount + this.discussCount + this.activityCount;
   },
   methods: {

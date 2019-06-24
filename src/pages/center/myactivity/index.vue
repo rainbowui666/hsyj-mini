@@ -311,7 +311,7 @@ export default {
       },
       success: res => {
         // 回调函数
-        let newActivityList = res.data.data.data ? res.data.data.data : [];
+        let newActivityList = res.data && res.data.data && res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
           element.thumbsupImg =
             'https://cdn.100eduonline.com/mini-images/thumbsUp.png';

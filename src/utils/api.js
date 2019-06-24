@@ -139,6 +139,10 @@ const api = {
   getMyActivityList: (obj) => request.get('/api/myself/getMyActivityList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid + '&hasjoin=' + obj.hasjoin, null, {
     baseURL: ApiRootUrl
   }),
+  // 我的计次
+  getMyCount: (obj) => request.get('/api/myself/getMyall?studentid=' + obj.studentid + '&shstate=' + obj.shstate, null, {
+    baseURL: ApiRootUrl
+  }),
   // 上传自拍图片
   sourceAdd: (obj) => request.post('/admin/source/add', obj, {
     baseURL: ApiRootUrl
