@@ -10,6 +10,7 @@
     "wux-tabs": "../../../static/wux/tabs/index",
     "wux-tab": "../../../static/wux/tab/index",
     "wux-badge": "../../../static/wux/badge/index",
+    "wux-timeago": "../../../static/wux/timeago/index",
     "wux-tag": "../../../static/wux/tag/index"
   }
 }

@@ -10,7 +10,7 @@
     <view class="scenic-spot-message-text-content">
       <view class="scenic-spot-message-text-label">
         <view>{{data.studentName?data.studentName:'大实践家'}}</view>
-        <view>{{showTime?data.createdate:betweenDays}}</view>
+        <wux-timeago :to="data.createdate" lang="zh_CN" refreshable />
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <image class="thumbsUpImgClass" v-if="imageName!==undefine&&imageName!==null" :src="'https://cdn.100eduonline.com/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
           <view>{{data.clicknum}}</view>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 export default {
   props: {
     data: {
@@ -50,18 +50,24 @@ export default {
     showTime: {
       type: Boolean,
       default: false
+    },
+    date: {
+      type: String,
+      default: null
     }
   },
   data () {
     return {
-      betweenDays: 0
+      lang: 'zh_CN',
+      to: null
     };
   },
   mounted () {
-    let today = dayjs().format('YYYY-MM-DD')
-    let index = this.data.createdate ? this.data.createdate.indexOf(' ') : 0
-    let theday = this.data.createdate ? this.data.createdate.substring(0, index) : ''
-    this.betweenDays = dayjs(today).diff(dayjs(theday), 'day') ? dayjs(today).diff(dayjs(theday), 'day') + '天前' : '10天前'
+    // this.to = new Date().getTime()
+  //   let today = dayjs().format('YYYY-MM-DD')
+  //   let index = this.data.createdate ? this.data.createdate.indexOf(' ') : 0
+  //   let theday = this.data.createdate ? this.data.createdate.substring(0, index) : ''
+  //   this.betweenDays = dayjs(today).diff(dayjs(theday), 'day') ? dayjs(today).diff(dayjs(theday), 'day') + '天前' : '10天前'
   },
   methods: {
     thumbsupClick (item, index) {

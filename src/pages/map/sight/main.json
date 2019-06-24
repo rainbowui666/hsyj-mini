@@ -9,6 +9,7 @@
     "wux-badge": "../../../static/wux/badge/index",
     "wux-popup": "../../../static/wux/popup/index",
     "wux-cell": "../../../static/wux/cell/index",
+    "wux-timeago": "../../../static/wux/timeago/index",
     "wux-upload": "../../../static/wux/upload/index"
   }
 }
