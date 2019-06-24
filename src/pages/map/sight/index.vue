@@ -13,15 +13,15 @@
     </view>
     <view class="backgroubd-modal"/>
     <view class="sight-page">
-      <view class="sight-audio" >
+      <view class="sight-audio">
         <view class="sight-audio-container">
           <image
-              src="https://cdn.100eduonline.com/mini-images/sceneryAudio.png"
-              class="slide-audio-image"
-              mode="widthFix"
-              v-if='sightObj.soundurl'
-              @click="showAudio"
-            />
+            src="https://cdn.100eduonline.com/mini-images/sceneryAudio.png"
+            class="slide-audio-image"
+            mode="widthFix"
+            v-if="sightObj.soundurl"
+            @click="showAudio"
+          />
           <!-- <audio :name="name" :author="author" :src="audioSrc" id="myAudio" controls loop></audio> -->
         </view>
       </view>
@@ -74,7 +74,7 @@
               type="warn"
               size="default"
               :plain="false"
-              @click="getDistance"
+              @click="beforeGetDistance"
             >{{signText}}</button>
             <!-- <wux-upload 
                 listType="picture-card"
@@ -86,7 +86,7 @@
                 @fail="onFail"
                 @remove="onRemove">
                     <button type="default">Click to Upload</button>
-                </wux-upload> -->
+            </wux-upload>-->
           </view>
         </view>
         <view class="sight-introduction-video">
@@ -103,7 +103,7 @@
                 danmu-btn
                 controls
               ></video>
-            </wux-popup> -->
+            </wux-popup>-->
             <view class="sight-introduction-video-text">
               <text>点击播放 视频讲解</text>
             </view>
@@ -171,20 +171,27 @@
             <scroll-view :class="showCameraPopup?'inner':'inner-hide'" :scroll-y="true">
               <view class="sight-camera" v-if="showCamera">
                 <!-- <camera device-position="back" flash="off" style="width: 100%; height: 300px;"></camera> -->
-                <wux-upload 
-                listType="picture-card"
-                :header="header"
-                :formData="formData"
-                url="https://hsapi.100eduonline.com/api/upload/wxUpload"
-                @change="onChange"
-                @success="onSuccess" 
-                @fail="onFail"
-                @remove="onRemove">
-                <button type="default" v-if='showTakePhoto'>拍照上传</button>
+                <wux-upload
+                  listType="picture-card"
+                  :header="header"
+                  :formData="formData"
+                  url="https://hsapi.100eduonline.com/api/upload/wxUpload"
+                  @change="onChange"
+                  @success="onSuccess"
+                  @fail="onFail"
+                  @remove="onRemove"
+                >
+                  <button type="default" v-if="showTakePhoto">拍照上传</button>
                 </wux-upload>
               </view>
               <view class="sight-camera-btn">
-                <button type="primary" size="mini" :plain="false" v-if='hasQuestion' @click="uploadPhoto">下一步</button>
+                <button
+                  type="primary"
+                  size="mini"
+                  :plain="false"
+                  v-if="hasQuestion"
+                  @click="uploadPhoto"
+                >下一步</button>
                 <button type="primary" size="mini" :plain="false" v-else @click="photoCommit">确定</button>
               </view>
             </scroll-view>
@@ -357,7 +364,7 @@ export default {
     };
   },
   async onShow () {
-    this.isShare = false
+    this.isShare = false;
     this.showPopUp = false;
     this.showWords = false;
     this.showComment = false;
@@ -368,19 +375,26 @@ export default {
     // this.showOnSign = false;
     this.content = '';
     if (this.$mp.query.isShare) {
-      this.isShare = true
-      this.$mp.query.id = this.$mp.query.isShare.split('-')[1]
+      this.isShare = true;
+      this.$mp.query.id = this.$mp.query.isShare.split('-')[1];
     }
     if (this.$mp.query.activitySight === 'true') {
-    //   this.showOnSign = true;
-      const res = await api.getActivitySightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID, activity: this.$mp.query.activityid});
+      //   this.showOnSign = true;
+      const res = await api.getActivitySightDetail({
+        id: this.$mp.query.id,
+        studentid: wx.getStorageSync('userInfo').studentID,
+        activity: this.$mp.query.activityid
+      });
       this.sightObj = res.data ? res.data : {};
       this.swiper.movies = res.data.pics[0]
         ? res.data.pics
         : [{ sourceAddress: 'default.png' }];
       this.toAddress = res.data.latitude + ',' + res.data.longitude;
     } else {
-      const res = await api.getSightDetail({id: this.$mp.query.id, studentid: wx.getStorageSync('userInfo').studentID});
+      const res = await api.getSightDetail({
+        id: this.$mp.query.id,
+        studentid: wx.getStorageSync('userInfo').studentID
+      });
       this.sightObj = res.data ? res.data : {};
       this.swiper.movies = res.data.pics[0]
         ? res.data.pics
@@ -389,28 +403,31 @@ export default {
     }
     // 判断是否需要答题
     if (this.$mp.query.activityid) {
-      const question = await api.getQuestionbyActid({activityid: this.$mp.query.activityid, sceneryid: this.sightObj.sceneryID})
-      console.log('question-------', question)
+      const question = await api.getQuestionbyActid({
+        activityid: this.$mp.query.activityid,
+        sceneryid: this.sightObj.sceneryID
+      });
+      console.log('question-------', question);
       if (question.data[0]) {
-        this.hasQuestion = true
-        this.question = question.data[0].questionTitle
-        this.rightAnswer = question.data[0].rightAnswer
-        this.radioList = []
-        this.radioList.push({ name: 'A', value: question.data[0].answerA })
-        this.radioList.push({ name: 'B', value: question.data[0].answerB })
-        this.radioList.push({ name: 'C', value: question.data[0].answerC })
-        this.radioList.push({ name: 'D', value: question.data[0].answerD })
+        this.hasQuestion = true;
+        this.question = question.data[0].questionTitle;
+        this.rightAnswer = question.data[0].rightAnswer;
+        this.radioList = [];
+        this.radioList.push({ name: 'A', value: question.data[0].answerA });
+        this.radioList.push({ name: 'B', value: question.data[0].answerB });
+        this.radioList.push({ name: 'C', value: question.data[0].answerC });
+        this.radioList.push({ name: 'D', value: question.data[0].answerD });
       }
     }
     if (this.sightObj.shstate.checkin) {
-      this.signText = '已签到'
+      this.signText = '已签到';
     } else {
-      this.signText = '签到'
+      this.signText = '签到';
     }
     this.formData = {
       sourcetype: 3,
       insertid: this.$mp.query.id
-    }
+    };
 
     // 取当前位置
     wx.getLocation({
@@ -449,12 +466,12 @@ export default {
       });
     },
     onChange (e) {
-      const { file } = e.detail
+      const { file } = e.detail;
       if (file.status === 'uploading') {
-        this.progress = 0
-        wx.showLoading()
+        this.progress = 0;
+        wx.showLoading();
       } else if (file.status === 'done') {
-        this.imageUrl = file.url
+        this.imageUrl = file.url;
       }
     },
     onSuccess (e) {
@@ -468,15 +485,14 @@ export default {
         icon: 'none',
         duration: 1000,
         mask: true
-      })
+      });
       this.showTakePhoto = false;
       this.showCameraPopup = true;
       this.uploadSuccess = true;
     },
-    onFail (e) {
-    },
+    onFail (e) {},
     onComplete (e) {
-      wx.hideLoading()
+      wx.hideLoading();
     },
     async getMessage () {
       const res = await api.getSightMessage({
@@ -486,7 +502,9 @@ export default {
       });
       this.wordsList = res.data.data ? res.data.data : [];
       this.wordsList.forEach(element => {
-        element.createdate = dayjs(element.createdate).format('YYYY-MM-DD HH:mm:ss')
+        element.createdate = dayjs(element.createdate).format(
+          'YYYY-MM-DD HH:mm:ss'
+        );
       });
     },
     audioPlay () {
@@ -506,10 +524,14 @@ export default {
       this.swiper = swiper;
     },
     showVideo () {
-      wx.navigateTo({url: '/pages/webview/main?videoUrl=' + this.sightObj.videourl})
+      wx.navigateTo({
+        url: '/pages/webview/main?videoUrl=' + this.sightObj.videourl
+      });
     },
     showAudio () {
-      wx.navigateTo({url: '/pages/webview/main?soundurl=' + this.sightObj.soundurl})
+      wx.navigateTo({
+        url: '/pages/webview/main?soundurl=' + this.sightObj.soundurl
+      });
     },
     onClose () {
       this.showPopUp = false;
@@ -550,9 +572,9 @@ export default {
           icon: 'none',
           duration: 1000,
           mask: true
-        })
+        });
       }
-      this.getMessage()
+      this.getMessage();
       this.showComment = false;
       // this.showWords = true;
     },
@@ -573,18 +595,18 @@ export default {
           icon: 'none',
           duration: 1000,
           mask: true
-        })
+        });
       }
     },
     radioChange (e) {
-      this.selectAnswer = e.mp.detail.value
-      this.radioList.forEach((item) => {
+      this.selectAnswer = e.mp.detail.value;
+      this.radioList.forEach(item => {
         if (item.name === this.selectAnswer) {
-          item.checked = true
+          item.checked = true;
         } else {
-          item.checked = false
+          item.checked = false;
         }
-      })
+      });
     },
     async commitQuestion () {
       if (this.selectAnswer === this.rightAnswer) {
@@ -594,7 +616,7 @@ export default {
           icon: 'none',
           duration: 1000,
           mask: true
-        })
+        });
         this.showQuestion = false;
         const data = await api.attentionActivity({
           studentid: wx.getStorageSync('userInfo').studentID,
@@ -609,7 +631,7 @@ export default {
             icon: 'none',
             duration: 1000,
             mask: true
-          })
+          });
         }
       } else {
         wx.showToast({
@@ -617,7 +639,7 @@ export default {
           icon: 'none',
           duration: 1000,
           mask: true
-        })
+        });
       }
     },
     async photoCommit () {
@@ -637,7 +659,7 @@ export default {
             icon: 'none',
             duration: 1000,
             mask: true
-          })
+          });
         }
       } else {
         if (this.uploadSuccess) {
@@ -655,7 +677,7 @@ export default {
             icon: 'none',
             duration: 1000,
             mask: true
-          })
+          });
         }
       }
     },
@@ -676,12 +698,12 @@ export default {
       const ctx = wx.createCameraContext();
       ctx.takePhoto({
         quality: 'high',
-        success: async (res) => {
+        success: async res => {
           this.src = res.tempImagePath;
-          let sourceInfo = {}
-          sourceInfo.sourcetype = 3,
-          sourceInfo.insertid = this.sightObj.sceneryID,
-          sourceInfo.sourceaddress = this.src
+          let sourceInfo = {};
+          (sourceInfo.sourcetype = 3),
+          (sourceInfo.insertid = this.sightObj.sceneryID),
+          (sourceInfo.sourceaddress = this.src);
           await api.sourceAdd(sourceInfo);
         }
       });
@@ -699,12 +721,40 @@ export default {
     navigationClick (item) {
       let latitude = item.latitude;
       let longitude = item.longitude;
-      let title = item.sceneryTitle
-      wx.navigateTo({ url: '../mapGps/main?longitude=' + longitude + '&latitude=' + latitude + '&title=' + title })
+      let title = item.sceneryTitle;
+      wx.navigateTo({
+        url:
+          '../mapGps/main?longitude=' +
+          longitude +
+          '&latitude=' +
+          latitude +
+          '&title=' +
+          title
+      });
+    },
+    beforeGetDistance () {
+      if (this.$mp.query.startSceneryid) {
+        if (parseInt(this.$mp.query.startSceneryid) === parseInt(this.sightObj.sceneryID)) {
+          this.getDistance();
+        } else {
+          wx.showToast({
+            title: '请从起点景点开始签到',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      } else {
+        this.getDistance();
+      }
     },
     async getDistance () {
-      if (this.$mp.query.hasjoin === '已报名,进行中' || !this.$mp.query.activitySight) {
-        const studentDetail = await api.getStudentDetail({studentid: wx.getStorageSync('userInfo').studentID});
+      if (
+        this.$mp.query.hasjoin === '已报名,进行中' ||
+        !this.$mp.query.activitySight
+      ) {
+        const studentDetail = await api.getStudentDetail({
+          studentid: wx.getStorageSync('userInfo').studentID
+        });
         // if (this.$mp.query.startSceneryid === this.sightObj.sceneryID) {
         if (studentDetail.data.stuNo) {
           this.uesrStatus = studentDetail.data.shstate;
@@ -712,7 +762,7 @@ export default {
             let lat1 = this.centerY;
             let lng1 = this.centerX;
             let lat2 = this.sightObj.latitude;
-            let lng2 = this.sightObj.longitude
+            let lng2 = this.sightObj.longitude;
             if (!this.sightObj.shstate.checkin) {
               let La1 = lat1 * Math.PI / 180.0;
 
@@ -722,21 +772,30 @@ export default {
 
               let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
 
-              let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+              let s =
+                2 *
+                Math.asin(
+                  Math.sqrt(
+                    Math.pow(Math.sin(La3 / 2), 2) +
+                      Math.cos(La1) *
+                        Math.cos(La2) *
+                        Math.pow(Math.sin(Lb3 / 2), 2)
+                  )
+                );
 
-              let d = s * 6378.137;// 地球半径
+              let d = s * 6378.137; // 地球半径
               let result = Math.round(d * 10000);
               this.distance = result.toFixed(0);
               let limitDisance = this.sightObj.distance + 350;
               if (this.distance < limitDisance) {
-                this.onSign()
+                this.onSign();
               } else {
                 let farDistance = this.distance - limitDisance + 200;
                 wx.showToast({
                   title: '距离太远，无法签到！距离签到地点还有' + farDistance + '米',
                   icon: 'none',
                   duration: 2000
-                })
+                });
               }
             }
           } else {
@@ -745,39 +804,40 @@ export default {
               icon: 'none',
               duration: 1000,
               mask: true
-            })
+            });
           }
         } else {
           wx.navigateTo({ url: '/pages/center/login/main' });
         }
-      // } else {
-      //   wx.showToast({
-      //     title: '请从起点景点开始签到',
-      //     icon: 'none',
-      //     duration: 2000
-      //   })
-      // }
+        // } else {
+        //   wx.showToast({
+        //     title: '请从起点景点开始签到',
+        //     icon: 'none',
+        //     duration: 2000
+        //   })
+        // }
       } else {
         wx.showToast({
           title: '未报名活动或活动未开始',
           icon: 'none',
           duration: 2000
-        })
+        });
       }
     },
     formSubmit (e) {
       if (!this.sightObj.shstate.checkin) {
-      // this.onSign()
+        // this.onSign()
 
-      // let _this = this;
-      // 调用距离计算接口
+        // let _this = this;
+        // 调用距离计算接口
         this.qqmapsdk.calculateDistance({
-        // mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
-        // from参数不填默认当前地址
-        // 获取表单提交的经纬度并设置from和to参数（示例为string格式）
-        // from: e.detail.value.start || '', // 若起点有数据则采用起点坐标，若为空默认当前地址
+          // mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+          // from参数不填默认当前地址
+          // 获取表单提交的经纬度并设置from和to参数（示例为string格式）
+          // from: e.detail.value.start || '', // 若起点有数据则采用起点坐标，若为空默认当前地址
           to: this.toAddress, // 终点坐标
-          success: res => { // 成功后的回调
+          success: res => {
+            // 成功后的回调
             let result = res.result;
             // let dis = [];
             // for (let i = 0; i < result.elements.length; i++) {
@@ -786,13 +846,13 @@ export default {
             // 设置并更新distance数据
             this.distance = result.elements[0].distance;
             if (this.distance < this.sightObj.distance) {
-              this.onSign()
+              this.onSign();
             } else {
               wx.showToast({
                 title: '距离太远，无法签到！',
                 icon: 'none',
                 duration: 2000
-              })
+              });
             }
           },
           fail: function (error) {
@@ -800,7 +860,7 @@ export default {
               title: '距离太远，无法签到！',
               icon: 'none',
               duration: 2000
-            })
+            });
             console.error(error);
           },
           complete: function (end) {
@@ -845,7 +905,7 @@ export default {
   width: 100%;
   height: 230px;
 }
-.sight-page .slide-audio-image{
+.sight-page .slide-audio-image {
   width: 100%;
 }
 .sight-page .slide-image {
@@ -1109,20 +1169,20 @@ export default {
   bottom: 0;
   background: rgba(0, 0, 0, 0.2);
 }
-.sight-page .pop .modal .inner .sight-words-btn{
-  display:flex;
-  padding:20rpx;
+.sight-page .pop .modal .inner .sight-words-btn {
+  display: flex;
+  padding: 20rpx;
 }
 .sight-page .pop .modal .inner .sight-camera-btn {
   /* position: fixed;
   bottom: 0;
   right: 20px; */
-  display:flex;
-  padding:20rpx;
+  display: flex;
+  padding: 20rpx;
 }
-.sight-page .pop .modal .inner .sight-camera-btn button{
-  margin-left: 0!important;
-  margin: 0 auto!important;
+.sight-page .pop .modal .inner .sight-camera-btn button {
+  margin-left: 0 !important;
+  margin: 0 auto !important;
 }
 .sight-page .pop .modal .inner .sight-words-btn button:last-child,
 .sight-page .pop .modal .inner .sight-camera-btn button:last-child,
@@ -1163,7 +1223,7 @@ export default {
 .sight-page .sight-question {
   display: flex;
   flex-direction: column;
-  padding-top: 20rpx
+  padding-top: 20rpx;
 }
 .sight-page .sight-answer {
   display: flex;
@@ -1176,19 +1236,19 @@ export default {
 }
 .sight-page .sight-answer radio-group label {
   padding: 5px;
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
 }
 .sight-page .sight-question-title {
   display: flex;
   margin-left: 20px;
 }
 .sight-page .sight-question-content {
-  display:flex;
-  text-align:initial;
-  padding-top:10rpx;
-  padding:15rpx 20rpx 10rpx 20rpx;
-  font-size:34rpx;
+  display: flex;
+  text-align: initial;
+  padding-top: 10rpx;
+  padding: 15rpx 20rpx 10rpx 20rpx;
+  font-size: 34rpx;
 }
 .ceshi_prew text {
   color: #fff;
@@ -1280,7 +1340,7 @@ export default {
   line-height: 40rpx;
   padding-bottom: 10rpx;
 }
-.sight-page .sight-question-btn{
-  margin-bottom:20rpx;
+.sight-page .sight-question-btn {
+  margin-bottom: 20rpx;
 }
 </style>
