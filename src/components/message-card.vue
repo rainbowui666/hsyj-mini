@@ -10,7 +10,7 @@
     <view class="scenic-spot-message-text-content">
       <view class="scenic-spot-message-text-label">
         <view>{{data.studentName?data.studentName:'大实践家'}}</view>
-        <wux-timeago :to="data.createdate" lang="zh_CN" refreshable />
+        <wux-timeago class="timeago" :to="data.createdate" lang="zh_CN" refreshable />
         <view class="scenic-spot-message-text-icon-group" @click="click">
           <image class="thumbsUpImgClass" v-if="imageName!==undefine&&imageName!==null" :src="'https://cdn.100eduonline.com/mini-images/'+imageName+'.png'" @click="thumbsupClick(data,index)" mode="widthFix"/>
           <view>{{data.clicknum}}</view>
@@ -132,6 +132,9 @@ export default {
   font-size: 24rpx;
   color: #aaa;
   font-weight: lighter
+}
+.timeago{
+  margin-left: 10px;
 }
 </style>
 
