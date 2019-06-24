@@ -784,7 +784,7 @@ export default {
                 );
 
               let d = s * 6378.137; // 地球半径
-              let result = Math.round(d * 10000);
+              let result = Math.round(d * 10000) / 10;
               this.distance = result.toFixed(0);
               let limitDisance = this.sightObj.distance + 350;
               if (this.distance < limitDisance) {
