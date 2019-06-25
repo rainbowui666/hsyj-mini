@@ -110,19 +110,19 @@ export default {
       pageindex: this.pageindex,
       pagesize: this.pagesize,
       studentid: wx.getStorageSync('userInfo').studentID,
-      hasjoin: '已报名'
+      hasjoin: 0
     });
     const activityRes2 = await api.getMyActivityList({
       pageindex: this.pageindex,
       pagesize: this.pagesize,
       studentid: wx.getStorageSync('userInfo').studentID,
-      hasjoin: '进行中'
+      hasjoin: 1
     });
     const activityRes3 = await api.getMyActivityList({
       pageindex: this.pageindex,
       pagesize: this.pagesize,
       studentid: wx.getStorageSync('userInfo').studentID,
-      hasjoin: '已完成'
+      hasjoin: 2
     });
     let ac1 = activityRes1.data ? activityRes1.data.count : 0;
     let ac2 = activityRes2.data ? activityRes2.data.count : 0;

@@ -39,7 +39,7 @@ export default {
       valueData: '已报名：2次  成功活动：2次  失败活动：1次  进行中：1次',
       pageindex: 1,
       pagesize: 5,
-      keyWord: '已报名',
+      keyWord: 0,
       activityList: [
         // {
         //   src: '../../static/images/fudan.jpg',
@@ -263,13 +263,13 @@ export default {
     },
     onChange (e) {
       if (e.target.key === 'myactivity_tab1') {
-        this.keyWord = '已报名'
+        this.keyWord = 0
         this.getMyActivityList()
       } else if (e.target.key === 'myactivity_tab2') {
-        this.keyWord = '进行中'
+        this.keyWord = 1
         this.getMyActivityList()
       } else {
-        this.keyWord = '已完成'
+        this.keyWord = 2
         this.getMyActivityList()
       }
       this.current = e.target.key;
