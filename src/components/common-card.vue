@@ -44,6 +44,7 @@
           <view v-if="item.hasjoin" class="common-card-content-status">
             <view v-if="item.hasjoin=='进行中'||item.hasjoin=='已报名,进行中'" class="on-status">进行中</view>
             <view v-if="item.hasjoin=='已报名'" class="sign-up-status">{{ item.hasjoin }}</view>
+            <view v-if="item.hasjoin=='已完成'" class="sign-up-status">{{ item.hasjoin }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
           </view>
         </view>

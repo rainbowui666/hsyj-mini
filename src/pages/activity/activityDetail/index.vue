@@ -380,6 +380,7 @@ export default {
       }
     },
     comment () {
+      this.content = '';
       // this.showWords = false;
       this.showComment = true;
     },

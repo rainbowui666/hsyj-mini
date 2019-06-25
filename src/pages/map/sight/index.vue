@@ -245,6 +245,7 @@ export default {
         sourcetype: 3,
         insertid: 41
       },
+      startSightObj: {},
       sightObj: {},
       wordsList: [],
       content: '',
@@ -582,6 +583,7 @@ export default {
       this.showWords = false;
     },
     comment () {
+      this.content = '';
       // this.showWords = false;
       this.showComment = true;
     },
@@ -732,10 +734,29 @@ export default {
           title
       });
     },
-    beforeGetDistance () {
+    async beforeGetDistance () {
       if (this.$mp.query.startSceneryid) {
-        if (parseInt(this.$mp.query.startSceneryid) === parseInt(this.sightObj.sceneryID)) {
-          this.getDistance();
+        if (this.$mp.query.activitySight === 'true') {
+          //   this.showOnSign = true;
+          const res = await api.getActivitySightDetail({
+            id: this.$mp.query.startSceneryid,
+            studentid: wx.getStorageSync('userInfo').studentID,
+            activity: this.$mp.query.activityid
+          });
+          this.startSightObj = res.data ? res.data : {};
+          if (this.startSightObj.shstate.checkin) {
+            this.getDistance();
+          } else {
+            if (parseInt(this.$mp.query.startSceneryid) === parseInt(this.sightObj.sceneryID)) {
+              this.getDistance();
+            } else {
+              wx.showToast({
+                title: '请从起点景点开始签到',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          }
         } else {
           wx.showToast({
             title: '请从起点景点开始签到',
