@@ -106,19 +106,35 @@ export default {
     });
     this.discussCount = discussRes.data ? discussRes.data.counta : 0;
 
-    // const activityRes = await api.getMyActivityList({
-    //   pageindex: this.pageindex,
-    //   pagesize: this.pagesize,
-    //   studentid: wx.getStorageSync('userInfo').studentID
-    // });
-    // this.activityCount = activityRes.data ? activityRes.data.count : 0;
-    const allCount = await api.getMyCount({
+    const activityRes1 = await api.getMyActivityList({
+      pageindex: this.pageindex,
+      pagesize: this.pagesize,
       studentid: wx.getStorageSync('userInfo').studentID,
-      shstate: 1
-    })
+      hasjoin: '已报名'
+    });
+    const activityRes2 = await api.getMyActivityList({
+      pageindex: this.pageindex,
+      pagesize: this.pagesize,
+      studentid: wx.getStorageSync('userInfo').studentID,
+      hasjoin: '进行中'
+    });
+    const activityRes3 = await api.getMyActivityList({
+      pageindex: this.pageindex,
+      pagesize: this.pagesize,
+      studentid: wx.getStorageSync('userInfo').studentID,
+      hasjoin: '已完成'
+    });
+    let ac1 = activityRes1.data ? activityRes1.data.count : 0;
+    let ac2 = activityRes2.data ? activityRes2.data.count : 0;
+    let ac3 = activityRes3.data ? activityRes3.data.count : 0;
+    // this.activityCount = activityRes.data ? activityRes.data.count : 0;
+    // const allCount = await api.getMyCount({
+    //   studentid: wx.getStorageSync('userInfo').studentID,
+    //   shstate: 1
+    // })
     // this.signinCount = allCount.data[0].attentionSceneryTimes
     // this.discussCount = allCount.data[0].attentionDiscuss
-    this.activityCount = allCount.data[0].attentionJoinActivityTimes
+    this.activityCount = ac1 + ac2 + ac3;
     this.integralCount = this.signinCount + this.discussCount + this.activityCount;
   },
   methods: {

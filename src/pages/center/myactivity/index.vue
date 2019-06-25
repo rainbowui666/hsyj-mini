@@ -275,6 +275,7 @@ export default {
       this.current = e.target.key;
     },
     async getMyActivityList () {
+      this.pageindex = 1;
       const res = await api.getMyActivityList({
         pageindex: this.pageindex,
         pagesize: this.pagesize,
@@ -303,7 +304,7 @@ export default {
     wx.request({
       url:
         'https://hsapi.100eduonline.com/api/myself/getMyActivityList?pageindex=' + this.pageindex + '&pagesize=' +
-        this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID,
+        this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID + '&hasjoin=' + this.keyWord,
       method: 'GET',
       // 请求头部
       header: {
