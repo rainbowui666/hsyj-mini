@@ -37,7 +37,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 添加留言
-  addMessage: (obj) => request.post('api/discuss/add?distype=' + obj.distype + '&targetid=' + obj.targetid + '&studentid=' + obj.studentid, {'content': obj.content}, {
+  addMessage: (obj) => request.post('api/discuss/add?distype=' + obj.distype + '&targetid=' + obj.targetid + '&studentid=' + obj.studentid + '&scenerytype=' + obj.scenerytype, {'content': obj.content}, {
     baseURL: ApiRootUrl
   }),
   // 创建团队

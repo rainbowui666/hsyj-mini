@@ -561,19 +561,38 @@ export default {
       }
     },
     async hideComment () {
-      const result = await api.addMessage({
-        studentid: wx.getStorageSync('userInfo').studentID,
-        targetid: this.$mp.query.id,
-        distype: 0,
-        content: this.content
-      });
-      if (result.data === '留言成功') {
-        wx.showToast({
-          title: '留言成功,等待审核',
-          icon: 'none',
-          duration: 1000,
-          mask: true
+      if (this.$mp.query.activitySight === 'true') {
+        const result = await api.addMessage({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          targetid: this.$mp.query.id,
+          distype: 0,
+          scenerytype: 1,
+          content: this.content
         });
+        if (result.data === '留言成功') {
+          wx.showToast({
+            title: '留言成功,等待审核',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          });
+        }
+      } else {
+        const result = await api.addMessage({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          targetid: this.$mp.query.id,
+          distype: 0,
+          scenerytype: 0,
+          content: this.content
+        });
+        if (result.data === '留言成功') {
+          wx.showToast({
+            title: '留言成功,等待审核',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          });
+        }
       }
       this.getMessage();
       this.showComment = false;
