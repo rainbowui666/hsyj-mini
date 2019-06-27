@@ -496,6 +496,9 @@ export default {
     }
   },
   async onShow () {
+    this.isStatusTrue = true;
+    this.isCreat = false;
+    this.isInvite = false;
     this.isTwoCode = false;
     this.groupName = '';
     this.content = '';
