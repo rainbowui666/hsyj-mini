@@ -373,9 +373,8 @@ export default {
     this.showQuestion = false;
     this.hasQuestion = false;
     this.showTakePhoto = true;
-    this.uploadSuccess = false;
-    this.checkAnswer = false;
-    this.showCamera = false;
+    // this.checkAnswer = false;
+    // this.showCamera = false;
     // this.showOnSign = false;
     this.content = '';
     if (this.$mp.query.isShare) {
@@ -757,7 +756,8 @@ export default {
       });
     },
     async beforeGetDistance () {
-      if (this.$mp.query.startSceneryid) {
+      this.uploadSuccess = false;
+      if (parseInt(this.$mp.query.startSceneryid) > -1) {
         if (this.$mp.query.activitySight === 'true') {
           //   this.showOnSign = true;
           const res = await api.getActivitySightDetail({

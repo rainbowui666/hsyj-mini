@@ -2,7 +2,7 @@
   <view class="page-sight">
     <view v-for="(item,index) in data" :key="index" class="sight-card">
       <navigator
-        :url="item.activityid?'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&activityid='+item.activityid+'&startSceneryid='+item.startSceneryid+'&hasjoin='+hasjoin:'/pages/map/sight/main?&id='+ item.sceneryid"
+        :url="item.activityid?'/pages/map/sight/main?activitySight=true&id='+ item.sceneryid+'&activityid='+item.activityid+'&startSceneryid='+(item.startSceneryid ? item.startSceneryid : -1)+'&hasjoin='+hasjoin:'/pages/map/sight/main?&id='+ item.sceneryid"
       >
         <view class="sight-card-image">
           <image
