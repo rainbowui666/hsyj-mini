@@ -373,6 +373,9 @@ export default {
     this.showQuestion = false;
     this.hasQuestion = false;
     this.showTakePhoto = true;
+    this.uploadSuccess = false;
+    this.checkAnswer = false;
+    this.showCamera = false;
     // this.showOnSign = false;
     this.content = '';
     if (this.$mp.query.isShare) {
