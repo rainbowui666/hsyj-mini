@@ -483,15 +483,24 @@ export default {
           mask: true
         });
       } else {
-        wx.navigateTo({
-          url:
-            '/pages/activity/activitySight/main?id=' +
-            this.activityList.activityID +
-            '&name=' +
-            this.activityList.activityName +
-            '&hasjoin=' +
-            this.activityList.hasjoin
-        });
+        if (this.activityList && this.activityList.groupNum <= this.activityList.totalgroupstudents) {
+          wx.navigateTo({
+            url:
+              '/pages/activity/activitySight/main?id=' +
+              this.activityList.activityID +
+              '&name=' +
+              this.activityList.activityName +
+              '&hasjoin=' +
+              this.activityList.hasjoin
+          });
+        } else {
+          wx.showToast({
+            title: '活动人数不足，无法进入活动',
+            icon: 'none',
+            duration: 3000,
+            mask: true
+          });
+        }
       }
     }
   },
