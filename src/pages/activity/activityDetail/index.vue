@@ -315,12 +315,7 @@ export default {
       this.groupName = this.activityList.group[0].groupName;
       let url1 = 'https://hsapi.100eduonline.com/api/group/showQr?url=';
       let url =
-        'https://hsapi.100eduonline.com/api/group/joinGroup?groupid=' +
-        this.activityList.group[0].groupid +
-        '&studentid=' +
-        wx.getStorageSync('userInfo').studentID +
-        '&activityid=' +
-        this.activityList.activityID;
+        'https://hsapi.100eduonline.com/api/group/joinGroup?groupid=' + this.activityList.group[0].groupid;
       // const res = await api.getQRCode({url: url});
       this.svgSrc = url1 + url;
       this.isTwoCode = true;
@@ -407,14 +402,28 @@ export default {
       const res = await api.readyScan({
         studentid: wx.getStorageSync('userInfo').studentID
       });
+      console.log('===============', res)
       if (res.data.scan) {
         wx.scanCode({
-          success: res => {
-            wx.showToast({
-              title: '加入成功',
-              icon: 'success',
-              duration: 2000 // 持续的时间
-            });
+          success: async res => {
+            const res1 = await api.joinGroup({
+              studentid: wx.getStorageSync('userInfo').studentID,
+              activityid: this.activityList.activityID,
+              groupid: res.result.split('groupid=')[1].split('&')[0]
+            })
+            console.log('==========================', res.result.split('groupid=')[1].split('&')[0])
+            if (res1.data.groupName) {
+              wx.showToast({
+                title: '成功加入' + res1.data.groupName + '团队',
+                icon: 'none',
+                duration: 3000 // 持续的时间
+              });
+            } else {
+              wx.showToast({
+                title: '加入失败',
+                duration: 3000 // 持续的时间
+              });
+            }
           },
           fail: res => {}
         });
@@ -475,6 +484,7 @@ export default {
       }
     },
     gotoActivity () {
+      this.getDetailInfo();
       if (this.isGroup && !this.isApply) {
         wx.showToast({
           title: '您未报名该活动，无法进入活动',
@@ -483,7 +493,7 @@ export default {
           mask: true
         });
       } else {
-        if (this.activityList && this.activityList.groupNum <= this.activityList.totalgroupstudents) {
+        if (!this.isGroup) {
           wx.navigateTo({
             url:
               '/pages/activity/activitySight/main?id=' +
@@ -494,12 +504,24 @@ export default {
               this.activityList.hasjoin
           });
         } else {
-          wx.showToast({
-            title: '活动人数不足，无法进入活动',
-            icon: 'none',
-            duration: 3000,
-            mask: true
-          });
+          if (this.activityList && this.activityList.groupNum <= this.activityList.totalgroupstudents) {
+            wx.navigateTo({
+              url:
+                '/pages/activity/activitySight/main?id=' +
+                this.activityList.activityID +
+                '&name=' +
+                this.activityList.activityName +
+                '&hasjoin=' +
+                this.activityList.hasjoin
+            });
+          } else {
+            wx.showToast({
+              title: '活动人数不足，无法进入活动',
+              icon: 'none',
+              duration: 3000,
+              mask: true
+            });
+          }
         }
       }
     }
@@ -555,6 +577,15 @@ export default {
         '-' +
         this.$mp.query.id
     };
+  },
+  onPullDownRefresh: function () {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    // // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // // 停止下拉动作
+    this.getDetailInfo();
+    wx.stopPullDownRefresh();
   }
 };
 </script>

@@ -28,6 +28,9 @@ const api = {
   getActivityList: (obj) => request.get('api/activity/frontList?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
+  joinGroup: (obj) => request.get('api/group/joinGroup?groupid=' + obj.groupid + '&studentid=' + obj.studentid + '&activityid=' + obj.activityid, null, {
+    baseURL: ApiRootUrl
+  }),
   // 获取活动留言
   getActivityMessage: (obj) => request.get('api/discuss/list?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&distype=1' + '&activityid=' + obj.activityid, null, {
     baseURL: ApiRootUrl
