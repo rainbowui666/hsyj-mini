@@ -476,6 +476,7 @@ export default {
       }
     },
     gotoActivity () {
+      this.getDetailInfo();
       if (this.isGroup && !this.isApply) {
         wx.showToast({
           title: '您未报名该活动，无法进入活动',
