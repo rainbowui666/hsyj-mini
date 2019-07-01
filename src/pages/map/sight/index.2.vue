@@ -440,9 +440,9 @@ export default {
         let longitude = res.longitude;
         this.centerX = longitude;
         this.centerY = latitude;
-        this.fromAddress = this.centerY + ',' + this.centerX;
       }
     });
+    this.fromAddress = this.centerY + ',' + this.centerX;
     if (this.sightObj.shstate.wantto) {
       this.iconArr2[0].color = 'red';
     } else {
@@ -802,84 +802,45 @@ export default {
         if (studentDetail.data.stuNo) {
           this.uesrStatus = studentDetail.data.shstate;
           if (this.uesrStatus === 4) {
-            // let lat1 = this.centerY;
-            // let lng1 = this.centerX;
-            // let lat2 = this.sightObj.latitude;
-            // let lng2 = this.sightObj.longitude;
-            // if (!this.sightObj.shstate.checkin) {
-            //   let La1 = lat1 * Math.PI / 180.0;
+            let lat1 = this.centerY;
+            let lng1 = this.centerX;
+            let lat2 = this.sightObj.latitude;
+            let lng2 = this.sightObj.longitude;
+            if (!this.sightObj.shstate.checkin) {
+              let La1 = lat1 * Math.PI / 180.0;
 
-            //   let La2 = lat2 * Math.PI / 180.0;
+              let La2 = lat2 * Math.PI / 180.0;
 
-            //   let La3 = La1 - La2;
+              let La3 = La1 - La2;
 
-            //   let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+              let Lb3 = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
 
-            //   let s =
-            //     2 *
-            //     Math.asin(
-            //       Math.sqrt(
-            //         Math.pow(Math.sin(La3 / 2), 2) +
-            //           Math.cos(La1) *
-            //             Math.cos(La2) *
-            //             Math.pow(Math.sin(Lb3 / 2), 2)
-            //       )
-            //     );
+              let s =
+                2 *
+                Math.asin(
+                  Math.sqrt(
+                    Math.pow(Math.sin(La3 / 2), 2) +
+                      Math.cos(La1) *
+                        Math.cos(La2) *
+                        Math.pow(Math.sin(Lb3 / 2), 2)
+                  )
+                );
 
-            //   let d = s * 6378.137; // 地球半径
-            //   let result = Math.round(d * 10000) / 10;
-            //   this.distance = result.toFixed(0);
-            //   let limitDisance = this.sightObj.distance + 350;
-            //   if (this.distance < limitDisance) {
-            //     this.onSign();
-            //   } else {
-            //     let farDistance = this.distance - limitDisance + 200;
-            //     wx.showToast({
-            //       title: '距离太远，无法签到！距离签到地点还有' + farDistance + '米',
-            //       icon: 'none',
-            //       duration: 2000
-            //     });
-            //   }
-            // }
-            // 调用距离计算接口
-            this.qqmapsdk.calculateDistance({
-              // mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
-              // from参数不填默认当前地址
-              // 获取表单提交的经纬度并设置from和to参数（示例为string格式）
-              from: this.fromAddress, // 若起点有数据则采用起点坐标，若为空默认当前地址
-              to: this.toAddress, // 终点坐标
-              success: res => {
-                // 成功后的回调
-                let result = res.result;
-                // let dis = [];
-                // for (let i = 0; i < result.elements.length; i++) {
-                //   dis.push(result.elements[i].distance); // 将返回数据存入dis数组，
-                // }
-                // 设置并更新distance数据
-                this.distance = result.elements[0].distance;
-                if (this.distance < this.sightObj.distance) {
-                  this.onSign();
-                } else {
-                  let farDistance = this.distance - this.sightObj.distance;
-                  wx.showToast({
-                    title: '距离太远，无法签到！距离签到地点还有' + farDistance + '米',
-                    icon: 'none',
-                    duration: 2000
-                  });
-                }
-              },
-              fail: function (error) {
+              let d = s * 6378.137; // 地球半径
+              let result = Math.round(d * 10000) / 10;
+              this.distance = result.toFixed(0);
+              let limitDisance = this.sightObj.distance + 350;
+              if (this.distance < limitDisance) {
+                this.onSign();
+              } else {
+                let farDistance = this.distance - limitDisance + 200;
                 wx.showToast({
-                  title: JSON.stringify(error) + '距离太远，无法签到！',
+                  title: '距离太远，无法签到！距离签到地点还有' + farDistance + '米',
                   icon: 'none',
                   duration: 2000
                 });
-                console.error(error);
-              },
-              complete: function (end) {
-                console.log(end);
               }
-            });
+            }
           } else {
             wx.showToast({
               title: '信息审核中，暂无法签到',
