@@ -667,18 +667,27 @@ export default {
     },
     async photoCommit () {
       if (this.$mp.query.activitySight === 'true') {
-        const data = await api.attentionActivity({
-          studentid: wx.getStorageSync('userInfo').studentID,
-          sceneryid: this.$mp.query.id,
-          activityid: this.$mp.query.activityid
-        });
-        if (data.errmsg !== '失败,第一个签到景点必须为起点') {
-          this.showCameraPopup = false;
-          this.showCamera = false;
-          this.signText = '已签到';
+        if (this.uploadSuccess) {
+          const data = await api.attentionActivity({
+            studentid: wx.getStorageSync('userInfo').studentID,
+            sceneryid: this.$mp.query.id,
+            activityid: this.$mp.query.activityid
+          });
+          if (data.errmsg !== '失败,第一个签到景点必须为起点') {
+            this.showCameraPopup = false;
+            this.showCamera = false;
+            this.signText = '已签到';
+          } else {
+            wx.showToast({
+              title: '失败,第一个签到景点必须为起点',
+              icon: 'none',
+              duration: 1000,
+              mask: true
+            });
+          }
         } else {
           wx.showToast({
-            title: '失败,第一个签到景点必须为起点',
+            title: '请先上传照片',
             icon: 'none',
             duration: 1000,
             mask: true
@@ -830,7 +839,7 @@ export default {
               let result = Math.round(d * 10000) / 10;
               this.distance = result.toFixed(0);
               let limitDisance = this.sightObj.distance + 350;
-              if (this.distance < limitDisance) {
+              if (this.distance > limitDisance) {
                 this.onSign();
               } else {
                 let farDistance = this.distance - limitDisance + 200;

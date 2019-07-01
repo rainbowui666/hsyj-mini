@@ -407,6 +407,7 @@ export default {
       const res = await api.readyScan({
         studentid: wx.getStorageSync('userInfo').studentID
       });
+      console.log('===============', res)
       if (res.data.scan) {
         wx.scanCode({
           success: res => {
@@ -483,7 +484,7 @@ export default {
           mask: true
         });
       } else {
-        if (this.activityList && this.activityList.groupNum <= this.activityList.totalgroupstudents) {
+        if (!this.isGroup) {
           wx.navigateTo({
             url:
               '/pages/activity/activitySight/main?id=' +
@@ -494,12 +495,24 @@ export default {
               this.activityList.hasjoin
           });
         } else {
-          wx.showToast({
-            title: '活动人数不足，无法进入活动',
-            icon: 'none',
-            duration: 3000,
-            mask: true
-          });
+          if (this.activityList && this.activityList.groupNum <= this.activityList.totalgroupstudents) {
+            wx.navigateTo({
+              url:
+                '/pages/activity/activitySight/main?id=' +
+                this.activityList.activityID +
+                '&name=' +
+                this.activityList.activityName +
+                '&hasjoin=' +
+                this.activityList.hasjoin
+            });
+          } else {
+            wx.showToast({
+              title: '活动人数不足，无法进入活动',
+              icon: 'none',
+              duration: 3000,
+              mask: true
+            });
+          }
         }
       }
     }
@@ -555,6 +568,15 @@ export default {
         '-' +
         this.$mp.query.id
     };
+  },
+  onPullDownRefresh: function () {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    // // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // // 停止下拉动作
+    this.getDetailInfo();
+    wx.stopPullDownRefresh();
   }
 };
 </script>
