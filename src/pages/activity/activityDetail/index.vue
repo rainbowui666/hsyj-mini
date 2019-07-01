@@ -415,7 +415,7 @@ export default {
             if (res1.data.groupName) {
               wx.showToast({
                 title: '成功加入' + res1.data.groupName + '团队',
-                icon: 'success',
+                icon: 'none',
                 duration: 3000 // 持续的时间
               });
             } else {
