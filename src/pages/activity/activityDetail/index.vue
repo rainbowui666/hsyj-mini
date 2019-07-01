@@ -406,16 +406,16 @@ export default {
       if (res.data.scan) {
         wx.scanCode({
           success: async res => {
-            await api.joinGroup({
+            const res1 = await api.joinGroup({
               studentid: wx.getStorageSync('userInfo').studentID,
               activityid: this.activityList.activityID,
               groupid: this.activityList.group[0].groupid
             })
             console.log('==========================', res)
             wx.showToast({
-              title: '加入成功',
+              title: '成功加入' + res1.data.groupName + '团队',
               icon: 'success',
-              duration: 2000 // 持续的时间
+              duration: 3000 // 持续的时间
             });
           },
           fail: res => {}
