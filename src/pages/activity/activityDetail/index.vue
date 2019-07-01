@@ -315,12 +315,7 @@ export default {
       this.groupName = this.activityList.group[0].groupName;
       let url1 = 'https://hsapi.100eduonline.com/api/group/showQr?url=';
       let url =
-        'https://hsapi.100eduonline.com/api/group/joinGroup?groupid=' +
-        this.activityList.group[0].groupid +
-        '&studentid=' +
-        wx.getStorageSync('userInfo').studentID +
-        '&activityid=' +
-        this.activityList.activityID;
+        'https://hsapi.100eduonline.com/api/group/joinGroup';
       // const res = await api.getQRCode({url: url});
       this.svgSrc = url1 + url;
       this.isTwoCode = true;
@@ -410,7 +405,13 @@ export default {
       console.log('===============', res)
       if (res.data.scan) {
         wx.scanCode({
-          success: res => {
+          success: async res => {
+            await api.joinGroup({
+              studentid: wx.getStorageSync('userInfo').studentID,
+              activityid: this.activityList.activityID,
+              groupid: this.activityList.group[0].groupid
+            })
+            console.log('==========================', res)
             wx.showToast({
               title: '加入成功',
               icon: 'success',
