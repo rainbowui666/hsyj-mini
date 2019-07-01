@@ -315,7 +315,7 @@ export default {
       this.groupName = this.activityList.group[0].groupName;
       let url1 = 'https://hsapi.100eduonline.com/api/group/showQr?url=';
       let url =
-        'https://hsapi.100eduonline.com/api/group/joinGroup';
+        'https://hsapi.100eduonline.com/api/group/joinGroup?groupid=' + this.activityList.group[0].groupid;
       // const res = await api.getQRCode({url: url});
       this.svgSrc = url1 + url;
       this.isTwoCode = true;
@@ -409,14 +409,21 @@ export default {
             const res1 = await api.joinGroup({
               studentid: wx.getStorageSync('userInfo').studentID,
               activityid: this.activityList.activityID,
-              groupid: this.activityList.group[0].groupid
+              groupid: res.result.split('groupid=')[1].split('&')[0]
             })
-            console.log('==========================', res)
-            wx.showToast({
-              title: '成功加入' + res1.data.groupName + '团队',
-              icon: 'success',
-              duration: 3000 // 持续的时间
-            });
+            console.log('==========================', res.result.split('groupid=')[1].split('&')[0])
+            if (res1.data.groupName) {
+              wx.showToast({
+                title: '成功加入' + res1.data.groupName + '团队',
+                icon: 'success',
+                duration: 3000 // 持续的时间
+              });
+            } else {
+              wx.showToast({
+                title: '加入失败',
+                duration: 3000 // 持续的时间
+              });
+            }
           },
           fail: res => {}
         });
