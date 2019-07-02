@@ -439,15 +439,15 @@ export default {
         this.activityList.startDate = dayjs(this.activityList.startDate).format(
           'YYYY-MM-DD HH:mm:ss'
         );
-        if (
-          dayjs(dayjs().format('YYYY-MM-DD')).diff(
-            dayjs(this.activityList.startDate),
-            'day'
-          ) >= 0 &&
-          this.isApply
-        ) {
-          this.isDoing = true;
-        }
+        // if (
+        //   dayjs(dayjs().format('YYYY-MM-DD')).diff(
+        //     dayjs(this.activityList.startDate),
+        //     'day'
+        //   ) >= 0 &&
+        //   this.isApply
+        // ) {
+        //   this.isDoing = true;
+        // }
         this.activityList.endDate = dayjs(this.activityList.endDate).format(
           'YYYY-MM-DD HH:mm:ss'
         );
@@ -469,15 +469,15 @@ export default {
         this.activityList.endDate = dayjs(this.activityList.endDate).format(
           'YYYY-MM-DD HH:mm:ss'
         );
-        if (
-          dayjs(dayjs().format('YYYY-MM-DD')).diff(
-            dayjs(this.activityList.startDate),
-            'day'
-          ) >= 0 &&
-          this.isApply
-        ) {
-          this.isDoing = true;
-        }
+        // if (
+        //   dayjs(dayjs().format('YYYY-MM-DD')).diff(
+        //     dayjs(this.activityList.startDate),
+        //     'day'
+        //   ) >= 0 &&
+        //   this.isApply
+        // ) {
+        //   this.isDoing = true;
+        // }
         wx.setNavigationBarTitle({
           title: this.activityList.activityName
         });
