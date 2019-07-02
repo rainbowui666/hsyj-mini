@@ -420,7 +420,7 @@ export default {
               });
             } else {
               wx.showToast({
-                title: '加入失败',
+                title: '加入失败，超过团体活动最大限制人数',
                 duration: 3000 // 持续的时间
               });
             }
