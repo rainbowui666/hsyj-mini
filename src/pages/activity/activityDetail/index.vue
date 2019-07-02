@@ -504,7 +504,7 @@ export default {
               this.activityList.hasjoin
           });
         } else {
-          if (this.activityList && this.activityList.groupNum <= this.activityList.totalgroupstudents) {
+          if (this.activityList && this.activityList.groupNum === this.activityList.totalgroupstudents) {
             wx.navigateTo({
               url:
                 '/pages/activity/activitySight/main?id=' +
