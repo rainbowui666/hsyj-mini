@@ -292,6 +292,7 @@ export default {
       }
     },
     async changeCreatBtn () {
+      this.teamName = '';
       const studentDetail = await api.getStudentDetail({
         studentid: wx.getStorageSync('userInfo').studentID
       });
@@ -412,7 +413,7 @@ export default {
               groupid: res.result.split('groupid=')[1].split('&')[0]
             })
             console.log('==========================', res.result.split('groupid=')[1].split('&')[0])
-            if (res1.data.groupName) {
+            if (res1.data && res1.data.groupName) {
               wx.showToast({
                 title: '成功加入' + res1.data.groupName + '团队',
                 icon: 'none',
@@ -421,6 +422,7 @@ export default {
             } else {
               wx.showToast({
                 title: '加入失败，超过团体活动最大限制人数',
+                icon: 'none',
                 duration: 3000 // 持续的时间
               });
             }
