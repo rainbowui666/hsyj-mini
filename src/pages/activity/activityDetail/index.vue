@@ -328,11 +328,18 @@ export default {
       this.isCreat = false;
     },
     async onCreatConfirm () {
-      await api.addTeam({
+      let addTeamInfo = await api.addTeam({
         id: this.activityList.activityID,
         groupname: this.teamName,
         studentid: wx.getStorageSync('userInfo').studentID
       });
+      if (addTeamInfo && addTeamInfo.errmsg) {
+        wx.showToast({
+          title: addTeamInfo.errmsg,
+          icon: 'none',
+          duration: 3000 // 持续的时间
+        });
+      }
       await this.getDetailInfo();
       this.isCreat = false;
       this.onInviteBtn();
@@ -419,9 +426,9 @@ export default {
                 icon: 'none',
                 duration: 3000 // 持续的时间
               });
-            } else {
+            } else if (res1 && res1.errmsg) {
               wx.showToast({
-                title: '加入失败，超过团体活动最大限制人数',
+                title: res1.errmsg,
                 icon: 'none',
                 duration: 3000 // 持续的时间
               });
