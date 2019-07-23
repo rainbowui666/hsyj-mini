@@ -328,6 +328,7 @@ export default {
       this.isCreat = false;
     },
     async onCreatConfirm () {
+      this.isCreat = false;
       let addTeamInfo = await api.addTeam({
         id: this.activityList.activityID,
         groupname: this.teamName,
@@ -341,7 +342,6 @@ export default {
         });
       }
       await this.getDetailInfo();
-      this.isCreat = false;
       this.onInviteBtn();
     },
     hideWords () {
