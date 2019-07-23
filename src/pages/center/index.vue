@@ -104,7 +104,7 @@ export default {
       pagesize: this.pagesize,
       studentid: this.userInfo.studentID
     });
-    this.discussCount = discussRes.data ? discussRes.data.counta : 0;
+    this.discussCount = discussRes.data ? discussRes.data.count : 0;
 
     const activityRes1 = await api.getMyActivityList({
       pageindex: this.pageindex,

@@ -30,7 +30,8 @@
         <view>
         <view v-if="isShowCommit" class="login-btn">
           <button
-            @click="goInHsyj"
+            open-type="getUserInfo"
+            @getuserinfo="goInHsyj"
           >提交</button>
         </view>
         </view>
@@ -116,21 +117,49 @@ export default {
     }
   },
   methods: {
-    async goInHsyj () {
-      let userInfo = wx.getStorageSync('userInfo') || false;
-      if (userInfo) {
-        // userInfo.schoolName = this.schoolName;
-        userInfo.schoolid = this.schoolID;
-        userInfo.studentName = this.studentName;
-        userInfo.stuno = this.stuNo;
-        userInfo.tel = this.uesrTel;
-        const addStudentInfo = await api.studentLogin(userInfo)
-        let resUser = addStudentInfo.data.data;
-        wx.setStorageSync('userInfo', resUser)
+    async goInHsyj (event) {
+      let wxUserInfo = wx.getStorageSync('wxUserInfo') || false;
+      if (!wxUserInfo) {
+        wx.login({
+          success: async res => {
+            let wxUserInfo = event.mp.detail.userInfo;
+            wxUserInfo.code = res.code;
+            wx.setStorageSync('wxUserInfo', wxUserInfo)
+            const user = await api.indexLogin(wxUserInfo);
+            wx.setStorageSync('token', user.data.token)
+            wx.setStorageSync('userInfo', user.data.userInfo)
+            let userInfo = wx.getStorageSync('userInfo') || false;
+            if (userInfo) {
+              // userInfo.schoolName = this.schoolName;
+              userInfo.schoolid = this.schoolID;
+              userInfo.studentName = this.studentName;
+              userInfo.stuno = this.stuNo;
+              userInfo.tel = this.uesrTel;
+              const addStudentInfo = await api.studentLogin(userInfo)
+              let resUser = addStudentInfo.data.data;
+              wx.setStorageSync('userInfo', resUser)
+            }
+            wx.switchTab({
+              url: '/pages/center/main'
+            });
+          }
+        })
+      } else {
+        let userInfo = wx.getStorageSync('userInfo') || false;
+        if (userInfo) {
+          // userInfo.schoolName = this.schoolName;
+          userInfo.schoolid = this.schoolID;
+          userInfo.studentName = this.studentName;
+          userInfo.stuno = this.stuNo;
+          userInfo.tel = this.uesrTel;
+          const addStudentInfo = await api.studentLogin(userInfo)
+          let resUser = addStudentInfo.data.data;
+          wx.setStorageSync('userInfo', resUser)
+        }
+        wx.switchTab({
+          url: '/pages/center/main'
+        });
       }
-      wx.switchTab({
-        url: '/pages/center/main'
-      });
     },
     bindPickerChange (e) {
       this.pickIndex = e.target.value

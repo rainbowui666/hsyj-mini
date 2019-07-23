@@ -131,7 +131,7 @@ const api = {
     baseURL: ApiRootUrl
   }),
   // 我的留言
-  getMyDiscussList: (obj) => request.get('/api/discuss/list?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
+  getMyDiscussList: (obj) => request.get('/api/myself/getMyDiscuss?pageindex=' + obj.pageindex + '&pagesize=' + obj.pagesize + '&studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
   }),
   // 我的景点
