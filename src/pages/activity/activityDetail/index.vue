@@ -348,23 +348,33 @@ export default {
       this.showWords = false;
     },
     async hideComment () {
-      const result = await api.addMessage({
-        studentid: wx.getStorageSync('userInfo').studentID,
-        targetid: this.activityList.activityID,
-        distype: 1,
-        content: this.content
-      });
-      if (result.data === '留言成功') {
+      if (this.content === '') {
         wx.showToast({
-          title: '留言成功,等待审核',
+          title: '留言内容不能为空',
           icon: 'none',
           duration: 1000,
           mask: true
         });
-      }
-      this.getMessage();
-      this.showComment = false;
+        this.showComment = false;
+      } else {
+        const result = await api.addMessage({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          targetid: this.activityList.activityID,
+          distype: 1,
+          content: this.content
+        });
+        if (result.data === '留言成功') {
+          wx.showToast({
+            title: '留言成功,等待审核',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          });
+        }
+        this.getMessage();
+        this.showComment = false;
       // this.showWords = true;
+      }
     },
     async onClick (item, index) {
       if (index === 0) {
