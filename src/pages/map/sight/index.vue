@@ -774,8 +774,7 @@ export default {
           title
       });
     },
-    async beforeGetDistance () {
-      this.uploadSuccess = false;
+    async signinStartScenery () {
       if (parseInt(this.$mp.query.startSceneryid) > -1) {
         if (this.$mp.query.activitySight === 'true') {
           //   this.showOnSign = true;
@@ -807,6 +806,27 @@ export default {
         }
       } else {
         this.getDistance();
+      }
+    },
+    async beforeGetDistance () {
+      this.uploadSuccess = false;
+      if (parseInt(this.$mp.query.groupid) > -1) {
+        const res = await api.isGroupCreator({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          activityid: this.$mp.query.activityid,
+          groupid: this.$mp.query.groupid
+        });
+        if (res.data) {
+          this.signinStartScenery()
+        } else {
+          wx.showToast({
+            title: '团队活动仅能由队长手机登录签到',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      } else {
+        this.signinStartScenery()
       }
     },
     async getDistance () {

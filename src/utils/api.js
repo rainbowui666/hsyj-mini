@@ -157,6 +157,9 @@ const api = {
   // 确认扫码
   readyScan: (obj) => request.get('/api/group/readyScan?studentid=' + obj.studentid, null, {
     baseURL: ApiRootUrl
+  }),
+  isGroupCreator: (obj) => request.get('api/attention_activity/isGroupCreator?studentid=' + obj.studentid + '&activityid=' + obj.activityid + '&groupid=' + obj.groupid, null, {
+    baseURL: ApiRootUrl
   })
 }
 
