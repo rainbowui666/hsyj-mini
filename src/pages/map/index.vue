@@ -275,6 +275,7 @@ export default {
   },
   onPullDownRefresh: function () {
     console.log('下拉刷新')
+    this.pageindex = 1;
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     // // 隐藏导航栏加载框
