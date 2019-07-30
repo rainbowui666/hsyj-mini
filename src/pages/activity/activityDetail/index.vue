@@ -535,7 +535,7 @@ export default {
             });
           } else {
             wx.showToast({
-              title: '团队活动仅能由队长手机登录签到',
+              title: '活动人数不足，无法进入活动',
               icon: 'none',
               duration: 3000,
               mask: true
