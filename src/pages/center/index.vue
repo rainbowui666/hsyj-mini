@@ -188,6 +188,14 @@ export default {
     goToMyInfo () {
       wx.navigateTo({ url: '/pages/center/login/main?isMyselfInfo=true' })
     }
+  },
+  onPullDownRefresh: function () {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    // // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // // 停止下拉动作
+    wx.stopPullDownRefresh();
   }
 };
 </script>
