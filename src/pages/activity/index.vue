@@ -116,6 +116,15 @@ export default {
     viewDetail (item) {
       console.log('====', item)
       wx.navigateTo({ url: 'activitySight/main?id=' + item.activityID + '&name=' + item.activityName + '&hasjoin=' + item.hasjoin });
+    },
+    async refresh () {
+      this.pageindex = 1;
+      const res1 = await api.getRecommendList({
+        studentid: wx.getStorageSync('userInfo').studentID
+      });
+      this.movies = res1.data.activitydata ? res1.data.activitydata : [];
+
+      this.getActivityList();
     }
   },
   onReachBottom: function () {
@@ -162,6 +171,16 @@ export default {
         wx.hideLoading();
       }
     });
+  },
+  onPullDownRefresh: function () {
+    this.pageindex = 1;
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    // // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // // 停止下拉动作
+    this.refresh()
+    wx.stopPullDownRefresh();
   }
 };
 </script>
