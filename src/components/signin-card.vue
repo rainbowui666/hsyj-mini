@@ -24,7 +24,7 @@
               class="thumbsUpImg"
               :src="item.thumbsupImg"
               @click="thumbsupClick(item,index)"
-              mode="widthFix"
+              
             />
             <view
               class="icon-group-item-label"
@@ -33,7 +33,7 @@
               class="messageImg"
               :src="item.messageImg"
               @click="messageClick(item,index)"
-              mode="widthFix"
+          
             />
             <view
               class="icon-group-item-label"
@@ -252,13 +252,13 @@ export default {
   color: #aaa;
 }
 .thumbsUpImg {
-  /* height: 35rpx; */
+  height: 28rpx;
   width: 28rpx;
   padding: 4px;
 }
 .messageImg {
-  /* height: 35rpx; */
-  width: 32rpx;
+  height: 28rpx;
+  width: 28rpx;
   padding: 4px 4px 4px 15px;
 }
 .signin-card .icon-group-item-label {
