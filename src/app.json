@@ -15,7 +15,8 @@
     "pages/center/integral/main",
     "pages/center/login/main",
     "pages/map/mapGps/main",
-    "pages/webview/main"
+    "pages/webview/main",
+    "pages/count/main"
   ],
   "window": {
     "navigationBarTitleText": "Demo",

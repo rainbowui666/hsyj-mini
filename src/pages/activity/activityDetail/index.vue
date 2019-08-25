@@ -87,7 +87,7 @@
       </view>
       <view v-if="isDoing" class="group_btn">
         <view class="group_btn_disApply">
-          <button>活动统计</button>
+          <button @click="countActivity">活动统计</button>
         </view>
         <view class="group_btn_doing">
           <button @click="gotoActivity">进入活动</button>
@@ -250,6 +250,11 @@ export default {
     goHomeBack () {
       wx.navigateTo({
         url: '/pages/center/homeflash/main'
+      });
+    },
+    countActivity () {
+      wx.navigateTo({
+        url: '/pages/count/main?id=' + this.$mp.query.id
       });
     },
     async signUp () {
