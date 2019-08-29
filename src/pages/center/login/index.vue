@@ -83,7 +83,18 @@ export default {
   },
   async mounted () {
     const schoolInfo = await api.getSchoolList();
-    this.schoolList = schoolInfo.data.data;
+    this.schoolList = [];
+    let selete = {
+      schoolName: '请选择校区',
+      schoolID: 0
+    }
+    this.schoolList.push(selete)
+    if (schoolInfo && schoolInfo.data && schoolInfo.data.data) {
+      schoolInfo.data.data.forEach(element => {
+        this.schoolList.push(element);
+      })
+    }
+    // this.schoolList = schoolInfo.data.data;
     let userInfo = wx.getStorageSync('userInfo') || false;
     const studentDetail = await api.getStudentDetail({studentid: userInfo.studentID});
     this.uesrStatus = studentDetail.data.shstate;
@@ -103,9 +114,11 @@ export default {
       this.isShowStatus = true;
       this.InfoDisabled = true;
       this.isShowCommit = false;
-      const schoolDetail = await api.getSchoolDetail({id: userInfo.schoolid});
-      this.schoolName = schoolDetail.data.schoolName;
-      this.schoolID = userInfo.schoolid;
+      if (this.schoolName !== '请选择校区') {
+        const schoolDetail = await api.getSchoolDetail({id: userInfo.schoolid});
+        this.schoolName = schoolDetail.data.schoolName;
+        this.schoolID = userInfo.schoolid;
+      }
       this.studentName = userInfo.studentName;
       this.stuNo = userInfo.stuNo;
       this.uesrTel = userInfo.tel;
@@ -118,6 +131,15 @@ export default {
   },
   methods: {
     async goInHsyj (event) {
+      if (this.schoolName === '请选择校区') {
+        wx.showToast({
+          title: '请选择校区',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+        return
+      }
       let wxUserInfo = wx.getStorageSync('wxUserInfo') || false;
       if (!wxUserInfo) {
         wx.login({
