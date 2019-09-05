@@ -39,11 +39,14 @@
 
 <body onload="initMap()">
     <div id="count">
+            <table border="0" width="100%"  cellspacing="5" cellpadding="10">
+                    <tr>
+                      <td style="font-size: 20px;color: #282828;width: 57%">热门景点排行榜</th>
+                      <td style="text-align: right;font-size: 20px;color: #666666;width: 43%">签到次数</th>
+                    </tr>
+            </table>
         <table id='list' border="0" width="100%"  cellspacing="5" cellpadding="10">
-            <tr>
-              <td style="font-size: 20px;color: #282828;width: 70%">热门景点排行榜</th>
-              <td style="font-size: 20px;color: #666666;width: 30%">签到次数</th>
-            </tr>
+          
           </table>
     </div>
     <div id="container"></div>
@@ -67,12 +70,12 @@
                         case 0:
                         html.push('<tr>');
                         html.push('<td><span  style="font-size: 20px;color: #ffffff;width:15px;background-color: #e2d5b9;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
-                        html.push('<td><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
+                        html.push('<td style="width:29px"><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
                             break;
                         case 1:
                         html.push('<tr>');
-                        html.push('<td><span  style="font-size: 20px;color: #ffffff;width:15px;background-color: #cccccc;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;"></span></td>');
+                        html.push('<td><span  style="font-size: 20px;color: #ffffff;width:15px;background-color: #cccccc;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
                         html.push('<td><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
                             break;
@@ -144,7 +147,7 @@
             });
             //初始化热力图并添加至map图层
             var heat = new TMap.visualization.Heat({
-                max: 10, // 热力最强阈值
+                max: 5, // 热力最强阈值
                 min: 0, // 热力最弱阈值
                 height: 10, // 峰值高度
                 gradientColor: { // 渐变颜色
