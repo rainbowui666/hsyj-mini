@@ -724,17 +724,17 @@ export default {
       }
     },
     async onSign () {
-      // if (this.$mp.query.activitySight === 'true') {
-      this.showCameraPopup = true;
-      this.showCamera = true;
-      // } else {
-      //   await api.wantToSight({
-      //     studentid: wx.getStorageSync('userInfo').studentID,
-      //     sceneryid: this.$mp.query.id,
-      //     shstate: 1
-      //   });
-      //   this.signText = '已签到';
-      // }
+      if (this.$mp.query.activitySight === 'true') {
+        this.showCameraPopup = true;
+        this.showCamera = true;
+      } else {
+        await api.wantToSight({
+          studentid: wx.getStorageSync('userInfo').studentID,
+          sceneryid: this.$mp.query.id,
+          shstate: 1
+        });
+        this.signText = '已签到';
+      }
     },
     takePhoto () {
       const ctx = wx.createCameraContext();
@@ -838,7 +838,7 @@ export default {
           studentid: wx.getStorageSync('userInfo').studentID
         });
         // if (this.$mp.query.startSceneryid === this.sightObj.sceneryID) {
-        if (studentDetail.data.stuNo) {
+        if (studentDetail.data.stuNo || this.$mp.query.activitySight !== 'true') {
           this.uesrStatus = studentDetail.data.shstate;
           if (this.uesrStatus === 4) {
             // let lat1 = this.centerY;
