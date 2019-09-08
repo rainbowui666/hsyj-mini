@@ -840,7 +840,7 @@ export default {
         // if (this.$mp.query.startSceneryid === this.sightObj.sceneryID) {
         if (studentDetail.data.stuNo || this.$mp.query.activitySight !== 'true') {
           this.uesrStatus = studentDetail.data.shstate;
-          if (this.uesrStatus === 4) {
+          if (this.uesrStatus === 4 || this.$mp.query.activitySight !== 'true') {
             // let lat1 = this.centerY;
             // let lng1 = this.centerX;
             // let lat2 = this.sightObj.latitude;
@@ -896,6 +896,7 @@ export default {
                 // }
                 // 设置并更新distance数据
                 this.distance = result.elements[0].distance;
+                // this.distance = 5;
                 if (this.distance < this.sightObj.distance) {
                   this.onSign();
                 } else {
@@ -966,6 +967,7 @@ export default {
             // }
             // 设置并更新distance数据
             this.distance = result.elements[0].distance;
+            // this.distance = 5;
             if (this.distance < this.sightObj.distance) {
               this.onSign();
             } else {
