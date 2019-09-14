@@ -775,9 +775,10 @@ export default {
       });
     },
     async signinStartScenery () {
-      if (parseInt(this.$mp.query.startSceneryid) > -1) {
+      if (parseInt(this.$mp.query.startSceneryid) > -1 || parseInt(this.$mp.query.endSceneryid) > -1) {
         if (this.$mp.query.activitySight === 'true') {
           //   this.showOnSign = true;
+          /*
           const res = await api.getActivitySightDetail({
             id: this.$mp.query.startSceneryid,
             studentid: wx.getStorageSync('userInfo').studentID,
@@ -795,6 +796,44 @@ export default {
                 icon: 'none',
                 duration: 2000
               });
+            }
+          }
+          */
+
+          if (parseInt(this.$mp.query.startSceneryid) === parseInt(this.sightObj.sceneryID)) {
+            this.getDistance();
+          } else if (parseInt(this.$mp.query.endSceneryid) === parseInt(this.sightObj.sceneryID)) {
+            const res = await api.getUnsignCountExceptEndScenery({
+              groupid: this.$mp.query.groupid,
+              activity: this.$mp.query.activityid
+            });
+            const unsignCount = res.data[0].unsigncount;
+            if (unsignCount === 0) {
+              this.getDistance();
+            } else {
+              wx.showToast({
+                title: '请最后签到终点',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          } else {
+            if (parseInt(this.$mp.query.startSceneryid) > -1) {
+              const res = await api.getActivitySightDetail({
+                id: this.$mp.query.startSceneryid,
+                studentid: wx.getStorageSync('userInfo').studentID,
+                activity: this.$mp.query.activityid
+              });
+              this.startSightObj = res.data ? res.data : {};
+              if (this.startSightObj.shstate.checkin) {
+                this.getDistance();
+              } else {
+                wx.showToast({
+                  title: '请从起点景点开始签到',
+                  icon: 'none',
+                  duration: 2000
+                });
+              }
             }
           }
         } else {
