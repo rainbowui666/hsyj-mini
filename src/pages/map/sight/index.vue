@@ -1001,6 +1001,10 @@ export default {
 </script>
 
 <style>
+.sight-page-wrap{
+  height: 100vh;
+  overflow: hidden;
+}
 .sight-audio {
   padding-top: 50px;
 }

@@ -5,7 +5,12 @@
 <script>
 export default {
   onLoad (option) {
-    this.src = 'https://cdn.100eduonline.com/map.html?id=' + option.id;
+    if (option.type) {
+      const studentID = wx.getStorageSync('userInfo').studentID;
+      this.src = 'https://cdn.100eduonline.com/group.html?studentId=' + studentID + '&id=' + option.id;
+    } else {
+      this.src = 'https://cdn.100eduonline.com/map.html?id=' + option.id;
+    }
   },
   data () {
     return {

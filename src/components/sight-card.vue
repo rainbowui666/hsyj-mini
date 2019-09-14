@@ -44,7 +44,7 @@
         </view>
         <view class="sight-card-icon">
           <view class="sight-card-icon-inner">
-          <image class="navigationImg" mode='widthFix' :src="item.navigationImg" @click="navigationClick(item)"/>
+          <image class="navigationImg"  :src="item.navigationImg" @click="navigationClick(item)"/>
             <!-- <wux-icon :type="item.iconType" :color="item.iconColor"/> -->
           </view>
           <view class="sight-card-icon-text">
@@ -269,5 +269,9 @@ export default {
   color: #666;
   align-self: flex-start;
   margin-left: 0;
+}
+.navigationImg{
+  width: 32px;
+  height:32px;
 }
 </style>
