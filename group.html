@@ -67,49 +67,41 @@
             //请求成功
             success : function(result) {
                 const html = [];
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
-                result.push({"name":"吃醋","times":0,"num":0,"isDone":false});
+                result.push({id: 172, name: "哈哈", times: 207386, num: 3, isDone: false})
 				$.each(result,function(index,value){
                     switch (index) {
                         case 0:
-                        groupid=value.id;
-                        html.push('<tr>');
+                        html.push('<tr id='+value.id+'>');
                         html.push('<td><span  style="font-size: 20px;color: #ffffff;width:15px;background-color: #e2d5b9;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
                         html.push('<td style="width:60px"><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
                             break;
                         case 1:
-                        html.push('<tr>');
+                        html.push('<tr id='+value.id+'>');
                         html.push('<td><span  style="font-size: 20px;color: #ffffff;width:15px;background-color: #cccccc;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
                         html.push('<td><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
                             break;
                         case 2:
-                        html.push('<tr>');
+                        html.push('<tr id='+value.id+'>');
                         html.push('<td><span  style="font-size: 20px;color: #ffffff;width:15px;background-color: #d8ad9e;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
                         html.push('<td><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
                             break;
                         case 3:
-                        html.push('<tr>');
+                        html.push('<tr id='+value.id+'>');
                         html.push('<td><span  style="font-size: 20px;color: #666666;width:15px;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
                         html.push('<td><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
                             break;
                         case 4:
-                        html.push('<tr>');
+                        html.push('<tr id='+value.id+'>');
                         html.push('<td><span  style="font-size: 20px;color: #666666;width:15px;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
                         html.push('<td><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
                             break;
                         default:
-                        html.push('<tr>');
+                        html.push('<tr id='+value.id+'>');
                         html.push('<td><span  style="font-size: 20px;color: #666666;width:15px;padding: 0 10px;border-radius: 25px;">'+(index+1)+'</span><span style="font-size: 23px;color: #666666;padding-left: 10px;">'+value.name+'</span></td>');
                         html.push('<td><span style="font-size: 20px;color: #d66149;width:15px">'+value.num+'</span><span style="font-size: 20px;color: #999999;width:15px">次</span></td>');
                         html.push('</tr>');
@@ -128,6 +120,10 @@
 	 var heatData = [];
 	 var lng = 121.473550;
 	 var lat = 31.230930;
+     var path = [];
+     var polyline = null;
+     var polyline2 = null;
+     var map = null;
 	 $.ajax({
             //请求方式
 			type : "GET",
@@ -135,10 +131,17 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url : "https://hsapi.100eduonline.com/api/count/getGroupMapData?studentId="+studentId+"&groupId="+groupid+"&id="+id,
+            url : "https://hsapi.100eduonline.com/api/count/getGroupMapData?studentId="+studentId+"&id="+id,
             //请求成功
             success : function(result) {
-			
+                lat = result.center.latitude;
+                lng = result.center.longitude;
+                if(result.data){
+                    $.each(result.data,function(index,value){
+                        path.push(new qq.maps.LatLng(value.latitude, value.longitude));
+                    });
+                    // path.push(new qq.maps.LatLng(value[0].latitude, value[0].longitude));
+                }
             },
             //请求失败，包含具体的错误信息
             error : function(e){
@@ -146,40 +149,73 @@
                 console.log(e.responseText);
             }
         });
+
+        $("#list tr").click(function(){
+            groupid = $(this).attr('id');
+            $.ajax({
+            //请求方式
+			type : "GET",
+			async: false,
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "https://hsapi.100eduonline.com/api/count/clickGroupMapData?groupId="+groupid+"&id="+id,
+            //请求成功
+            success : function(result) {
+
+                if(polyline2){
+                    polyline2.setMap(null);
+                }
+
+                var tempPath = [];
+                $.each(result,function(index,value){
+                    tempPath.push(new qq.maps.LatLng(value.latitude, value.longitude));
+                });
+
+                polyline2 = new qq.maps.Polyline({
+                    path: tempPath,
+                    strokeColor: '#000000',
+                    strokeWeight: 5,
+                    editable:false,
+                    map: map
+                });
+                
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+        });
 	</script>
     <script>
         function initMap() {
-                var center = new qq.maps.LatLng(39.916527,116.397128);
-                var map = new qq.maps.Map(document.getElementById('container'),{
+                var center = new qq.maps.LatLng(lat,lng);
+                 map = new qq.maps.Map(document.getElementById('container'),{
                     center: center,
-                    zoom: 13
+                    zoom: 16
                 });
-                var path1=[
-                    new qq.maps.LatLng(39.910, 116.399),
-                    new qq.maps.LatLng(39.920, 116.405),
-                    new qq.maps.LatLng(39.930, 116.420)
-                ];
-                var path2=[
-                    new qq.maps.LatLng(39.930456,116.387554),
-                    new qq.maps.LatLng(39.929008,116.414162),
-                    new qq.maps.LatLng(39.909786,116.379314),
-                    new qq.maps.LatLng(39.908206,116.416908)
-                ];
-                var polyline = new qq.maps.Polyline({
-                    path: path1,
+                // var path1=[
+                //     new qq.maps.LatLng(39.910, 116.399),
+                //     new qq.maps.LatLng(39.920, 116.405),
+                //     new qq.maps.LatLng(39.930, 116.420)
+                // ];
+                // var path2=[
+                //     new qq.maps.LatLng(39.930456,116.387554),
+                //     new qq.maps.LatLng(39.929008,116.414162),
+                //     new qq.maps.LatLng(39.909786,116.379314),
+                //     new qq.maps.LatLng(39.908206,116.416908)
+                // ];
+                 polyline = new qq.maps.Polyline({
+                    path: path,
                     strokeColor: '#000000',
                     strokeWeight: 5,
                     editable:false,
                     map: map
                 });
 
-                var polyline2 = new qq.maps.Polyline({
-                    path: path2,
-                    strokeColor: '#000000',
-                    strokeWeight: 5,
-                    editable:false,
-                    map: map
-                });
+             
         }
     </script>
 </body>
