@@ -117,7 +117,7 @@
             success : function(result) {
                 var html = [];
                 groupList = result;
-                // result.push({id: 175, name: "哈哈2哈哈哈哈2哈哈2哈哈2哈哈2", times: '00:00:12', num: 3, isDone: false})
+                result.push({id: 175, name: "哈哈2哈哈哈哈2哈哈2哈哈2哈哈2", times: '00:00:12', num: 3, isDone: false})
 				$.each(result,function(index,value){
                     switch (index) {
                         case 0:
@@ -216,7 +216,31 @@
             $('#list tr').each(function(i){ 
                 $(this).css({"background": "#ffffff","opacity":1});
             });
+
+            $("#list tr td:nth-child(1) span:nth-child(2)").each(function(i){ 
+                $(this).css({"color": "#999999"});
+            });
+
+            $("#list tr td:nth-child(2) span:nth-child(1)").each(function(i){ 
+                $(this).css({"color": "#d66149"});
+            });
+            $("#list tr td:nth-child(2) span:nth-child(2)").each(function(i){ 
+                $(this).css({"color": "#999999"});
+            });
+
+            $("#list tr td:nth-child(3) span:nth-child(1)").each(function(i){ 
+                $(this).css({"color": "#d66149"});
+            });
+            $("#list tr td:nth-child(3) span:nth-child(2)").each(function(i){ 
+                $(this).css({"color": "#999999"});
+            });
+
             $(this).css({"background": "#d66149","opacity":0.7});
+            $(this).children("td:nth-child(1)").children("span:nth-child(2)").css({"color": "#ffffff"});
+            $(this).children("td:nth-child(2)").children("span:first-child").css({"color": "#ffffff"});
+            $(this).children("td:nth-child(2)").children("span:nth-child(2)").css({"color": "#ffffff"});
+            $(this).children("td:nth-child(3)").children("span:first-child").css({"color": "#ffffff"});
+            $(this).children("td:nth-child(3)").children("span:nth-child(2)").css({"color": "#ffffff"});
             $.ajax({
             //请求方式
 			type : "GET",
