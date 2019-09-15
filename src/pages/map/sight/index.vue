@@ -803,11 +803,20 @@ export default {
           if (parseInt(this.$mp.query.startSceneryid) === parseInt(this.sightObj.sceneryID)) {
             this.getDistance();
           } else if (parseInt(this.$mp.query.endSceneryid) === parseInt(this.sightObj.sceneryID)) {
-            const res = await api.getUnsignCountExceptEndScenery({
-              groupid: this.$mp.query.groupid,
-              activity: this.$mp.query.activityid
-            });
-            const unsignCount = res.data[0].unsigncount;
+            var unsignCount = 0;
+            if (parseInt(this.$mp.query.groupid) > -1) {
+              const res = await api.getUnsignCountExceptEndScenery({
+                groupid: this.$mp.query.groupid,
+                activity: this.$mp.query.activityid
+              });
+              unsignCount = res.data[0].unsigncount;
+            } else {
+              const res = await api.getPersonUnsignCountExceptEndScenery({
+                studentid: wx.getStorageSync('userInfo').studentID,
+                activity: this.$mp.query.activityid
+              });
+              unsignCount = res.data[0].unsigncount;
+            }
             if (unsignCount === 0) {
               this.getDistance();
             } else {
@@ -834,6 +843,8 @@ export default {
                   duration: 2000
                 });
               }
+            } else {
+              this.getDistance();
             }
           }
         } else {

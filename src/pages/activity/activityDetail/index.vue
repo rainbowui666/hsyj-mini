@@ -57,7 +57,7 @@
       ></wux-cell>
     </view>
     <view class="bottom-btn" v-if="!isGroup">
-      <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">报名</button>
+      <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">点击报名</button>
       <button v-if="isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
@@ -76,8 +76,8 @@
         </view>
       </view>
     
+      <button v-if="isComplete" class="single_btn" @click="countActivity">活动统计</button>
       
-      <button v-if="isComplete" class="single_btn">已完成</button>
     </view>
     <view class="bottom-btn" v-else>
       <button v-if="disApply&&!isComplete&&!isDoing" class="single_btn" @click="signUp">报名</button>
