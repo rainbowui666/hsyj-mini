@@ -946,7 +946,7 @@ export default {
                 // }
                 // 设置并更新distance数据
                 this.distance = result.elements[0].distance;
-                this.distance = 5;
+                // this.distance = 5;
                 if (this.distance < this.sightObj.distance) {
                   this.onSign();
                 } else {
@@ -1017,7 +1017,7 @@ export default {
             // }
             // 设置并更新distance数据
             this.distance = result.elements[0].distance;
-            this.distance = 5;
+            // this.distance = 5;
             if (this.distance < this.sightObj.distance) {
               this.onSign();
             } else {
