@@ -16,7 +16,6 @@
                 class="thumbsUpImg"
                 :src="item.thumbsupImg"
                 @click="thumbsupClick(item,index)"
-                mode="widthFix"
               />
               <view
                 class="icon-group-item-label"
@@ -25,7 +24,6 @@
                 class="messageImg"
                 :src="item.messageImg"
                 @click="messageClick(item,index)"
-                mode="widthFix"
               />
               <view
                 class="icon-group-item-label"

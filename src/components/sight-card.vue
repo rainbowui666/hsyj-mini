@@ -24,7 +24,6 @@
               class="thumbsUpImg"
               :src="item.thumbsupImg"
               @click="thumbsupClick(item,index)"
-              mode="widthFix"
             />
             <view
               class="icon-group-item-label"
@@ -33,7 +32,6 @@
               class="messageImg"
               :src="item.messageImg"
               @click="messageClick(item,index)"
-              mode="widthFix"
             />
             <view
               class="icon-group-item-label"
@@ -46,7 +44,7 @@
         </view>
         <view class="sight-card-icon">
           <view class="sight-card-icon-inner">
-          <image class="navigationImg" mode='widthFix' :src="item.navigationImg" @click="navigationClick(item)"/>
+          <image class="navigationImg"  :src="item.navigationImg" @click="navigationClick(item)"/>
             <!-- <wux-icon :type="item.iconType" :color="item.iconColor"/> -->
           </view>
           <view class="sight-card-icon-text">
@@ -257,13 +255,13 @@ export default {
   color: #aaa;
 }
 .thumbsUpImg {
-  /* height: 35rpx; */
+  height: 28rpx;
   width: 28rpx;
   padding: 4px;
 }
 .messageImg {
-  /* height: 35rpx; */
-  width: 32rpx;
+  height: 28rpx;
+  width: 28rpx;
   padding: 4px 4px 4px 15px;
 }
 .sight-card .icon-group-item-label {
@@ -271,5 +269,9 @@ export default {
   color: #666;
   align-self: flex-start;
   margin-left: 0;
+}
+.navigationImg{
+  width: 32px;
+  height:32px;
 }
 </style>

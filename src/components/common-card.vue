@@ -24,9 +24,9 @@
           </view>
           <view class="common-card-content-icongroup">
             <view class="common-card-content-icongroup-text" @click.stop="detailClick(item)">查看详情</view>
-            <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)" mode="widthFix"/>
+            <image class="thumbsUpImg" :src="item.thumbsupImg" @click="thumbsupClick(item,index)"/>
             <view class="icon-group-item-label">{{ item.shstate?item.shstate.wantto?item.shstate.wantto:0:0 }}</view>
-            <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)" mode="widthFix"/>
+            <image class="messageImg" :src="item.messageImg" @click="messageClick(item,index)"/>
             <view class="icon-group-item-label">{{ item.shstate?item.shstate.disnum?item.shstate.disnum:0:0 }}</view>
             <!-- <icon-group :list="item.iconArr"/> -->
             <!-- <view v-if="item.hasjoin=='进行中'" class="on-status">{{ item.hasjoin }}</view>
@@ -220,10 +220,12 @@ export default {
 }
 .thumbsUpImg {
   width: 28rpx;
+  height: 28rpx;
   padding: 4px;
 }
 .messageImg {
-  width: 32rpx;
+  width: 28rpx;
+  height: 28rpx;
   padding: 4px 4px 4px 15px;
 }
 .common-card ._navigator{

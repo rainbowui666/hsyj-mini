@@ -2,6 +2,7 @@
   "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "wux-cell": "../../../static/wux/cell/index",
     "wux-col": "../../../static/wux/col/index",

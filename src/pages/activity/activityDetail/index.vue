@@ -64,11 +64,19 @@
           <view>已报名</view>
         </view>
       </button>
-      <button
-        v-if="isDoing&&!isComplete&&isApply"
-        class="single_btn_isDoing"
-        @click="gotoActivity"
-      >进入活动</button>
+
+      <view v-if="isDoing&&!isComplete&&isApply" class="group_btn">
+        <view class="group_btn_disApply">
+          <button @click="countActivity">活动统计</button>
+        </view>
+        <view class="group_btn_doing">
+            <button
+                class="single_btn_isDoing"
+                @click="gotoActivity">进入活动</button>
+        </view>
+      </view>
+    
+      
       <button v-if="isComplete" class="single_btn">已完成</button>
     </view>
     <view class="bottom-btn" v-else>
@@ -87,7 +95,7 @@
       </view>
       <view v-if="isDoing" class="group_btn">
         <view class="group_btn_disApply">
-          <button>活动统计</button>
+          <button @click="countGroupActivity">活动统计</button>
         </view>
         <view class="group_btn_doing">
           <button @click="gotoActivity">进入活动</button>
@@ -250,6 +258,16 @@ export default {
     goHomeBack () {
       wx.navigateTo({
         url: '/pages/center/homeflash/main'
+      });
+    },
+    countActivity () {
+      wx.navigateTo({
+        url: '/pages/count/main?id=' + this.$mp.query.id
+      });
+    },
+    countGroupActivity () {
+      wx.navigateTo({
+        url: '/pages/count/main?type=group&id=' + this.$mp.query.id
       });
     },
     async signUp () {
@@ -420,7 +438,6 @@ export default {
       const res = await api.readyScan({
         studentid: wx.getStorageSync('userInfo').studentID
       });
-      console.log('===============', res)
       if (res.data.scan) {
         wx.scanCode({
           success: async res => {
@@ -429,7 +446,6 @@ export default {
               activityid: this.activityList.activityID,
               groupid: res.result.split('groupid=')[1].split('&')[0]
             })
-            console.log('==========================', res.result.split('groupid=')[1].split('&')[0])
             if (res1.data && res1.data.groupName) {
               wx.showToast({
                 title: '成功加入' + res1.data.groupName + '团队',
@@ -596,22 +612,14 @@ export default {
         '-' +
         this.$mp.query.id
     };
-  },
-  onPullDownRefresh: function () {
-    // 显示顶部刷新图标
-    wx.showNavigationBarLoading();
-    // // 隐藏导航栏加载框
-    wx.hideNavigationBarLoading();
-    // // 停止下拉动作
-    this.getDetailInfo();
-    wx.stopPullDownRefresh();
   }
 };
 </script>
 
 <style>
 .activity-detail-page {
-  height: 110vh;
+  height: 100vh;
+  overflow: hidden;
 }
 .activity-detail-page .activity-detail-image image {
   /* width: 100%; */
