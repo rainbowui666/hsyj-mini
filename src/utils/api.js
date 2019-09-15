@@ -110,8 +110,12 @@ const api = {
   getActivitySightDetail: (obj) => request.get('api/scenery/getActivitySceneryDetail?sceneryid=' + obj.id + '&studentid=' + obj.studentid + '&activityid=' + obj.activity, null, {
     baseURL: ApiRootUrl
   }),
-  // 除终点外未签到的景点数量（如果没有终点，返回0）
+  // 团队活动 除终点外未签到的景点数量（如果没有终点，返回0）
   getUnsignCountExceptEndScenery: (obj) => request.get('api/scenery/getUnsignCountExceptEndScenery?groupid=' + obj.groupid + '&activityid=' + obj.activity, null, {
+    baseURL: ApiRootUrl
+  }),
+  // 个人活动 除终点外未签到的景点数量（如果没有终点，返回0）
+  getPersonUnsignCountExceptEndScenery: (obj) => request.get('api/scenery/getPersonUnsignCountExceptEndScenery?studentid=' + obj.studentid + '&activityid=' + obj.activity, null, {
     baseURL: ApiRootUrl
   }),
   // 首页登录授权
