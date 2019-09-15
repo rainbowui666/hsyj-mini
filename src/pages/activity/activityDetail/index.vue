@@ -80,24 +80,33 @@
       
     </view>
     <view class="bottom-btn" v-else>
-      <button v-if="disApply&&!isComplete&&!isDoing" class="single_btn" @click="signUp">报名</button>
-      <button v-if="isComplete" class="single_btn">已完成</button>
+      <button v-if="disApply&&!isComplete&&!isDoing" class="single_btn" @click="signUp">点击报名</button>
+      <button v-if="isComplete" class="single_btn" @click="countGroupActivity">活动统计</button>
       <view v-if="isApply&&!isDoing" class="group_btn">
-        <view class="group_btn_disApply">
+        <view v-if="!hasJoinGroup" class="group_btn_disApply">
           <button @click="scan">加入团队</button>
         </view>
-        <view v-if="!isInvite" class="group_btn_disApply">
+        <view v-if="!hasJoinGroup&&!isInvite" class="group_btn_disApply">
           <button @click="changeCreatBtn">创建团队</button>
         </view>
-        <view v-if="isInvite" class="group_btn_disApply">
+        <view v-if="hasJoinGroup&&!isGroupMaster" class="single_btn">
+          <button disabled="true">{{groupName}}</button>
+        </view>
+        <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
+          <button disabled="true">{{groupName}}</button>
+        </view>
+        <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
           <button @click="onInviteBtn">出示邀请码</button>
         </view>
       </view>
       <view v-if="isDoing" class="group_btn">
-        <view class="group_btn_disApply">
+        <view v-if="!isGroupMaster" class="group_btn_disApply" style="width:90%">
           <button @click="countGroupActivity">活动统计</button>
         </view>
-        <view class="group_btn_doing">
+        <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
+          <button @click="countGroupActivity">活动统计</button>
+        </view>
+        <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_doing">
           <button @click="gotoActivity">进入活动</button>
         </view>
       </view>
@@ -204,6 +213,8 @@ export default {
       isCreat: false,
       isInvite: false,
       isTwoCode: false,
+      hasJoinGroup: false,
+      isGroupMaster: false,
       groupName: '',
       content: '',
       teamName: '',
@@ -571,12 +582,21 @@ export default {
     this.isShare = false;
     this.showComment = false;
     this.showWords = false;
+    this.isGroupMaster = false;
+    this.hasJoinGroup = false;
     if (this.$mp.query.isShare) {
       this.isShare = true;
       this.$mp.query.id = this.$mp.query.isShare.split('-')[1];
       this.$mp.query.id = this.$mp.query.isShare.split('-')[2];
     }
     await this.getDetailInfo();
+    if (this.$mp.query.isGroup === '1' && this.activityList.group[0]) {
+      this.groupName = this.activityList.group[0].groupName;
+      this.hasJoinGroup = true;
+    }
+    if (this.$mp.query.isGroup === '1' && this.activityList.group[0] && this.activityList.group[0].studentid === wx.getStorageSync('userInfo').studentID) {
+      this.isGroupMaster = true;
+    }
     this.isGroup = this.activityList.isGroup === 1 ? this.isStatusTrue : false;
     this.isDoing =
       this.activityList.hasjoin === '进行中' ||
