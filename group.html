@@ -117,7 +117,7 @@
             success : function(result) {
                 var html = [];
                 groupList = result;
-                result.push({id: 175, name: "哈哈2哈哈哈哈2哈哈2哈哈2哈哈2", times: '00:00:12', num: 3, isDone: false})
+                // result.push({id: 175, name: "哈哈2哈哈哈哈2哈哈2哈哈2哈哈2", times: '00:00:12', num: 3, isDone: false})
 				$.each(result,function(index,value){
                     switch (index) {
                         case 0:
@@ -180,6 +180,7 @@
      var pathInfo = [];
      var polyline = null;
      var polyline2 = null;
+     var pathInfo2Label = [];
      var map = null;
 	 $.ajax({
             //请求方式
@@ -256,6 +257,14 @@
 
                 if(polyline2){
                     polyline2.setMap(null);
+                    polyline.setMap(null);
+                }
+
+                if(pathInfo2Label.length>0){
+                    $.each(pathInfo2Label,function(index,value){
+                        value.setMap(null);
+                    });
+                    pathInfo2Label = [];
                 }
 
                 var tempPath = [];
@@ -279,11 +288,12 @@
                     var fen = Math.floor((to-from)/1000/60);
                     var miao = Math.ceil((to-from)/1000);
                     var fenmiao = fen+'\''+miao+'\'\'';
-                    new qq.maps.Label({
+                    var label2 = new qq.maps.Label({
                         position: value,
                         map: map,
                         content:'<div style="background-color:#d66149;width:80px;text-align:center;color:#ffffff;font-size:19px">'+(index+1)+'</div><div style="width:80px;text-align:center;color:#d66149;font-size:19px">'+fenmiao+'</div>'
                     });
+                    pathInfo2Label.push(label2);
                 });
                 
             },
@@ -331,11 +341,12 @@
                     var fen = Math.floor((to-from)/1000/60);
                     var miao = Math.ceil((to-from)/1000);
                     var fenmiao = fen+'\''+miao+'\'\'';
-                    new qq.maps.Label({
+                    var label = new qq.maps.Label({
                         position: value,
                         map: map,
                         content:'<div style="background-color:#d66149;width:80px;text-align:center;color:#ffffff;font-size:19px">'+(index+1)+'</div><div style="width:80px;text-align:center;color:#d66149;font-size:19px">'+fenmiao+'</div>'
                     });
+                    pathInfo2Label.push(label)
                 });
                 
              
