@@ -286,7 +286,12 @@
                     var from = new Date(pathInfo2[0].createdate).getTime();
                     var to = new Date(pathInfo2[index].createdate).getTime();
                     var fen = Math.floor((to-from)/1000/60);
-                    var miao = Math.ceil((to-from)/1000);
+                    var miao = Math.floor((to-from)/1000);
+                    var smiao = Math.floor(miao/60)
+                    if(smiao>0){
+                        fen=fen+smiao;
+                        miao= miao-(60*smiao);
+                    }
                     var fenmiao = fen+'\''+miao+'\'\'';
                     var label2 = new qq.maps.Label({
                         position: value,
@@ -339,7 +344,12 @@
                     var from = new Date(pathInfo[0].createdate).getTime();
                     var to = new Date(pathInfo[index].createdate).getTime();
                     var fen = Math.floor((to-from)/1000/60);
-                    var miao = Math.ceil((to-from)/1000);
+                    var miao = Math.floor((to-from)/1000);
+                    var smiao = Math.floor(miao/60)
+                    if(smiao>0){
+                        fen=fen+smiao;
+                        miao= miao-(60*smiao);
+                    }
                     var fenmiao = fen+'\''+miao+'\'\'';
                     var label = new qq.maps.Label({
                         position: value,
