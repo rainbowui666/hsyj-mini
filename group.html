@@ -195,6 +195,8 @@
                 lat = result.center.latitude;
                 lng = result.center.longitude;
                 if(result.data){
+                    lat = result.data[0].latitude;
+                    lng = result.data[0].longitude;
                     $.each(result.data,function(index,value){
                         path.push(new qq.maps.LatLng(value.latitude, value.longitude));
                         pathInfo.push(value.sigin);
@@ -253,6 +255,17 @@
             //请求成功
             success : function(result) {
 
+                if(result.data&&result.data.length>0){
+                    lat = result.data[0].latitude;
+                    lng = result.data[0].longitude;
+
+                    var center = new qq.maps.LatLng(lat,lng);
+                    map = new qq.maps.Map(document.getElementById('container'),{
+                        center: center,
+                        zoom: 17
+                    });
+                }
+
                 setInformation(result.group);
 
                 if(polyline2){
@@ -274,6 +287,8 @@
                     pathInfo2.push(value.sigin);
                 });
 
+
+
                 polyline2 = new qq.maps.Polyline({
                     path: tempPath,
                     strokeColor: '#34e417',
@@ -283,8 +298,8 @@
                 });
 
                 $.each(tempPath,function(index,value){
-                    var from = new Date(pathInfo2[0].createdate).getTime();
-                    var to = new Date(pathInfo2[index].createdate).getTime();
+                    var from = new Date(pathInfo2[0].createdate.replace(/-/g,'/')).getTime();
+                    var to = new Date(pathInfo2[index].createdate.replace(/-/g,'/')).getTime();
                     var fen = Math.floor((to-from)/1000/60);
                     var miao = Math.floor((to-from)/1000);
                     var smiao = Math.floor(miao/60)
@@ -341,8 +356,8 @@
                 });
 
                 $.each(path,function(index,value){
-                    var from = new Date(pathInfo[0].createdate).getTime();
-                    var to = new Date(pathInfo[index].createdate).getTime();
+                    var from = new Date(pathInfo[0].createdate.replace(/-/g,'/')).getTime();
+                    var to = new Date(pathInfo[index].createdate.replace(/-/g,'/')).getTime();
                     var fen = Math.floor((to-from)/1000/60);
                     var miao = Math.floor((to-from)/1000);
                     var smiao = Math.floor(miao/60)
