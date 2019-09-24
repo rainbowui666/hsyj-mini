@@ -21,7 +21,7 @@
             <view class="num">
               <span>{{activityList.shstate.applyNum}}</span>人报名
             </view>
-            <view class="status">报名中</view>
+            <view class="status">{{activityList.hasjoin}}</view>
           </view>
           <view class="float-container-detail-icon-group">
             <icon-group :list="iconArr2" :iconClick="onClick"/>
@@ -89,7 +89,7 @@
         <view v-if="!hasJoinGroup&&!isInvite" class="group_btn_disApply">
           <button @click="changeCreatBtn">创建团队</button>
         </view>
-        <view v-if="hasJoinGroup&&!isGroupMaster" class="single_btn">
+        <view v-if="hasJoinGroup&&!isGroupMaster" class="single_btn" style="width:100%">
           <button disabled="true">{{groupName}}</button>
         </view>
         <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
@@ -371,6 +371,8 @@ export default {
         });
       }
       await this.getDetailInfo();
+      this.hasJoinGroup = true;
+      this.isGroupMaster = true;
       this.onInviteBtn();
     },
     hideWords () {
@@ -463,6 +465,9 @@ export default {
                 icon: 'none',
                 duration: 3000 // 持续的时间
               });
+              this.hasJoinGroup = true;
+              this.isGroupMaster = false;
+              this.groupName = res1.data.groupName;
             } else if (res1 && res1.errmsg) {
               wx.showToast({
                 title: res1.errmsg,
