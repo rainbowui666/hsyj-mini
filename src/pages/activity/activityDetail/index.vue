@@ -465,6 +465,9 @@ export default {
                 icon: 'none',
                 duration: 3000 // 持续的时间
               });
+              this.hasJoinGroup = true;
+              this.isGroupMaster = false;
+              this.groupName = res1.data.groupName;
             } else if (res1 && res1.errmsg) {
               wx.showToast({
                 title: res1.errmsg,
