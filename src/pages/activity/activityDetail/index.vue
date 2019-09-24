@@ -89,7 +89,7 @@
         <view v-if="!hasJoinGroup&&!isInvite" class="group_btn_disApply">
           <button @click="changeCreatBtn">创建团队</button>
         </view>
-        <view v-if="hasJoinGroup&&!isGroupMaster" class="single_btn">
+        <view v-if="hasJoinGroup&&!isGroupMaster" class="single_btn" style="width:100%">
           <button disabled="true">{{groupName}}</button>
         </view>
         <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
