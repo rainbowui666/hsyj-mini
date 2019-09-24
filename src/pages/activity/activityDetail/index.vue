@@ -21,7 +21,7 @@
             <view class="num">
               <span>{{activityList.shstate.applyNum}}</span>人报名
             </view>
-            <view class="status">报名中</view>
+            <view class="status">{{activityList.hasjoin}}</view>
           </view>
           <view class="float-container-detail-icon-group">
             <icon-group :list="iconArr2" :iconClick="onClick"/>
