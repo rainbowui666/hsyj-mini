@@ -371,6 +371,8 @@ export default {
         });
       }
       await this.getDetailInfo();
+      this.hasJoinGroup = true;
+      this.isGroupMaster = true;
       this.onInviteBtn();
     },
     hideWords () {
