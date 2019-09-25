@@ -21,7 +21,7 @@
             <view class="num">
               <span>{{activityList.shstate.applyNum}}</span>人报名
             </view>
-            <view class="status">{{activityList.hasjoin}}</view>
+            <view class="status">{{activityList.hasjoin || "报名中"}}</view>
           </view>
           <view class="float-container-detail-icon-group">
             <icon-group :list="iconArr2" :iconClick="onClick"/>
@@ -57,15 +57,15 @@
       ></wux-cell>
     </view>
     <view class="bottom-btn" v-if="!isGroup">
-      <button v-if="disApply&&!isComplete" class="single_btn" @click="signUp">点击报名</button>
-      <button v-if="isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
+      <button v-if="isShowbuttons&&disApply&&!isComplete" class="single_btn" @click="signUp">点击报名</button>
+      <button v-if="isShowbuttons&&isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
           <view>已报名</view>
         </view>
       </button>
 
-      <view v-if="isDoing&&!isComplete&&isApply" class="group_btn">
+      <view v-if="isShowbuttons&&isDoing&&!isComplete&&isApply" class="group_btn">
         <view class="group_btn_disApply">
           <button @click="countActivity">活动统计</button>
         </view>
@@ -76,30 +76,30 @@
         </view>
       </view>
     
-      <button v-if="isComplete" class="single_btn" @click="countActivity">活动统计</button>
+      <button v-if="isShowbuttons&&isComplete" class="single_btn" @click="countActivity">活动统计</button>
       
     </view>
     <view class="bottom-btn" v-else>
-      <button v-if="disApply&&!isComplete&&!isDoing" class="single_btn" @click="signUp">点击报名</button>
-      <button v-if="isComplete" class="single_btn" @click="countGroupActivity">活动统计</button>
-      <view v-if="isApply&&!isDoing" class="group_btn">
-        <view v-if="!hasJoinGroup" class="group_btn_disApply">
+      <button v-if="isShowbuttons&&disApply&&!isComplete&&!isDoing" class="single_btn" @click="signUp">点击报名</button>
+      <button v-if="isShowbuttons&&isComplete" class="single_btn" @click="countGroupActivity">活动统计</button>
+      <view v-if="isShowbuttons&&isApply&&!isDoing" class="group_btn">
+        <view v-if="isShowbuttons&&!hasJoinGroup" class="group_btn_disApply">
           <button @click="scan">加入团队</button>
         </view>
-        <view v-if="!hasJoinGroup&&!isInvite" class="group_btn_disApply">
+        <view v-if="isShowbuttons&&!hasJoinGroup&&!isInvite" class="group_btn_disApply">
           <button @click="changeCreatBtn">创建团队</button>
         </view>
-        <view v-if="hasJoinGroup&&!isGroupMaster" class="single_btn" style="width:100%">
+        <view v-if="isShowbuttons&&hasJoinGroup&&!isGroupMaster" class="single_btn" style="width:100%">
           <button disabled="true">{{groupName}}</button>
         </view>
-        <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
+        <view v-if="isShowbuttons&&hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
           <button disabled="true">{{groupName}}</button>
         </view>
-        <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
+        <view v-if="isShowbuttons&&hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
           <button @click="onInviteBtn">出示邀请码</button>
         </view>
       </view>
-      <view v-if="isDoing" class="group_btn">
+      <view v-if="isShowbuttons&&isDoing" class="group_btn">
         <view v-if="!isGroupMaster" class="group_btn_disApply" style="width:90%">
           <button @click="countGroupActivity">活动统计</button>
         </view>
@@ -114,7 +114,7 @@
         <view class="activity-detail-desc-rows">
           <view class="activity-detail-desc-rows-inner">
             <text class="explain">活动说明：</text>
-            <text>&nbsp;{{activityList.shdesc}}</text>
+            <text>&nbsp;{{activityList.shdesc || ""}}</text>
           </view>
         </view>
       </view>
@@ -215,6 +215,7 @@ export default {
       isTwoCode: false,
       hasJoinGroup: false,
       isGroupMaster: false,
+      isShowbuttons: false,
       groupName: '',
       content: '',
       teamName: '',
@@ -578,6 +579,7 @@ export default {
     }
   },
   async onShow () {
+    this.isShowbuttons = false;
     this.isStatusTrue = true;
     this.isCreat = false;
     this.isInvite = false;
@@ -595,6 +597,7 @@ export default {
       this.$mp.query.id = this.$mp.query.isShare.split('-')[2];
     }
     await this.getDetailInfo();
+    // this.isShowbuttons = true;
     if (this.$mp.query.isGroup === '1' && this.activityList.group[0]) {
       this.groupName = this.activityList.group[0].groupName;
       this.hasJoinGroup = true;
@@ -627,6 +630,7 @@ export default {
       this.iconArr2[0].color = '#fff';
     }
     this.getMessage();
+    this.isShowbuttons = true;
   },
   onShareAppMessage: function (ops) {
     return {
