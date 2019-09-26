@@ -469,7 +469,7 @@ export default {
       });
     },
     onChange (e) {
-      const { file } = e.detail;
+      const {file} = e.mp.detail;
       if (file.status === 'uploading') {
         this.progress = 0;
         wx.showLoading();
