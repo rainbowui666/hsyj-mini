@@ -57,14 +57,23 @@
       ></wux-cell>
     </view>
     <view class="bottom-btn" v-if="!isGroup">
-      <button v-if="isShowbuttons&&disApply&&!isComplete" class="single_btn" @click="signUp">点击报名</button>
+      <button v-if="isShowbuttons&&disApply&&!isDoing&&!isComplete" class="single_btn" @click="signUp">点击报名</button>
       <button v-if="isShowbuttons&&isApply&&!isDoing&&!isComplete" class="single_btn_isApply">
         <view class="single_btn_isApply_group">
           <wux-icon type="ios-checkmark" size="36" color="#fff"/>
           <view>已报名</view>
         </view>
       </button>
-
+      <view v-if="isShowbuttons&&disApply&&isDoing&&!isComplete" class="group_btn">
+        <view class="group_btn_disApply">
+          <button @click="countActivity">活动统计</button>
+        </view>
+        <view class="group_btn_doing">
+            <button
+                class="single_btn_isDoing"
+                @click="signUp">点击报名</button>
+        </view>
+      </view>
       <view v-if="isShowbuttons&&isDoing&&!isComplete&&isApply" class="group_btn">
         <view class="group_btn_disApply">
           <button @click="countActivity">活动统计</button>
@@ -100,7 +109,7 @@
         </view>
       </view>
       <view v-if="isShowbuttons&&isDoing" class="group_btn">
-        <view v-if="!isGroupMaster" class="group_btn_disApply" style="width:90%">
+        <view v-if="!isGroupMaster" class="group_btn_disApply" style="width:100%">
           <button @click="countGroupActivity">活动统计</button>
         </view>
         <view v-if="hasJoinGroup&&isGroupMaster" class="group_btn_disApply">
@@ -618,6 +627,7 @@ export default {
         : false;
     this.isComplete =
       this.activityList.hasjoin === '已完成' ? this.isStatusTrue : false;
+    if (!this.isComplete && this.activityList.hasjoin === '已结束') this.isComplete = this.isStatusTrue;
     this.disApply = !this.isApply ? this.isStatusTrue : false;
     const isWantTo = await api.isWantTo({
       studentid: wx.getStorageSync('userInfo').studentID,

@@ -469,7 +469,7 @@ export default {
       });
     },
     onChange (e) {
-      const { file } = e.detail;
+      const {file} = e.mp.detail;
       if (file.status === 'uploading') {
         this.progress = 0;
         wx.showLoading();
@@ -859,6 +859,14 @@ export default {
       }
     },
     async beforeGetDistance () {
+      if (this.sightObj.shstate.checkin) {
+        wx.showToast({
+          title: '已签到',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
       this.uploadSuccess = false;
       if (parseInt(this.$mp.query.groupid) > -1) {
         const res = await api.isGroupCreator({
