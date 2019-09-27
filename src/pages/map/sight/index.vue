@@ -859,6 +859,14 @@ export default {
       }
     },
     async beforeGetDistance () {
+      if (this.sightObj.shstate.checkin) {
+        wx.showToast({
+          title: '已签到',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
       this.uploadSuccess = false;
       if (parseInt(this.$mp.query.groupid) > -1) {
         const res = await api.isGroupCreator({
