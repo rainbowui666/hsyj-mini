@@ -96,7 +96,7 @@
             <span>签到数</span><br><span id="sign"></span>
          </div>
          <div style="text-align: center">
-            <span>未完成</span><br><span id="last"></span>
+            <span id="lastText">未完成</span><br><span id="last"></span>
          </div>
     </div>
 	<script>
@@ -334,7 +334,13 @@
                         $("#time").text(value.times);
                         $("#num").text(index+1);
                         $("#sign").text(value.num);
-                        $("#last").text(value.isDone);
+                        if(value.isDone>0){
+                            $("#lastText").text("未完成");
+                            $("#last").text(value.isDone);
+                        }else{
+                            $("#lastText").text("已完成");
+                            $("#last").text("");
+                        }
                     }
                 }); 
 
