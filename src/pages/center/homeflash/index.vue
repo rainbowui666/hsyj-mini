@@ -6,11 +6,13 @@
     <view v-else>
       <img class="img_flash" :src="loginBg">
       <button
+        type="default"
         plain="true"
         open-type="getUserInfo"
         @getuserinfo="onConfirm"
         class="login_btn"
         >登录</button>
+      <span class="user-clear" @click="noLogin" style="border: 0px none #ffffff!important">随便逛逛>>></span>
     </view>
   </view>
 </template>
@@ -33,7 +35,7 @@ export default {
       // wx.switchTab({
       //   url: '/pages/map/main'
       // });
-    }, 1600)
+    }, 0)// 1600
   },
   methods: {
     onConfirm (event) {
@@ -54,6 +56,11 @@ export default {
           }
         }
       })
+    },
+    noLogin (event) {
+      wx.switchTab({
+        url: '/pages/map/main'
+      });
     }
   }
 };
@@ -77,5 +84,18 @@ page {
   transform: translateX(-50%);
   color: #ffff!important;
   border: 1px solid #ffffff!important;
+}
+.user-clear{
+  position:absolute;
+  width: 200px;
+  left: 50%;
+  bottom: 5%;
+  margin-top:10px;
+  transform: translateX(-50%);
+  font-size:26rpx;
+  color:#fff;
+  border: 0px none #ffffff;
+  background-color:transparent;
+  text-align:center;
 }
 </style>

@@ -292,6 +292,10 @@ export default {
       });
     },
     async signUp () {
+      if (wx.getStorageSync('userInfo').studentID === undefined) {
+        wx.navigateTo({ url: '/pages/center/login/main' });
+        return;
+      }
       const studentDetail = await api.getStudentDetail({
         studentid: wx.getStorageSync('userInfo').studentID
       });
@@ -420,6 +424,10 @@ export default {
     async onClick (item, index) {
       if (index === 0) {
         if (this.iconArr2[0].color !== 'red') {
+          if (wx.getStorageSync('userInfo').studentID === undefined) {
+            wx.navigateTo({ url: '/pages/center/login/main' });
+            return;
+          }
           await api.wantToActivity({
             studentid: wx.getStorageSync('userInfo').studentID,
             activityid: this.activityList.activityID,
@@ -430,6 +438,10 @@ export default {
         }
       }
       if (index === 1) {
+        if (wx.getStorageSync('userInfo').studentID === undefined) {
+          wx.navigateTo({ url: '/pages/center/login/main' });
+          return;
+        }
         this.showWords = true;
       }
     },

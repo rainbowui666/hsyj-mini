@@ -178,6 +178,9 @@ export default {
     };
   },
   async mounted () {
+    if (wx.getStorageSync('userInfo').studentID === undefined) {
+      return;
+    }
     const res = await api.getMySigninList({
       pageindex: this.pageindex,
       pagesize: this.pagesize,

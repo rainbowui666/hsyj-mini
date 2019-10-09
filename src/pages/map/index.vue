@@ -156,6 +156,10 @@ export default {
   },
   methods: {
     async onThumbsupClick (item, index) {
+      if (wx.getStorageSync('userInfo').studentID === undefined) {
+        wx.navigateTo({ url: '/pages/center/login/main' });
+        return;
+      }
       if (!item.likednum) {
         await api.homeThumbsUp({id: item.discussID, studentid: wx.getStorageSync('userInfo').studentID});
         this.messageList[index].thumbsupImg = 'thumbsUp_red'

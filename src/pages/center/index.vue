@@ -74,7 +74,7 @@ export default {
       discussCount: 0,
       activityCount: 0,
       integralCount: 0,
-      userName: '我是皮仔呀',
+      userName: '未授权获取',
       userHeadImg: 'https://cdn.100eduonline.com/mini-images/user_head.png'
     };
   },
@@ -87,6 +87,9 @@ export default {
     }
   },
   async onShow () {
+    if (wx.getStorageSync('userInfo').studentID === undefined) {
+      return;
+    }
     this.userInfo = wx.getStorageSync('userInfo');
     // },
     // async mounted () {
@@ -146,6 +149,9 @@ export default {
       })
     },
     onClickIntegral () {
+      if (wx.getStorageSync('userInfo').studentID === undefined) {
+        return;
+      }
       this.isShowIntegral = true;
       this.isShowMessage = false;
       this.isShowActivity = false;
@@ -153,6 +159,9 @@ export default {
       this.state = 3
     },
     onClickMessage () {
+      if (wx.getStorageSync('userInfo').studentID === undefined) {
+        return;
+      }
       this.isShowIntegral = false;
       this.isShowMessage = true;
       this.isShowActivity = false;
@@ -160,6 +169,9 @@ export default {
       this.state = 1
     },
     onClickActivity () {
+      if (wx.getStorageSync('userInfo').studentID === undefined) {
+        return;
+      }
       this.isShowIntegral = false;
       this.isShowMessage = false;
       this.isShowActivity = true;
@@ -167,6 +179,9 @@ export default {
       this.state = 2
     },
     onClickSignin () {
+      if (wx.getStorageSync('userInfo').studentID === undefined) {
+        return;
+      }
       this.isShowIntegral = false;
       this.isShowMessage = false;
       this.isShowActivity = false;

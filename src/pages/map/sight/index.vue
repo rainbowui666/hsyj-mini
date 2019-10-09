@@ -548,6 +548,10 @@ export default {
     },
     async onClick (item, index) {
       if (index === 0) {
+        if (wx.getStorageSync('userInfo').studentID === undefined) {
+          wx.navigateTo({ url: '/pages/center/login/main' });
+          return;
+        }
         if (this.iconArr2[0].color !== 'red') {
           await api.wantToSight({
             studentid: wx.getStorageSync('userInfo').studentID,
@@ -559,6 +563,10 @@ export default {
         }
       }
       if (index === 1) {
+        if (wx.getStorageSync('userInfo').studentID === undefined) {
+          wx.navigateTo({ url: '/pages/center/login/main' });
+          return;
+        }
         this.showWords = true;
       }
     },
