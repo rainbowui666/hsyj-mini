@@ -85,13 +85,31 @@
         </view>
       </view>
     
-      <button v-if="isShowbuttons&&isComplete" class="single_btn" @click="countActivity">活动统计</button>
-      
+      <button v-if="isShowbuttons&&disApply&&isComplete" class="single_btn" @click="countActivity">活动统计</button>
+      <view v-if="isShowbuttons&&isApply&&isComplete" class="group_btn">
+        <view class="group_btn_disApply">
+          <button @click="countActivity">活动统计</button>
+        </view>
+        <button class="single_btn_isApply" style="width: 47%;margin-left:20px;">
+          <view class="single_btn_isApply_group">
+            <wux-icon type="ios-checkmark" size="36" color="#fff"/>
+            <view>已报名</view>
+          </view>
+        </button>
+      </view>
     </view>
     <view class="bottom-btn" v-else>
       <button v-if="isShowbuttons&&disApply&&!isComplete&&!isDoing" class="single_btn" @click="signUp">点击报名</button>
-      <button v-if="isShowbuttons&&isComplete" class="single_btn" @click="countGroupActivity">活动统计</button>
-      <view v-if="isShowbuttons&&isApply&&!isDoing" class="group_btn">
+      <button v-if="isShowbuttons&&!hasJoinGroup&&isComplete" class="single_btn" @click="countGroupActivity">活动统计</button>
+      <view v-if="isShowbuttons&&hasJoinGroup&&isComplete" class="group_btn">
+        <view class="group_btn_disApply">
+          <button @click="countGroupActivity">活动统计</button>
+        </view>
+        <view class="group_btn_disApply">
+          <button disabled="true">{{groupName}}</button>
+        </view>
+      </view>
+      <view v-if="isShowbuttons&&isApply&&!isDoing&&!isComplete" class="group_btn">
         <view v-if="isShowbuttons&&!hasJoinGroup" class="group_btn_disApply">
           <button @click="scan">加入团队</button>
         </view>
@@ -108,7 +126,7 @@
           <button @click="onInviteBtn">出示邀请码</button>
         </view>
       </view>
-      <view v-if="isShowbuttons&&isDoing" class="group_btn">
+      <view v-if="isShowbuttons&&isDoing&&!isComplete" class="group_btn">
         <view v-if="!isGroupMaster" class="group_btn_disApply" style="width:100%">
           <button @click="countGroupActivity">活动统计</button>
         </view>
@@ -640,6 +658,7 @@ export default {
     this.isComplete =
       this.activityList.hasjoin === '已完成' ? this.isStatusTrue : false;
     if (!this.isComplete && this.activityList.hasjoin === '已结束') this.isComplete = this.isStatusTrue;
+    if (!this.isComplete && dayjs(new Date()).isAfter(dayjs(this.activityList.endDate))) this.isComplete = this.isStatusTrue;
     this.disApply = !this.isApply ? this.isStatusTrue : false;
     const isWantTo = await api.isWantTo({
       studentid: wx.getStorageSync('userInfo').studentID,
