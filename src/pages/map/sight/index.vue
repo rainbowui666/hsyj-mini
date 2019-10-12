@@ -89,7 +89,7 @@
             </wux-upload>-->
           </view>
         </view>
-        <view class="sight-introduction-video">
+        <view class="sight-introduction-video" v-if="sightObj.videourl">
           <view class="sight-introduction-video-inner">
             <view class="sight-introduction-video-image" @click="showVideo">
               <image :src="playImg" mode="widthFix"/>
