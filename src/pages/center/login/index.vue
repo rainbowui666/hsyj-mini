@@ -96,32 +96,36 @@ export default {
     }
     // this.schoolList = schoolInfo.data.data;
     let userInfo = wx.getStorageSync('userInfo') || false;
-    const studentDetail = await api.getStudentDetail({studentid: userInfo.studentID});
-    this.uesrStatus = studentDetail.data.shstate;
-    if (this.uesrStatus === 0 || this.uesrStatus === 2) {
-      this.uesrStatusText = '未验证'
-    } else if (this.uesrStatus === 3) {
-      this.uesrStatusText = '验证中'
-    } else if (this.uesrStatus === 4) {
-      this.uesrStatusText = '验证通过'
+    if (userInfo && userInfo.studentID) {
+      const studentDetail = await api.getStudentDetail({studentid: userInfo.studentID});
+      this.uesrStatus = studentDetail.data.shstate;
+      if (this.uesrStatus === 0 || this.uesrStatus === 2) {
+        this.uesrStatusText = '未验证'
+      } else if (this.uesrStatus === 3) {
+        this.uesrStatusText = '验证中'
+      } else if (this.uesrStatus === 4) {
+        this.uesrStatusText = '验证通过'
+      }
     }
     if (this.schoolList) {
       this.schoolName = this.schoolList[this.pickIndex].schoolName;
       this.schoolID = this.schoolList[this.pickIndex].schoolID;
     }
     if (this.$mp.query.isMyselfInfo === 'true') {
-      this.isShowSchPick = false;
-      this.isShowStatus = true;
-      this.InfoDisabled = true;
-      this.isShowCommit = false;
-      if (this.schoolName !== '请选择校区') {
+      if (userInfo && userInfo.stuNo) {
+        this.isShowSchPick = false;
+        this.isShowStatus = true;
+        this.InfoDisabled = true;
+        this.isShowCommit = false;
+      }
+      if (this.schoolName !== '请选择校区' && userInfo && userInfo.schoolid) {
         const schoolDetail = await api.getSchoolDetail({id: userInfo.schoolid});
         this.schoolName = schoolDetail.data.schoolName;
         this.schoolID = userInfo.schoolid;
       }
-      this.studentName = userInfo.studentName;
-      this.stuNo = userInfo.stuNo;
-      this.uesrTel = userInfo.tel;
+      if (userInfo && userInfo.studentName) this.studentName = userInfo.studentName;
+      if (userInfo && userInfo.stuNo) this.stuNo = userInfo.stuNo;
+      if (userInfo && userInfo.tel) this.uesrTel = userInfo.tel;
       if (this.uesrStatus === 2 || this.uesrStatus === 0) {
         this.isShowSchPick = true;
         this.InfoDisabled = false;
