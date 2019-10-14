@@ -35,7 +35,7 @@ export default {
       // wx.switchTab({
       //   url: '/pages/map/main'
       // });
-    }, 0)// 1600
+    }, 1600)
   },
   methods: {
     onConfirm (event) {
