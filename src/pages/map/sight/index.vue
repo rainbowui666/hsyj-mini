@@ -867,6 +867,10 @@ export default {
       }
     },
     async beforeGetDistance () {
+      if (wx.getStorageSync('userInfo').studentID === undefined) {
+        wx.navigateTo({ url: '/pages/center/login/main' });
+        return;
+      }
       if (this.sightObj.shstate.checkin) {
         wx.showToast({
           title: '已签到',
