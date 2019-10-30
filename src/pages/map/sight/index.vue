@@ -4,10 +4,10 @@
       class="frosted-glass-container"
       :style="sightObj.pics?sightObj.pics[0]
       ?sightObj.pics[0].sourceAddress===undefined
-      ?'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'
-      :'background-image:url(https://cdn.100eduonline.com/images/'+sightObj.pics[0].sourceAddress+')'
-      :'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'
-      :'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'"
+      ?'background-image:url(https://hsstatic.sufe.edu.cn/mini-images/default.png)'
+      :'background-image:url(https://hsstatic.sufe.edu.cn/images/'+sightObj.pics[0].sourceAddress+')'
+      :'background-image:url(https://hsstatic.sufe.edu.cn/mini-images/default.png)'
+      :'background-image:url(https://hsstatic.sufe.edu.cn/mini-images/default.png)'"
     >
       <view class="frosted-glass"></view>
     </view>
@@ -16,7 +16,7 @@
       <view class="sight-audio">
         <view class="sight-audio-container">
           <image
-            src="https://cdn.100eduonline.com/mini-images/sceneryAudio.png"
+            src="https://hsstatic.sufe.edu.cn/mini-images/sceneryAudio.png"
             class="slide-audio-image"
             mode="widthFix"
             v-if="sightObj.soundurl"
@@ -36,7 +36,7 @@
         <block v-for="(item, index) in swiper.movies" :key="index">
           <swiper-item>
             <image
-              :src="'https://cdn.100eduonline.com/images/'+item.sourceAddress"
+              :src="'https://hsstatic.sufe.edu.cn/images/'+item.sourceAddress"
               class="slide-image"
             />
           </swiper-item>
@@ -80,7 +80,7 @@
                 listType="picture-card"
                 :header="header"
                 :formData="formData"
-                url="https://hsapi.100eduonline.com/api/upload/wxUpload"
+                url="https://gzhgl.sufe.edu.cn/api/upload/wxUpload"
                 @change="onChange"
                 @success="onSuccess" 
                 @fail="onFail"
@@ -175,7 +175,7 @@
                   listType="picture-card"
                   :header="header"
                   :formData="formData"
-                  url="https://hsapi.100eduonline.com/api/upload/wxUpload"
+                  url="https://gzhgl.sufe.edu.cn/api/upload/wxUpload"
                   @change="onChange"
                   @success="onSuccess"
                   @fail="onFail"
@@ -1487,7 +1487,7 @@ export default {
 .frosted-glass-container {
   width: 100%;
   height: 450rpx;
-  background-image: url("https://cdn.100eduonline.com/mini-images/default.png");
+  background-image: url("https://hsstatic.sufe.edu.cn/mini-images/default.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;

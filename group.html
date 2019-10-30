@@ -8,7 +8,7 @@
     <title>活动统计</title>
 </head>
 <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=AFDBZ-QT5HQ-2XV56-GAXW7-43Q2T-OQBE4"></script>
-<script charset="utf-8" src="https://cdn.100eduonline.com/js/jquery.min.js"></script>
+<script charset="utf-8" src="https://hsstatic.sufe.edu.cn/js/jquery.min.js"></script>
 <style type="text/css">
     html,
     body {
@@ -112,7 +112,7 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url : "https://hsapi.100eduonline.com/api/count/getTopGroup?id="+id,
+            url : "https://gzhgl.sufe.edu.cn/api/count/getTopGroup?id="+id,
             //请求成功
             success : function(result) {
                 var html = [];
@@ -189,7 +189,7 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url : "https://hsapi.100eduonline.com/api/count/getGroupMapData?studentId="+studentId+"&id="+id,
+            url : "https://gzhgl.sufe.edu.cn/api/count/getGroupMapData?studentId="+studentId+"&id="+id,
             //请求成功
             success : function(result) {
                 lat = result.center.latitude;
@@ -251,7 +251,7 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url : "https://hsapi.100eduonline.com/api/count/clickGroupMapData?groupId="+groupid+"&id="+id,
+            url : "https://gzhgl.sufe.edu.cn/api/count/clickGroupMapData?groupId="+groupid+"&id="+id,
             //请求成功
             success : function(result) {
 

@@ -4,14 +4,14 @@
       <!-- 模糊背景开始 -->
       <view
         class="frosted-glass-container"
-        :style="activityList.pics[0]?activityList.pics[0].sourceAddress===undefined?'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)':'background-image:url(https://cdn.100eduonline.com/images/'+activityList.pics[0].sourceAddress+')':'background-image:url(https://cdn.100eduonline.com/mini-images/default.png)'"
+        :style="activityList.pics[0]?activityList.pics[0].sourceAddress===undefined?'background-image:url(https://hsstatic.sufe.edu.cn/mini-images/default.png)':'background-image:url(https://hsstatic.sufe.edu.cn/images/'+activityList.pics[0].sourceAddress+')':'background-image:url(https://hsstatic.sufe.edu.cn/mini-images/default.png)'"
       >
         <view class="frosted-glass"></view>
       </view>
       <view class="float-container">
         <view class="float-container-image">
           <image
-            :src="activityList.pics[0].sourceAddress===undefined?'https://cdn.100eduonline.com/mini-images/default.png':'https://cdn.100eduonline.com/images/'+activityList.pics[0].sourceAddress"
+            :src="activityList.pics[0].sourceAddress===undefined?'https://hsstatic.sufe.edu.cn/mini-images/default.png':'https://hsstatic.sufe.edu.cn/images/'+activityList.pics[0].sourceAddress"
             mode="widthFix"
           />
         </view>
@@ -246,8 +246,8 @@ export default {
       groupName: '',
       content: '',
       teamName: '',
-      defaultImg: 'https://cdn.100eduonline.com/mini-images/default.png',
-      svgSrc: 'https://cdn.100eduonline.com/mini-images/thumbsUp.png',
+      defaultImg: 'https://hsstatic.sufe.edu.cn/mini-images/default.png',
+      svgSrc: 'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp.png',
       iconArr: [
         {
           icon: 'ios-heart',
@@ -375,9 +375,9 @@ export default {
     },
     async onInviteBtn () {
       this.groupName = this.activityList.group[0].groupName;
-      let url1 = 'https://hsapi.100eduonline.com/api/group/showQr?url=';
+      let url1 = 'https://gzhgl.sufe.edu.cn/api/group/showQr?url=';
       let url =
-        'https://hsapi.100eduonline.com/api/group/joinGroup?groupid=' + this.activityList.group[0].groupid;
+        'https://gzhgl.sufe.edu.cn/api/group/joinGroup?groupid=' + this.activityList.group[0].groupid;
       // const res = await api.getQRCode({url: url});
       this.svgSrc = url1 + url;
       this.isTwoCode = true;
@@ -1059,7 +1059,7 @@ export default {
 .frosted-glass-container {
   width: 100%;
   height: 340rpx;
-  /* background-image: url('https://cdn.100eduonline.com/mini-images/school.png');    */
+  /* background-image: url('https://hsstatic.sufe.edu.cn/mini-images/school.png');    */
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;

@@ -8,7 +8,7 @@
     <title>活动统计</title>
 </head>
 <script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key=AFDBZ-QT5HQ-2XV56-GAXW7-43Q2T-OQBE4&libraries=visualization"></script>
-<script charset="utf-8" src="https://cdn.100eduonline.com/js/jquery.min.js"></script>
+<script charset="utf-8" src="https://hsstatic.sufe.edu.cn/js/jquery.min.js"></script>
 <style type="text/css">
     html,
     body {
@@ -60,7 +60,7 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url : "https://hsapi.100eduonline.com/api/count/getTopScenery?id="+id,
+            url : "https://gzhgl.sufe.edu.cn/api/count/getTopScenery?id="+id,
             //请求成功
             success : function(result) {
                 const html = [];
@@ -118,7 +118,7 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url : "https://hsapi.100eduonline.com/api/count/getHotMapData?id="+id,
+            url : "https://gzhgl.sufe.edu.cn/api/count/getHotMapData?id="+id,
             //请求成功
             success : function(result) {
 				heatData = result.data.length>0?result.data:[{"lng":121.396546,"lat":31.361074,"count":1}];

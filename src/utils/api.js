@@ -1,6 +1,6 @@
 import request from './request'
 
-const ApiRootUrl = 'https://hsapi.100eduonline.com/'
+const ApiRootUrl = 'https://gzhgl.sufe.edu.cn/'
 // const ApiRootUrl = 'http://localhost:8360/'
 
 const api = {

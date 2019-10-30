@@ -7,7 +7,7 @@
             :key="index"
             class="message-scroll-view-inner">
             <image
-              :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
+              :src="item.pics?item.pics[0]?'https://hsstatic.sufe.edu.cn/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
               class="message-scroll-view-inner-image"/>
             <span class="message-scroll-view-inner-title">{{item.sceneryTitle}}</span>
             <span class="message-scroll-view-inner-btn" @click="gotoMessage(item)">写留言</span>
@@ -38,7 +38,7 @@ export default {
       sceneryList: [],
       pageindex: 1,
       pagesize: 5,
-      defaultImg: 'https://cdn.100eduonline.com/mini-images/default.png',
+      defaultImg: 'https://hsstatic.sufe.edu.cn/mini-images/default.png',
       imgList: [
         // {
         //   url: '../../static/images/fudan1.jpeg',
@@ -139,7 +139,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsapi.100eduonline.com/api/discuss/list?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize + '&studentid=' + this.userInfo.studentID,
+        'https://gzhgl.sufe.edu.cn/api/discuss/list?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize + '&studentid=' + this.userInfo.studentID,
       method: 'GET',
       // 请求头部
       header: {

@@ -2,7 +2,7 @@
     <view class="container">
         <view class="center-box">
           <view>
-          <img src="https://cdn.100eduonline.com/mini-images/bg.jpg" alt="bg" class="bg-image" />
+          <img src="https://hsstatic.sufe.edu.cn/mini-images/bg.jpg" alt="bg" class="bg-image" />
           <img :src="userHeadImg" alt="head" class="head-image" @click="goToMyInfo"/>
           <span class="user-clear" @click="exitAndClear">登出</span>
           <h3 class="user-name">{{userName}}</h3>
@@ -75,7 +75,7 @@ export default {
       activityCount: 0,
       integralCount: 0,
       userName: '未授权获取',
-      userHeadImg: 'https://cdn.100eduonline.com/mini-images/user_head.png'
+      userHeadImg: 'https://hsstatic.sufe.edu.cn/mini-images/user_head.png'
     };
   },
   onLoad () {

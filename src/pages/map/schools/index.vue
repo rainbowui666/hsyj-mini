@@ -6,7 +6,7 @@
       <swiper class="swiper" :indicator-dots="true" :autoplay="true" interval="3000" duration="800">
         <block v-for="(item, index) in movies" :key="index">
           <swiper-item>
-            <image :src="item.sourceAddress?'https://cdn.100eduonline.com/images/'+item.sourceAddress:'https://cdn.100eduonline.com/mini-images/default.png'" class="slide-image"/>
+            <image :src="item.sourceAddress?'https://hsstatic.sufe.edu.cn/images/'+item.sourceAddress:'https://hsstatic.sufe.edu.cn/mini-images/default.png'" class="slide-image"/>
           </swiper-item>
         </block>
       </swiper>
@@ -121,9 +121,9 @@ export default {
       if (this.sight.lenght !== 0) {
         this.sight.forEach(element => {
           element.thumbsupImg =
-          'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
+          'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp.png';
           element.messageImg =
-          'https://cdn.100eduonline.com/mini-images/messageImg.png';
+          'https://hsstatic.sufe.edu.cn/mini-images/messageImg.png';
         });
       }
       this.schoolList = res.data ? res.data : []

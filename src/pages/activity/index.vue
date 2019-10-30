@@ -7,7 +7,7 @@
         <block v-for="(item, index) in movies" :key="index">
           <swiper-item>
             <image
-              :src="item.pics[0]?item.pics[0].sourceAddress?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:'https://cdn.100eduonline.com/mini-images/default.png':'https://cdn.100eduonline.com/mini-images/default.png'"
+              :src="item.pics[0]?item.pics[0].sourceAddress?'https://hsstatic.sufe.edu.cn/images/'+item.pics[0].sourceAddress:'https://hsstatic.sufe.edu.cn/mini-images/default.png':'https://hsstatic.sufe.edu.cn/mini-images/default.png'"
               class="slide-image"
               @click="navigatoTo(item)"
             />
@@ -88,13 +88,13 @@ export default {
       this.activityList.forEach(element => {
         if (element.shstate.wantto) {
           element.thumbsupImg =
-            'https://cdn.100eduonline.com/mini-images/thumbsUp_red.png';
+            'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp_red.png';
         } else {
           element.thumbsupImg =
-            'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
+            'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp.png';
         }
         element.messageImg =
-          'https://cdn.100eduonline.com/mini-images/messageImg.png';
+          'https://hsstatic.sufe.edu.cn/mini-images/messageImg.png';
         element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
       });
       this.activityList = this.activityList;
@@ -138,7 +138,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsapi.100eduonline.com/api/activity/frontList?pageindex=' +
+        'https://gzhgl.sufe.edu.cn/api/activity/frontList?pageindex=' +
         this.pageindex +
         '&pagesize=' +
         this.pagesize +
@@ -156,13 +156,13 @@ export default {
         newActivityList.forEach(element => {
           if (element.shstate.wantto) {
             element.thumbsupImg =
-            'https://cdn.100eduonline.com/mini-images/thumbsUp_red.png';
+            'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp_red.png';
           } else {
             element.thumbsupImg =
-            'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
+            'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp.png';
           }
           element.messageImg =
-            'https://cdn.100eduonline.com/mini-images/messageImg.png';
+            'https://hsstatic.sufe.edu.cn/mini-images/messageImg.png';
           element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
         });
         for (var i = 0; i < newActivityList.length; i++) {

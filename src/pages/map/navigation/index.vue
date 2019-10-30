@@ -192,7 +192,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsapi.100eduonline.com/api/search/searchList?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize,
+        'https://gzhgl.sufe.edu.cn/api/search/searchList?pageindex=' + this.pageindex + '&pagesize=' + this.pagesize,
       method: 'GET',
       // 请求头部
       header: {

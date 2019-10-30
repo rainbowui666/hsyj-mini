@@ -25,8 +25,8 @@ export default {
     return {
       showFlash: true,
       userInfo: {},
-      homeFlash: 'https://cdn.100eduonline.com/mini-images/into_flash.gif',
-      loginBg: 'https://cdn.100eduonline.com/mini-images/login_index.png'
+      homeFlash: 'https://hsstatic.sufe.edu.cn/mini-images/into_flash.gif',
+      loginBg: 'https://hsstatic.sufe.edu.cn/mini-images/login_index.png'
     };
   },
   mounted () {

@@ -285,9 +285,9 @@ export default {
       let activityInfo = res.data.data ? res.data.data : [];
       activityInfo.forEach(element => {
         element.thumbsupImg =
-          'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
+          'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp.png';
         element.messageImg =
-          'https://cdn.100eduonline.com/mini-images/messageImg.png';
+          'https://hsstatic.sufe.edu.cn/mini-images/messageImg.png';
         element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss');
       });
       this.activityList = activityInfo;
@@ -303,7 +303,7 @@ export default {
     this.pageindex = this.pageindex + 1;
     wx.request({
       url:
-        'https://hsapi.100eduonline.com/api/myself/getMyActivityList?pageindex=' + this.pageindex + '&pagesize=' +
+        'https://gzhgl.sufe.edu.cn/api/myself/getMyActivityList?pageindex=' + this.pageindex + '&pagesize=' +
         this.pagesize + '&studentid=' + wx.getStorageSync('userInfo').studentID + '&hasjoin=' + this.keyWord,
       method: 'GET',
       // 请求头部
@@ -315,9 +315,9 @@ export default {
         let newActivityList = res.data && res.data.data && res.data.data.data ? res.data.data.data : [];
         newActivityList.forEach(element => {
           element.thumbsupImg =
-            'https://cdn.100eduonline.com/mini-images/thumbsUp.png';
+            'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp.png';
           element.messageImg =
-            'https://cdn.100eduonline.com/mini-images/messageImg.png';
+            'https://hsstatic.sufe.edu.cn/mini-images/messageImg.png';
           element.startDate = dayjs(element.startDate).format('YYYY-MM-DD HH:mm:ss')
         });
         for (var i = 0; i < newActivityList.length; i++) {

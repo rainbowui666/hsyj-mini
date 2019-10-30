@@ -188,8 +188,8 @@ export default {
     });
     this.signinList = res.data.data ? res.data.data : []
     this.signinList.forEach(element => {
-      element.thumbsupImg = 'https://cdn.100eduonline.com/mini-images/thumbsUp.png'
-      element.messageImg = 'https://cdn.100eduonline.com/mini-images/messageImg.png'
+      element.thumbsupImg = 'https://hsstatic.sufe.edu.cn/mini-images/thumbsUp.png'
+      element.messageImg = 'https://hsstatic.sufe.edu.cn/mini-images/messageImg.png'
       element.navigationImg = '../../static/images/bingo.png'
       element.sightStatus = '已完成'
     });

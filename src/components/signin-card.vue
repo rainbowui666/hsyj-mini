@@ -7,7 +7,7 @@
         <view class="signin-card-image">
           <image
             mode="widthFix"
-            :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
+            :src="item.pics?item.pics[0]?'https://hsstatic.sufe.edu.cn/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"
           />
           <!-- <view class="signin-card-content-icongroup">
             <icon-group :list="item.iconArr"/>
@@ -90,7 +90,7 @@ export default {
   data () {
     return {
       defaultImg:
-        'https://cdn.100eduonline.com/mini-images/default.png'
+        'https://hsstatic.sufe.edu.cn/mini-images/default.png'
     };
   },
   methods: {

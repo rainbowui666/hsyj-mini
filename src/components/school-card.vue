@@ -34,7 +34,7 @@
         <view class="school-card-image">
           <image
             mode="widthFix"
-            :src="item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg"
+            :src="item.pics[0]?'https://hsstatic.sufe.edu.cn/images/'+item.pics[0].sourceAddress:defaultImg"
           />
         </view>
       </navigator>
@@ -69,7 +69,7 @@ export default {
   data () {
     return {
       defaultImg:
-        'https://cdn.100eduonline.com/mini-images/default.png'
+        'https://hsstatic.sufe.edu.cn/mini-images/default.png'
     };
   },
   methods: {

@@ -40,7 +40,7 @@
         </view>-->
         <view class="common-card-image">
           <image mode="aspectFill" 
-          :src="item.pics?item.pics[0]?'https://cdn.100eduonline.com/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
+          :src="item.pics?item.pics[0]?'https://hsstatic.sufe.edu.cn/images/'+item.pics[0].sourceAddress:defaultImg:defaultImg"/>
           <view v-if="item.hasjoin" class="common-card-content-status">
             <view v-if="item.hasjoin=='进行中'||item.hasjoin=='已报名,进行中'" class="on-status">进行中</view>
             <view v-if="item.hasjoin=='已报名'" class="sign-up-status">{{ item.hasjoin }}</view>
@@ -88,7 +88,7 @@ export default {
     return {
       thumbsupImg,
       messageImg,
-      defaultImg: 'https://cdn.100eduonline.com/mini-images/default.png'
+      defaultImg: 'https://hsstatic.sufe.edu.cn/mini-images/default.png'
     };
   },
   methods: {
